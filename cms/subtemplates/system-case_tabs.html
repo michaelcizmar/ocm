@@ -1,0 +1,74 @@
+%%[begin:view_tabs]%%
+<h2>Pika Case Tabs</h2>
+<a href="%%[base_url]%%/system-case_tabs.php?action=edit">Add New Case Tab</a><br/>
+%%[tab_list]%%
+%%[end:view_tabs]%%
+
+%%[begin:edit_tab]%%
+<form action="%%[base_url]%%/system-case_tabs.php" method="GET">
+<h2>Edit Case Tab: %%[tab_name]%%</h2>
+<table>
+<tr valign="top"> 
+	<td class="de"> 
+		Tab File:<br/>
+		%%[file,tab_file]%%<br/>
+		Tab Name:<br/>
+		%%[name,input_text]%%<br/>
+		Autosave (JS Mode Only):<br/>
+		%%[autosave,yes_no,radio]%%<br/>
+		Enabled:<br/>
+		%%[enabled,yes_no,radio]%%<br/>
+		Row:<br/>
+		%%[tab_row,tab_row]%%
+	</td>
+</tr>
+</table>
+<br/>
+%%[tab_id,input_hidden]%%
+%%[tab_order,input_hidden]%%
+%%[action,input_hidden]%%
+<input type="submit" name="Submit" value="Save">
+</form>
+%%[end:edit_tab]%%
+
+%%[begin:flex_header]%%
+<table cellspacing="0" summary="">
+<tr>
+	<th nowrap>Tab Name</th>
+	<th nowrap>File</th>
+	<th nowrap>Enabled</th>
+	<th nowrap>Autosave</th>
+	<th nowrap>Row</th>
+	<th nowrap>&nbsp;</th>
+</tr>
+%%[end:flex_header]%%
+%%[begin:flex_row]%%
+<tr class="%%[css_class]%%">
+	<td>%%[name]%%</td>
+	<td>%%[file]%%</td>
+	<td>%%[enabled]%%</td>
+	<td>%%[autosave]%%</td>
+	<td>%%[tab_row]%%</td>
+	<td>
+		<a href="%%[base_url]%%/system-case_tabs.php?action=edit&tab_id=%%[tab_id]%%">Edit</a> |
+		<a href="%%[base_url]%%/system-case_tabs.php?action=enable&tab_id=%%[tab_id]%%">%%[enable_text]%%</a> |
+		<a href="%%[base_url]%%/system-case_tabs.php?action=confirm_delete&tab_id=%%[tab_id]%%">Delete</a> |
+		<a href="%%[base_url]%%/system-case_tabs.php?action=move_up&tab_id=%%[tab_id]%%">Move Up</a> |
+		<a href="%%[base_url]%%/system-case_tabs.php?action=move_down&tab_id=%%[tab_id]%%">Move Down</a> 
+	</td>
+</tr>
+%%[end:flex_row]%%
+%%[begin:flex_footer]%%
+</table>
+%%[end:flex_footer]%%
+
+%%[begin:confirm_delete]%%
+<form action="%%[base_url]%%/system-case_tabs.php" method="GET">
+<h2>Delete Case Tab: %%[name]%%</h2>
+Are you sure you would like to delete this Case Tab?<br/>
+%%[action,input_hidden]%%
+%%[tab_id,input_hidden]%%
+<input type="submit" name="cancel" value="Cancel" />&nbsp;
+<input type="submit" name="delete" value="Delete" />
+</form>
+%%[end:confirm_delete]%%

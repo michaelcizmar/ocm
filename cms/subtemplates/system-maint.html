@@ -1,0 +1,34 @@
+<form action="%%[base_url]%%/system-maint.php" method="POST">
+<h2>System Maintenance</h2>
+WARNING: This page is reserved for site administration and should only
+be used by system administrators with full knowledge of Pika and its database.
+The scripts on this page are very database intensive and can take a substantial
+amount of time to run depending on the size of your database.  Therefore it 
+is not recommended that these be used during business hours as it may impact the 
+performance of Pika users.
+<br/>
+<h2>Populate Metaphones</h2>
+
+<input type="submit" name="submit" value="Regenerate Metaphones">
+%%[action,input_hidden,default=metaphone]%%
+</form>
+
+<form action="%%[base_url]%%/system-maint.php" method="POST">
+<h2>Calculate Ages</h2>
+<input type="submit" name="submit" value="Calculate Client Ages">
+%%[action,input_hidden,default=calc_age]%%
+</form>
+
+%%[begin:metaphone]%%
+<h2>Populate Metaphone(s)</h2>
+Dataset Size: %%[num_found]%% Matching Rows<br/>
+Update Complete: %%[num_updated]%%<br/>
+Duration: %%[duration]%% sec
+%%[end:metaphone]%%
+
+%%[begin:calc_age]%%
+<h2>Calculate Client Age(s)</h2>
+Dataset Size: %%[num_found]%% Matching Rows<br/>
+Update Complete: %%[num_updated]%% Updated<br/>
+Duration: %%[duration]%% sec
+%%[end:calc_age]%%

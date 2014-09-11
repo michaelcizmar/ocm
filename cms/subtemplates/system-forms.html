@@ -1,0 +1,33 @@
+<table>
+<tr>
+	<td valign="top">
+	<h2>Folder Listing</h2>
+	%%[folder_listing]%%
+	%%[forms,file_list,doc_type=F,folder_field=parent_folder]%%
+	<br/>
+	<form action="%%[base_url]%%/ops/upload_document.php" name="add_folder" method="POST">
+		<input type="text" value="" name="folder_name"/>
+		<input type="submit" name="add_folder" value="Add Folder"/>
+		<input type='hidden' name='folder' value="1"/>
+		<input type='hidden' name='parent_folder' value=""/>
+		<input type="hidden" name="doc_type" value="F"/>
+	</form>
+	</td>
+	<td valign="top">
+	<h2>Upload a Form</h2>
+	<form action="%%[base_url]%%/ops/upload_document.php" name="add_document" enctype="multipart/form-data" method="post">
+	Select a File to Add:<br/>
+	<input type="file" name="doc_upload" tabindex="1"/><br/>
+	Description of file:<br/>
+	<textarea name="description" cols="27" rows="6" tabindex="1"></textarea>
+	<input type='hidden' name='parent_folder' value=""/>
+	<input type="hidden" name="doc_type" value="F"/>
+	<br/>
+	<input type="submit" value="Add File" tabindex="1"/>
+	</form>
+	</td>
+</tr>
+</table>
+
+%%[ajax_init.js,javascript]%%
+%%[file_list.js,javascript,parse]%%

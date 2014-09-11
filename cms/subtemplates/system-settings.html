@@ -1,0 +1,70 @@
+<div style="padding:5px;" id="form_container">
+	<div style="" id="form_header">
+		%%[flags]%%
+		<form method="POST" autocomplete="off">
+	</div>
+	<div style="float:left;padding:5px" id="form_col1" class="de">
+		<h2>Site Settings</h2>
+		Program Name<br/>
+		%%[owner_name,input_text]%%<br/>
+		Administrator Email<br/>
+		%%[admin_email,input_text]%%<br/>
+		Authentication Label<br/>
+		%%[cookie_prefix,input_text]%%<br/>
+		Time Keeping Round-off Interval (Minutes)<br/>
+		%%[act_interval,input_text]%%<br/>
+		Hours Ahead/Behind Server's Time Zone<br/>
+		%%[time_zone_offset,time_zone_offset]%%<br/>
+		Time Zone (Calendar)<br/>
+		%%[time_zone,time_zone]%%<br/>
+		<br/>
+		%%[autonumber_on_new_case,yes_no,checkbox,label=Autonumber Each New Case]%%<br/>
+	</div>
+	<div style="float:left;padding:5px" id="form_col2" class="de">
+	<h2>&nbsp;</h2>
+		Session Timeout in Minutes<br/>
+		%%[session_timeout,input_text,default=120]%%<br/>
+		Password Strength Restrictions:<br/>
+		%%[pass_min_strength,pass_min_strength]%%<br/>
+		Password Minimum Length:<br/>
+		%%[pass_min_length,pass_min_length]%%<br/>
+		Password Expiration Period<br />
+		%%[password_expire,password_expire]%%<br/>
+		<br/>
+		%%[enable_system,yes_no,checkbox,label=Enable Logins]%%<br/>
+		%%[force_https,yes_no,checkbox,label=Allow Only Secure (HTTPS) Logins]%%<br/>
+		%%[enable_compression,yes_no,checkbox,label=Web Accelerator]%%<br/>
+		%%[enable_benchmark,yes_no,checkbox,label=Benchmark]%%<br/>
+	</div>
+	<div style="float:left;padding:5px" id="form_col3" class="de">
+	<h2>Install Settings</h2>
+		Web Site Base Path:<br/>
+		<input type="text" name="dont_use_base_url" value="%%[base_url]%%" disabled>
+		<br/>
+		Base Directory for Pika Files<br/>
+		<input type="text" name="dont_use_base_directory" value="%%[base_directory]%%" disabled>
+		<br/>
+		<p>
+		<em>Caution: These Are Dangerous!</em></p>
+		<h2>Database Settings</h2>
+		Server Name<br/>
+		<input type="text" name="dont_use_host" value="%%[db_host]%%" disabled>
+		<br/>
+		Database Name<br/>
+		<input type="text" name="_dont_use_name" value="%%[db_name]%%" disabled><br>
+		Username<br/>
+		<input type="text" name="_dont_use_user" value="%%[db_user]%%" disabled><br>
+		Password<br/>
+		<input type="password" name="_dont_use_password" value="**********" disabled>
+		<br/>
+		<em>Caution: These Are Dangerous!</em><br/>
+	</div>
+	<div style="clear:both;" id="form_footer">
+		<br/>
+		%%[action,input_hidden,default=update]%%
+		<input type="submit" name="gen" value="Save" class="save" tabindex="1" />
+		</form>
+		<br/><br/>
+		* - The HTML Tidy application from W3C.org should be installed if this option is enabled.
+	</div>
+</div>

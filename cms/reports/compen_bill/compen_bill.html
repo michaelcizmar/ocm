@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=iso-8859-15">
+	<TITLE>Letterhead:</TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 1.0.1  (Linux)">
+	<META NAME="AUTHOR" CONTENT=" ">
+	<META NAME="CREATED" CONTENT="20020919;15330000">
+	<META NAME="CHANGED" CONTENT="20020923;14192900">
+	<STYLE>
+	<!--
+		@page { size: 21.59cm 27.94cm; margin-right: 3.18cm; margin-top: 2.54cm; margin-bottom: 2.54cm }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" TEXT="#000000">
+<P ALIGN=CENTER STYLE="margin-bottom: 0cm">%%[owner_name]%%</P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0cm">Billing Address Goes Here</P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0cm">Phone Number Goes Here</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">%%[todays_date]%%</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">%%[primary_client_name]%%</P>
+<P STYLE="margin-bottom: 0cm">%%[full_address]%%</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Re:  %%[number]%%</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">%%[billing_table]%%</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Total Due and
+Payable:						$%%[total_bill]%%</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0cm">Billing Due Upon Receipt</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+</BODY>
+</HTML>
+
+%%[begin:flex_header]%%
+<table border="1" cellpadding="2" cellspacing="0" width="100%">
+<tr>
+	<th width="10%">Date</th>
+	<th width="60%">Description</th>
+	<th width="10%">Time</th>
+	<th width="20%">Charge</th>
+</tr>
+%%[end:flex_header]%%
+%%[begin:flex_row]%%
+<tr class="row%%[row_class]%%">
+	<td>%%[billing_date]%%</td>
+	<td>%%[notes]%%</td>
+	<td><div align="right">%%[billing_hours]%%</div></td>
+	<td><div align="right">%%[billing_amount]%%</div></td>
+</tr>
+%%[end:flex_row]%%
+%%[begin:flex_footer]%%
+</table>
+%%[end:flex_footer]%%

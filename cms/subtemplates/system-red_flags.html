@@ -1,0 +1,188 @@
+%%[begin:default_flags]%%
+<h2>Pika Flag Manager</h2>
+<a href="%%[base_url]%%/system-red_flags.php?action=edit">Add New Red Flag</a>
+<br/>
+%%[flag_listing]%%
+<h2>Test Flags</h2>
+Case ID:<br/>
+<form action="%%[base_url]%%/system-red_flags.php" method="GET">
+%%[case_id,input_text]%%
+<input type="submit" name="Test Flags" value="Test Flags" />
+%%[action,input_hidden]%%
+</form>
+%%[end:default_flags]%%
+
+
+
+
+%%[begin:flex_header]%%
+<table width="90%" cellspacing="0" cellpadding="5" summary="" border="0">
+	<tr>
+		<th nowrap>Name</th>
+		<th nowrap>Description</th>
+		<th nowrap>Enabled</th>
+		<th nowrap>&nbsp;</th>
+	</tr>
+%%[end:flex_header]%%
+%%[begin:flex_row]%%
+	<tr class="%%[css_class]%%">
+		<td>%%[name]%%</td>
+		<td>%%[description]%%</td>
+		<td>%%[enabled,yes_no,text]%%</td>
+		<td>
+			<a href="%%[base_url]%%/system-red_flags.php?flag_id=%%[flag_id]%%&action=enable">%%[enable_text]%%</a> |
+			<a href="%%[base_url]%%/system-red_flags.php?flag_id=%%[flag_id]%%&action=edit">Edit</a> |
+			<a href="%%[base_url]%%/system-red_flags.php?flag_id=%%[flag_id]%%&action=confirm_delete">Delete</a>
+		</td>
+	</tr>
+%%[end:flex_row]%%
+%%[begin:flex_footer]%%
+</table>
+%%[end:flex_footer]%%
+
+
+%%[begin:default_rules]%%
+<h2>Rules Listing</h2>
+<a href="%%[base_url]%%/system-red_flags.php?flag_id=%%[flag_id]%%&action=edit_rule">Add New Rule</a>	
+%%[rules_listing]%%
+%%[end:default_rules]%%
+
+%%[begin:rules_header]%%
+<table cellspacing="0" cellpadding="5" summary="" border="0">
+	<tr>
+		<th nowrap>Field</th>
+		<th nowrap>Operator</th>
+		<th nowrap>Value</th>
+		<th nowrap>&nbsp;</th>
+	</tr>
+%%[end:rules_header]%%
+%%[begin:rules_row]%%
+	<tr class="%%[css_class]%%">
+		<td>%%[field_name]%%</td>
+		<td>%%[comparison,comparison,text]%%</td>
+		<td>%%[value]%%</td>
+		<td>
+			<a href="%%[base_url]%%/system-red_flags.php?flag_id=%%[flag_id]%%&rule_id=%%[rule_id]%%&action=edit_rule">Edit</a> |
+			<a href="%%[base_url]%%/system-red_flags.php?flag_id=%%[flag_id]%%&rule_id=%%[rule_id]%%&action=confirm_delete_rule">Delete</a>
+		</td>
+	</tr>
+%%[end:rules_row]%%
+%%[begin:rules_footer]%%
+</table>
+%%[end:rules_footer]%%
+
+%%[begin:edit_flag]%%
+<table cellpadding="0" cellspacing="5" border="0">
+<tr>
+	<td valign="top">
+	<h2>Editing Flag: %%[name]%%</h2>
+	
+	<form action="%%[base_url]%%/system-red_flags.php" method="GET">
+		Name:<br/>
+		%%[name,input_text]%%<br/>
+		Description:<br/>
+		%%[description,input_textarea]%%<br/>
+		Enabled:<br/>
+		%%[enabled,yes_no,radio,vertical]%%<br/>
+		%%[flag_id,input_hidden]%%
+		%%[action,input_hidden]%%
+		<input type="submit" name="Save" value="Save"/>
+	</form>
+	</td>
+	<td valign="top">
+	%%[default_rules]%%
+	</td>
+</tr>
+
+</table>
+%%[end:edit_flag]%%
+
+%%[begin:edit_rule]%%
+<h2>Editing Rule: %%[rule_id]%%</h2>	
+<form action="%%[base_url]%%/system-red_flags.php" method="GET">
+	<table>
+	<tr>
+	<td>&nbsp;</td>
+	<td>
+	Field Name:<br/>
+	%%[field_name,field_name,menu_groups]%%<br/>
+	</td><td>
+	Operator:<br/>
+	%%[comparison,comparison]%%<br/>
+	</td><td>
+	Value:<br/>
+	%%[value,input_text]%%<br/>
+	</td>
+	</tr>
+	%%[and_rules]%%
+	<tr>
+	<td colspan="4">
+	<a href="%%[base_url]%%/system-red_flags.php?action=add_and_conditional&flag_id=%%[flag_id]%%&rule_id=%%[rule_id]%%">Add And Conditional</a>
+	</td>
+	</tr>
+	</table>
+	
+	%%[flag_id,input_hidden]%%
+	%%[rule_id,input_hidden]%%
+	%%[action,input_hidden]%%
+	<br/>
+	<input type="submit" name="Save" value="Save"/>
+</form>
+%%[end:edit_rule]%%
+
+%%[begin:and_rules]%%
+	<tr>
+	<td valign="bottom">-AND-</td>
+	<td>
+	Field Name:<br/>
+	%%[and_field_name]%%<br/>
+	</td><td>
+	Operator:<br/>
+	%%[and_comparison]%%<br/>
+	</td><td>
+	Value:<br/>
+	%%[and_value]%%<br/>
+	</td>
+	<td valign="bottom">
+	<a href="%%[base_url]%%/system-red_flags.php?action=confirm_delete_and_rule&flag_id=%%[flag_id]%%&rule_id=%%[rule_id]%%&and_rule_id=%%[and_rule_id]%%">Delete</a>
+	</td>
+	</tr>
+%%[end:and_rules]%%
+
+
+
+%%[begin:delete_flag]%%
+Are you sure you want to delete this flag?
+<form action="%%[base_url]%%/system-red_flags.php" method="GET">
+%%[flag_id,input_hidden]%%
+%%[action,input_hidden]%%
+<input type="submit" name="Delete" value="Delete"/>
+&nbsp;
+<input type="submit" name="Cancel" value="Cancel"/>
+</form>
+%%[end:delete_flag]%%
+
+%%[begin:delete_rule]%%
+Are you sure you want to delete this rule?
+<form action="%%[base_url]%%/system-red_flags.php" method="GET">
+%%[flag_id,input_hidden]%%
+%%[rule_id,input_hidden]%%
+%%[action,input_hidden]%%
+<input type="submit" name="Delete" value="Delete"/>
+&nbsp;
+<input type="submit" name="Cancel" value="Cancel"/>
+</form>
+%%[end:delete_rule]%%
+
+%%[begin:delete_and_rule]%%
+Are you sure you want to delete this AND rule?
+<form action="%%[base_url]%%/system-red_flags.php" method="GET">
+%%[flag_id,input_hidden]%%
+%%[rule_id,input_hidden]%%
+%%[and_rule_id,input_hidden]%%
+%%[action,input_hidden]%%
+<input type="submit" name="Delete" value="Delete"/>
+&nbsp;
+<input type="submit" name="Cancel" value="Cancel"/>
+</form>
+%%[end:delete_and_rule]%%

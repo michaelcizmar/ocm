@@ -1,0 +1,62 @@
+<form method="GET">
+<table cellpadding="3" cellspacing="0">
+<tr>
+	<td>
+	County:<br/>
+	%%[county,input_text]%%<br/>
+	</td><td>
+	Language:<br/>
+	%%[languages,input_text]%%<br/>
+	</td><td>
+	Practice Areas:<br/>
+	%%[practice_areas,input_text]%%<br/>
+	</td><td>
+	Last Name:<br/>
+	%%[last_name,input_text]%%<br/>
+	</td>
+</tr>
+</table>
+%%[order,input_hidden]%%
+%%[order_field,input_hidden]%%
+%%[offset,input_hidden]%%
+%%[case_id,input_hidden]%%
+%%[field,input_hidden]%%
+%%[screen,input_hidden]%%
+<input type="submit" name="search" value="Search" class="save">
+</form>
+%%[atty_list]%%
+<center><b>%%[total_pba]%%</b></center>
+
+%%[begin:flex_header]%%
+<table cellspacing="0" cellpadding="3">
+<tr>
+	<th><a href="%%[atty_name_url]%%">Name</a>%%[atty_name_img]%%</th>
+	<th><a href="%%[last_case_url]%%">Last Case</a>%%[last_case_img]%%</th>
+	<th>Firm</th>
+	<th>Address</th>
+	<th>Phone</th>
+	<th>E-mail</th>
+	<th>County</th>
+	<th>Languages</th>
+	<th>Practice Areas</th>
+	<th>Notes</th>
+</tr>
+%%[end:flex_header]%%
+%%[begin:flex_row]%%
+<tr class="%%[css_class]%%">
+	<td>%%[atty_name]%%</td>
+	<td>%%[last_case]%%</td>
+	<td>%%[firm]%%</td>
+	<td>%%[atty_address]%%</td>
+	<td>%%[phone_notes]%%</td>
+	<td><a href="mailto:%%[email]%%">%%[email]%%</a></td>
+	<td>%%[county]%%</td>
+	<td>%%[languages]%%</td>
+	<td>%%[practice_areas]%%</td>
+	<td>%%[notes]%%</td>
+</tr>
+%%[end:flex_row]%%
+%%[begin:flex_footer]%%
+</table>
+%%[end:flex_footer]%%
+

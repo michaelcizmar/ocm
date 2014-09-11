@@ -1,0 +1,47 @@
+%%[begin:zipcode_default]%%
+<table><tr><td>
+
+<form name="form1" method="post" action="zipcode.php">
+<h2>Look Up a ZIP Code</h2>
+<p class="de">
+<input type="text" name="zipcode" value=""><br/>
+<input type="submit" name="Submit" value="Lookup">
+<input type="hidden" name="screen_name" value="edit">
+</p>
+<br/>
+</form>
+
+<form name="form2" method="post" action="zipcode.php">
+<h2>Add a New ZIP Code</h2>
+<p class="de">
+<input type="submit" name="Submit" value="Add New Zipcode">
+<input type="hidden" name="screen_name" value="add">
+</p>
+</form>
+%%[end:zipcode_default]%%
+
+%%[begin:zipcode]%%
+</td></tr></table>
+
+<form name="form1" method="post" action="ops/update_zipcode.php">
+<p class="de">
+	Zip Code:<br/>
+    <input type="text" name="zipcode" value="%%[zip]%%">
+    <br/>
+    City:<br/>
+    <input type="text" name="city" value="%%[city]%%">
+    <br/>
+    State:<br/>
+    <input type="text" name="state" value="%%[state]%%">
+	<br/>
+	<!--  Per AMW - Area Codes not in use -->
+	<!--Area Code:<br/>-->
+    <input type="hidden" name="area_code" value="%%[area_code]%%">
+    County:<br/>
+    <input type="text" name="county" value="%%[county]%%">
+    <br/>
+    <input type="hidden" name="screen_name" value="%%[screen_name]%%">
+    <input type="submit" name="Submit" value="%%[button_text]%%">
+</p>
+</form>
+%%[end:zipcode]%%

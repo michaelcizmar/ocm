@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+		<title>%%[page_title]%%</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <!-- Le styles -->
+	    <link href="%%[base_url]%%/css/bootstrap.min.css" rel="stylesheet">
+	    
+    <link rel="icon" href="%%[base_url]%%/favicon.ico" />
+	<link rel="shortcut icon" href="%%[base_url]%%/favicon.ico" />
+    <link rel="apple-touch-icon" href="%%[base_url]%%/m/images/pika-icon-ios.png" />
+	<link rel="apple-touch-icon" sizes="57x57" href="%%[base_url]%%/m/images/pika-icon-ios-57.png" />
+	<link rel="apple-touch-icon" sizes="72x72" href="%%[base_url]%%/m/images/pika-icon-ios-72.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="%%[base_url]%%/m/images/pika-icon-ios-114.png" />
+	<style>
+	html{
+    /* This image will be displayed fullscreen */
+    background:url('%%[base_url]%%/images/auth_bg.jpg') no-repeat center center;
+
+    /* Ensure the html element always takes up the full height of the browser window */
+    min-height:100%;
+
+    /* The Magic */
+    background-size:cover;
+}
+
+body{
+    /* Workaround for some mobile browsers */
+    min-height:100%;
+    background-color: transparent;
+    color: white;
+    margin-top: 15%;
+}
+h1{
+	text-shadow: 3px 3px 7px #337;
+}
+	</style>
+  </head>
+
+  <body>
+  <div class="container">
+  	<div class="span6">
+	<h1>Welcome to Pika CMS</h1>
+    %%[warning]%%
+	<h2>%%[owner_name]%%</h2>
+		
+		
+		<!-- img src="%%[base_url]%%/images/lady-justice.png" width="107" height="107" -->
+		
+		<form class="form-horizontal" method="%%[form_method]%%" name="form2">
+		%%[form_data]%%
+  <div class="control-group">
+    <label class="control-label" for="login_user">Username</label>
+    <div class="controls">
+      <input type="text" name="login_user" id="login_user" placeholder="Username">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="login_pass">Password</label>
+    <div class="controls">
+      <input type="password" name="login_pass" id="login_pass" placeholder="Password">
+      %%[auth_id,input_hidden]%%
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn">Sign In</button>
+    </div>
+  </div>
+</form>
+
+		<div style="clear:both;">
+		%%[messages]%%
+		</div>
+		</div>
+		
+		<div class="span4">
+				<p>Legal Notice:<br/>
+		<br/>
+		This system is for the use of authorized users only.<br/>
+		<br/>
+		Unauthorized use of this system is forbidden.<br/>
+		<br/>
+		Individuals using this computer system without authority, or in excess of their authority, are subject
+		to having all of their activities on this system monitored and recorded by systems personnel.</p>
+
+		</div>
+</div>
+
+
+
+	<div style="clear:both;padding:15px" id="form_footer" class="small" align="center">
+		<a href="http://www.pikasoftware.com"><img src="%%[base_url]%%/images/pikasoftware.png" width="131" height="20"></a><br>
+		&copy; 2013 Pika Software, LLC
+	</div>
+
+
+<script language="JavaScript" type="text/javascript"><!--
+document.form2.login_user.focus();
+//--></script>
+	</body>
+</html>
+

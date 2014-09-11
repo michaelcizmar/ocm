@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta name="generator" content="HTML Tidy, see www.w3.org">
+    <title>%%[page_title]%%</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <!-- <meta http-equiv="MSTHEMECOMPATIBLE" content="no"/> -->
+    <link rel="stylesheet" href="css/stylesheet-alt.css" type="text/css">
+    <link rel="apple-touch-icon" href="%%[base_url]%%/m/images/pika-icon-ios.png" />
+	<link rel="apple-touch-icon" sizes="57x57" href="%%[base_url]%%/m/images/pika-icon-ios-57.png" />
+	<link rel="apple-touch-icon" sizes="72x72" href="%%[base_url]%%/m/images/pika-icon-ios-72.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="%%[base_url]%%/m/images/pika-icon-ios-114.png" />
+	<style type="text/css">
+	
+ body {
+ padding: 40px;
+  	font-size: 60px;
+  	font-family: Helvetica, Verdana, Arial;
+  	background-color: gray;
+  	
+  }
+  
+  div {
+  	
+  }
+  
+  input {
+  	font-size: 60px;
+  }
+
+	h1 {
+		margin: 0px;
+		padding-bottom: 30px;
+		font-size: 60px;
+	}
+	h2 {
+		margin: 0px;
+		padding-bottom: 30px;
+		font-size: 40px;
+	}
+	
+	#copyright
+	{
+		font-size: 30px;
+	}
+	
+	#legal
+	{
+		font-size: 30px;
+		font-family: Courier, serif;
+		padding-bottom: 30px;
+		
+	}
+</style>
+  </head>
+
+  <body>
+	<script type="text/javascript">
+	window.onload = function() 
+	{
+		setTimeout(function(){window.scrollTo(0, 1);}, 100);
+	}
+	</script>
+
+		<h1>%%[owner_name]%%</h1>
+          %%[warning]%%
+		<h2>Welcome to Pika CMS!</h2>
+		
+		<form method="POST" name="form2">
+		Username:<br/>
+		%%[login_user,input_text]%%<br/>
+		Password:<br/>
+		%%[login_pass,input_password]%%<br/>
+		%%[auth_id,input_hidden]%%
+		<br/>
+		<input type="submit" name="signin" value="Sign In" style="font-weight: bold;">
+		</form>
+		<br/>
+		<div style="color:red;text-align:left;clear:both;">
+		%%[messages]%%
+		</div>
+		<div id="legal">
+		Legal Notice:<br/>
+		This system is for the use of authorized users only. Unauthorized use of this system is forbidden.
+		Individuals using this computer system without authority, or in excess of their authority, are subject
+		to having all of their activities on this system monitored and recorded by systems personnel.</div>
+		
+		<div id="copyright">&copy; 2011 Pika Software, LLC</div>
+
+<script language="JavaScript" type="text/javascript"><!--
+document.form2.username.focus();
+//--></script>
+	</body>
+</html>
+

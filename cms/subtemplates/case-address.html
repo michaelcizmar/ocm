@@ -1,0 +1,26 @@
+<h2 class="hdt">Case-Related Address</h2>
+
+<form action="%%[base_url]%%/ops/update_case.php" method="post" name="ws">
+
+<label>Address:<br>
+%%[case_address,input_text]%%<br>
+%%[case_address2,input_text]%%</label>
+<label>City:<br>
+%%[case_city,input_text]%%</label>
+<label>State:<br>
+%%[case_state,input_text]%%</label>
+<label>ZIP Code:<br>
+%%[case_zip,input_text]%%</label>
+<label>County:<br>
+%%[case_county,input_text]%%</label>
+
+<input type="hidden" name="screen" value="address"/>
+%%[case_id,input_hidden]%%
+<input type=submit name="update_case" value="Save" tabindex=1 class="save" accesskey="s" />
+<!--
+<input type=submit name="update_case" value="Save, Next Tab" tabindex="1" class="save" onclick="document.forms.ws.screen.value='pb';"><br/><br/>
+-->
+
+</form>
+
+%%[case-info.js,javascript,parse]%%

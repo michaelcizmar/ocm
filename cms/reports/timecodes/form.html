@@ -1,0 +1,33 @@
+<div style="padding:5px;" id="form_container">
+	<div style="" id="form_header">
+		<form action="%%[base_url]%%/reports/%%[report_name]%%/report.php" method="POST" name=form1 target="_blank">
+	</div>
+	<div style="float:left;padding:2px" id="form_col1" class="de">
+		Staff Member:<br/>
+		%%[user_list,user_list]%%
+	</div>
+	<div style="float:left;padding:2px" id="form_col2" class="de">
+		Start Date:<br/>
+		%%[date_start,input_date_selector]%%<br/>
+		End Date:<br/>
+		%%[date_end,input_date_selector]%%<br/>
+		%%[report_format,checkbox,default_value=csv,label=Send to a spreadsheet]%%<br/>
+		%%[show_sql,checkbox,label=Show SQL]%%<br/>
+	</div>
+	<div style="clear:both;" id="form_footer">
+		<br/>
+		<input type=submit name=submit value="Generate Report" class="save" tabindex="1"><br/>
+		<br/>
+		<h2>Time Code Definitions</h2>
+		<input type="text" name="holidaycode" value="SK"> <label for="holidaycode">Holiday Code</label><br/>
+		<input type="text" name="lunchcode" value="SL"> <label for="lunchcode">Lunch Code</label><br/>
+		<input type="text" name="vacationcode" value="SV"> <label for="vacationcode">Vacation Code</label><br/>
+		<input type="text" name="compcode" value="SM"> <label for="compcode">Comp Time Code</label><br/>
+		<input type="text" name="sickcode" value="SS"> <label for="sickcode">Sick Code</label><br/>
+		</form>
+	</div>
+</div>
+
+%%[ajax_init.js,javascript]%%
+%%[date_selector.js,javascript,parse]%%
+%%[checkbox_list.js,javascript,parse]%%

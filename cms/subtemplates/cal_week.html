@@ -1,0 +1,64 @@
+<table width="98%" summary="">
+<tr>
+
+<td>
+	<a href='cal_week.php?cal_date=%%[prev_week]%%&screen=%%[screen]%%&user_id=%%[user_id]%%'>&lt; Previous Week</a>
+</td>
+
+<td align=center>
+	%%[cal_tabs]%%
+</td>
+<td>
+	<form action="cal_week.php" method="get">
+		Go to date:
+		<input type="text" name="cal_date" size="10" maxlength="10" tabindex="2"/>
+		<input type="submit" value="Go"/>
+	</form>
+</td>
+
+<td align=right><a href='cal_week.php?cal_date=%%[next_week]%%&screen=%%[screen]%%&user_id=%%[user_id]%%'>Next Week &gt;</a></td>
+
+</tr>
+</table>
+
+%%[calendar_table]%%
+
+<p>
+
+<table summary="">
+<tr valign="top">
+
+<td nowrap class="de">
+
+<h2 class="hdt">Actions</h2>
+<img src="images/point.gif">
+Add <a href="%%[base_url]%%/activity.php?screen=compose&act_date=%%[cal_date]%%&act_type=K">New Tickle</a><br/>
+<img src="images/point.gif">
+Add <a href="%%[base_url]%%/activity.php?screen=compose&act_date=%%[cal_date]%%&act_type=T">New Time Slip</a>
+(<a href="%%[base_url]%%/timer.php" onclick="popUp({url:this.href,name:'popUpTimer'});return false;">Popup Timer</a>)<br/>
+<img src="images/point.gif">
+Add <a href="%%[base_url]%%/activity.php?screen=compose&completed=0&act_date=%%[cal_date]%%">New Calendar Entry</a><br/>
+<img src="images/point.gif">
+Add <a href="%%[base_url]%%/activity.php?screen=compose&act_date=%%[cal_date]%%&act_type=L">New LSC Other Services Record</a><br/>
+<img src="images/point.gif" alt="Arrow"/>
+<a href="%%[base_url]%%/ical-subscribe.php">Subscribe to Calendar (iCal)</a>
+
+<form>
+<img src="images/point.gif" alt="Arrow"/>
+View Another Person's Calendar:<br/>
+<input type="hidden" name="cal_date" value="%%[cal_date]%%"/>
+<input type="hidden" name="screen" value="%%[screen]%%"/>
+%%[user_id menu]%%<br/><br/>
+<input type="submit" value="View" class="save" tabindex="1"/>
+</form>
+
+</td>
+
+<td>&nbsp;&nbsp;</td>
+
+<td><h2 class="hdt">Time/Funding Breakdown</h2><p>%%[funding_table]%%</td>
+
+</tr>
+</table>
+
+<script type="text/javascript" language="JavaScript" src="%%[base_url]%%/js/popUp.js"></script>

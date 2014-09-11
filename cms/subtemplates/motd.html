@@ -1,0 +1,63 @@
+%%[begin:edit_motd]%%
+<h2 class="hdt">Edit a Message</h2>
+<form action="%%[base_url]%%/motd.php" method="GET">
+
+Full Name:<br/>
+%%[full_name,input_text]%%<br/>
+Title:<br/>
+%%[title,input_text]%%<br/>
+Message:<br>
+%%[content,input_textarea]%%<br/>
+<br/>
+<input type="hidden" name="action" value="update_motd" />
+%%[motd_id,input_hidden]%%
+%%[user_id,input_hidden]%%
+
+<input type="submit" value="Update" name="update" class="save">
+</form>
+%%[end:edit_motd]%%
+
+%%[begin:view_motd]%%
+<h2>Current Messages</h2>
+%%[motd_list]%%
+<p><i>Total of <b>%%[num_rows]%%</b> messages in system</i></p>
+<h2>Add New Message</h2>
+<a href="%%[base_url]%%/motd.php?action=add_motd">New Message</a>
+%%[end:view_motd]%%
+
+
+%%[begin:confirm_delete]%%
+<h2>Confirm Message Deletion</h2>
+<form action="%%[base_url]%%/motd.php" method="GET">
+Are you sure that you would like to delete Message ID: %%[motd_id]%%?<br/>
+<input type="submit" name="Delete" value="delete" class="save" />
+%%[motd_id,input_hidden]%%
+<input type="hidden" name="action" value="delete"/>
+</form>
+%%[end:confirm_delete]%%
+
+%%[begin:flex_header]%%
+<table width="100%" cellspacing="0" cellpadding="7">
+<tr>
+	<th>Poster</th>
+	<th>Title</th>
+	<th>Created</th>
+	<th>Actions</th>
+</tr>
+%%[end:flex_header]%%
+%%[begin:flex_row]%%
+<tr class="%%[css_class]%%">
+	<td>%%[full_name]%%</td>
+	<td>%%[title]%%</td>
+	<td>%%[created]%%</td>
+	<td>
+	<a href="%%[base_url]%%/motd.php?action=edit&motd_id=%%[motd_id]%%">Edit</a> |
+	<a href="%%[base_url]%%/motd.php?action=confirm_delete&motd_id=%%[motd_id]%%">Delete</a>
+	</td>
+</tr>
+%%[end:flex_row]%%
+%%[begin:flex_footer]%%
+</table>
+
+%%[end:flex_footer]%%
+

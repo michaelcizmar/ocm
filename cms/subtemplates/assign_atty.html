@@ -1,0 +1,72 @@
+<table>
+	<tr valign="top">
+		<td>
+		<h2 class="hdt">Search Attorneys</h2>
+		<form action="assign_atty.php" method="GET">
+		<p>County:<br/>
+		<input type="text" name="county" value="%%[county]%%" size="20" tabindex=1><br/>
+		<p>Language:<br/>
+		<input type="text" name="languages" value="%%[languages]%%" size="20" tabindex=1><br/>
+		<p>Practice Areas:<br/>
+		<input type="text" name="practice_areas" value="%%[practice_areas]%%" size="20" tabindex=1><br/>
+		<p>Last Name:<br/>
+		<input type="text" name="last_name" value="%%[last_name]%%" size="20" tabindex=1><br/>
+		<p>Last Case Was Earlier Than:<br/>
+		<input type="text" name="last_case_before" value="%%[last_name_before]%%" size="20" tabindex=1><br/>
+		<input type=hidden name='offset' value='%%[offset]%%'>
+		<input type=hidden name='case_id' value='%%[case_id]%%'>
+		<input type=hidden name='field' value='%%[field]%%'>
+		<input type=submit name="submit" value="Filter" tabindex="1">
+		</form>
+		
+		<h2 class="hdt">Add an Attorney</h2>
+		<p><img src=images/point.gif> <a href='%%[base_url]%%/system-users.php'>Add New Vol. Attorney</a>
+		</td>
+		
+		<td>&nbsp;</td>
+		
+		<td>
+		<h2 class="hdt">Attorney Search Results</h2>
+		<table cellpadding=3 cellspacing=0 border=0 width="100%" summary="">
+			<tr>
+				<th>&nbsp;</th>
+				<th>Attorney</th>
+				<th>County</th>
+				<th>Languages</th>
+				<th>Practice&nbsp;Areas</th>
+				<th>Notes</th>
+			</tr>
+%%[begin:atty_table]%%
+			<tr class="%%[class]%%" valign="top">
+				<td>
+				<form action="dataops.php" method="POST">
+				<input type="hidden" name="case_id" value="%%[case_id]%%">
+				<input type="hidden" name="user_id" value="%%[user_id]%%">
+				<input type="hidden" name="field" value="%%[field]%%">
+				<input type="hidden" name="action" value="set_case_user">
+				<input type="submit" value="Assign">&nbsp;
+				</form>
+				</td>
+				<td>
+				<a href="%%[base_url]%%/system-users.php?action=edit&user_id=%%[user_id]%%"><strong>%%[full_name]%%</strong></a>
+				%%[extra_info]%%
+				</td>
+				<td>
+				%%[county]%%
+				</td>
+				<td>
+				%%[languages]%%
+				</td>
+				<td>
+				%%[practice_areas]%%
+				</td>
+				<td>
+				%%[notes]%%
+				</td>
+			</tr>
+%%[end:atty_table]%%
+		</table>
+		%%[atty_message]%%
+		</td>
+	</tr>
+</table>

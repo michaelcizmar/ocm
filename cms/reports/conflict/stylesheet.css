@@ -1,0 +1,224 @@
+BODY {  
+	font-family: Geneva, Arial, Helvetica,  san-serif; 
+	font-size: 12px; 
+	background-color: #f5f5f5;
+	margin: 7px;
+}
+
+TABLE {
+	/* padding: 3px;
+	margin: 0px; */
+}
+
+TR {
+	font-family: Geneva, Arial, Helvetica, san-serif; 
+	font-size: 12px;
+}
+
+IMG { border-width: 0px; }
+
+HR { background-color: #f0f0f0; }
+
+A:hover {
+	background-color: #cccccc;
+	text-decoration: underline; 
+}
+
+INPUT, SELECT { font-size: 11px; }
+TEXTAREA {
+	font-family: Andale Mono, Courier, serif;
+	font-size: 11px;
+}
+
+TT {
+	font-family: Andale Mono, Courier, serif; 
+	font-size: 14px;
+}
+
+TH {
+	font-size: 11px; 	
+	color: #000000; 
+	background-color: #ccccff;
+	
+	text-align: left;
+}
+TH A { color: #000000; }
+
+TH A:hover {
+	background-color: #0000ff;
+	text-decoration: underline;
+}
+
+UL {
+	padding-left: 15px;
+}
+
+H1 {
+	margin-top: 1px; 
+	margin-bottom: 1px;
+	padding: 2px;
+ 	font-size: 15px;	
+}
+
+H2 {
+	margin-top: 3px; 
+	margin-bottom: 3px;
+	padding: 2px;
+ 	font-size: 14px;	
+	border-color: #999999;
+	background-color: #cccccc;
+	border-width: 1px;
+	border-style: solid;
+}
+
+H3 {
+	margin-top: 3px; 
+	margin-bottom: 3px;
+	padding: 2px;
+ 	font-size: 13px;	
+}
+
+/* for backward compat. */
+H4 {
+	margin-top: 3px; 
+	margin-bottom: 3px;
+	padding: 2px;
+ 	font-size: 13px;	
+}
+
+/* header bar for case screen left column sections */
+.hdt {	
+	background-color: #330099;
+	border-color: #000000;
+	color: #ffffff;
+}
+
+.nav { 
+	padding: 3px;
+	background-color: #330099; 
+	border-color: #000000; 
+	color: #ffffff; 
+	border-style: solid; 
+	border-width: 1px; 
+}
+
+.nav A { color: #FFFFFF; }
+
+.nav A:hover {
+	background-color: #0000ff;
+	text-decoration: underline;
+}
+
+.qwik A { 
+	color: #555555;
+}
+.qwik A:hover {
+	background-color: #cccccc;
+	text-decoration: underline; 
+}
+
+/* alternating table rows */
+.row1 { 
+	font-size: 11px; 
+	background-color: transparent; 
+}
+.row2 { 
+	font-size: 11px; 
+	background-color: #cccccc;
+}
+.row2 A:hover { background-color: #ffffff; }
+
+.thinborder {
+	border-color: #666666;
+	border-style: solid;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	background-color: #ffffff;
+}
+
+.small { font-size: 11px; }
+
+/* case notes text formatting styles */
+.yh {background-color: #ffff44;}
+.ph {background-color: #ff7777;}
+.lt {text-decoration: line-through;}
+.ul {text-decoration: underline;}
+
+/* "masked" form fields */
+.maskf { border-style: none; }
+.maskt { border: inset #d0d0d0 2px; background-color: #ffffff; }
+
+/* calendar rows (w/ gray border) */
+.calrow { 
+	border: #888888 1px solid; 
+	background-color: #ffffff;
+}
+.mycal { font-size: 10px; }
+.othercal { font-size: 10px; color: #555555; }
+
+/* case tabs */
+/*
+.ft {
+	border: #666666 1px solid; 
+	border-bottom: #000000 0px groove;
+	border-right: #000000 0px solid;
+}	
+
+.rt {
+	background-color: #e0e0e0; 
+	border: #666666 1px solid;
+	border-right: #000000 0px solid;
+}
+
+.bt {
+	border: #000000 0px groove;
+	border-bottom: #666666 1px solid;
+}
+*/
+.ft {
+/*	border: #666666 1px solid; 
+	border-bottom: #000000 0px groove;
+	border-right: #000000 0px solid;
+	*/
+}	
+
+.rt a
+{
+	padding: 2px 0;
+	text-indent: 2px;
+	display: block;
+	width: 100%;
+	border-color: #f5f5f5;
+	border-width: 1px;
+	border-style: solid;
+}
+
+.rt a:hover
+{
+	border-color: #999999;
+	background-color: #cccccc;
+	border-width: 1px;
+	border-style: solid;
+}
+
+
+
+.rt {
+/*	background-color: #e0e0e0; 
+	border: #666666 1px solid;
+	border-right: #000000 0px solid;
+	*/
+}
+
+.bt {
+/*	border: #000000 0px groove;
+	border-bottom: #666666 1px solid;
+	*/
+}
+
+.wbg { background-color: #f5f5f5; }
+.gbg { background-color: #999999; }
+
+TD.top_left_corner { background-image: url(images/topLeftCorner.png); } TD.top_right_corner { background-image: url(images/topRightCorner.png); } TD.left_side { background-image: url(images/leftSide.png); } TD.right_side { background-image: url(images/rightSide.png); } TD.bottom_left_corner { background-image: url(images/bottomLeftCorner.png); } TD.bottom_right_corner { background-image: url(images/bottomRightCorner.png); } TD.bottom_side { background-image: url(images/bottomSide.png); }

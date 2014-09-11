@@ -1,0 +1,30 @@
+<form action="%%[base_url]%%/reports/%%[report_name]%%/report.php" method="GET" name=form1 target="_blank">
+
+		Calendar Year, January 1 to June 30:<br/>
+		<input type="text" name="calendar_year" value="%%[calendar_year]%%" tabindex="1"><br/>
+		Office:<br/>
+		<input type="text" name="office" value="" tabindex="1" /><br/>
+		Funding:<br/>
+		<input type="text" name="funding" value="" tabindex="1" /><br/>
+<!--		</td><td class="de" valign="top"> -->
+		<!--
+		%%[funding,funding]%%<br/>
+		<input type="text" name="funding" value="" tabindex="1"><br/>
+		Status:<br/>
+		<input type="text" name="status" value="" tabindex="1" />
+
+		County:<br/>
+		<input type="text" name="county" value="" tabindex="1" /><br/>
+		Gender:<br/>
+		%%[gender,gender]%%<br/> -->
+		Unduplicated:<br/>
+		%%[undup,yes_no]%%<br/>
+		%%[report_format,checkbox,default_value=csv,label=Send to a spreadsheet]%%<br/>
+		%%[show_sql,checkbox,label=Show SQL]%%<br/>
+<br/>
+<input type="submit" name="gen" value="Generate Report" class="save" tabindex="1" />
+</form>
+
+
+%%[ajax_init.js,javascript]%%
+%%[date_selector.js,javascript,parse]%%

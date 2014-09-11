@@ -1,0 +1,47 @@
+<!-- 08-04-2011 - caw - modified to run under v5 -->
+<form action="%%[base_url]%%/reports/%%[report_name]%%/report.php" method="POST" name=form1 target="_blank">
+<table>
+	<tr>
+		<td valign="top">
+		Start Date:<br/>
+		%%[filed_date_begin,input_date_selector]%%<br/>
+		End Date:<br/>
+		%%[filed_date_end,input_date_selector]%%<br/>
+		
+		Office:<br/>
+		<input type=text name="office" value="" size=12 tabindex=1><br>
+
+		Where our client is:<br>
+		<input type=checkbox name=lit_status[] value=1 tabindex=1>Defendant<br>
+		<input type=checkbox name=lit_status[] value=2 tabindex=1>Petitioner<br>
+		<input type=checkbox name=lit_status[] value=3 tabindex=1>Plaintiff<br>
+		<input type=checkbox name=lit_status[] value=4 tabindex=1>Respondent<br>
+		<input type=checkbox name=lit_status[] value=5 tabindex=1>Appellant<br>
+
+		</td><td valign="top">
+		Show Clients with Protected Information?<br/>
+		%%[show_protected,show_protected]%%<br/>
+
+		Program Filed?<br/>
+		%%[program_filed,program_filed]%%<br/>
+
+                Staff Member:<br/>
+                %%[user_id,user_id]%%<br/>
+                Funding:<br/>
+                <input type="text" name="funding" value="" tabindex="1"><br/>
+		
+		</td><td valign="top">
+		<input type="checkbox" name="report_format" value="csv">
+		<label for="report_format">Send to a spreadsheet</label><br/>
+		<input type="checkbox" name="show_sql" value="1">
+		<label for="show_sql">Show SQL</label>
+		</td>
+	</tr>
+</table>
+<br/>
+<input type="submit" name="gen" value="Generate Report" tabindex="1" />
+</form>
+
+%%[ajax_init.js,javascript]%%
+%%[date_selector.js,javascript,parse]%%
+%%[checkbox_list.js,javascript]%%

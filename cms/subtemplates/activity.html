@@ -1,0 +1,360 @@
+%%[begin:N]%%
+<!-- 2013-07-11 AMW - Changed form name to "ws" so unsaved form warning can be used. -->
+<form action="%%[base_url]%%/ops/update_activity.php" name="ws" method="POST">
+<table>
+	<tr valign="top">
+		<td>
+		Summary (public):<br/>
+		%%[summary,input_textarea,rows=1,cols=44,class=notes]%%<br/>
+		Notes (private):<br/>
+		%%[notes,input_textarea,rows=11,cols=44,class=notes]%%<br/>
+		<img src="%%[base_url]%%/images/point.gif">
+		<a href="javascript:toggleBox('demodiv',1);">Text Highlighting</a>
+		%%[textFormat]%%
+		&nbsp;&nbsp;
+		%%[deleteActivity]%%
+		</td>
+	    <td class="de">
+	    
+	    Hours:<br/>
+		%%[hours,input_text]%%<br/>
+		Date:<br/>
+      	%%[act_date,input_date_selector]%%<br/>
+		Start Time:<br/>
+		%%[act_time,input_text]%%<br/>
+		Type of Activity:<br/>
+		%%[category,category]%%<br/>
+		%%[owner_menu]%%
+		Funding Source:<br/>
+		%%[funding,funding]%%<br/>          
+		</td>
+	</tr>
+	
+</table>
+<input type="hidden" name="screen" value="act"/>
+<input type="hidden" name="act_url" value="%%[act_url]%%"/>
+<input type="hidden" name="close_act" value="1"/>
+<input type="hidden" name="act_type" value="N"/>
+<input type="hidden" name="completed" value="1"/>
+%%[act_id,input_hidden]%%
+%%[case_id,input_hidden]%%
+<p>
+	<input type="submit" value="Save" tabindex="1" class="save" accesskey="s"/>
+</p>
+</form>
+
+%%[notes_header]%%
+%%[notes_order]%%
+%%[notes_list]%%
+%%[notes_footer]%%
+
+<script language="JavaScript" type="text/javascript">
+<!--
+document.ea.summary.focus();
+//--> 
+</script>
+
+%%[textFormat.js,javascript]%%
+%%[ajax_init.js,javascript]%%
+%%[date_selector.js,javascript,parse]%%
+
+
+%%[end:N]%%
+
+
+%%[begin:C]%%
+<form action="%%[base_url]%%/ops/update_activity.php" name="ea" method=POST>
+<table>
+	<tr valign="top">
+		<td>
+		Summary (public):<br/>
+		%%[summary,input_textarea,rows=1,cols=44,class=notes]%%<br/>
+		Notes (private):<br/>
+		%%[notes,input_textarea,rows=11,cols=44,class=notes]%%<br/>
+		<img src="%%[base_url]%%/images/point.gif">
+		<a href="javascript:toggleBox('demodiv',1);">Text Highlighting</a>
+		%%[textFormat]%%
+		&nbsp;&nbsp;
+		%%[deleteActivity]%%
+		
+		</td>
+		<td class="de">
+		
+		Date: <br/>
+		%%[act_date,input_date_selector]%%<br/>
+		Start Time:<br/>
+		%%[act_time,input_text]%%<br/>
+		End Time:<br/>
+		%%[act_end_time,input_text]%%<br/>
+		Type of Activity:<br/>
+		%%[category,category]%%<br/>
+		%%[owner_menu]%%
+		Case: %%[number]%%<br/>
+		%%[new_case_menu]%%<br/>
+		Funding Source:<br/>
+		%%[funding,funding]%%<br/>
+    	
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+		%%[act_url,input_hidden]%%
+		%%[act_id,input_hidden]%%
+		%%[act_type,input_hidden]%%
+		<input type="submit" name="next_act" value="Save, Add Another" tabindex="1" class="save" />
+		&nbsp;
+		<input type="submit" name="close_act" value="Save and Close" tabindex="1" class="save" />
+		&nbsp;
+		<input type="submit" name="cancel" value="Cancel" tabindex="1" class="save" />
+		</td>
+	</tr>
+</table>
+
+</form>
+
+<script language="JavaScript" type="text/javascript">
+<!--
+document.ea.summary.focus();
+//--> 
+</script>
+
+%%[textFormat.js,javascript]%%
+%%[ajax_init.js,javascript]%%
+%%[date_selector.js,javascript,parse]%%
+%%[setFunding.js,javascript,parse]%%
+
+%%[end:C]%%
+
+%%[begin:K]%%
+
+<form action="%%[base_url]%%/ops/update_activity.php" name="ea" method="POST">
+<table>
+	<tr valign="top">
+		<td>
+		Summary (public):<br/>
+		%%[summary,input_textarea,rows=1,cols=44,class=notes]%%<br/>
+		Notes (private):<br/>
+		%%[notes,input_textarea,rows=11,cols=44,class=notes]%%<br/>
+		<img src="%%[base_url]%%/images/point.gif"> 
+		<a href="javascript:toggleBox('demodiv',1);">Text Highlighting</a>
+		%%[textFormat]%%
+		&nbsp;&nbsp;
+		%%[deleteActivity]%%
+		
+		</td>
+		<td class="de">
+		
+		Date: <br/>
+		%%[act_date,input_date_selector]%%<br/>
+		Start Time:<br/>
+		%%[act_time,input_text]%%<br/>
+		End Time:<br/>
+		%%[act_end_time,input_text]%%<br/>
+		Type of Activity:<br/>
+		%%[category,category]%%<br/>
+		%%[owner_menu]%%
+		Case: %%[number]%%<br/>
+		%%[new_case_menu]%%<br/>
+		Funding Source:<br/>
+		%%[funding,funding]%%<br/>
+    	Completed:<br/>
+    	%%[completed,yes_no,checkbox]%%<br/>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+		%%[act_url,input_hidden]%%
+		%%[act_id,input_hidden]%%
+		%%[act_type,input_hidden]%%
+		<input type="submit" name="next_act" value="Save, Add Another" tabindex="1" class="save" />
+		&nbsp;
+		<input type="submit" name="close_act" value="Save and Close" tabindex="1" class="save" />
+		&nbsp;
+		<input type="submit" name="cancel" value="Cancel" tabindex="1" class="save" />
+	</td>
+  </tr>
+</table>
+</form>
+
+<script language="JavaScript" type="text/javascript">
+<!--
+document.ea.summary.focus();
+//--> 
+</script>
+
+
+%%[textFormat.js,javascript]%%
+%%[ajax_init.js,javascript]%%
+%%[date_selector.js,javascript,parse]%%
+%%[setFunding.js,javascript,parse]%%
+
+%%[end:K]%%
+
+
+
+
+%%[begin:L]%%
+<form action="%%[base_url]%%/ops/update_activity.php" name="ea" method="POST">
+<table>
+	<tr valign="top"> 
+    	<td class="de" nowrap>
+		<strong>Persons Helped</strong><br/>
+		Measured:<br/>
+		%%[ph_measured,input_text]%%<br/>
+		Estimated:<br/>
+		%%[ph_estimated,input_text]%%<br/>
+		Service Provided:<br/>
+        %%[om_code,lsc_other_services]%%<br/>
+		</td>
+		<td> 
+		Summary (public):<br/>
+		%%[summary,input_textarea,cols=35,rows=1,class=notes]%%<br/>
+      	Estimate Narrative:<br/>
+      	%%[estimate_notes,input_textarea,cols=35,rows=12,class=notes]%%<br/>
+      	%%[deleteActivity]%%
+		</td>
+		<td class="de">
+		Date:<br/>
+      	%%[act_date,input_date_selector]%%<br/>
+		Start Time:<br/>
+		%%[act_time,input_text]%%<br/>
+		End Time:<br/>
+		%%[act_end_time,input_text]%%<br/>
+		Hours:<br/>
+		%%[hours,input_text]%%<br/>
+		Case: %%[number]%%<br/>
+		%%[new_case_menu]%%<br/>
+		Type of Activity:<br/>
+		%%[category,category]%%<br/>
+		%%[owner_menu]%%
+		Funding Source:<br/>
+		%%[funding,funding]%%<br/>
+		Completed:<br/>
+		%%[completed,yes_no,checkbox]%%<br/>
+		</td>
+	</tr>
+	<tr class="de">
+		<td colspan="3">
+		%%[act_url,input_hidden]%%
+		%%[act_id,input_hidden]%%
+		%%[act_type,input_hidden]%%
+		<input type="submit" name="next_act" value="Save, Add Another" tabindex="1" class="save" />
+		&nbsp;
+		<input type="submit" name="close_act" value="Save and Close" tabindex="1" class="save" />
+		&nbsp;
+		<input type="submit" name="cancel" value="Cancel" tabindex="1" class="save" />
+		</td>
+	</tr>
+</table>
+
+</form>
+
+<script language="JavaScript" type="text/javascript">
+<!--
+document.ea.summary.focus();
+//--> 
+</script>
+
+%%[ajax_init.js,javascript]%%
+%%[date_selector.js,javascript,parse]%%
+%%[setFunding.js,javascript,parse]%%
+
+%%[end:L]%%
+
+%%[begin:T]%%
+<form action="%%[base_url]%%/ops/update_activity.php" name="ea" method="POST">
+<table>
+	<tr valign="top">
+		<td>
+		Summary (public):<br/>
+		%%[summary,input_textarea,rows=1,cols=44,class=notes]%%<br/>
+		Notes (private):<br/>
+		%%[notes,input_textarea,rows=11,cols=44,class=notes]%%<br/>
+		<img src="%%[base_url]%%/images/point.gif">
+		<a href="javascript:toggleBox('demodiv',1);">Text Highlighting</a>
+		%%[textFormat]%%
+		&nbsp;&nbsp;
+		%%[deleteActivity]%%
+		</td>
+	    <td class="de">
+	    
+	    Hours:<br/>
+		%%[hours,input_text]%%<br/>
+		Date:<br/>
+		%%[act_date,input_date_selector]%%<br/>
+		Start Time:<br/>
+		%%[act_time,input_text]%%<br/>
+		Type of Activity:<br/>
+		%%[category,category]%%<br/>
+		%%[owner_menu]%%
+		Case: %%[number]%%<br/>
+		%%[new_case_menu]%%<br/>      
+		Funding Source:<br/>
+		%%[funding,funding]%%<br/>          
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+		<input type="hidden" name="completed" value="1">
+		%%[act_url,input_hidden]%%
+		%%[act_id,input_hidden]%%
+		%%[act_type,input_hidden]%%
+		<input type="submit" name="next_act" value="Save, Add Another" tabindex="1" class="save" />
+		&nbsp;
+		<input type="submit" name="close_act" value="Save and Close" tabindex="1" class="save" />
+		&nbsp;
+		<input type="submit" name="cancel" value="Cancel" tabindex="1" class="save" />
+		</td>
+	</tr>
+</table>
+</form>
+
+<script language="JavaScript" type="text/javascript">
+<!--
+document.ea.summary.focus();
+//--> 
+</script>
+
+%%[textFormat.js,javascript]%%
+%%[ajax_init.js,javascript]%%
+%%[date_selector.js,javascript,parse]%%
+%%[setFunding.js,javascript,parse]%%
+
+%%[end:T]%%
+
+
+
+%%[begin:confirm_delete]%%
+<table>
+	<tr>
+		<td>
+		Once an Activity record is deleted, you cannot undelete it.
+		Are you sure you want to delete this Activity Record?
+		</td>
+	</tr>
+</table>
+<form action="%%[base_url]%%/ops/delete_activity.php" method="POST">
+	<input type=hidden name=act_id value=%%[act_id]%%>
+	<input type="submit" name="delete" value="Delete" class="save">
+	<input type="submit" name="cancel" value="Cancel" class="save">
+</form>
+%%[end:confirm_delete]%%
+
+
+%%[begin:access_denied]%%
+<table>
+	<tr>
+		<td>
+		Access Denied:  You do not have permission to delete this record.
+		</td>
+	</tr>
+</table>
+<form action="%%[base_url]%%/activity.php">
+	%%[act_url,input_hidden]%%
+	%%[act_id,input_hidden]%%
+	%%[act_type,input_hidden]%%
+	<input type="submit" name="cancel" value="Cancel" tabindex="1" class="save" />		
+</form>
+%%[end:access_denied]%%
+
+

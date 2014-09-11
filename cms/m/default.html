@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">   
+    
+<!-- 05-20-2010 - caw - default header & footer for Mobile Pika -->    
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<style type="text/css">
+	
+ body {
+  	font-size: 20px;
+  	font-family: Helvetica, Verdana, Arial;
+  	background-color: #fff;
+  }
+  
+#header
+{
+	background-color: #b6b6d8;
+	border-bottom: solid 1px #8080b6;
+}
+
+#header_icon_wrapper {
+float:left;
+}
+
+#header_text_wrapper {
+	padding: 6px;
+}
+
+#header_icon {
+	padding: 5px;
+	width: 24px;
+	height: 24px;
+}
+
+#header a {
+		text-align: left;
+		font-size: 20px;
+		text-decoration: none;
+		color: black;
+	}
+
+#auth_label {
+		padding-bottom: 5px;
+		font-style: italic;
+		text-align: center;
+		font-size: 12px;
+	}
+
+#footer_wrapper {
+		padding-bottom: 5px;
+		text-align: center;
+		font-size: 10px;
+	}
+
+#main {
+		border-style: none;
+		text-align: center;
+	}
+
+#m_button {
+		text-align: center;
+	}
+
+#small_space {
+		font-size: 19px;
+	}
+
+#title_header {
+		text-align: left;
+		font-weight: bold;
+		font-size: 22px;
+		padding: 10px;
+	}
+
+#case_label {
+		text-shadow: 0px 0px;
+		text-align: right;
+		font-size: 20px;
+		font-style: normal;
+		font-weight: normal;
+	}
+
+#case_value {
+		background-color: #eaeaea;
+		text-align: left;
+		font-size: 20px;
+		font-weight: bold;
+	}
+
+#case_break {
+		border-bottom-width: 10px;
+		border-color: white;
+		border-style: solid;
+	}
+
+#contact_label {
+		text-shadow: 0px 0px;
+		text-align: right;
+		font-size: 22px;
+		font-style: normal;
+		font-weight: normal;
+	}
+
+#contact_value {
+		background-color: #eaeaea;
+		text-align: left;
+		font-size: 15px;
+		font-weight: bold;
+	}
+
+#contact_search {
+		text-align: left;
+		font-size: 32px;
+		font-weight: bold;
+	}
+
+#block_listing {
+		padding: 3px;
+		border-style: none;
+		border-collapse: collapse;
+	}
+
+#item_title {
+		margin-right: 10px;
+		margin-left: 10px;
+		background-color: #eeeeee;
+		font-size: 20px;
+		text-align: left;
+	}
+
+#item_author {
+		margin-right: 10px;
+		margin-left: 10px;
+		padding-bottom: 5px;
+		font-size: 14px;
+		text-align: left;
+	}
+
+#item_content {
+		padding-bottom: 10px;
+		margin-right: 10px;
+		margin-left: 10px;
+		font-size: 18px;
+		text-align: left;
+	}
+
+#item_email {
+		text-align: left;
+		padding-bottom: 10px;
+		margin-right: 10px;
+		margin-left: 10px;
+		font-size: 20px;
+	}
+
+#activity_summary {
+		background-color: #ececec;
+		margin-right: 10px;
+		margin-left: 10px;
+		font-size: 18px;
+		text-align: left;
+	}
+
+#activity_timestamp {
+		padding-bottom: 5px;
+		margin-right: 10px;
+		margin-left: 10px;
+		font-size: 12px;
+		text-align: left;
+		font-style: normal;
+		font-weight: normal;
+	}
+
+#activity_notes {
+		padding-bottom: 10px;
+		text-shadow: 0px 0px;
+		margin-right: 10px;
+		margin-left: 10px;
+		text-align: justify;
+		font-size: 15px;
+	}
+
+#user_count {
+		font-size: 14px;
+		text-align: center;
+	}
+
+</style>
+	<title>Pika: %%[page_title]%%</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, user-scalable=no" />
+	<!-- link to stylesheet for iPhone buttons -->		
+	<link rel = "stylesheet" type="text/css" href ="%%[base_url]%%/m/mobilebuttons.css" />		
+	<link rel="apple-touch-icon" href="%%[base_url]%%/m/images/pika-icon-ios.png" />
+	<link rel="apple-touch-icon" sizes="57x57" href="%%[base_url]%%/m/images/pika-icon-ios-57.png" />
+	<link rel="apple-touch-icon" sizes="72x72" href="%%[base_url]%%/m/images/pika-icon-ios-72.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="%%[base_url]%%/m/images/pika-icon-ios-114.png" />
+	</head>
+	
+	<body>
+	<!-- header area -->
+	
+	<script type="text/javascript">
+	window.onload = function() 
+	{
+		setTimeout(function(){window.scrollTo(0, 1);}, 100);
+	}
+	</script>
+	
+	<div id="header">
+		<div id="header_icon_wrapper">
+		<a href="%%[base_url]%%/m/index.php?login=1&b=Sign+In">
+			<img id="header_icon" src="%%[base_url]%%/images/icon.png" alt="Pika CMS"/></a>
+		</div>
+		<div id="header_text_wrapper">
+		<a id="org_name" href="%%[base_url]%%/m/index.php?login=1&b=Sign+In">%%[org_name]%%<!-- org_name --></a>	
+		</div>
+	</div>
+<!-- main content -->				
+	<div id="main">%%[content]%%</div>
+<!-- footer area -->
+	<div id="auth_label">You are logged in as <i>%%[user_handle]%%<!-- username --></i>&nbsp;[&nbsp;<a href="%%[base_url]%%/m/logout.php">Log Off</a>&nbsp;]</div>		
+	<div id="footer_wrapper">	
+		&copy; 2011 Pika Software, LLC
+		<a href="http://pikasoftware.com/">www.pikasoftware.com</a>		
+	</div>
+	</body>
+</html>

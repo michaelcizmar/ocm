@@ -1,0 +1,57 @@
+<script language="JavaScript" type="text/javascript"><!--
+
+var old_ssn_length = 0;
+
+function pika_ssn(what)
+{
+	if (what.value.length == 3 && old_ssn_length == 2)
+	{
+		what.value += '-';
+	}
+	
+	if (what.value.length == 6 && old_ssn_length == 5)
+	{
+		what.value += '-';
+	}
+
+	old_ssn_length = what.value.length;
+}
+
+//--></script>
+
+<form action="%%[form_action]%%" method=POST name="con_name" autocomplete="off">
+%%[preamble]%%
+
+<p>First:<br/>
+	<input type=text name=first_name value="%%[first_name]%%" size=15 tabindex=1>
+<p>Middle:<br/>
+	<input type=text name=middle_name value="%%[middle_name]%%" size=12 tabindex=1>
+  
+  
+<p>Last (or Org. Name):<br/>
+	<input type=text name=last_name value="%%[last_name]%%" size=15 tabindex=1>
+<p>Jr., Sr., etc.<br/>
+	<input type=text name=extra_name value="%%[extra_name]%%" size=12 tabindex=1>
+  
+  
+    
+<p>SSN: <br/>
+        <input type="text" name="ssn" onkeyup="pika_ssn(this);" value="%%[ssn]%%" maxlength="11" size="22" tabindex="1"><br/>
+<p>
+        <input type="hidden" name="birth_date" value="%%[birth_date]%%">
+	  <input type=hidden name=action value="%%[action_name]%%">
+
+	  <input type=hidden name="case_id" value="%%[case_id]%%">
+
+	  <input type=hidden name="relation_code" value="%%[relation_code]%%">
+	  <input type=submit value="%%[submit_label]%%" tabindex=1 class="save">
+	
+	
+</form>
+
+
+<script type="text/javascript" language="JavaScript">
+<!--
+document.con_name.first_name.focus();
+//-->
+</script>

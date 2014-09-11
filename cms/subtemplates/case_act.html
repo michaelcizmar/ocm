@@ -1,0 +1,33 @@
+%%[begin:notes_header]%%
+<h2>Case Notes for %%[number]%%</h2>
+%%[end:notes_header]%%
+
+%%[begin:notes_order]%%
+<p>
+	<img src="%%[base_url]%%/images/point.gif" alt="Arrow"/>&nbsp;
+	<a href="%%[base_url]%%/case.php?case_id=%%[case_id]%%&screen=act&order=%%[next_order]%%" class="small">Reverse Order of Case Notes</a>
+</p>
+%%[end:notes_order]%%
+
+%%[begin:flex_row]%%
+<p>
+	<strong>%%[type_desc]%%</strong>&nbsp;-&nbsp;%%[user_id text source=act_user_id]%%%%[pba_id text source=act_pba_id]%%<br/>
+	<span class="small">
+	%%[act_timestamp]%% &nbsp; | &nbsp; %%[hours]%% hours &nbsp; | &nbsp; 
+	<a href="%%[base_url]%%/activity.php?act_id=%%[act_id]%%&screen=edit&case_id=%%[case_id]%%" class="small" id="a%%[act_id]%%">Edit this record</a>
+	</span>
+<p>
+<blockquote>
+	<span style="font-family: georgia, times, serif; font-size: 14px;">
+	%%[summary]%%%%[notes]%%
+	</span>
+</blockquote>
+<div style="border-top: 1px solid #999999;"></div>
+<br/>
+%%[end:flex_row]%%
+
+%%[begin:notes_footer]%%
+<p>
+	Total of <strong>%%[hours_worked]%%</strong> %%[hours_label]%% completed on this case.
+</p>
+%%[end:notes_footer]%%

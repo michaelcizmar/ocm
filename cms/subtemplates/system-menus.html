@@ -1,0 +1,97 @@
+%%[begin:view]%%
+<h2>Menu Listing</h2>
+<div id="col1" style="float:left;">%%[col1,menu_list0,ul]%%</div>
+<div id="col2" style="float:left">%%[col2,menu_list1,ul]%%</div>
+<div id="col3" style="float:left">%%[col3,menu_list2,ul]%%</div>
+<div id="col3" style="float:left">%%[col4,menu_list3,ul]%%</div>
+%%[end:view]%%
+
+%%[begin:edit_item]%%
+<div style="float:left;margin: 4px;">
+<h2>Editing Menu: %%[menu_name]%%</h2>
+<form onsubmit="validate();return false;">
+Value:<br/>
+%%[value_input]%%<br/>
+Label:%%[label_db_type]%%<br/>
+%%[label]%%<br/>
+%%[enabled]%%
+%%[old_value,input_hidden]%%
+%%[action,input_hidden,default=update]%%
+%%[menu_name,input_hidden]%%
+<br/>
+<input type="submit" name="update" value="Update" class="save" tabindex="1" />
+</form>
+</div>
+%%[system-menus.js,javascript]%%
+%%[end:edit_item]%%
+
+%%[begin:edit]%%
+
+<h2>Editing: %%[menu_name]%%</h2>
+
+<a href="%%[base_url]%%/system-menus.php?action=edit_menu_classic&menu_name=%%[menu_name]%%">Switch to Classic Mode</a>
+&nbsp;|&nbsp;
+<a href="%%[base_url]%%/system-menus.php?action=edit_item&menu_name=%%[menu_name]%%">Add New Menu Item</a><br/>
+%%[menu_list]%%
+
+%%[end:edit]%%
+
+%%[begin:edit_classic]%%
+<h2>Editing: %%[menu_name]%%</h2>
+<a href="%%[base_url]%%/system-menus.php?action=edit_menu&menu_name=%%[menu_name]%%">Exit Classic Mode</a>
+<form method="POST" action="%%[base_url]%%/system-menus.php?action=update_classic&menu_name=%%[menu_name]%%">
+%%[values,input_textarea,rows=20,cols=80]%%
+<br/>
+<input type="submit" name="save" value="Save" class="save" tabindex="1" />
+</form>
+%%[end:edit_classic]%%
+
+
+%%[begin:confirm_delete]%%
+<div style="float:left;margin: 4px;">
+<h2>Confirm Delete</h2>
+Are you sure that you would like to delete this menu item?<br/>
+<br/>
+<b>(%%[value]%%) = %%[label]%%</b><br/>
+<br/>
+<br/>
+<form>
+%%[action,input_hidden,default=delete]%%
+%%[menu_name,input_hidden]%%
+%%[value,input_hidden]%%
+<input type="submit" value="Delete" name="delete" class="save" tabindex="1"/>
+<input type="submit" value="Cancel" name="cancel" class="save" tabindex="1"/>
+</form>
+</div>
+%%[end:confirm_delete]%%
+
+
+
+%%[begin:flex_header]%%
+<table cellspacing="0" cellpadding="5">
+<tr>
+	<th>Value</th>	
+	<th>Label</th>	
+	%%[enabled_header]%%
+	<th>Actions</th>	
+</tr>
+%%[end:flex_header]%%
+%%[begin:flex_row]%%
+<tr valign="top" class="%%[css_class]%%">
+	<td>%%[value]%%</td>
+	<td>%%[label]%%</td>
+	%%[enabled_column]%%
+	<td>
+	<a href="%%[base_url]%%/system-menus.php?action=edit_item&menu_name=%%[menu_name]%%&value=%%[value]%%">Edit</a>
+	&nbsp;|&nbsp;
+	<a href="%%[base_url]%%/system-menus.php?action=confirm_delete&menu_name=%%[menu_name]%%&value=%%[value]%%">Delete</a>
+	&nbsp;|&nbsp;
+	<a href="%%[base_url]%%/system-menus.php?action=move_up&menu_name=%%[menu_name]%%&value=%%[value]%%">Up</a>
+	&nbsp;|&nbsp;
+	<a href="%%[base_url]%%/system-menus.php?action=move_down&menu_name=%%[menu_name]%%&value=%%[value]%%">Down</a>
+	</td>
+</tr>
+%%[end:flex_row]%%
+%%[begin:flex_footer]%%
+</table>
+%%[end:flex_footer]%%

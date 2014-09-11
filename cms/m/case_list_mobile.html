@@ -1,0 +1,80 @@
+<!--  05/21/2010 - caw - modified for Pika Mobile  -->
+<div id="title_header">Open Cases
+<!--%%[show_cases vradio]%% -->
+</div>
+%%[begin:cl_form]%%
+<form name="form1" method="get" action="%%[base_url]%%/case_list_mobile.php">
+
+<script language="JavaScript" type="text/javascript"><!--
+document.form1.client_name.focus();
+//--></script>
+
+%%[end:cl_form]%%
+%%[begin:flex_header]%%
+<table id="block_listing">
+
+%%[end:flex_header]%%
+%%[begin:flex_row]%%
+  <tr valign="top" class="row%%[row_class]%%">
+  	<td id="case_label" nowrap="nowrap">Case#:  </td>
+<!--   don't display case open or closed as only open cases are showing  	  	
+    <td id="case_value">    	
+    	<a href="%%[base_url]%%/case.php?case_id=%%[case_id]%%"%%[link_target]%%>%%[number]%%</a>    	
+    	<b> (</b><span style="color: %%[open_closed_color]%%;">%%[open_closed]%%<b>)</b></span>    	
+    </td>
+-->    
+    <td id="case_value">    	 
+    	<a href="%%[base_url]%%/m/activity_list.php?case_id=%%[case_id]%%"%%[link_target]%%>%%[number]%%</a>   	   	   	
+    </td>    
+  </tr>  
+<!-- client name -->
+   <tr valign="top" class="row%%[row_class]%%">
+		<td id="case_label" nowrap="nowrap">Client Name:  </td>
+  		<td id="case_value">%%[client_name]%%</td> 
+    <tr>  
+<!-- case status -->    
+    <tr valign="top" class="row%%[row_class]%%">
+    	<td id="case_label" nowrap="nowrap">Status:  </td>
+    	 <td id="case_value">%%[status text source=case_status]%%</td>
+     </tr>
+<!-- Staff -->    
+     <tr valign="top" class="row%%[row_class]%%">
+    	<td id="case_label" nowrap="nowrap">Staff:  </td>
+    	 <td id="case_value">%%[user_id text]%%</td>
+     </tr>
+<!-- Office -->    
+     <tr valign="top" class="row%%[row_class]%%">
+    	<td id="case_label" nowrap="nowrap">Office:  </td>
+    	 <td id="case_value">%%[office text]%%</td>
+     </tr>
+<!-- Code -->    
+     <tr valign="top" class="row%%[row_class]%%">
+    	<td id="case_label" nowrap="nowrap">Code:  </td>
+    	 <td id="case_value">%%[problem]%%</td>
+     </tr>
+<!-- Opened date -->    
+     <tr valign="top" class="row%%[row_class]%%">
+    	<td id="case_label" nowrap="nowrap">Opened:  </td>
+    	 <td id="case_value">%%[open_date]%%</td>
+     </tr>
+<!-- Closed date    
+     <tr valign="top" class="row%%[row_class]%%">
+    	<td id="case_label" nowrap="nowrap">Closed:  </td>
+    	 <td id="case_value">%%[close_date]%%</td>
+     </tr>
+ -->     
+<!-- Funding-->    
+     <tr valign="top" class="row%%[row_class]%%">
+    	<td id="case_label" nowrap="nowrap">Funding:  </td>
+    	 <td id="case_value">%%[funding]%%</td>
+     </tr>
+	<tr valign="top" class="row%%[row_class]%%">
+		<td id="case_break" colspan="2">
+		</td>
+	</tr>
+%%[end:flex_row]%%
+%%[begin:flex_footer]%%
+</table>
+
+%%[end:flex_footer]%%
+<p><b>%%[total_cases]%% </b></p>

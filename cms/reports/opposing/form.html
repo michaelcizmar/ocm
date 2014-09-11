@@ -1,0 +1,43 @@
+<!-- 05-19-2011 - caw - created new report based frm inactive_case -->
+<div style="padding:5px;" id="form_container">
+	<div style="" id="form_header">
+		<h2>Inactive User Report</h2>
+		<form action="%%[base_url]%%/reports/%%[report_name]%%/report.php" method="POST" name=form1 target="_blank">
+	</div>
+	<div style="float:left;padding:2px" id="form_col1">
+		Start Date:  <br/>
+		%%[date_start,input_date_selector]%%<br/>
+		End Date:  <br/>
+		%%[date_end,input_date_selector]%%<br/>
+	</div>
+	<div style="float:left;padding:2px;" id="form_col2" class="de">
+		Opposing Party:<br/>
+		%%[opposing_name,input_text]%%<br/>
+		Office:<br/>
+		%%[office,office]%%<br/>
+		Funding Code:<br/>
+		%%[funding,funding]%%<br/>
+		Problem Code:<br/>
+		%%[problem,problem]%%<br/>
+		Advocate:<br/>
+		%%[user_id,staff_array]%%<br/>
+		Case County:<br/>
+		%%[case_county,input_text]%%<br/>
+	</div>
+	<div style="float:left;padding:2px;" id="form_col3">
+		Order Results By:<br/>
+		%%[order_by,order_by]%%<br/>
+		Order:<br/>
+		%%[order,order]%%<br/>
+		%%[report_format,checkbox,default_value=csv,label=Send to a spreadsheet]%%<br/>
+		%%[show_sql,checkbox,label=Show SQL]%%<br/>
+	</div>
+	<div style="clear:both;" id="form_footer">
+		<br/>
+		<input type="submit" name="gen" value="Generate Report" class="save" tabindex="1" />
+		</form>
+	</div>
+</div>
+
+%%[ajax_init.js,javascript]%%
+%%[date_selector.js,javascript,parse]%%

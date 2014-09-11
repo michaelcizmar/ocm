@@ -1,0 +1,53 @@
+%%[begin:main_menu]%%
+<h2 class="hdt">Electronic Case Transfer Options</h2>
+Transfer Case# <b>%%[case_number]%%</b>
+<h2 class="hdt">Transfer To:</h2>
+%%[option_list]%%
+%%[end:main_menu]%%
+
+%%[begin:pika_menu]%%
+<form method="POST" action="%%[base_url]%%/ops/transfer_case.php">
+<h2 class="hdt">Pika Direct Case Transfer - %%[label]%%</h2>
+Are you sure that you would like to transfer Case #%%[case_number]%% to %%[label]%%?<br/>
+<br/>
+%%[case_id,input_hidden]%%
+%%[transfer_option_id,input_hidden]%%
+<input type="submit" value="Transfer">
+&nbsp;&nbsp;&nbsp;
+<a href="%%[base_url]%%/case.php?case_id=%%[case_id]%%">Cancel Transfer</a><br/>
+<br/>
+*<i>Note: This action cannot be undone</i>
+</form>
+%%[end:pika_menu]%%
+
+%%[begin:flex_header]%%
+<table cellspacing="0" cellpadding="3" summary="" border="0">
+	<tr>
+		<th nowrap>Agency</th>
+		<th>&nbsp;</th>
+		<th nowrap>Mode</th>
+		<th>&nbsp;</th>
+		<th nowrap>Actions</th>
+		<th nowrap>&nbsp;</th>
+	</tr>
+%%[end:flex_header]%%
+%%[begin:flex_row]%%
+	<tr valign="top">
+		<td>%%[label]%%</td>
+		<td>&nbsp;</td>
+		<td>%%[transfer_mode]%%</td>
+		<td>&nbsp;</td>
+		<td>
+		<form action="%%[base_url]%%/transfer.php" method="GET">
+		<input type="hidden" name="action" value="%%[action]%%">
+		<input type="hidden" name="transfer_option_id" value="%%[transfer_option_id]%%">
+		<input type="hidden" name="case_id" value="%%[case_id]%%">
+		<input type="submit" name="transfer" value="Transfer">
+		</form>
+		</td><td>
+		</td>	
+	</tr>
+%%[end:flex_row]%%
+%%[begin:flex_footer]%%
+</table>
+%%[end:flex_footer]%%

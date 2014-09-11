@@ -1,0 +1,45 @@
+<h2>Possible duplicates of %%[contact_name]%%</h2>
+<form action="%%[base_url]%%/merge_contacts.php" method="GET">
+%%[contact_list]%%
+
+<br/><br/>
+This screen allows you to merge duplicate contact records.  Once you
+have determined which records are duplicates and need to be merged, check their box
+and hit the <code>Merge</code> button to merge them with the contact record at the
+top of the list.<br/>
+<br/>
+<i>Note that any data in the duplicate records is lost when they are merged.
+You may want to paste any inportant information into notes field of the record
+they are being merged into before actually performing the merge.</i>
+<br/><br/>
+<input type=submit value=Merge>
+%%[contact_id,input_hidden]%%
+<input type="hidden" name="action" value="merge" />
+</form>
+
+%%[begin:flex_header]%%
+<table cellspacing="0" cellpadding="3" width="100%">
+	<tr>
+		<th nowrap>&nbsp;</th>
+		<th nowrap>Name</th>
+		<th nowrap>Phone</th>
+		<th nowrap>Alt. Phone</th>
+		<th nowrap>Address</th>
+		<th nowrap>DOB</th>
+		<th nowrap>SSN</th>
+	</tr>
+%%[end:flex_header]%%
+%%[begin:flex_row]%%
+	<tr class="row%%[row_class]%%">
+		<td nowrap>%%[selected_checkbox]%%</td>
+		<td nowrap>%%[full_name]%%</td>
+		<td>%%[full_phone]%%</td>
+		<td>%%[full_alt_phone]%%</td>
+		<td>%%[full_address]%%</td>
+		<td nowrap>%%[birth_date]%%</td>
+		<td nowrap>%%[ssn]%%</td>
+	</tr>
+%%[end:flex_row]%%
+%%[begin:flex_footer]%%
+</table>
+%%[end:flex_footer]%%

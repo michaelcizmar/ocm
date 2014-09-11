@@ -1,0 +1,251 @@
+<h2 class="hdt">Eligibility Screening</h2>
+<form action="%%[base_url]%%/ops/update_case.php" method="post" name="ws">
+<table border="0" cellspacing="5" cellpadding="5" summary="">
+  <tr>
+    <td class="elig1">
+	    Children:<br/>
+	    <input type=text name=children value="%%[children]%%" tabindex=1 onChange="ph_change();" class="input-mini"/><br/>
+    </td>
+    <td class="elig1">
+	    Adults:<br/>
+	    <input type=text name=adults value="%%[adults]%%" tabindex=1 onChange="ph_change();" class="input-mini"/><br/>
+    </td>
+    <td class="elig1">
+	    # Helped:<br/>
+	    <input type=text name=persons_helped value="%%[persons_helped]%%" tabindex=1 class="input-mini"/>
+    </td>
+    <td nowrap="nowrap">
+	  <em>Wage Calculator:</em><br/>
+	  <strong>
+	  <div class="input-prepend">
+	  	<span class="add-on">$</span>
+	  	<input type=text name=dontuse1 onChange="calcWage();" tabindex="3" class="input-mini"/>
+	  </div>
+	   X <input type=text name=dontuse2 onChange="calcWage();" size=6 tabindex="3" class="input-mini"/>
+	   = 
+	  <div class="input-prepend">
+	  	<span class="add-on">$</span>
+	  	<input type=text name=dontuse3 size=6 tabindex="3" class="input-mini"/>
+	  </div>
+	  </strong>
+	</td>
+	<td><input type="button" value="Send to Grid" class="btn btn-success" onclick="sendToGrid();"/></td>
+  </tr>
+</table>
+
+
+<br/>
+<table cellspacing="0" cellpadding="0" summary="" class="nopad">
+  <tr valign="top"> 
+    <td nowrap align="right" class="elig"> 
+      <table cellpadding=2 cellspacing=0 summary="">
+        <tr align="center"> 
+          <th>Type of Income</th>
+          <th>Frequency</th>
+          <th>Amount</th>
+        </tr>
+        <tr> 
+          <td> 
+            %%[income_type0,income_type]%%
+          </td>
+          <td> 
+            %%[income_freq0,income_freq,default=A,class=input-small]%%
+          </td>
+          <td><table class="nopad" summary=""><tr><td class=maskt nowrap>$ 
+            <input type=text name=annual0 value="%%[annual0]%%" tabindex=1 size=8 onChange="annual_change();" class="maskf input-small"/></td></tr></table>
+          </td>
+        </tr>
+        <tr class="row2"> 
+          <td> 
+            %%[income_type1,income_type]%%
+          </td>
+          <td> 
+            %%[income_freq1,income_freq,default=A,class=input-small]%%
+          </td>
+          <td><table summary="" class="nopad"><tr><td class=maskt nowrap>$ 
+            <input type=text name=annual1 value="%%[annual1]%%" tabindex=1 size=8 onChange="annual_change();" class="maskf input-small"/></td></tr></table>
+          </td>
+        </tr>
+        <tr> 
+          <td> 
+            %%[income_type2,income_type]%%
+          </td>
+          <td> 
+            %%[income_freq2,income_freq,default=A,class=input-small]%%
+          </td>
+          <td><table summary="" class="nopad"><tr><td class=maskt>$ 
+            <input type=text name=annual2 value="%%[annual2]%%" tabindex=1 size=8 onChange="annual_change();" class="maskf input-small"/></td></tr></table>
+          </td>
+        </tr>
+        <tr class="row2"> 
+          <td> 
+            %%[income_type3,income_type]%%
+          </td>
+          <td> 
+            %%[income_freq3,income_freq,default=A,class=input-small]%%
+          </td>
+          <td><table summary="" class="nopad"><tr><td class=maskt>$ 
+            <input type=text name=annual3 value="%%[annual3]%%" tabindex=1 size=8 onChange="annual_change();" class="maskf input-small"/></td></tr></table>
+          </td>
+        </tr>
+        <tr> 
+          <td> 
+            %%[income_type4,income_type]%%
+          </td>
+          <td> 
+            %%[income_freq4,income_freq,default=A,class=input-small]%%
+          </td>
+          <td><table summary="" class="nopad"><tr><td class=maskt>$ 
+            <input type=text name=annual4 value="%%[annual4]%%" tabindex=1 size=8 onChange="annual_change();" class="maskf input-small"/></td></tr></table>
+          </td>
+        </tr>
+        <!--
+        <tr class="row2"> 
+          <td> 
+            %%[income_type5,income_type]%%
+          </td>
+          <td> 
+            %%[income_freq5,income_freq,default=A,class=input-small]%%
+          </td>
+          <td><table summary="" class="nopad"><tr><td class=maskt>$ 
+            <input type=text name=annual5 value="%%[annual5]%%" tabindex=1 size=8 onChange="annual_change();" class="maskf input-small"/></td></tr></table>
+          </td>
+        </tr>
+        <tr> 
+          <td> 
+            %%[income_type6,income_type]%%
+          </td>
+          <td> 
+            %%[income_freq6,income_freq,default=A,class=input-small]%%
+          </td>
+          <td><table summary="" class="nopad"><tr><td class=maskt>$ 
+            <input type=text name=annual6 value="%%[annual6]%%" tabindex=1 size=8 onChange="annual_change();" class="maskf input-small"/></td></tr></table>
+          </td>
+        </tr>
+        <tr class="row2"> 
+          <td> 
+            %%[income_type7,income_type]%%
+          </td>
+          <td> 
+            %%[income_freq7,income_freq,default=A,class=input-small]%%
+          </td>
+          <td><table summary="" class="nopad"><tr><td class=maskt>$ 
+            <input type=text name=annual7 value="%%[annual7]%%" tabindex=1 size=8 onChange="annual_change();" class="maskf input-small"/></td></tr></table>
+          </td>
+        </tr>
+        -->
+      </table>
+           
+	<table summary="">
+	<tr>
+	<td>Gross Income:</td><td class=maskt><div class="input-prepend">
+  <span class="add-on">$</span>
+        <input type="text" name="income_only" tabindex="1" size="8" value="%%[income_only]%%" class="maskf input-mini" readonly /></div>
+        </td>
+	<td>Net Income:</td><td class=maskt><div class="input-prepend">
+  <span class="add-on">$</span> 
+        <input type="text" name="income" tabindex="1" size="8" value="%%[income]%%" class="maskf input-mini" readonly /></div>
+        </td>
+	</tr>
+	</table>
+    </td>
+    
+    <td nowrap align="right" class="elig"> 
+      <table cellpadding=2 cellspacing=0 summary="">
+        <tr align="center"> 
+          <th>Type of Asset</th>
+          <th>Value</th>
+        </tr>
+        <tr> 
+          <td nowrap> 
+            %%[asset_type0,asset_type]%%
+          </td>
+          <td nowrap><table summary="" class="nopad"><tr><td class=maskt>$ 
+            <input type=text name=asset0 tabindex=1 size=7 onChange="asset_change();" value="%%[asset0]%%" class="maskf"/></td></tr></table>
+          </td>
+        </tr>
+        <tr class="row2"> 
+          <td nowrap> 
+            %%[asset_type1,asset_type]%%
+          </td>
+          <td nowrap><table summary="" class="nopad"><tr><td class=maskt>$ 
+            <input type=text name=asset1 tabindex=1 size=7 onChange="asset_change();" value="%%[asset1]%%" class="maskf"/></td></tr></table>
+          </td>
+        </tr>
+        <tr> 
+          <td nowrap> 
+            %%[asset_type2,asset_type]%%
+          </td>
+          <td nowrap><table summary="" class="nopad"><tr><td class=maskt>$ 
+            <input type=text name=asset2 tabindex=1 size=7 onChange="asset_change();" value="%%[asset2]%%" class="maskf"/></td></tr></table>
+          </td>
+        </tr>
+        <tr class="row2"> 
+          <td nowrap> 
+            %%[asset_type3,asset_type]%%
+          </td>
+          <td nowrap><table summary="" class="nopad"><tr><td class=maskt>$ 
+            <input type=text name=asset3 tabindex=1 size=7 onChange="asset_change();" value="%%[asset3]%%" class="maskf"/></td></tr></table>
+          </td>
+        </tr>
+        <tr> 
+          <td nowrap> 
+            %%[asset_type4,asset_type]%%
+          </td>
+          <td nowrap><table summary="" class="nopad"><tr><td class=maskt nowrap>$ 
+            <input type=text name=asset4 tabindex=1 size=7 onChange="asset_change();" value="%%[asset4]%%" class="maskf"/></td></tr></table>
+          </td>
+        </tr>
+      </table>
+
+      <table summary=""><tr><td>Total Assets:</td><td class=maskt>$ 
+        <input type="text" name="assets" tabindex="1" size="7" value="%%[assets]%%" class="maskf" readonly />
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+<table cellpadding="0" summary="">
+  <tr valign="top"> 
+    <td nowrap>
+      	% of Poverty<a href='%%[base_url]%%/helpdocs/elig_guide.php' onclick="popUp({url:this.href,name:'Eligibility Guide'});return false;">[?]</a>:<br/>
+       	<input type="button" value="Calculate" tabindex="1" onclick="calc_poverty();" style="width: 6em;"/>
+        <input type=text name=poverty value="%%[poverty]%%" size=8 readonly style="width: 6.8em; text-align: right;"/>
+        <input type=hidden name="poverty_income_only" size=8 readonly  style="width: 6.8em; text-align: right;"/>
+        <strong>%</strong><br/>
+    	Citizenship, Verification:<br/>
+        %%[citizen,citizen]%% %%[citizen_check,yes_no,checkbox]%%<br/>
+        Is Income Likely to Change?<br/>
+        %%[lsc_income_change,lsc_income_change]%%<br/>
+    </td>
+    <td nowrap>
+        Income Justification:<br/>
+    	%%[just_income,just_income]%%<br/>
+    	%%[dom_viol,yes_no,checkbox]%% Domestic Violence?<br/>
+    	%%[veteran_household,yes_no,checkbox]%% Veteran in household?<br/>
+	   	Referred By:<br/>
+	    %%[referred_by,referred_by]%%<br/>
+    </td>
+    <td nowrap>
+	    Intake Type:<br/>
+	    %%[intake_type,intake_type]%%<br/>
+	    Client Age:<br/>
+	    <input type=text name="client_age" value="%%[client_age]%%" size="12" maxlength="3" tabindex="1"/><br/>
+	</td>
+    <td>
+    	Notes:<br/>
+    	<TEXTAREA name="elig_notes" tabindex="1" cols="12" rows="3">%%[elig_notes]%%</TEXTAREA>
+	</td>
+  </tr>
+</table>
+
+<input type="hidden" name="screen" value="elig"/>
+<input type="hidden" name="case_id" value="%%[case_id]%%"/>
+
+<p>
+	<input type=submit name="update_case" value="Save" tabindex="2" class="save" accesskey="s" />
+</p>
+
+</form>
+
+%%[case-elig.js,javascript,parse]%%
+

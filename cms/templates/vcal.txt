@@ -1,0 +1,12 @@
+BEGIN:VCALENDAR
+PRODID:-//Pika Software//Pika Danio//EN
+VERSION:1.0
+BEGIN:VEVENT
+UID:%%[uid]%%
+DTSTART:%%[vc_date_start]%%
+DTEND:%%[vc_date_end]%%
+LOCATION;ENCODING=QUOTED-PRINTABLE:%%[vc_location]%%
+DESCRIPTION;ENCODING=QUOTED-PRINTABLE:%%[vc_description]%%
+SUMMARY;ENCODING=QUOTED-PRINTABLE:%%[vc_summary]%%
+END:VEVENT
+END:VCALENDAR

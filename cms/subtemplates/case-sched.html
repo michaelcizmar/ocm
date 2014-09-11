@@ -1,0 +1,13 @@
+<h2>Scheduler</h2>
+<form action="dataops.php" method="POST">
+Attorney:<br/>
+%%[sched_select]%% <br/>
+Type of case:<br/>
+<input type="text" name="summary" value="" tabindex="1"><br/>
+<input type="hidden" name="action" value="add_ex_appt">
+<input type="hidden" name="case_id" value="%%[case_id]%%">
+<input type="hidden" name="number" value="%%[number]%%">
+<p><INPUT type="submit" tabindex="1">
+</form>
+
+<!-- IFRAME src="modules/case-sched-sub.php" -->

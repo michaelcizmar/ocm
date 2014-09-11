@@ -1,0 +1,71 @@
+%%[begin:edit]%%
+<form name="fc">
+<div id="col1" style="float:left;position:relative;">
+First:<br/>
+%%[first_name,input_text]%%<br/>
+Middle:<br/>
+%%[middle_name,input_text]%%<br/>
+Last:<br/>
+%%[last_name,input_text]%%<br/>
+Jr., Sr., etc.<br/>
+%%[extra_name,input_text]%%<br/>
+SSN:<br/>
+%%[ssn,input_text,onkeyup=pika_ssn(this);,maxlength=11,size=11]%%<br/>
+<br/>
+%%[action,input_hidden,default=update]%%
+%%[contact_id,input_hidden]%%
+%%[alias_id,input_hidden]%%
+%%[primary_name,input_hidden]%%
+<input type=submit name="save" value="Save">
+</div>
+<br/>
+
+</form>
+%%[contact_full.js,javascript]%%
+%%[end:edit]%%
+
+%%[begin:view]%%
+<h2>Alias Record(s) for: %%[contact_full_name]%%</h2>
+<a href="%%[base_url]%%/alias.php?contact_id=%%[contact_id]%%&action=edit">Add New Alias</a><br/>
+%%[alias_list]%%
+%%[end:view]%%
+
+
+%%[begin:confirm_delete]%%
+<h2>Confirm Delete</h2>
+Are you sure you would like to delete this Alias Record?<br/>
+<br/>
+Name: <b>%%[alias_name]%%</b><br/>
+SSN: %%[ssn]%%<br/>
+<br/>
+<form>
+%%[action,input_hidden,default=delete]%%
+%%[contact_id,input_hidden]%%
+%%[alias_id,input_hidden]%%
+<input type="submit" value="Delete" name="delete" />
+<input type="submit" value="Cancel" name="cancel" />
+</form>
+%%[end:confirm_delete]%%
+
+%%[begin:flex_header]%%
+<table cellspacing="0" cellpadding="3">
+<tr>
+	<th>Name</th>
+	<th>SSN</th>
+	<th>Actions</th>
+</tr>
+%%[end:flex_header]%%
+%%[begin:flex_row]%%
+<tr>
+	<td>%%[alias_name]%%</td>
+	<td>%%[ssn]%%</td>
+	<td>
+	<a href="%%[base_url]%%/alias.php?contact_id=%%[contact_id]%%&alias_id=%%[alias_id]%%&action=edit">Edit</a>
+	&nbsp;|&nbsp;
+	<a href="%%[base_url]%%/alias.php?contact_id=%%[contact_id]%%&alias_id=%%[alias_id]%%&action=confirm_delete">Delete</a>
+	</td>
+</tr>
+%%[end:flex_row]%%
+%%[begin:flex_footer]%%
+</table>
+%%[end:flex_footer]%%

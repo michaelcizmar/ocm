@@ -1,0 +1,23 @@
+<!-- 06-02-2010 - caw - modified to support pika mobile -->
+
+<div id="title_header">
+	Case Notes for %%[number]%%
+</div>
+
+<div id="activity_summary">%%[summary]%%</div>
+%%[activity_list]%%
+
+
+%%[begin:flex_header]%%
+%%[end:flex_header]%%
+%%[begin:flex_row]%%
+<!-- short summary field contents -->
+<div id="activity_summary">%%[summary]%%</div>
+<!-- time stamp & author info -->
+<div id="activity_timestamp">(%%[act_timestamp]%% - %%[user_id text source=act_user_id]%% %%[pba_id text source=act_pba_id]%%)</div>
+<!-- private notes content -->
+<div id="activity_notes">%%[notes]%%</div>
+<br />
+%%[end:flex_row]%%
+%%[begin:flex_footer]%%
+%%[end:flex_footer]%%

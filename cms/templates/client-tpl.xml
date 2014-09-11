@@ -1,0 +1,478 @@
+<? xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ls_cms:ClientIntake SYSTEM "C:\client2.dtd">
+<ls_cms:ClientIntake>
+	%%[begin:client]%%
+	<ls_cms:ClientIdentification>
+		<ls_cms:ClientIdentifier>%%[client_name]%%</ls_cms:ClientIdentifier>
+		<ls_cms:PersonInformation PersonID="%%[contact_id]%%" PersonIDRef="%%[contact_id]%%">
+			<ls_cms:PersonName>
+				<ls_cms:FirstName>%%[first_name]%%</ls_cms:FirstName>
+				<ls_cms:MiddleName>%%[middle_name]%%</ls_cms:MiddleName>
+				<ls_cms:LastName>%%[last_name]%%</ls_cms:LastName>
+				<ls_cms:NameSuffix>%%[extra_name]%%</ls_cms:NameSuffix>
+				<ls_cms:FullName>%%[client_name]%%</ls_cms:FullName>
+			</ls_cms:PersonName>
+			<ls_cms:Address>
+				<ls_cms:AddressLine>%%[address]%%</ls_cms:AddressLine>
+				<ls_cms:AddressLine>%%[address2]%%</ls_cms:AddressLine>
+				<ls_cms:City>%%[city]%%</ls_cms:City>
+				<ls_cms:County>%%[county]%%</ls_cms:County>
+				<ls_cms:State CodeSource="USPS">%%[state]%%</ls_cms:State>
+				<ls_cms:PostalCode>%%[zip]%%</ls_cms:PostalCode>
+				<ls_cms:Country CodeSource="ISO 3166">US</ls_cms:Country>
+				<ls_cms:FullAddress>%%[full_address]%%</ls_cms:FullAddress>
+			</ls_cms:Address>
+			<ls_cms:PostalAddress Type="Text">
+				<ls_cms:AddressLine>%%[address]%%</ls_cms:AddressLine>
+				<ls_cms:City>%%[city]%%</ls_cms:City>
+				<ls_cms:County>%%[county]%%</ls_cms:County>
+				<ls_cms:State CodeSource="USPS">%%[state]%%</ls_cms:State>
+				<ls_cms:PostalCode>%%[zip]%%</ls_cms:PostalCode>
+				<ls_cms:Country CodeSource="ISO 3166">US</ls_cms:Country>
+				<ls_cms:FullAddress>%%[full_address]%%</ls_cms:FullAddress>
+			</ls_cms:PostalAddress>
+			<ls_cms:Telephone Type="Text">
+				<ls_cms:TelephonePrefix>
+					<ls_cms:TelephoneCountryCode></ls_cms:TelephoneCountryCode>
+					<ls_cms:TelephoneCityCode>%%[area_code]%%</ls_cms:TelephoneCityCode>
+				</ls_cms:TelephonePrefix>
+				<ls_cms:TelephoneNumber Format="Text">%%[phone]%%</ls_cms:TelephoneNumber>
+				<ls_cms:TelephoneSuffix></ls_cms:TelephoneSuffix>
+				<ls_cms:TelephoneNotes>%%[phone_notes]%%</ls_cms:TelephoneNotes>
+				<ls_cms:FullTelephone>%%[full_phone]%%</ls_cms:FullTelephone>
+			</ls_cms:Telephone>
+			<ls_cms:Telephone Type="Text">
+				<ls_cms:TelephonePrefix>
+					<ls_cms:TelephoneCountryCode></ls_cms:TelephoneCountryCode>
+					<ls_cms:TelephoneCityCode>%%[area_code_alt]%%</ls_cms:TelephoneCityCode>
+				</ls_cms:TelephonePrefix>
+				<ls_cms:TelephoneNumber Format="Text">%%[phone_alt]%%</ls_cms:TelephoneNumber>
+				<ls_cms:TelephoneSuffix></ls_cms:TelephoneSuffix>
+				<ls_cms:TelephoneNotes>%%[phone_notes_alt]%%</ls_cms:TelephoneNotes>
+				<ls_cms:FullTelephone>%%[full_phone_alt]%%</ls_cms:FullTelephone>
+			</ls_cms:Telephone>
+			<ls_cms:Email>%%[email]%%</ls_cms:Email>
+			<ls_cms:BirthDate>%%[birth_date]%%</ls_cms:BirthDate>
+			<ls_cms:SSN Format="Text">%%[ssn]%%</ls_cms:SSN>
+			<ls_cms:Sex CodeSource="NCIC-2000">%%[gender]%%</ls_cms:Sex>
+			<ls_cms:Age>%%[client_age]%%</ls_cms:Age>
+			<ls_cms:Ethnicity>%%[ethnicity,ethnicity,text]%%</ls_cms:Ethnicity>
+			<ls_cms:PrimaryLanguage CodeSource="ISO-3166">%%[language,language,text]%%</ls_cms:PrimaryLanguage>
+			<ls_cms:MaritalStatus codeSource="NCIC-2000">%%[marital,marital,text]%%</ls_cms:MaritalStatus>
+			<ls_cms:Citizenship>%%[citizen]%%</ls_cms:Citizenship>
+			<ls_cms:Role>Client</ls_cms:Role>
+			<ls_cms:Residence>%%[residence,residence,text]%%</ls_cms:Residence>
+			<ls_cms:Disabled>%%[disabled]%%</ls_cms:Disabled>
+			<ls_cms:Frail>%%[frail]%%</ls_cms:Frail>
+			<ls_cms:Notes>%%[notes]%%</ls_cms:Notes>
+		</ls_cms:PersonInformation>
+	</ls_cms:ClientIdentification>
+	%%[end:client]%%
+	<ls_cms:ClientEligibility>
+		<ls_cms:Adults>%%[adults]%%</ls_cms:Adults>
+		<ls_cms:Children>%%[children]%%</ls_cms:Children>
+		<ls_cms:IncomeWrapper>
+			<ls_cms:Income>
+				<ls_cms:IncomeType>%%[income_type0,income_type,text]%%</ls_cms:IncomeType>
+				<ls_cms:IncomeAmount>%%[annual0]%%</ls_cms:IncomeAmount>
+				<ls_cms:IncomeFrequency>Annual</ls_cms:IncomeFrequency>
+			</ls_cms:Income>
+			<ls_cms:Income>
+				<ls_cms:IncomeType>%%[income_type1,income_type,text]%%</ls_cms:IncomeType>
+				<ls_cms:IncomeAmount>%%[annual1]%%</ls_cms:IncomeAmount>
+				<ls_cms:IncomeFrequency>Annual</ls_cms:IncomeFrequency>
+			</ls_cms:Income>
+			<ls_cms:Income>
+				<ls_cms:IncomeType>%%[income_type2,income_type,text]%%</ls_cms:IncomeType>
+				<ls_cms:IncomeAmount>%%[annual2]%%</ls_cms:IncomeAmount>
+				<ls_cms:IncomeFrequency>Annual</ls_cms:IncomeFrequency>
+			</ls_cms:Income>
+			<ls_cms:Income>
+				<ls_cms:IncomeType>%%[income_type3,income_type,text]%%</ls_cms:IncomeType>
+				<ls_cms:IncomeAmount>%%[annual3]%%</ls_cms:IncomeAmount>
+				<ls_cms:IncomeFrequency>Annual</ls_cms:IncomeFrequency>
+			</ls_cms:Income>
+			<ls_cms:Income>
+				<ls_cms:IncomeType>%%[income_type4,income_type,text]%%</ls_cms:IncomeType>
+				<ls_cms:IncomeAmount>%%[annual4]%%</ls_cms:IncomeAmount>
+				<ls_cms:IncomeFrequency>Annual</ls_cms:IncomeFrequency>
+			</ls_cms:Income>
+			<ls_cms:TotalIncome>%%[income]%%</ls_cms:TotalIncome>
+			<ls_cms:TotalIncomeFrequency>Annual</ls_cms:TotalIncomeFrequency>
+		</ls_cms:IncomeWrapper>
+		<ls_cms:AssetWrapper>
+			<ls_cms:Asset>
+				<ls_cms:AssetType>%%[asset_type0,asset_type,text]%%</ls_cms:AssetType>
+				<ls_cms:AssetAmount>%%[asset0]%%</ls_cms:AssetAmount>
+			</ls_cms:Asset>
+			<ls_cms:Asset>
+				<ls_cms:AssetType>%%[asset_type1,asset_type,text]%%</ls_cms:AssetType>
+				<ls_cms:AssetAmount>%%[asset1]%%</ls_cms:AssetAmount>
+			</ls_cms:Asset>
+			<ls_cms:Asset>
+				<ls_cms:AssetType>%%[asset_type2,asset_type,text]%%</ls_cms:AssetType>
+				<ls_cms:AssetAmount>%%[asset2]%%</ls_cms:AssetAmount>
+			</ls_cms:Asset>
+			<ls_cms:Asset>
+				<ls_cms:AssetType>%%[asset_type3,asset_type,text]%%</ls_cms:AssetType>
+				<ls_cms:AssetAmount>%%[asset3]%%</ls_cms:AssetAmount>
+			</ls_cms:Asset>
+			<ls_cms:Asset>
+				<ls_cms:AssetType>%%[asset_type4,asset_type,text]%%</ls_cms:AssetType>
+				<ls_cms:AssetAmount>%%[asset4]%%</ls_cms:AssetAmount>
+			</ls_cms:Asset>
+			<ls_cms:TotalAssets>%%[assets]%%</ls_cms:TotalAssets>
+		</ls_cms:AssetWrapper>
+		<ls_cms:EligibilityNotes>%%[elig_notes]%%</ls_cms:EligibilityNotes>
+	</ls_cms:ClientEligibility>
+	<ls_cms:CaseInformation>
+		<ls_cms:ProblemCode>
+			<ls_cms:LSCCode>
+				<ls_cms:LSCProblemCode>%%[problem]%%</ls_cms:LSCProblemCode>
+				<ls_cms:LSCSubProblemCode>%%[sub_problem]%%</ls_cms:LSCSubProblemCode>
+			</ls_cms:LSCCode>
+		</ls_cms:ProblemCode>
+		%%[begin:opposing]%%
+		<ls_cms:AdverseParty>
+			<ls_cms:PersonInformation PersonID="%%[contact_id]%%" PersonIDRef="%%[contact_id]%%">
+				<ls_cms:PersonName>
+					<ls_cms:NamePrefix></ls_cms:NamePrefix>
+					<ls_cms:FirstName>%%[first_name]%%</ls_cms:FirstName>
+					<ls_cms:MiddleName>%%[middle_name]%%</ls_cms:MiddleName>
+					<ls_cms:LastName>%%[last_name]%%</ls_cms:LastName>
+					<ls_cms:NameSuffix>%%[extra_name]%%</ls_cms:NameSuffix>
+					<ls_cms:FullName>%%[full_name]%%</ls_cms:FullName>
+					<ls_cms:Alias>%%[alias]%%</ls_cms:Alias>
+					<ls_cms:Alias>%%[alias]%%</ls_cms:Alias>
+				</ls_cms:PersonName>
+				<ls_cms:Address>
+					<ls_cms:AddressLine>%%[address]%%</ls_cms:AddressLine>
+					<ls_cms:AddressLine>%%[address2]%%</ls_cms:AddressLine>
+					<ls_cms:City>%%[city]%%</ls_cms:City>
+					<ls_cms:County>%%[county]%%</ls_cms:County>
+					<ls_cms:State CodeSource="USPS">%%[state]%%</ls_cms:State>
+					<ls_cms:PostalCode>%%[zip]%%</ls_cms:PostalCode>
+					<ls_cms:Country CodeSource="ISO 3166"></ls_cms:Country>
+					<ls_cms:FullAddress>%%[full_address]%%</ls_cms:FullAddress>
+				</ls_cms:Address>
+				<ls_cms:Telephone Type="Text">
+					<ls_cms:TelephonePrefix>
+						<ls_cms:TelephoneCountryCode></ls_cms:TelephoneCountryCode>
+						<ls_cms:TelephoneCityCode>%%[area_code]%%</ls_cms:TelephoneCityCode>
+					</ls_cms:TelephonePrefix>
+					<ls_cms:TelephoneNumber Format="Text">%%[phone]%%</ls_cms:TelephoneNumber>
+					<ls_cms:TelephoneNotes>%%[phone_notes]%%</ls_cms:TelephoneNotes>
+					<ls_cms:FullTelephone>%%[area_code]%% %%[phone]%%</ls_cms:FullTelephone>
+				</ls_cms:Telephone>
+				<ls_cms:Telephone Type="Text">
+					<ls_cms:TelephonePrefix>
+						<ls_cms:TelephoneCountryCode></ls_cms:TelephoneCountryCode>
+						<ls_cms:TelephoneCityCode>%%[area_code_alt]%%</ls_cms:TelephoneCityCode>
+					</ls_cms:TelephonePrefix>
+					<ls_cms:TelephoneNumber Format="Text">%%[phone_alt]%%</ls_cms:TelephoneNumber>
+					<ls_cms:TelephoneNotes>%%[phone_notes_alt]%%</ls_cms:TelephoneNotes>
+					<ls_cms:FullTelephone>%%[area_code_alt]%% %%[phone_alt]%%</ls_cms:FullTelephone>
+				</ls_cms:Telephone>
+				<ls_cms:Email>%%[email]%%</ls_cms:Email>
+				<ls_cms:BirthDate>%%[birth_date]%%</ls_cms:BirthDate>
+				<ls_cms:SSN Format="Text">%%[ssn]%%</ls_cms:SSN>
+				<ls_cms:Sex CodeSource="NCIC-2000">%%[gender]%%</ls_cms:Sex>
+				<ls_cms:Ethnicity>%%[ethnicity,ethnicity,text]%%</ls_cms:Ethnicity>
+				<ls_cms:PrimaryLanguage CodeSource="ISO-3166">%%[language,language,text]%%</ls_cms:PrimaryLanguage>
+				<ls_cms:MaritalStatus codeSource="NCIC-2000">%%[marital,marital,text]%%</ls_cms:MaritalStatus>
+				<ls_cms:Citizenship codeSource="ISO 3166">%%[citizenship]%%</ls_cms:Citizenship>
+				<ls_cms:Role>Opposing Party</ls_cms:Role>
+			</ls_cms:PersonInformation>
+			<ls_cms:AttorneyInformation>
+				<ls_cms:PersonName>
+					<ls_cms:NamePrefix>%%[]%%</ls_cms:NamePrefix>
+					<ls_cms:FirstName>%%[]%%</ls_cms:FirstName>
+					<ls_cms:MiddleName>%%[]%%</ls_cms:MiddleName>
+					<ls_cms:LastName>%%[]%%</ls_cms:LastName>
+					<ls_cms:NameSuffix>%%[]%%</ls_cms:NameSuffix>
+					<ls_cms:FullName>%%[]%%</ls_cms:FullName>
+					<ls_cms:Alias>%%[]%%</ls_cms:Alias>
+					<ls_cms:Alias>%%[]%%</ls_cms:Alias>
+				</ls_cms:PersonName>
+				<ls_cms:Address>
+					<ls_cms:AddressLine>%%[]%%</ls_cms:AddressLine>
+					<ls_cms:AddressLine>%%[]%%</ls_cms:AddressLine>
+					<ls_cms:City>%%[]%%</ls_cms:City>
+					<ls_cms:County>%%[]%%</ls_cms:County>
+					<ls_cms:State CodeSource="USPS">%%[]%%</ls_cms:State>
+					<ls_cms:PostalCode>%%[]%%</ls_cms:PostalCode>
+					<ls_cms:Country CodeSource="ISO 3166">%%[]%%</ls_cms:Country>
+					<ls_cms:FullAddress>%%[]%%</ls_cms:FullAddress>
+				</ls_cms:Address>
+				<ls_cms:PostalAddress Type="Text">
+					<ls_cms:AddressLine>%%[]%%</ls_cms:AddressLine>
+					<ls_cms:City>%%[]%%</ls_cms:City>
+					<ls_cms:County>%%[]%%</ls_cms:County>
+					<ls_cms:State CodeSource="USPS">%%[]%%</ls_cms:State>
+					<ls_cms:PostalCode>%%[]%%</ls_cms:PostalCode>
+					<ls_cms:Country CodeSource="ISO 3166">%%[]%%</ls_cms:Country>
+					<ls_cms:FullAddress>%%[]%%</ls_cms:FullAddress>
+				</ls_cms:PostalAddress>
+				<ls_cms:Telephone Type="Text">
+					<ls_cms:TelephonePrefix>
+						<ls_cms:TelephoneCountryCode>%%[]%%</ls_cms:TelephoneCountryCode>
+						<ls_cms:TelephoneCityCode>%%[]%%</ls_cms:TelephoneCityCode>
+					</ls_cms:TelephonePrefix>
+					<ls_cms:TelephoneNumber Format="Text">%%[]%%</ls_cms:TelephoneNumber>
+					<ls_cms:TelephoneSuffix>%%[]%%</ls_cms:TelephoneSuffix>
+					<ls_cms:TelephoneNotes>%%[]%%</ls_cms:TelephoneNotes>
+					<ls_cms:TelephoneNotes>%%[]%%</ls_cms:TelephoneNotes>
+					<ls_cms:FullTelephone>%%[]%%</ls_cms:FullTelephone>
+				</ls_cms:Telephone>
+				<ls_cms:Telephone Type="Text">
+					<ls_cms:TelephonePrefix>
+						<ls_cms:TelephoneCountryCode>%%[]%%</ls_cms:TelephoneCountryCode>
+						<ls_cms:TelephoneCityCode>%%[]%%</ls_cms:TelephoneCityCode>
+					</ls_cms:TelephonePrefix>
+					<ls_cms:TelephoneNumber Format="Text">%%[]%%</ls_cms:TelephoneNumber>
+					<ls_cms:TelephoneSuffix>%%[]%%</ls_cms:TelephoneSuffix>
+					<ls_cms:TelephoneNotes>%%[]%%</ls_cms:TelephoneNotes>
+					<ls_cms:TelephoneNotes>%%[]%%</ls_cms:TelephoneNotes>
+					<ls_cms:FullTelephone>%%[]%%</ls_cms:FullTelephone>
+				</ls_cms:Telephone>
+			</ls_cms:AttorneyInformation>
+			<ls_cms:AttorneyInformation>
+				<ls_cms:PersonName>
+					<ls_cms:NamePrefix>%%[]%%</ls_cms:NamePrefix>
+					<ls_cms:FirstName>%%[]%%</ls_cms:FirstName>
+					<ls_cms:MiddleName>%%[]%%</ls_cms:MiddleName>
+					<ls_cms:LastName>%%[]%%</ls_cms:LastName>
+					<ls_cms:NameSuffix>%%[]%%</ls_cms:NameSuffix>
+					<ls_cms:FullName>%%[]%%</ls_cms:FullName>
+					<ls_cms:Alias>%%[]%%</ls_cms:Alias>
+					<ls_cms:Alias>%%[]%%</ls_cms:Alias>
+				</ls_cms:PersonName>
+				<ls_cms:Address>
+					<ls_cms:AddressLine>%%[]%%</ls_cms:AddressLine>
+					<ls_cms:AddressLine>%%[]%%</ls_cms:AddressLine>
+					<ls_cms:City>%%[]%%</ls_cms:City>
+					<ls_cms:County>%%[]%%</ls_cms:County>
+					<ls_cms:State CodeSource="USPS">%%[]%%</ls_cms:State>
+					<ls_cms:PostalCode>%%[]%%</ls_cms:PostalCode>
+					<ls_cms:Country CodeSource="ISO 3166">%%[]%%</ls_cms:Country>
+					<ls_cms:FullAddress>%%[]%%</ls_cms:FullAddress>
+				</ls_cms:Address>
+				<ls_cms:PostalAddress Type="Text">
+					<ls_cms:AddressLine>%%[]%%</ls_cms:AddressLine>
+					<ls_cms:City>%%[]%%</ls_cms:City>
+					<ls_cms:County>%%[]%%</ls_cms:County>
+					<ls_cms:State CodeSource="USPS">%%[]%%</ls_cms:State>
+					<ls_cms:PostalCode>%%[]%%</ls_cms:PostalCode>
+					<ls_cms:Country CodeSource="ISO 3166">%%[]%%</ls_cms:Country>
+					<ls_cms:FullAddress>%%[]%%</ls_cms:FullAddress>
+				</ls_cms:PostalAddress>
+				<ls_cms:Telephone Type="Text">
+					<ls_cms:TelephonePrefix>
+						<ls_cms:TelephoneCountryCode>%%[]%%</ls_cms:TelephoneCountryCode>
+						<ls_cms:TelephoneCityCode>%%[]%%</ls_cms:TelephoneCityCode>
+					</ls_cms:TelephonePrefix>
+					<ls_cms:TelephoneNumber Format="Text">%%[]%%</ls_cms:TelephoneNumber>
+					<ls_cms:TelephoneSuffix>%%[]%%</ls_cms:TelephoneSuffix>
+					<ls_cms:TelephoneNotes>%%[]%%</ls_cms:TelephoneNotes>
+					<ls_cms:TelephoneNotes>%%[]%%</ls_cms:TelephoneNotes>
+					<ls_cms:FullTelephone>%%[]%%</ls_cms:FullTelephone>
+				</ls_cms:Telephone>
+				<ls_cms:Telephone Type="Text">
+					<ls_cms:TelephonePrefix>
+						<ls_cms:TelephoneCountryCode>%%[]%%</ls_cms:TelephoneCountryCode>
+						<ls_cms:TelephoneCityCode>%%[]%%</ls_cms:TelephoneCityCode>
+					</ls_cms:TelephonePrefix>
+					<ls_cms:TelephoneNumber Format="Text">%%[]%%</ls_cms:TelephoneNumber>
+					<ls_cms:TelephoneSuffix>%%[]%%</ls_cms:TelephoneSuffix>
+					<ls_cms:TelephoneNotes>%%[]%%</ls_cms:TelephoneNotes>
+					<ls_cms:TelephoneNotes>%%[]%%</ls_cms:TelephoneNotes>
+					<ls_cms:FullTelephone>%%[]%%</ls_cms:FullTelephone>
+				</ls_cms:Telephone>
+			</ls_cms:AttorneyInformation>
+		</ls_cms:AdverseParty>
+		%%[end:opposing]%%
+		<ls_cms:OpenDate>%%[open_date]%%</ls_cms:OpenDate>
+		<ls_cms:CloseDate>%%[close_date]%%</ls_cms:CloseDate>
+		<ls_cms:CaseHandling>
+			<ls_cms:CaseOffice>%%[office]%%</ls_cms:CaseOffice>
+			<ls_cms:CaseHandlerName></ls_cms:CaseHandlerName>
+			<ls_cms:CaseSupervisorName></ls_cms:CaseSupervisorName>
+		</ls_cms:CaseHandling>
+		<ls_cms:IntakeType>%%[intake_type,intake_type,text]%%</ls_cms:IntakeType>
+		<ls_cms:Funding></ls_cms:Funding>
+		<ls_cms:ReferredBy>%%[referred_by,referred_by,text]%%</ls_cms:ReferredBy>
+		<ls_cms:DomAbuse>%%[dom_viol]%%</ls_cms:DomAbuse>
+		<ls_cms:SexAssault>%%[sex_assault]%%</ls_cms:SexAssault>
+		<ls_cms:Stalking>%%[stalking]%%</ls_cms:Stalking>
+		<ls_cms:Fingerprint>%%[fingerprint]%%</ls_cms:Fingerprint>
+		<ls_cms:TransferOrigin>%%[transfer_origin]%%</ls_cms:TransferOrigin>
+		<ls_cms:ResourceInformation>
+			<ls_cms:ResourceType></ls_cms:ResourceType>
+			<ls_cms:Title></ls_cms:Title>
+			<ls_cms:DateSent></ls_cms:DateSent>
+		</ls_cms:ResourceInformation>
+		%%[begin:case_note]%%
+		<ls_cms:CaseNotes>
+			<ls_cms:NoteDate>%%[act_date]%%</ls_cms:NoteDate>
+			<ls_cms:Notes>%%[case_notes_text]%%</ls_cms:Notes>
+			<ls_cms:NoteEnteredBy>%%[atty_name]%%</ls_cms:NoteEnteredBy>
+		</ls_cms:CaseNotes>
+		%%[end:case_note]%%
+		<ls_cms:IntakeDate>%%[intake_date]%%</ls_cms:IntakeDate>
+		<ls_cms:ReasonClosed>%%[close_code,close_code,text]%%</ls_cms:ReasonClosed>
+		<ls_cms:Outcome>%%[outcome,outcome,text]%%</ls_cms:Outcome>
+	</ls_cms:CaseInformation>
+	<ls_cms:ReferralInformation>
+		<ls_cms:Agency>
+			<ls_cms:GroupInformation GroupID="Text" GroupIDRef="Text">
+				<ls_cms:GroupName>%%[r_program_name]%%</ls_cms:GroupName>
+				<ls_cms:ContactName>
+					<ls_cms:PersonName>
+						<ls_cms:NamePrefix>Text</ls_cms:NamePrefix>
+						<ls_cms:FirstName>Text</ls_cms:FirstName>
+						<ls_cms:MiddleName>Text</ls_cms:MiddleName>
+						<ls_cms:LastName>Text</ls_cms:LastName>
+						<ls_cms:NameSuffix>Text</ls_cms:NameSuffix>
+						<ls_cms:FullName>Text</ls_cms:FullName>
+						<ls_cms:Alias>Text</ls_cms:Alias>
+						<ls_cms:Alias>Text</ls_cms:Alias>
+					</ls_cms:PersonName>
+				</ls_cms:ContactName>
+				<ls_cms:Address>
+					<ls_cms:AddressLine>Text</ls_cms:AddressLine>
+					<ls_cms:AddressLine>Text</ls_cms:AddressLine>
+					<ls_cms:City>Text</ls_cms:City>
+					<ls_cms:County>Text</ls_cms:County>
+					<ls_cms:State CodeSource="USPS">Text</ls_cms:State>
+					<ls_cms:PostalCode>Text</ls_cms:PostalCode>
+					<ls_cms:Country CodeSource="ISO 3166">Text</ls_cms:Country>
+					<ls_cms:FullAddress>Text</ls_cms:FullAddress>
+				</ls_cms:Address>
+				<ls_cms:PostalAddress Type="Text">
+					<ls_cms:AddressLine>Text</ls_cms:AddressLine>
+					<ls_cms:City>Text</ls_cms:City>
+					<ls_cms:County>Text</ls_cms:County>
+					<ls_cms:State CodeSource="USPS">Text</ls_cms:State>
+					<ls_cms:PostalCode>Text</ls_cms:PostalCode>
+					<ls_cms:Country CodeSource="ISO 3166">Text</ls_cms:Country>
+					<ls_cms:FullAddress>Text</ls_cms:FullAddress>
+				</ls_cms:PostalAddress>
+				<ls_cms:Telephone Type="Text">
+					<ls_cms:TelephonePrefix>
+						<ls_cms:TelephoneCountryCode>Text</ls_cms:TelephoneCountryCode>
+						<ls_cms:TelephoneCityCode>Text</ls_cms:TelephoneCityCode>
+					</ls_cms:TelephonePrefix>
+					<ls_cms:TelephoneNumber Format="Text">Text</ls_cms:TelephoneNumber>
+					<ls_cms:TelephoneSuffix>Text</ls_cms:TelephoneSuffix>
+					<ls_cms:TelephoneNotes>Text</ls_cms:TelephoneNotes>
+					<ls_cms:TelephoneNotes>Text</ls_cms:TelephoneNotes>
+					<ls_cms:FullTelephone>Text</ls_cms:FullTelephone>
+				</ls_cms:Telephone>
+				<ls_cms:Telephone Type="Text">
+					<ls_cms:TelephonePrefix>
+						<ls_cms:TelephoneCountryCode>Text</ls_cms:TelephoneCountryCode>
+						<ls_cms:TelephoneCityCode>Text</ls_cms:TelephoneCityCode>
+					</ls_cms:TelephonePrefix>
+					<ls_cms:TelephoneNumber Format="Text">Text</ls_cms:TelephoneNumber>
+					<ls_cms:TelephoneSuffix>Text</ls_cms:TelephoneSuffix>
+					<ls_cms:TelephoneNotes>Text</ls_cms:TelephoneNotes>
+					<ls_cms:TelephoneNotes>Text</ls_cms:TelephoneNotes>
+					<ls_cms:FullTelephone>Text</ls_cms:FullTelephone>
+				</ls_cms:Telephone>
+				<ls_cms:Email>Text</ls_cms:Email>
+				<ls_cms:Email>Text</ls_cms:Email>
+				<ls_cms:Fax>
+					<ls_cms:FaxPrefix>
+						<ls_cms:FaxCountryCode>Text</ls_cms:FaxCountryCode>
+						<ls_cms:FaxCityCode>Text</ls_cms:FaxCityCode>
+					</ls_cms:FaxPrefix>
+					<ls_cms:FaxNumber Format="Text">Text</ls_cms:FaxNumber>
+					<ls_cms:FaxSuffix>Text</ls_cms:FaxSuffix>
+					<ls_cms:FaxNotes>Text</ls_cms:FaxNotes>
+					<ls_cms:FaxNotes>Text</ls_cms:FaxNotes>
+					<ls_cms:FullFax>Text</ls_cms:FullFax>
+				</ls_cms:Fax>
+			</ls_cms:GroupInformation>
+		</ls_cms:Agency>
+		<ls_cms:County>Text</ls_cms:County>
+		<ls_cms:ReferralDate>Text</ls_cms:ReferralDate>
+		<ls_cms:ReferralCloseDate>Text</ls_cms:ReferralCloseDate>
+		<ls_cms:Status>Text</ls_cms:Status>
+		<ls_cms:ContactProcess>Text</ls_cms:ContactProcess>
+		<ls_cms:ReferralHistory>
+			<ls_cms:Agency>
+				<ls_cms:GroupInformation GroupID="Text" GroupIDRef="Text">
+					<ls_cms:GroupName>Text</ls_cms:GroupName>
+					<ls_cms:ContactName>
+						<ls_cms:PersonName>
+							<ls_cms:NamePrefix>Text</ls_cms:NamePrefix>
+							<ls_cms:FirstName>Text</ls_cms:FirstName>
+							<ls_cms:MiddleName>Text</ls_cms:MiddleName>
+							<ls_cms:LastName>Text</ls_cms:LastName>
+							<ls_cms:NameSuffix>Text</ls_cms:NameSuffix>
+							<ls_cms:FullName>Text</ls_cms:FullName>
+							<ls_cms:Alias>Text</ls_cms:Alias>
+							<ls_cms:Alias>Text</ls_cms:Alias>
+						</ls_cms:PersonName>
+					</ls_cms:ContactName>
+					<ls_cms:Address>
+						<ls_cms:AddressLine>Text</ls_cms:AddressLine>
+						<ls_cms:AddressLine>Text</ls_cms:AddressLine>
+						<ls_cms:City>Text</ls_cms:City>
+						<ls_cms:County>Text</ls_cms:County>
+						<ls_cms:State CodeSource="USPS">Text</ls_cms:State>
+						<ls_cms:PostalCode>Text</ls_cms:PostalCode>
+						<ls_cms:Country CodeSource="ISO 3166">Text</ls_cms:Country>
+						<ls_cms:FullAddress>Text</ls_cms:FullAddress>
+					</ls_cms:Address>
+					<ls_cms:PostalAddress Type="Text">
+						<ls_cms:AddressLine>Text</ls_cms:AddressLine>
+						<ls_cms:City>Text</ls_cms:City>
+						<ls_cms:County>Text</ls_cms:County>
+						<ls_cms:State CodeSource="USPS">Text</ls_cms:State>
+						<ls_cms:PostalCode>Text</ls_cms:PostalCode>
+						<ls_cms:Country CodeSource="ISO 3166">Text</ls_cms:Country>
+						<ls_cms:FullAddress>Text</ls_cms:FullAddress>
+					</ls_cms:PostalAddress>
+					<ls_cms:Telephone Type="Text">
+						<ls_cms:TelephonePrefix>
+							<ls_cms:TelephoneCountryCode>Text</ls_cms:TelephoneCountryCode>
+							<ls_cms:TelephoneCityCode>Text</ls_cms:TelephoneCityCode>
+						</ls_cms:TelephonePrefix>
+						<ls_cms:TelephoneNumber Format="Text">Text</ls_cms:TelephoneNumber>
+						<ls_cms:TelephoneSuffix>Text</ls_cms:TelephoneSuffix>
+						<ls_cms:TelephoneNotes>Text</ls_cms:TelephoneNotes>
+						<ls_cms:TelephoneNotes>Text</ls_cms:TelephoneNotes>
+						<ls_cms:FullTelephone>Text</ls_cms:FullTelephone>
+					</ls_cms:Telephone>
+					<ls_cms:Telephone Type="Text">
+						<ls_cms:TelephonePrefix>
+							<ls_cms:TelephoneCountryCode>Text</ls_cms:TelephoneCountryCode>
+							<ls_cms:TelephoneCityCode>Text</ls_cms:TelephoneCityCode>
+						</ls_cms:TelephonePrefix>
+						<ls_cms:TelephoneNumber Format="Text">Text</ls_cms:TelephoneNumber>
+						<ls_cms:TelephoneSuffix>Text</ls_cms:TelephoneSuffix>
+						<ls_cms:TelephoneNotes>Text</ls_cms:TelephoneNotes>
+						<ls_cms:TelephoneNotes>Text</ls_cms:TelephoneNotes>
+						<ls_cms:FullTelephone>Text</ls_cms:FullTelephone>
+					</ls_cms:Telephone>
+					<ls_cms:Email>Text</ls_cms:Email>
+					<ls_cms:Email>Text</ls_cms:Email>
+					<ls_cms:Fax>
+						<ls_cms:FaxPrefix>
+							<ls_cms:FaxCountryCode>Text</ls_cms:FaxCountryCode>
+							<ls_cms:FaxCityCode>Text</ls_cms:FaxCityCode>
+						</ls_cms:FaxPrefix>
+						<ls_cms:FaxNumber Format="Text">Text</ls_cms:FaxNumber>
+						<ls_cms:FaxSuffix>Text</ls_cms:FaxSuffix>
+						<ls_cms:FaxNotes>Text</ls_cms:FaxNotes>
+						<ls_cms:FaxNotes>Text</ls_cms:FaxNotes>
+						<ls_cms:FullFax>Text</ls_cms:FullFax>
+					</ls_cms:Fax>
+				</ls_cms:GroupInformation>
+			</ls_cms:Agency>
+			<ls_cms:ReferralDate>Text</ls_cms:ReferralDate>
+			<ls_cms:Status>Text</ls_cms:Status>
+		</ls_cms:ReferralHistory>
+	</ls_cms:ReferralInformation>
+</ls_cms:ClientIntake>

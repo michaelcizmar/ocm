@@ -1,0 +1,92 @@
+<h2>Contact Details</h2>
+<!--
+<form action="%%[base_url]%%/ops/new_case.php" method="get" target="_parent">
+<input type="hidden" name="thiscon" value="">
+<p>
+	<input type="submit" value="Use" tabindex="1">
+	<a href="contact.php?contact_id=%%[contact_id]%%" target="_parent">%%[full_name]%%</a>
+</p>
+</form>
+-->
+<h3>%%[full_name]%%</h3>
+<p>
+	Address:<br/>
+	%%[full_address]%%
+</p>
+<table>
+	<tr valign="top">
+		<td align="right">
+			Birth Date:
+		</td>
+		<td>
+			%%[birth_date]%%
+		</td>
+	</tr>
+	<tr valign="top">
+		<td align="right">
+			SSN:
+		</td>
+		<td>
+			%%[ssn]%%
+		</td>
+	</tr>
+	<tr valign="top">
+		<td align="right">
+			Phone:
+		</td>
+		<td>
+			%%[phone]%% %%[phone_notes]%%
+		</td>
+	</tr>
+	<tr valign="top">
+		<td align="right">
+			Alt. Phone:
+		</td>
+		<td>
+			%%[phone_alt]%% %%[phone_notes_alt]%%
+		</td>
+	</tr>
+	<tr valign="top">
+		<td align="right">
+			Email:
+		</td>
+		<td>
+			<a href="%%[email]%%">%%[email]%%</a>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td align="right">
+			Gender:
+		</td>
+		<td>
+			%%[gender text]%%
+		</td>
+	</tr>
+	<tr valign="top">
+		<td align="right">
+			Language:
+		</td>
+		<td>
+			%%[language text]%%
+		</td>
+	</tr>
+</table>
+<p>
+%%[notes]%%
+</p>
+%%[begin:flex_header]%%
+<table cellpadding=3 cellspacing=0 border=0 summary="">
+<tr>
+<th nowrap>Case Number</th>
+<th nowrap>Role</th>
+</tr>
+%%[end:flex_header]%%
+%%[begin:flex_row]%%
+<tr valign="top" class="row1">
+<td><a href="case.php?case_id=%%[case_id]%%" target="_parent"a>%%[number]%%</a></td>
+<td>%%[role]%%</td>
+</tr>
+%%[end:flex_row]%%
+%%[begin:flex_footer]%%
+</table>
+%%[end:flex_footer]%%

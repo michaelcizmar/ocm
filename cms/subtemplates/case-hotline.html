@@ -1,0 +1,29 @@
+<h2 class="hdt">Hotline Information</h2>
+<form action="dataops.php" method=POST name=ws>
+
+<p>Documents Provided to Client:<br/>
+%%[doc1,client_docs]%%<br/>
+%%[doc2,client_docs]%%<br/>
+%%[doc3,client_docs]%%<br/>
+%%[doc4,client_docs]%%<br/>
+%%[doc5,client_docs]%%<br/>
+%%[doc6,client_docs]%%<br/>
+
+<input type="hidden" name="case_id" value="%%[case_id]%%">
+<input type="hidden" name="action" value="update_case">
+<input type="hidden" name="screen" value="hotline">
+<input type="submit" value="Save" tabindex="1" class="save" accesskey="s">
+
+</form>
+
+<h2 class="hdt">Referal Agencies</h2>
+
+<form action="dataops.php" method=POST name=blahblah>
+<p>Refer to an Agency:<br/>
+%%[thiscon menu source=ref_agency]%%
+<input type="hidden" name="case_id" value="%%[case_id]%%">
+<input type="hidden" name="relation_code" value="50">
+<input type="hidden" name="action" value="add_case_contact">
+<input type="hidden" name="screen" value="hotline">
+<input type="submit" value="Refer" tabindex="1">
+</form>

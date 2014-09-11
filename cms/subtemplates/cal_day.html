@@ -1,0 +1,132 @@
+<script LANGUAGE="JavaScript" type="text/javascript">
+function checkAll()
+{
+	var i = %%[i_value]%%;
+	
+	for (j = 0; j < i; j++)
+	{
+		k = (j * 2);
+		eval("document.act_update_bulk.elements[" + k + "].checked = true;");
+	}
+}
+
+function uncheckAll()
+{
+	var i = %%[i_value]%%;
+	
+	for (j = 0; j < i; j++)
+	{
+		k = (j * 2);
+		eval("document.act_update_bulk.elements[" + k + "].checked = false;");
+	}
+}
+</script>
+
+<table width="98%" summary="">
+<tr>
+
+<td><a href="cal_day.php?cal_date=%%[prev_date]%%&user_id=%%[user_id]%%">&lt; Previous Day</a></td>
+
+<td align=center>
+	%%[cal_tabs]%%
+</td>
+<td>
+	<form action="cal_day.php" method="get">
+		Go to date:
+		<input type="text" name="cal_date" size="10" maxlength="10" tabindex="2"/>
+		<input type="submit" value="Go"/>
+	</form>
+</td>
+
+<td align=right><a href="cal_day.php?cal_date=%%[next_date]%%&user_id=%%[user_id]%%">Next Day &gt;</a></td>
+
+</tr>
+</table>
+
+<table width="98%" summary="">
+<tr valign="top">
+
+<td width="100%">
+<form action="dataops.php" method="post" name="act_update_bulk">
+
+%%[overdue_table]%%
+
+<h2 class="hdt">Today's Pending Items</h2>
+<p>%%[pending_table]%%
+<br/>
+<br/>
+
+<h2 class="hdt">To Do List</h2>
+<p>%%[todo_table]%%
+
+<input type="hidden" name="act_date" value="%%[cal_date]%%"/>
+<input type="hidden" name="action" value="update_activity_bulk"/>
+
+    <div>
+      <span style="float: left; margin-top: 3px;">
+<input type="submit" value="Update" class="save"/>
+ 	</span>
+        <span style="float: right; text-align: right; margin-top: 3px;">
+
+[ <a href="javascript:checkAll()">Check All</a> / 
+<a href="javascript:uncheckAll()">Uncheck All</a> ]
+      </span>
+	</div>
+
+</form>
+</td>
+
+<td>&nbsp;</td>
+
+<td nowrap class="de">
+	<h2 class="hdt">Actions</h2>
+		<img src="images/point.gif">
+		Add <a href="%%[base_url]%%/activity.php?screen=compose&act_date=%%[cal_date]%%&act_type=K">New Tickle</a><br/>
+		
+		<img src="images/point.gif">
+		Add <a href="%%[base_url]%%/activity.php?screen=compose&act_date=%%[cal_date]%%&act_type=T">New Time Slip</a>
+		(<a href="%%[base_url]%%/timer.php" onclick="popUp({url:this.href,name:'popUpTimer'});return false;">Popup Timer</a>)<br/>
+
+		<img src="images/point.gif">
+		Add <a href="%%[base_url]%%/activity.php?screen=compose&completed=0&act_date=%%[cal_date]%%">New Calendar Entry</a><br/>
+
+		<img src="images/point.gif">
+		Add <a href="%%[base_url]%%/activity.php?screen=compose&act_date=%%[cal_date]%%&act_type=L">New LSC Other Services Record</a><br/>
+
+		<img src="images/point.gif" alt="Arrow"/>
+		<a href="%%[base_url]%%/ical-subscribe.php">Subscribe to Calendar (iCal)</a>
+		
+		<!--<img src="images/point.gif" alt="Arrow"/>
+		<a href=%%[base_url]%%/services/cal-rss.php?user_id=%%[user_id]%%>View Calendar as RSS feed</a><br/> -->
+		
+		<form>
+		<img src="images/point.gif" alt="Arrow"/>
+		View Another Person's Calendar:<br/>
+		<input type="hidden" name="cal_date" value="%%[cal_date]%%"/>
+		<input type="hidden" name="screen" value="%%[screen]%%"/>
+		%%[user_id menu]%%<br/><br/>
+		<input type="submit" value="View" class="save" tabindex="1"/>
+		</form>
+
+</td>
+
+</tr>
+<tr><td colspan="3"><br/><hr noshade /><br/></td></tr>
+<tr valign="top">
+
+<td>
+	<h2 class="hdt">Time Slip and Activity Log for %%[pretty_cal_date]%% (%%[total_hours]%% hours)</h2>
+	<p>%%[completed_table]%%
+</td>
+
+<td>&nbsp;</td>
+
+<td nowrap>
+	<h2 class="hdt">Time/Funding Breakdown</h2>
+	<p>%%[funding_table]%%
+</td>
+
+</tr>
+</table>
+
+<script type="text/javascript" language="JavaScript" src="%%[base_url]%%/js/popUp.js"></script>

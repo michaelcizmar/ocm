@@ -1,0 +1,967 @@
+Changelog
+
+Aug 27, 2003
+	* Pika 3.00 released.
+	* Added Changelog file.
+	
+Aug 28, 2003
+	* Fixed SQL errors in time report.
+	
+Aug 31, 2003
+	* Added more data to case transfer mechanism.
+	* Changed pikaCms::newCase() to not clobber incoming intake_type data.
+	* Added case fingerprint.
+	* Added case transfer_origin field.
+	
+Sep 9, 2003
+	* Added case notes to the transfer mechanism.
+
+Sep 13, 2003
+	* Added option to cache internal data from pl_qcache_*, pl_template() 
+	in MMCache shared memory application variables.
+
+Sep 18, 2003
+	* Fixed path errors in pikaCms::addLibraryMetadata().
+	
+Sep 21, 2003
+	* Fixed bug in sub template detection in pl_template().
+	* Fixed bug in pl_db_cache_get() when retrieving empty menu from database.
+	
+Sep 23, 2003
+	* Added $soap_url variable to transfer-client.php.
+	* Legal Services Client Intake XML data is now encoded (base64, then url)
+	before transmission	via SOAP.
+	* Added attorney's name, program name to transferred case notes.
+	* Base64- and urlencode()'ed case notes since new line characters were 
+	cutting off previous lines in the case notes data.
+
+Sep 27, 2003
+	* Added http_logout flag so HTTP authenticated users can have an IE-friendly
+	logout mechanism.
+	
+Oct 1, 2003
+	* Fixed bug in pl_table_autosql_update() and pl_table_autosql_insert() which
+	mistakenly assigned a value of '0000-00-00' to NULL date fields in MySQL.
+	
+Oct 2, 2003
+	* Removed legacy function calls from pl.php, specifically pl_input_filter(), 
+	pl_query_cached_array(), pl_new_id(), pl_build_sql and pl_double_quotes().
+	
+Oct 11, 2003
+	* Added remote ZIP code querying so city, state and county can be autofilled
+	without a page refresh.
+	* Modified HTML temp. file usage in pikaReport::display() to be windows-friendly.
+	
+Oct 15, 2003
+	* Fixed SQL error in pikaCms::updateUserPrefs().
+	
+Oct 17, 2003
+	* pl_date_mogrify() improvements; now supports MM-DD-YYYY format, as well as
+	2-digit year values.
+	* pl_clean_form_input() now recursively processes arrays.
+	* Added 'nomode' mode to pl_clean_form_input().
+	* pl_clean_form_input() now applies 'text' processing for all modes.
+	* Charged arg. order of pl_grab_var() to be more logical, require less typing.
+	
+Oct 23, 2003
+	* Added "holding pen" hooks in case.php for Toledo.
+	
+Oct 25, 2003
+	* Removed 'events' counter from sync_counters.php.
+	* sync_counters.php will now initialize 'case_number' counter, if not present.
+	
+Oct 26, 2003
+	* Added call to JS function update_income() to bottom of case_elig.html.
+	* Fixed missing case_id, relation_code in contact_counsel.html.
+	* Fixed array handling code in pl_clean_form_input().
+	
+Oct 28, 2003
+	* Renamed $_SESSION['office'] to $_SESSION['def_office'] to avoid overwrite bugs.
+	* Added user_id/pba_id to case notes form.
+	* Added date, time to case notes form.
+	* Cleaned up layout on case notes form.
+	
+Nov 3, 2003
+	* Fixed bug introduced recently in Adv. Case Report.
+	* Updated cal_day.php, cal_week.php to handle zero-length date, user_id strings
+	gracefully.
+	* Calendar view links on Advanced Calendar screen will always use current date,
+	user_id.
+	
+Nov 4, 2003
+	* Changed background color to off-white.
+	* Added case tab graphics.
+	* Added gray, dashed line between left column and case tabs on case screen.
+	* Documents tab no longer displays documents table if no documents exist.
+	* Documents tab now says "This case has n documents" instead of "n records found".
+	* Modified case note layout.
+	* Updated time, tickler and calendar links on home page.
+	* Added calendar tab graphics.
+	* Modified <P> margins.
+	* <H2> tags will no longer have background color and border by default, unless
+	they use "hdt" or "chdt" CSS class.
+
+Nov 5, 2003
+	* Increased font sizes slightly.
+	* Added "Super" font size option.
+	* Fixed maxlength on "hours" field on activity forms.
+	
+Nov 12, 2003
+	* Fix bug on day calendar view that applied current time to future days, preventing
+	some calendar entries from displaying.
+	* Re-added Wage Calculator to case elig. screen.
+	* Added Send to Grid button to Wage Calculator.
+
+Nov 24, 2003
+	* Fixed HTML in time slip link on case list to work with new activity form.
+	* Added new, "native", SOAP-based case transfer function.
+	
+Dec 2, 2003
+	* Changed language on case notes with no user_id or pba_id from "Not Assigned!"
+	to "No name provided".
+	* Added act_type to SQL upgrade script.
+	* Fixed pikaCms::getLibraryDir() to ignore orphaned document metadata records.
+	
+Dec 19, 2003
+	* Added "Go to date" control to the Day and Week calendar.
+	
+Dec 23, 2003
+	* Fixed PBI searching on Adv. Case Report.
+	
+Jan 6, 2004
+	* Extended pl_template sub template mode to handle cases where there are other 
+	characters on the line before and/or after a "begin:" or "end:" template tag.
+	* Added "Referral Agency" relation type.
+	* Added hook for listing referral agencies in docgen.php.
+	
+Jan 15, 2004
+	* Added hidden birth_date field to contact_name.html so the birth date isn't
+	lost when you enter an additional party from the case screen form.
+	* Added hack to prevent zeros from being converted to NULLs during case
+	transfer.
+	
+Jan 16, 2004
+	* Case transfer now marks original case as 'Transferred' after successful transfer.
+	* Fixed search by category on Advanced Calendar screen.
+	* Fixed Javascript autotab code on last SSN field on full contact screen.
+	* Fixed tabindex on Add button for add contact form on case screen.
+	
+Jan 21, 2004
+	* Added new, template-based case list.
+	
+Jan 25, 2004
+	* Adjusted layout on system settings screen.
+	* Added PEAR DB library files, so Pika will run on systems where these are not installed.
+	
+Jan 26, 2004
+	* Fixed typo in first query in VAWA report.
+	* Pika 3.01 released.
+	
+Feb 5, 2004
+	* Modified templates/default.html, templates/empty.html to use base_url.
+	* Added features to Mega Report, including ability to un-select fields and option to
+	display SQL query.
+	* Modified pl_html_report.html and pl_pdf_report.html to obey show_sql report option.
+	* Added pika_html_report_list(), which is compatible with new report structure, to
+	pika_cms.php.
+	* Modified report.php, site_map.php to use pika_html_report_list().
+	
+Feb 6, 2004
+	* Added pl_time_current_string() to better handle time zones.
+	
+Feb 18, 2004
+	* Added Referral Agency menu to Hotline tab.
+	* Added full_address, full_phone tags for referral agency section in
+	document generation.
+	* Fixed bug in case_list.php pager.
+	* Fixed bug on case intake report that always used PDF mode.
+	* Re-organized new report classes.
+	
+Feb 25, 2004
+	* Added new features to toledo holding pen in dataops.php.
+	* Added re-open case mode to dataops.php.
+	
+Feb 26, 2004
+	* dataops.php, contact_full.html, contact_counsel.html - Added improved 
+	phone and SSN input masks.
+	
+Mar 5, 2004
+	* Fixed calendar link on staff.php user list screen.
+	* Fixed bug in time report when searching by volunteer atty.
+	* Fixed bug on advanced calendar when searching by category.
+	* New, more reliable JavaScript for SSN and phone number fields is now complete.
+	* Pika 3.02 released.
+	
+Mar 9, 2004
+	* Implemented ability to run separate volunteer database, accessible to 
+	volunteers via mini Pika.
+
+Mar 10, 2004
+	* Changed update_users() JS function on Mega Report form to iterate by one
+	instead of two.  Two was (strangely) causing it not to work for WMLS.
+	* Updates to the LSC Other Matters report added "Direct Matter" code. (Regina)
+	
+Mar 17, 2004
+	* Removed spurious default value on Case Client SSN field on case_screen.html.
+	
+Mar 22, 2004
+	* Made changes to VAWA report, based on ticket #437.
+	
+Mar 23, 2004
+	* Added "menu=menuname" syntax to pl_template_sub().
+	
+Mar 24, 2004
+	* Added support for forms subdirectories.
+	* Modified documents case tab layout to accomodate form subdirectories.
+	
+Mar 25, 2004
+	* Fixed typo in intake.php that clobbered SSN number during intake.
+	* Added "autocomplete=off" to intake forms.
+	
+Mar 29, 2004
+	* Changed question 26 in VAWA report, wasn't counting cases where tally was
+	equal to one, only greater than one.
+	* Changed question 28 in VAWA report to split Total column into cases with
+	Closing Code and cases without Closing Code.
+	
+Mar 30, 2004
+	* Un-did change to question 26 in vawa.php, it was working correctly all along.
+	* Removed LEFT JOIN on menu_gender on vawa.php, it was causing problems for
+	Iowa.
+	
+Mar 31, 2004
+	* Changed cacl_pverty() javascript to return '0' if total income is '0' (#464).
+	
+Apr 1, 2004
+	* Re-fixed calendar link on staff.php user list screen.
+	
+Apr 9, 2004
+	* Fixed case-docs.php to only include opposing attorneys on the opposing counsel 
+	document assembly menu.
+	* Fixed activity links for 2nd and 3rd pro bono attorneys on case-pb.php case
+	tab screen.
+	
+Apr 19, 2004
+	* Added documents to sync_counters.php.
+	
+Apr 20, 2004
+	* Tinkered with pl_time_current_string() to get it to handle various time zone 
+	and daylight savings issues.
+	* Changed case.php so contacts with apostrophes in their names won't break
+	the javascript in the remove contact links.
+	
+May 18, 2004
+	* Fixed bug on Mega Report when using 'between' operator on non-date and non-time 
+	values.
+	
+May 19, 2004
+	* Added 'sched' to list of case tab screens that don't get JavaScript'ed case tabs 
+	(case.php).
+	
+May 28, 2004
+	* Added autocomplete="off" to lsc_csr report form.
+	
+Jun 4, 2004
+	* Fixed Magic Quotes problem in dataops.php when uploading to document storage.
+	
+Jul 2, 2004
+	* Added persons_helped to list of fields copied when a case is duplicated.
+	* Edited line 1957 in pl.php in pl_template so it runs more robustly on templates
+	with embedded PHP code.
+	* Changed case_elig Javascript code for eligibility calculation, so income amount and 
+	income frequency can be entered in any order.
+	
+Jul 4, 2004
+	* Added functions to escape XML control characters if they appear in case transfer
+	data transferred via SOAP.
+	* Changed cal_adv.php to use POST instead of GET when the form is submitted because
+	GET URLs where too long for IE.
+
+Jul 6, 2004
+	* Fixed mega report to use either case.user_id or activities.user_id when filtering
+	by staff, based on type of report being run.
+	
+Jul 8, 2004
+	* Updated Question 28 on the VAWA report per ticket #437.
+	* Changed mega report to strip white space characters from comma-delimited values.
+	
+Jul 13, 2004
+	* Added template codes for primary volunteer attorney for form letters in 
+	docgen.php.
+	
+July 14, 2004
+	* Changed document management code (pikaCms.php, dataops.php) to make it work better 
+	on Win32 servers.
+	
+July 15, 2004
+	* Updated question 25 on VAWA report to list both Pending and New cases.
+	* Released Pika version 3.03.
+	
+July 20, 2004
+	* Fixed bug in dataops.php that prevented permissions from being enforced during
+	activity record updates.
+	
+Aug 26, 2004
+	* Added intake questionnaire module.
+	* Added Scott Trudeau's patch to fix PBA codes in docgen.php, and add a cocounsel1 tag.
+	
+Aug 30, 2004
+	* Added a check in generateCaseNumber in pikaCms.php so duplicate case numbers will
+	never be generated.
+	
+Sep 30, 2004
+	* Improved error detection during case transfer process.
+	
+Oct 8, 2004
+	* Fixed broken fetchPbAttorney() syntax in docgen.php.
+	
+	* Added check on line 95 in pikaCms::updateCase() to check for null or empty date
+	values, so strtotime won't trigger an error.
+	* Changed error detection in pl_query() to use mysql_error().  May still need 
+	improvement, or PEAR:DB may be the source of the problems.
+	* Added pl_mysql_init() to pl.php for ???.
+	* Pika TX 01 will strip out MS Word binary characters during transfer using
+	new htmlfriendly() function.
+	* Added new code to try to detect error conditions in Pika TX 01.
+	* Added Pika TX 02.
+	
+Feb 21, 2005
+	* Released Pika CMS 3.04.
+
+Mar 2, 2005
+	* Fixed sorting by client name on the case list screen. (AMW)
+	
+Mar 3, 2005
+	* Fixed case duplication so Total Income, Total Assets and Poverty all are copied over. (DTK)
+	
+Mar 14, 2005
+	* Changed pl_menu_get() so it gives a better error message if a menu table cannot be found.  (AMW)
+	* Verified that the LSC Other Matters report updates that fix the NULL addition and 
+	om_code label issues has been merged into danio code.  Ran dos2unix on the report code.  (AMW)
+	
+Apr 13, 2005
+	* Completed new, faster search screen.  (AMW)
+	
+Apr 19, 2005
+	* Fixed phone & SSN search bug in new search screen.  (AMW)
+	* Changed case number search in pikaMisc::getCases(), it no longer puts a wildcard before the
+	search value.  (AMW)
+	* The case notes tab is not backwards compatible.  activityN.html can be copied over if 
+	the notes_header section is added at the bottom.  Also, remove the case menu.  case-act.php 
+	should not be overwritten. (AMW)
+	* case_screen.html is not backwards compatible.  (AMW)
+	
+Apr 22, 2005
+	* Fixed glitch in case.php where the Primary Client box would be displayed twice if
+	the primary client was also had a second conflict record on the case under a
+	different relation code.  (AMW)
+	* Fixed bug in pikaCase::deleteConflict() where mysql_affected_rows() was in the wrong 
+	place. (AMW)
+	
+Apr 24, 2005
+	* pl_benchmark() can now benchmark multiple intervals per script.  (AMW)
+	* Updated pika_exit() so it doesn't include buffer echo'ing in the server time figure.
+	Added a separate time figure named Transmit Time to the output, which displays the buffer 
+	echo'ing time.  (AMW)
+	* Started preliminary work on performance stats logging.  (AMW)
+	
+Apr 25, 2005
+	* Optimized telephone search in pikaMisc::getContacts(), uses a UNION.  (AMW)
+	* Disabled activity and document searches while in General Search mode, since they are
+	currently so expensive.  (AMW)
+	
+Apr 26, 2005
+	* Added a UNION to pikaCms::fetchOpenCaseList() to speed it up.  (AMW)
+	
+Apr 27, 2005
+	* Fixed reference to deprecated "calendar.php" in activiy.php.  (AMW)
+	
+Apr 28, 2005
+	* Added pl_mysql_timestamp_to_unix().  (AMW)
+	* Changed pikaCase::__construct(), case-info.php, case-docs.php to work with both old 
+	and new MySQL TIMESTAMP formats.
+	
+May 9, 2005
+	* Merged DTK's Intake Questionnaire code.
+	* Merged changes to LASGC's 3.04 site.
+	* Added method pikaCase::save(), which resets cases.last_modified when appropriate.
+	* Added SQL call to pikaCms::addLibraryMetadata which deletes previously existing
+	metadata records for the file before inserting a new record.
+	* Restored old table-based layout, which fixed support for color schemes.
+	
+May 20, 2005
+	* Added sp_problem to list of searchable fields in pikaMisc::getCases().
+
+Aug 1, 2005
+* Added Matt's ZIP code editor.
+* Made conflict check aware of aliases.
+* Added Dave's code to support for HTTPS URLs when linkifying.
+* Fix documents case tab.
+* Added line break between street address and city/state/ZIP line
+on primary client info on case screen.
+* Make form letter auto-attach option checkbox.
+* Case count on case list.
+* Add delete document button.
+
+Sep 15, 2005
+* Removed compens table from list of counters to reset.
+
+Oct 4, 2005
+* Adjusted case note font size on case print out.
+
+Oct 7, 2005
+* Added missing 'motd' group permissions setting to pika-danio.php.
+* Bumped activity record limit in case-act.php from 50 to 1500.
+
+Oct 10, 2005
+* Changed Funding Code autofill on activity screen to work around a bug
+in some versions of Internet Explorer.  Moved trigger from <option> tags to <select> tag.
+
+Oct 11, 2005
+* Added ability to specify which case tab to open first during
+case intake.
+* Added JS confirmation dialog to document delete link.
+
+Oct 19, 2005
+* Fixed nav bar on the System Settings screen.
+
+Oct 26, 2005
+* Changed web site links on the home page.
+
+Oct 31, 2005
+* Refactored opp. party and opp. counsel menus on form letter form.  
+* Enlarged Description field on Document Storage form.
+* Moved Document Storage HTML listing to it's template file.
+* Refined the Delete Document button.
+
+Nov 7, 2005
+* Added favicon to default.html template.
+* Changed intake/contact listing length to match user preferences.
+* Fixed pager when using results from pikaMisc::getContactsAlphabetically().
+* Removed "SHOW TABLE STATUS" hack from getCases(), getContactsAlpha(),
+getMatters().  This code does not work on InnoDB tables.
+* Fixed paging bug in getMatters() where it was counting case records
+and inactive matter records.
+* Fixed pager on add case contact screen; the case_id, number and
+relation_code would disappear when using the pager.
+* Extended the time codes report so users can specify time code
+definitions.
+* Changed the default value of the case link popup preference from
+true to false.
+* Merged ~/app/gilalib and ~/app/extralib directories.
+* Added ~/app/sql and ~/app/scripts directories.
+* Replaced old Time Codes report with a new version that allows users
+to specify which time code categories to use.
+
+Nov 8, 2005
+* Replaced "archive.php" zip library with "createzipfile.php" due to
+licensing.
+* Alphabetized System Screens section on Site Map.
+* Added more descriptions to the Home Page web links.
+* Released Pika 3.05
+
+Nov 9, 2005
+* Removed "session_data" line from ~/app/sql/upgrades/pika304.sql since
+that feature never made it into a production version.
+
+Nov 27, 2005
+* Started work on ical support.
+
+Dec 3, 2005
+* Started work on PHP 4 compatibility.
+* Added setValue(), getValue() to plBase.
+* Updated case.php, add_case_new_contact.php, new_case_new_client.php
+new_case_no_client.php, update_case.php, update_contact.php to not use 
+plBase::__get() and pl_Base::__set().
+* Removed all references to plBase::__destruct().
+* Added PHP4 style contructors to all pika* classes.
+* Remove all public, private, static, protected directives from classes.
+* Started work on removing dependency on register_globals.
+
+Dec 5, 2005
+* Fixed __set() bug in pikaDocument::delete().
+* Fixed missing record count in merge_contacts.php.
+* Modified plBase::__construct.  $value is now initialized on new records;
+all fields are null except for primary key and those with default values.
+
+Dec 6, 2005
+* Fixed PHP 4 problems in ops/new_case.php.
+* Fixed PHP 4 problems in plBase and pikaCase; replaced isset() with array_key_exists().
+
+Dec 8, 2005
+* Don't run pl_prepare_dir() when listing directory files with pikaMisc::getLibraryDir(),
+to cut down on unneeded directories.
+* Removed pikamisc::getcontactcases(), merged with pikacontact::getcasesdb().
+* Fixed pikaCase::duplicate() to work with PHP 4.
+* Renamed duplicate search field on default.html.
+* Named search buttons on default.html - they previously were unnamed.
+
+Dec 9, 2005
+* Removed unused PEAR DB storage driver files.
+
+Apr 14, 2006
+* Removed caching code from pl_template().
+
+Apr 15, 2006
+* Purged unused CSS rules.
+* Cleaned up default.html formatting.
+* Cleaned up layout on home page.
+* Added mini calendar on home page.
+
+Aaron forgot to update the changelog file for 12 months.
+
+May 18, 2007
+* Added Matt's ZIP code editor.
+
+May 21, 2007
+* Changed RTF newline characters in ops/docgen.php per Matt's advice.
+* Applied Matt's staff.php patch.
+* Applied Matt's motd.php patch.
+* Fixed funding filter problem, as reported by Benefo and Andrew.
+
+May 22, 2007
+* Cut out new megareport code since it doesn't work.  Reinstalled old code.
+
+May 24, 2007
+* Completed new reporting libraries.
+
+May 25, 2007
+* Finalized new colors.
+* Added gradients to Save buttons.
+* Added new, more robust CSS rules for tabs.
+
+May 29, 2007
+* Fixed errors when trying to run case intake report in old PDF mode.
+Checked other reports for the same problem.
+* Fixed PHP4 compatibility error in pikaCase::resetConflictStatus().
+* Changed back to old case screen layout.
+
+May 30, 2007
+* Removed Customization Manager since it doesn't work (and mostly isn't
+needed) with the new file structure.
+* Updated themes to work with new layout.
+* Removed report format from prefs screen.
+* Changed menus on prefs screen to radio selects to improve usability.
+* Added LABEL tags.
+* Updated the about page.
+* Updated the license page.
+* Sent Release Candidate 1 to certain subscribers.
+
+May 31, 2007
+* Added new pro bono tab.
+* Improved anti-aliasing on icon.png.
+* Fixed bug when saving system settings changes.
+* Sent Release Candidate 2 to the website.
+
+June 6, 2007
+* Fixed undefined variable on line 1336 of pikaMisc.php.
+* Added workaround to pl_mysql_timestamp_to_unix().  Wasn't detecting
+MySQL version correctly on Mac OS test machine.
+* Fixed parse error on new_case_new_client.php, related to PHP4 compat.
+changes.
+* Added pl_table_init(), pl_table_autosql_insert(), 
+pl_table_autosql_update(), pl_table_defaults_get(), pl_grab_vars()
+ to pl-legacy.php.
+ * Reorganized the sample forms to make the presentation cleaner.
+ * Updated menus.sql with the 2007 HHS poverty guidelines for 48 contiguous
+ states and D.C.
+ 
+July 30, 2007
+* Fixed hard coded directory path issues with pl_template() in pl.php.
+* Fixed invalid screen mode when adding contacts to cases.
+* Fixed attorney status missing from user account edit screen - incorrect template tag.
+
+September 18, 2007
+* Fixed issue in case.php where case_screen.php wasn't being loaded from the -custom directory structure.
+
+October 5, 2007
+* Fixed bug in megareport - attempting to load depricated pdf reporting library.
+
+November 5, 2007
+* Fixed undefined variable on line 62 of pika_cms.php.
+* Fixed undefined index on line 47 of activity.php.
+* Fixed trigger_error returns undefined variable on line 150 of plBase.php.
+* Unrecognized DB types (mediumtext, tinyblob, blob, mediumblob) added to line 277 of plBase.php.
+
+January 16, 2008
+* Fixed case list to sort on client name.
+* Fixed up/down arrow not displaying on case list client name sort.
+
+January 22, 2008
+* Fixed undefined index error report_format on line 24 of index.php (megareport).
+* Fixed issue with pl_bench outputting a '1' at the bottom of pika pages when benchmarking is disabled.
+* Fixed undefined constant error in pl_bench (PL_TEMPLATE_PATH) on line 289 of pl.php.
+* Fixed undefined constant error in disabled system screen on line 224 of pl.php.
+* Fixed missing case number from doc_path on line 57 of pikaCase.php.
+* Fixed doc_path check on line 199 of case_docs.php.
+
+January 23, 2008
+* Daily Intake Report moved to danio reporting engine.
+* LSC AR Report moved to danio reporting engine.
+* LSC CSR Report moved to danio reporting engine.
+
+January 25, 2008
+* LSC Other Matters Report moved to danio reporting engine.
+* Quick Docket Report moved to danio reporting engine.
+* Corrected undefined variables in activity.php (pika_cms.php).
+* Corrected undefined variable in pb_attorneys.php.
+* Removed deprecated reset tables page.
+
+January 29, 2008
+* Added size to pl_html_multiselect (defaults 18 and can be overidden).
+* Added add_footer method to danio reporting engine (for signature fields).
+* Timecodes Report moved to danio reporting engine.
+* LSSCM Timecodes Report moved to danio reporting engine.
+
+January 31, 2008
+* Time Keeping report moved to danio reporting engine.
+* Updated groups screen to danio libraries.
+* Removed Reset Tables Site Map option - deprecated.
+* Added Case Number reset screen to system settings.
+* Added Site Map to the Navigation bar of all System Screens (except Pro Bono Attorneys).
+* Updated LSC Other Matters activities with LSC 2008 problem codes.
+* Fixed bug in contact screen that failed to display attorney in contact's case list.
+* Added Case Notes tab pagination.
+* Added Document Assembly field listing on the documents tab.
+
+February 1, 2008
+* Added updated iCal module
+
+February 7, 2008
+* Changed intake screen matches headers to h2 (from h3 - which were too small)
+* Changed getNotes pikaCase method to a fixed pagination of 50.
+
+February 8, 2008
+* Updated javascript popUp function on all screens
+* Added iCal subscription page and associated links in Calendar pages
+* Removed cursor:hand from screen.css.php as it is generating errors in browsers other than IE.
+
+February 18, 2008
+* Fixed undefined variables in case print report.
+* Fixed undefined variables in merge contacts.
+* Fixed undefined variables in alias screen.
+
+February 25, 2008
+* Fixed about screen undefined variables and added new version number constants (3.07)
+* Fixed pl_questionnaires function pl_query definition to use pika_error_notice as opposed to trigger_error
+	in order to bring back penguin error screen on site map.
+	
+December 5, 2008
+VERSION 4.0
+* Created new template library pikaTempLib.php
+* Moved doc_storage directory into database table doc_storage
+* Added the ability to create folders in doc_storage
+* Added Pika Red Flag manager
+* Added Pika Form manager
+* Removed deprecated pl_questionnaire module
+* Removed all references to pl_query outside of pl-legacy
+* Updated interface style
+* Renamed system screens using system- prefix for clarity
+* Updated reset counters function to new library and it now has more feedback
+* Added RSS feeds to Calendar and Case List
+* Added time zone setting for iCal in System Settings
+* Added User Preferences for default relation code in cases
+* Added User Preferences for iCal & RSS range of dates for Calendar
+* Updated problem code lookup server to Ajax
+* Updated zip code lookup server to Ajax
+* Renamed case tabs files to std formate case-tab_name.php & case-tab_name.html std
+* Added additional default forms
+* Updated iCal to be user configurable from System Settings
+* Added template_plugins directory for user defineable template plugins
+* Added case tab unsaved data validator and confirmation
+* Updated merge contacts screens to danio
+* The default amworley account has been renamed to pikasupport with default password pika
+* System Settings has been updated to warn if settings.php is not writable
+
+September 12, 2009
+VERSION 4.01
+* Fixed activity.html template for Case Notes
+* Fixed pikaCase.php delete function (broken case docs delete)
+* Fixed Document Assembly bug (Added conditionals to allow for mbstring to not be installed w/ PHP (.configure [...] --enable-mbstring)
+* Fixed Case Document Upload mbstring bug (Added conditionals to allow for mbstring to not be installed w/ PHP (.configure [...] --enable-mbstring)
+* Fixed Red Flag Manager potential conflicts rule in sql install & upgrade scripts
+* Updated pika400.sql upgrade file (changed poverty from DECIMAL(4,2) to DECIMAL(5,2) to accomodate MySQL 5.1+)
+
+
+December 30th, 2009
+VERSION 4.02
+*  Added new "Income Prospects/Income Likely to Change" field to the Eligibility case tab.  This 
+change was prompted by Advisory Opinion AO-2009-1006 issued by LSC's Office of Legal Affairs.
+Recommended for all LSC-funded programs.
+* Updated megareport to address IE8 compatibility issues with Javascript
+
+February 15th, 2010
+VERSION 4.10
+* Added Report Security by Report by Group Security
+* Fixed Red Flag manager Add New Flag link
+* Added new Error Reporting system (pikaWarning.php) & restored and updated trigger error screen (show me the penguin)
+* Added Case Tab Manager and upgrade scripts.
+* Added System Maintenance screen (updates metaphones/updates client ages)
+* Added RSS Feed manager which allows RSS feeds to be displayed on the Pika Home screen.
+* Changed plBase/pikaContact/pikaCase/plFlexList to PHP5 public/private/protected and updated trigger error messages to be more descriptive.
+* Reviewed all template plugins - added getDefaultArgs to pikaTempLib to generate runtime arguments in the plug-ins
+* Updated setFunding lookup for activity records - now based off ajax case-lookup service
+* Removed iframes from megareport and corrected issues w/ javascript in IE8, updated to pikaTempLib
+* Fixed update_activity.php & delete_activity.php cancel and navigation issues
+* Added ability to save megareport
+* Updated Pro Bono Attorney Screens and fixed issues with search and sorting.
+* Updated activity.php to look for legacy activity templates.
+* Fixed activity.php to accept specified funding code on new record creation or to default to specified case funding code
+* Updated reports with borders for readability
+* Added parameters section to report template to specify the parameters that the report is running.
+* Fixed bug in case-act.php that reset paging
+* Updated Search Notes section with sorting and paging.
+* Fixed bug in activity.php - funding code not carrying over from case
+* Fixed bug in activity.php & update_activity.php - user_id not carrying over on save add another
+* Updated User Account management screen - added filtering, sorting, searching
+* Fixed issue with transfer manager 'id' = 'transfer_option_id'
+* Added new security permission - edit_doc - Users can only delete their own documents or any document if they have the edit_all security permission (same as edit_act).
+
+June 22nd, 2010
+VERSION 4.11
+* Fixed bug in activity.php - new activity records would not accept blank funding code if case funding code set.
+* Added Edit Alias screen linked from contact page.
+* Fixed issue in pikaContact::getAliasesDB - added result variable for return.
+* Updated Calendar Advanced Tab fixing bug that prevented PBA selection.
+* Fixed bug in pikaCase.php - case close_date validation preventing cases from being re-opened
+* Fixed bug in pikaCounter.php - Added exception for pikasupport(id=999999) in user count.
+* Added pikaMenu.php containing the pikaMenu class
+* Added legacy tag converter to pikaTempLib to handle alternate tag format (%[field menu source=menu_name]%)
+* Added pikaTempLib::setPluginArgs - re-parses arguments to allow chaining plugins to retain arguments.
+* Added getUserArray method to pikaUser returning a filtered user list in array format.
+* Updated plBase.php library
+	- Added ability to disable id counter - $use_next_id_counter (true|false).
+	- Added getNextID - replacing pl_mysql_next_id.
+	- Added dataBuildField & dataBuildFieldList functions - replacing duplicate code for update/insert
+		sql field formatting.
+	- Added describeTable & describeTableDB - implements mysql DESCRIBE query to populate 
+		$db_table_columns and for child classes.
+* Fixed bug in pika410.sql - case tabs import not copying .php extension - doesn't highlight tabs.
+* Fixed issue in save_report.js - tables with large numbers of columns made xml file too large causing timeouts.
+* Fixed bug in zipcode and funding ajax lookups - blank return value broke script.
+* Added Inactive Case & Flagged Case Reports.
+* Fixed PHP warning & deprecation notices with reporting libraries.
+* Removed PEAR library from reporting for csv download - now uses Pika standard file download.
+* Fixed bug in MegaReport save_report.js - now only saves changed checkbox & hidden fields 
+  (preventing script timeout errors for tables with large numbers of columns).
+* Added pagination to search screen for case notes.
+* Fixed issue in Case Number search - results not displaying client name.
+* Fixed bug in activity.html - Case Notes - user_id could not be changed from logged in user.
+* Added calendar_tabs plugin - Draws calendar tabs (equivalent of case_tabs).
+* Added checkbox_list plugin w/ selection functions.
+* Updated user_list.php - Added ability to filter out disabled users implements checkbox list.
+* Added pba_list.php plugin - PBA equivalent of user_list.
+* Added input_date_selector plugin w/ dropdown calendar.
+* Added default argument to menu plugin - Allows a default value to be set for a menu.
+* Fixed issue with LSC close code and problem menus - displaying incorrect menu on cases opened during transition period 1/1/2008-3/31/2008
+* Fixed bug in input_date - not passing correct arguments to input_text.
+* Fixed bug in User Accounts Manager - table pagination not displaying.
+* Updated the Menus and Special Tables manager.
+* Added new icon graphics for clock (time entry) and calendar (for date selector).
+* Fixed bug in Assign Atty screen - Add new attorney link pointing to PBA rather than Users.
+* Fixed broken link in search screen - (The try in doc search link points to the old doc search).
+
+July 20th, 2010
+VERSION 4.12
+* Fixed issue with pb_attorneys.php - Attorney Name not displaying properly on case list header when editing attorney.
+* Fixed issue with assign_pba.php - Last Case field not being updated when user assigns PBA to a case record.
+
+February 16th, 2011
+VERSION 5.0
+* Fixed Issue with plBase.php not allowing 0 values for pikaMenu
+* Fixed Issue with LSC Other Matters - lsc_problem menu reverts to 2007 codes on Save Add Another
+* Fixed issue with pikaUser::getUsers - remove undeclared '$field_value' variable
+* Fixed issue unmatched "<form>" tag in default.html line 87
+* Fixed transfer.html transfer_id fields re-mapped to transfer_option_id
+* Removed pika_exit calls from ajax services files - to prevent pl_bench output from corrupting xml output
+* Suppress error message in RSS feed reader - when feed unavailable - times out after 3 seconds
+* Updated iCal subscription page to accomodate new login method
+* Added docx to pikaDocument.php mime_types ('application/doc') to prevent zip from opening the file
+* Fix pikaMisc::getCases to not error on blank limit/paging
+* Added error message read_act permissions on activities.
+* Added error message if user doesn't have permission to delete activities.
+* Updated structure.sql - newer versions of MySQL do not recognize size for timestamp (ex TIMESTAMP(14) errors out)
+* Updated plBase.php - newer versions of MySQL do not allow server functions (ex CURRENT_TIMESTAMP) to be enclosed in quotes
+* Updated client age to auto-calculate if value is blank (before this only occured at intake)
+* Updated pl-legacy.php function pl_db_cache_get() to make sure it triggers sql errors properly.
+* Fixed issue with system-menus.php - move up/down on menus doesn't work w/ 0 values.
+* Added setting plugin (by setting name - outputs value direct to template w/o pl_setting_get)
+* Added input_password plugin - generates password fields in html
+* Added case_contacts_menu (filtered by relation code and/or attys/pbas)
+* Updated - case_handlers plugin (added atty_enabled & attorney filter plugins)
+* Added session based authorization system
+* Added the ability for users to logout
+* Added session timeout system setting (allowing administrators to set timeouts for staff)
+* Updated pikaTempLib to allow quotes in template tags (allowing nested commas - primarily for javascript functions)
+* Added forms2db.php conversion script added enabling batch upload of forms from older versions of Pika
+* Created file_list.php plugin unifying document viewing/editing/downloading into Ajax - can be used as a template tag
+* Default User Preferences now configurable - added as a system screen.
+* Updated User Preferences screen.
+* Updated System Settings screen.
+* Added Password strength and length requirement settings.
+* Added Pika Mobile - for mobile browsers (iPhone/Android).
+* Updated Income Guidelines (ver. 2011).
+* Fixed issue with search - search value wasn't being urlencoded in search category links
+
+March 11th, 2011
+VERSION 5.0.1
+* Fixed issue with cookies preventing multi-site login
+* Fixed bug with activity interval rounding
+* Fixed issue with templating quoted tags in pikaTempLib
+* Updated case filler script and corrected issues with MySQL 5.1+
+* Corrected issue with the MegaReport not sending to spreadsheet
+
+October 5th, 2011
+VERSION 5.1.0
+* Fixed issue with session timeouts and gc
+* Fixed issue with orphaned activity records on case deletion (case_id cleared from activity records on deletion)
+* Updated error system to display message when database connection is incorrect
+* Added PL_DISABLE_MYSQL flag to allow programmers to disable MySQL connection instantiation at initialization
+* Increased PikaDocument::getFiles() LIMIT to 5000 (was 1000)
+* Removed trigger error message from pikaMenu::menuExists() when searching for non-existant menu
+* Fixed issue with pikaMisc::reportList not reading description.txt (if present)
+* Added last_active field to pikaUsers::getUsers() to enable backwards compatibility
+* Added password expiration feature to user accounts (configurable in system-settings)
+* Moved authenticate() function from pika-danio.php to pl.php
+* Added authenticate_http() function and pikaAuthHttp class (enabling http authentication via flags)
+* Added PL_HTTP_SECURITY and PL_DISABLE_SECURITY flags to allow programmers to select either HTTP or to disable security via flag
+* Added PL_DISABLE_DISPLAY_LOGIN flag to allow programmers to select whether login screen loads (ex. for webservices)
+* Fixed issue with problem-server-ajax.js dropping first value from listing 
+* Added new Pika Mobile icons for display on smartphones
+* Corrected table and title display issue with merge-contacts
+* Added support for docx files in forms assembly (requires PECL zip library v1.8.10+ - included in PHP 5.2/5.3 prior versions can install it from PECL)
+* Updated Pika case transfer to use new case transfer manager
+* Added password generator to the user password and system-users screens
+* Added redirect to https setting (forcing users to use https/ssl site) under system settings
+* Added e-mail case link on the case screen to allow staff to easily share cases
+* Updated the layout of the system-users screen
+* Altered system-settings screen to not populate database password on form
+* Updated system settings to simplify additions to Pika settings
+* Fixed spacing issue with text_name template plugin
+* Increased size of mime_type field under doc_storage (to accomodate docx/xlsx)
+* Added LSC GAR 2011 updates to the base install
+* Renamed LSC Other Matters to LSC Other Services throughout Pika
+
+April 5th, 2012
+VERSION 5.1.1
+* iCal feed now allows up to 2000 entries and only shows calendar and tickler items.
+* The time range limit on iCal feed is removed; it will now show entries for all future dates, up to the 2000 item limit.
+* Added code for a 7-line income calculator - hidden by default.
+* Fixed some cosmetic Javascript issues with the income calculator.
+* The 100 case limit on the Pro Bono Attorney screen is removed; there is no longer a limit on how many cases
+can be displayed.
+* Items on the Advanced Calendar now give you an edit link even if the date field is blank.
+* Timeslip returns you to the calendar screen when launched from there.
+* Fixed Problem Code 11 and 83 for new installs.
+* Bugfix for the activities.last_changed field.
+* Bugfixes for the LSC Household report, LSC Other Services, LSC Age Race report, Inactive Case report, 
+Mega Report, and Advanced Calendar screen.
+
+VERSION 5.1.2
+* Added "Gender" table to LSC Age Race report.
+* Now tracks who has last edited activity (time/case notes/calendar) records.
+* Performance improvement on name searches.
+* Electronically transferred cases no longer import time keeping from transferred record.
+* Conflict report now matches against aliases.
+* Closed Javascript XSS vulnerabilities on calendar, search screens.
+* Eligibility calculator has improved handling of zero values.
+* Workaround for PHP time zone warnings.
+* Fixed bug with overdue appointments in some time zones.
+* Fixed bug with $0 assets and deleting asset values (changing an non-NULL value to NULL.)
+* Fixed bug with case transfers.
+* Fixed font size preference.
+
+VERSION 6.00
+* Revamped UI with Bootstrap framework.
+* Added more information to pl_template_sub() error when the close tag is missing.
+* Removed support for <!--[]--> template tags for Bootstrap compatibility.
+* Upgraded to jQuery v1.10.1 for Bootstrap compatibility.
+* Changed ENT_HTML401 to ENT_HTML5 for htmlspecialchars(), since Bootstrap uses HTML5.
+* Removed use of ENT_HTML401[5] constant when PHP version is earlier than 5.4 to surpress warnings.
+* Changed doc_storage.doc_data from MEDIUMBLOB to LONGBLOB, needed for files bigger than 16 MB.
+* Redesigned home page for improved productivity.
+* Updated layout on login page.
+* Removed old settings DB table and added new settings DB table.  The new table will store the 
+actual values for all settings except the database connection ones.  /main-custom/config/settings.php
+can now be kept read-only for better security.
+* Deprecated functions pl_settings_restore() and pl_restore_settings() because the settings table
+no longer stores previous settings.
+* Fixed path bug in pl_html_validate().
+* Removed HTML validation due to lack of HTML5 support in tidy application.
+* Improved Bootstrap compatibility of the checkbox and date field template plugins.
+* Main code directory is now required to be read-only.  The custom directory can be read-write for 
+Pika CMS administrators and read-only for the Apache web server process.
+* The "username" link in the header now points to password.php to enhance awareness of password 
+security.
+* Changes to error screen layout.
+* Cosmetic fix for calendar tabs.
+* Added new extensions framework; extensions are portable between versions and can installed in 
+bulk packages then managed individually.
+* The main code folder should now be read-only for all server user accounts.
+* Added missing "settings" table to /app/sql/install/structure.sql.
+* PHP 5.1 and 5.3 are now both officially supported and should run error-free.
+* Removed "Invalid character: 0xE6" from the comment headers of several PEAR libraries.
+* Removed the Text Size account preference.  Browsers handle text resizing so much better nowadays.
+* Removed the Color Scheme preference.
+* Changed TRUNCATE to DELETE FROM in pl_settings_save() since TRUNCATE now requires DROP TABLE
+permissions.
+* Added default settings values to /app/sql/install/structure.sql.
+* Pro Bono tab is now enabled by default during install.
+* Changed database fields on systems settings form to "disabled" since you can no longer edit
+them from the UI.
+* Added base_url and base_directory back to settings.php file so you can run multiple sites off
+one database.
+
+October 16, 2013
+* Workaround for change in Chrome/CSV behavior in plCsvReport.php.
+
+February 6th, 2014
+* Changed default row limit in Mega Report from 1,000 to 10,000.
+* Fixed a limit bug in Mega Report that occurs when register_globals=Off.
+
+February 11th, 2014
+* Added LSC Litigation report.
+
+February 13th, 2014
+* Added VAM fields to the pb_attorneys table.
+* Consolidated SQL install files into one master file.
+* Fixed bug in settings table SQL install.
+
+March 6th, 2014
+* Removed lsc_other_service codes 101 and 113 per new LSC instructions.
+
+March 12th, 2014
+* Removed URLs from printouts.
+
+May 28th, 2014
+* Refactored dom_abuse field to dom_viol.  Existing programs can keep dom_abuse
+if they wish, of course.
+* Added veteran_household database column.
+* Changed app/lib/pikaMisc.php:getCases() to allow non-numeric status code.
+* Added ability to place a custom Case Print Out report in the extensions
+folder.
+* Removed <br>s from field_list plugin used on mega report.
+
+June 17th, 2014
+* Fixed missing file and folder icons in document listings.
+* Released version 6.01.
+
+July 22nd, 2014
+* Fix for case_zip and case_county auto-fill.
+* Added Case Address case tab.
+
+July 31st, 2014
+* Added Compensation case tab and report.
+* Changed settings.value from VARCHAR to MEDIUMTEXT.
+
+August 13th, 2014
+* Fixed bug in new case address code in pikaCase.php.
+
+August 15th, 2014
+* Added 3 more income sources to case print out.
+
+September 10th, 2014
+* Fixed a bug with the checkbox lists.
+
+September 11th, 2014
+* Released version 6.02.

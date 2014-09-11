@@ -1,0 +1,90 @@
+%%[begin:view_groups]%%
+<h2>Pika Security Groups</h2>
+<a href="%%[base_url]%%/system-groups.php?action=add">Add New Group</a><br/>
+%%[group_list]%%
+%%[end:view_groups]%%
+
+%%[begin:edit_group]%%
+<form action="%%[base_url]%%/system-groups.php" method="GET">
+
+<table>
+<tr valign="top"> 
+	<td class="de" colspan="2">
+		<h2>Group Identification</h2>
+		Group ID:<br/>
+		%%[group_id,input_text]%%
+	</td>
+</tr>
+<tr>
+	<td colspan="2">
+		<h2>Case Permissions</h2>
+	</td>
+</tr>
+<tr valign="top"> 
+	<td class="de"> 
+		Read Office Records:<br/>
+		%%[read_office,input_text]%%<br/>
+		Read All Records:<br/>
+		%%[read_all,yes_no,radio]%%
+	</td>
+	<td nowrap class="de">
+		Edit Office Records:<br/>
+		%%[edit_office,input_text]%%<br/>
+		Edit All Records:<br/>
+		%%[edit_all,yes_no,radio]%%
+	</td>
+</tr>
+<tr>
+	<td colspan="2">
+	<h2>System Permissions</h2>
+	</td>
+</tr>
+<tr>
+	<td class="de">
+		Message Board Configuration:<br/>
+		%%[motd,yes_no,radio]%%<br/>
+        Pro Bono Attorney Management:<br/>
+		%%[pba,yes_no,radio]%%<br/>
+		User Account Management:<br/>
+		%%[users,yes_no,radio]%%
+	</td>
+	<td class="de">
+		Available Reports:<br/>
+		%%[reports,reports,multiselect,noblank]%%
+	</td>
+</tr>
+</table>
+<br/>
+%%[action,input_hidden]%%
+<input type="submit" name="Submit" value="Save">
+</form>
+%%[end:edit_group]%%
+
+%%[begin:flex_header]%%
+<table cellspacing="0" summary="">
+<tr>
+	<th nowrap>Group Name</th>
+	<th nowrap>Read by Office</th>
+	<th nowrap>Read All</th>
+	<th nowrap>Edit by Office</th>
+	<th nowrap>Edit All</th>
+	<th nowrap>User Accounts</th>
+	<th nowrap>Pro Bono List</th>
+	<th nowrap>Message Board</th>
+</tr>
+%%[end:flex_header]%%
+%%[begin:flex_row]%%
+<tr class="%%[css_class]%%">
+	<td><a href="%%[base_url]%%/system-groups.php?action=edit&group_id=%%[group_id]%%">%%[group_id]%%</a></td>
+	<td>%%[read_office]%%</td>
+	<td>%%[read_all]%%</td>
+	<td>%%[edit_office]%%</td>
+	<td>%%[edit_all]%%</td>
+	<td>%%[users]%%</td>
+	<td>%%[pba]%%</td>
+	<td>%%[motd]%%</td>
+</tr>
+%%[end:flex_row]%%
+%%[begin:flex_footer]%%
+</table>
+%%[end:flex_footer]%%

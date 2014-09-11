@@ -1,0 +1,171 @@
+%%[begin:edit_user]%%
+<form action="%%[base_url]%%/system-users.php" method="GET" autocomplete="off" name="form1">
+
+<table border="0">
+<tr>
+	<td colspan=2><h2>Edit %%[name,text_name]%% User Account</h2></td>
+	<td><h2>Misc. User Account Information</h2></td>
+</tr><tr valign="top">
+	<td colspan="2">
+	Username:<br/>
+	%%[username,input_text]%%<br/>
+	Password:<br/>
+	%%[password,input_password]%%<br/>
+	<br/>
+	<hr>
+	</td><td rowspan="7">
+	User ID: <br/><strong>%%[user_id]%%</strong><br/>
+	Last Known Network Address: <br/><strong>%%[last_addr]%%</strong><br/>
+	Last Active: <br/><strong>%%[last_active]%%</strong><br/>
+	</td>
+</tr><tr valign="top">
+	<td>
+	First Name:<br/>
+	%%[first_name,input_text]%%
+	</td><td>
+	Middle Name:<br/>  
+	%%[middle_name,input_text]%%
+	</td>
+</tr><tr>
+	<td>
+	Last Name:<br/>  
+	%%[last_name,input_text]%%
+	</td><td>
+	Extra Name:<br/>  
+	%%[extra_name,input_text]%%
+	</td>
+</tr><tr>
+	<td colspan="2">Description:<br/>
+	%%[description,input_text,size=44]%%
+	</td>
+</tr><tr>
+	<td>Email Address:<br/>
+	%%[email,input_text]%%
+	</td><td>
+	User Account Enabled:<br/>
+	%%[enabled,yes_no,checkbox]%%
+	</td>
+</tr><tr>
+	<td>
+	User is an Attorney:<br/>
+	%%[attorney,attorney_status,noblank]%%
+	</td><td>
+	Security Level:<br/>
+	%%[group_id,groups,menu_no_blank]%%
+	</td>
+</tr><tr>
+	<td>
+	Address:<br/>
+  	%%[address,input_text]%%<br/>
+  	%%[address2,input_text]%%<br/>
+  	City, State:<br/>
+	%%[city,input_text,size=14,class=city]%%%%[state,input_text,size=3,class=state]%%<br/>
+	ZIP Code, County:<br/>
+	%%[zip,input_text,onblur=zipcode_lookup(this.value),size=5,class=zip]%%%%[county,input_text,size=12,class=county]%%<br/>
+	</td><td valign="top">
+	Phone:<br/>
+  	%%[phone_notes,input_text]%%<br/>
+	Misc. Notes: <br/>
+	%%[notes,input_textarea,cols=18,rows=5]%%
+	</td>
+</tr>
+</table>
+<br/>
+%%[user_id,input_hidden]%%
+%%[action,input_hidden,default=update]%%
+<input type=submit name=submit value="Save" tabindex=1>
+</form>
+<br/>
+<!-- AMW -->
+<fieldset id="p-suggestor">
+	<legend>Password Suggestor</legend>
+	<form name="suggest">
+	<p>
+		%%[p_method,p_method,radio,vertical]%%<br/>
+		Length:
+		%%[p_len,p_len,radio]%%<br/>
+		<br/>
+	</p><p>
+		<button type="button" onclick="make_password();">Suggest a New Password</button>
+	</p><p>
+		<input type="text" name="newpass" id="password-suggest" disabled />
+	</p><p>
+		<button type="button" onclick="use_password('password');">Use This as My Password</button>
+	</p>
+	</form>
+</fieldset>
+<!-- End AMW -->
+
+%%[ajax_init.js,javascript]%%
+%%[zip-server-ajax.js,javascript,parse]%%
+%%[passwordGenerator.js,javascript,parse]%%
+%%[end:edit_user]%%
+
+
+%%[begin:user_list]%%
+<img src="%%[base_url]%%/images/point.gif" />&nbsp;<a href='%%[base_url]%%/system-users.php?action=edit'>Add New User</a>
+<br/>
+<form method="GET">
+<table>
+<tr>
+	<td class="de">
+	Enabled:<br/>
+	%%[enabled,enabled]%%
+	</td><td>
+	Last Name:<br/>
+	%%[last_name,input_text]%%
+	</td><td class="de">
+	Attorney Type:<br/>
+	%%[attorney,attorney_status]%%
+	</td><td class="de">
+	Group:<br/>
+	%%[group_id,groups]%%
+	</td>
+</tr><tr>
+	<td>
+	Firm:<br/>
+	%%[firm,input_text]%%
+	</td><td>
+	City:<br/>
+	%%[city,input_text]%%
+	</td><td>
+	County:<br/>
+	%%[county,input_text]%%
+	</td><td valign="bottom">
+	<input type="submit" name="filter" value="Filter" />
+	</td>
+</tr>
+</table>
+%%[order_field,input_hidden]%%
+%%[order,input_hidden]%%
+</form>
+%%[user_list]%%
+<center><i><b>%%[row_count]%%</b> Users found</i></center>
+%%[end:user_list]%%
+
+%%[begin:flex_header]%%
+<table cellspacing="0" cellpadding="3" summary="" border="0">
+	<tr>
+		<th nowrap><a href="%%[name_url]%%">Name</a>%%[name_img]%%</th>
+		<th nowrap><a href="%%[enabled_url]%%">Enabled</a>%%[enabled_img]%%</th>
+		<th nowrap>Description</th>
+		<th nowrap>E-mail</th>
+		<th nowrap><a href="%%[username_url]%%">Username</a>%%[username_img]%%</th>
+		<th nowrap><a href="%%[user_id_url]%%">User ID</a>%%[user_id_img]%%</th>
+		<th nowrap><a href="%%[last_active_url]%%">Last Active</a>%%[last_active_img]%%</th>
+	</tr>
+%%[end:flex_header]%%
+%%[begin:flex_row]%%
+	<tr valign="top" class="%%[css_class]%%">
+		<td><a href="%%[base_url]%%/system-users.php?action=edit&user_id=%%[user_id]%%">%%[name]%%</a></td>
+		<td>%%[enabled]%%</td>
+		<td>%%[description]%%</td>
+		<td>%%[email]%%</td>
+		<td>%%[username]%%</td>
+		<td>%%[user_id]%%</td>
+		<td>%%[last_active]%%</td>	
+	</tr>
+%%[end:flex_row]%%
+%%[begin:flex_footer]%%
+</table>
+%%[end:flex_footer]%%

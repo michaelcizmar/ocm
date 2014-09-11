@@ -1,0 +1,16 @@
+<h2>Case Numbering</h2>
+Pika cases are auto numbered at creation using an incrementing counter maintained by the system.
+Organizations occasionally need to restart the numbering sequence (usually at the beginning of a new year)
+in order to organize cases more efficiently.  The form below will allow you to 
+change the case number counter to fit your needs.<br/>
+<br/>
+The next opened case number will be: <b>%%[new_number]%%</b>&nbsp;&nbsp;(Example: %%[new_number_ex]%%)<br/>
+The total number of cases opened this year is: <b>%%[cases_ytd]%%</b><br/>
+<br/>
+<form action="%%[base_url]%%/system-case_numbers.php" method="POST">
+	<input type="text" name="case_number" value="%%[case_number]%%" tabindex="1" />
+	<input type="hidden" name="action" value="update" />
+	<input type="submit" name="submit" value="Update Counter" tabindex="1" />
+</form>
+<br/>
+<b>Note:</b> The counter will always be one less than the next case number that is generated.

@@ -1,0 +1,81 @@
+%%[begin:edit_option]%%
+<h2 class="hdt">%%[op_hdr]%%</h2>
+<form action="%%[base_url]%%/transfer_options.php" method="POST">
+<table cellpadding="0">
+<tr>
+	<th>Field</th>
+	<th>Value</th>
+</tr>
+<tr>
+	<td>Name:</td>
+	<td><input type="text" size="50" name="label" value="%%[label]%%"></td>
+</tr>
+<tr>
+	<td>URL:</td>
+	<td><input type="text" size="60" name="url" value="%%[url]%%"></td>
+</tr>
+<tr>
+	<td>Mode:</td>
+	<td>%%[transfer_mode,transfer_mode,menu_no_blank]%%</td>
+</tr>
+<tr>
+	<td>Username:</td>
+	<td><input type="text" size="16" name="user" value="%%[user]%%"></td>
+</tr>
+<tr>
+	<td>Password:</td>
+	<td><input type="password" size="16" name="password" value="%%[password]%%"></td>
+</tr>
+</table>
+<br/>
+<input type="hidden" name="action" value="%%[action]%%">
+<input type="hidden" name="transfer_option_id" value="%%[transfer_option_id]%%">
+<input type="submit" name="update" value="%%[op_text]%%">
+</form>
+%%[end:edit_option]%%
+
+%%[begin:flex_header]%%
+<table cellspacing="0" cellpadding="3" summary="" border="0">
+	<tr>
+		<th nowrap>Agency</th>
+		<th>&nbsp;</th>
+		<th nowrap>Mode</th>
+		<th>&nbsp;</th>
+		<th nowrap>Actions</th>
+		<th nowrap>&nbsp;</th>
+	</tr>
+%%[end:flex_header]%%
+%%[begin:flex_row]%%
+	<tr valign="top" class="%%[css_class]%%">
+		<td>%%[label]%%</td>
+		<td>&nbsp;</td>
+		<td>%%[transfer_mode]%%</td>
+		<td>&nbsp;</td>
+		<td>
+		<form action="%%[base_url]%%/transfer_options.php" method="POST">
+		<input type="hidden" name="action" value="edit">
+		<input type="hidden" name="transfer_option_id" value="%%[transfer_option_id]%%">
+		<input type="submit" name="edit" value="Edit">
+		</form>
+		</td><td>
+		<form action="%%[base_url]%%/transfer_options.php" method="POST" onsubmit="return confirm('Are you sure you want to Delete this Agency?');">
+		<input type="hidden" name="action" value="delete">
+		<input type="hidden" name="transfer_option_id" value="%%[transfer_option_id]%%">
+		<input type="submit" name="delete" value="Delete">
+		</form>
+		</td>	
+	</tr>
+%%[end:flex_row]%%
+%%[begin:flex_footer]%%
+</table>
+%%[end:flex_footer]%%
+%%[begin:new_option]%%
+<h2 class="hdt">Add New Agency</h2>
+&nbsp;&nbsp;Creates a new case transfer partner<br/>
+available from the Pika Case Transfer screen...<br/>
+<br/>
+<form action="%%[base_url]%%/transfer_options.php" method="POST">
+<input type="hidden" name="action" value="add">
+<input type="submit" name="add" value="Add New Agency">
+</form>
+%%[end:new_option]%%
