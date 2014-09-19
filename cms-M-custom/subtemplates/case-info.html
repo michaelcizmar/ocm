@@ -1,0 +1,134 @@
+<script type="text/javascript" src="/pika/js/validation.js"></script>
+<h2>Case Information Custom</h2>
+
+<form action="%%[base_url]%%/ops/update_case.php" method="post" name="ws">
+
+    <dl>
+
+        <dt><label>Case No.</label></dt>
+        <dd>%%[number,input_text]%%</dd>
+
+         <dt><label>Court Docket No.</label></dt>
+        <dd>%%[docket_number,input_text]%%</dd>
+
+        <dt><label>Date Opened</label></dt>
+        <dd id="work-date"><input id="datepicker" type="text" name="open_date" value="%%[open_date]%%" maxlength="10" tabindex="1"onkeydown="pika_dateopened(this);" onchange="return checkDate(this);" /></dd>
+
+        <dt><label>Office</label></dt>
+        <dd>%%[office,office]%%</dd>
+
+        <dt><label>Primary Advocate</label><!--  (<a href="%%[base_url]%%/assign_atty.php?case_id=%%[case_id]%%&field=user_id">assign</a>) --></dt>
+        <dd>%%[user_id,case_handlers]%%</dd>
+
+        <dt><label>Co-Advocate 1</label><!--  (<a href="%%[base_url]%%/assign_atty.php?case_id=%%[case_id]%%&field=cocounsel1">assign</a>) --></dt>
+        <dd>%%[cocounsel1,case_handlers]%%</dd>
+
+	<dt><label>Co-Advocate 2</label><!--  (<a href="%%[base_url]%%/assign_atty.php?case_id=%%[case_id]%%&field=cocounsel2">assign</a>) --></dt>
+        <dd>%%[cocounsel2,case_handlers]%%</dd>
+
+	<dt><label>Co-Advocate 3</label><!--  (<a href="%%[base_url]%%/assign_atty.php?case_id=%%[case_id]%%&field=cocounsel3">assign</a>) --></dt>
+        <dd>%%[cocounsel3,case_handlers]%%</dd>
+
+        <dt><label>Intake Type</label></dt>
+        <dd>%%[intake_type,intake_type]%%</dd>
+
+        <dt><label>Case Status</label></dt>
+        <dd>%%[status,case_status]%%</dd>
+
+    </dl>
+
+    <dl>
+
+        <dd id="lsc-code">%%[lsc_problem_menu]%%</dd>
+
+        <!-- <dt>Special Problem Code</dt>
+        <dd>%%[sp_problem,sp_problem]%%</dd> -->
+
+        <dt><label>Unduplicated?</label></dt>
+        <dd>%%[undup,undup]%%</dd>
+
+    </dl>
+
+	<dl id="funds">
+
+        <dt><label>Funding 01</label></dt>
+        <dd>%%[funding,funding]%%</dd>
+
+        <dt><label>Funding 02</label></dt>
+        <dd>%%[funding1,funding]%%</dd>
+
+        <dt><label>Funding 03</label></dt>
+        <dd>%%[funding2,funding]%%</dd>
+
+        <dt><label>Funding 04</label></dt>
+        <dd>%%[funding3,funding]%%</dd>
+
+    </dl>
+
+	<dl id="veterans">
+
+        <dt><label>Domestic Violence Involved?</label></dt>
+        <dd>%%[dv_case_lsc,yes_no]%%</dd>
+
+        <dt><label>Has any household member ever served in the military, including the Reserves or National Guard?</label></dt>
+        <dd>%%[veteran_household,yes_no]%%</dd>
+		<dd>%%[long_term_retention,yes_no,checkbox]%%<label>Long Term Retention?(More than 10 Years)</label></dd>
+    </dl>
+
+%%[case_county,input_hidden]%%
+%%[client_age,input_hidden]%%
+%%[rural,input_hidden]%%
+
+<input type="hidden" name="screen" value="info"/>
+
+%%[case_id,input_hidden]%%
+%%[client_id,input_hidden]%%
+
+    <ul id="case-info-submit">
+    <li><input type="submit" name="update_case" value="Save" tabindex="1"onclick="return Require(ws,'undup,intake_type,office,user_id,status,problem,funding,dv_case_lsc,veteran_household')" /></li>
+    </ul>
+
+</form>
+<script type="text/javascript">
+
+var ac_autotab_on = 1;
+
+function Require(ws,szFields)
+    {
+      var fields = szFields.split(",")
+      var szMissing= new Array();
+      for (x=0;x<fields.length;x++) {
+        if (ws.elements[fields[x]].value.length==0) {
+           szMissing[szMissing.length]=new String(fields[x]);
+        }
+      }
+      if (szMissing.length) {
+        alert("The following fields must be filled in before saving. Office, Primary Advocate, Intake Type, Case Status, LSC Problem, Unduplicated,Domestic Violence Involved, Veteran household, and Funding 01 ");
+        return false
+      }
+      return true;
+    }
+
+
+var old_dateopened_length = 0;
+
+function pika_dateopened(what)
+{
+	if (what.value.length == 2 && old_dateopened_length == 1)
+	{
+		what.value += '/';
+	}
+
+	if (what.value.length == 5 && old_dateopened_length == 4)
+	{
+		what.value += '/';
+	}
+
+	old_dateopened_length = what.value.length;
+}
+
+</script>
+
+%%[case-info.js,javascript,parse]%%
+%%[ajax_init.js,javascript]%%
+%%[problem-server-ajax.js,javascript]%%
