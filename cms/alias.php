@@ -25,6 +25,7 @@ $middle_name = pl_grab_get('middle_name');
 $last_name = pl_grab_get('last_name');
 $extra_name = pl_grab_get('extra_name');
 $ssn = pl_grab_get('ssn');
+$alias_description = pl_grab_get('alias_description');
 
 
 $contact = new pikaContact($contact_id);
@@ -38,6 +39,11 @@ switch ($action) {
 		if(is_numeric($alias_id)) {
 			$alias = new pikaAlias($alias_id);
 			$alias_row = $alias->getValues();
+		}
+		
+		else
+		{
+			$alias_row['alias_description'] = 1; // "Alias"
 		}
 		
 		$template = new pikaTempLib('subtemplates/alias.html',$alias_row,'edit');
@@ -69,6 +75,7 @@ switch ($action) {
 		$alias->last_name = $last_name;
 		$alias->extra_name = $extra_name;
 		$alias->ssn = $ssn;
+		$alias->alias_description = $alias_description;
 		$alias->save();
 		
 		header("Location: {$base_url}/alias.php?contact_id={$contact_id}");
