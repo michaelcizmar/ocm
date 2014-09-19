@@ -67,7 +67,7 @@ class pikaTempLib {
 		if (file_exists(getcwd() . "-custom/extensions/template_path/template_path.php"))
 		{
 			require_once(getcwd() . "-custom/extensions/template_path/template_path.php");
-			$template_file = template_path($template_file); 
+			$template_file = template_path($template_file);
 		}
 
 		else if (file_exists(getcwd(). "-custom/{$template_file}"))

@@ -1962,7 +1962,14 @@ function pl_template($template_file, $template_data = array(), $subtpl_label = n
 	}
 	
 	// Handle custom templates.
-	if (file_exists(getcwd(). "-custom/{$template_file}"))
+	// First, use the custom template path search algorithm if one is installed.
+	if (file_exists(getcwd() . "-custom/extensions/template_path/template_path.php"))
+	{
+		require_once(getcwd() . "-custom/extensions/template_path/template_path.php");
+		$template_file = template_path($template_file);
+	}
+
+	else if (file_exists(getcwd(). "-custom/{$template_file}"))
 	{
 		$template_file = getcwd(). "-custom/{$template_file}";
 	}
