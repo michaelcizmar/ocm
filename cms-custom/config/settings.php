@@ -5,6 +5,6 @@ $plSettings = array(
 'db_name' => "pika",
 'db_user' => "root",
 'db_password' => "",
-'base_url' => "/cms6",
-'base_directory' => "/var/www/html/cms6"
+'base_url' => "/cms",
+'base_directory' => "/mnt/hgfs/cms"
 );
