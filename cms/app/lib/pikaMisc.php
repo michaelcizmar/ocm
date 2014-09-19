@@ -331,7 +331,7 @@ class pikaMisc
 		// Determine whether to use the supervisor field.
 		$sup = "";
 		$sresult = mysql_query("DESCRIBE cases supervisor");
-		if (mysql_num_rows($squery) == 1)
+		if (mysql_num_rows($sresult) == 1)
 		{
 			$sup = " cases.supervisor,";
 		}
