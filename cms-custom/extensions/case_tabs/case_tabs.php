@@ -39,7 +39,6 @@ function case_tabs_extension()
 		echo "6";
 		$m = pl_menu_get('case_tabs');
 	}
-	echo $_SESSION['def_office'];
 	
 	$i = 0;
 	foreach($m as $key => $val)
