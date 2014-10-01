@@ -351,13 +351,23 @@ else
 
 // CASE TABS
 
-$result = pikaCaseTab::getCaseTabsDB();
-$menu_case_tabs = array();
-while($row = mysql_fetch_assoc($result)) {
-	$menu_case_tabs[$row['file']] = $row;
+if (file_exists(getcwd() . "-custom/extensions/case_tabs/case_tabs.php"))
+{
+	require_once(getcwd() . "-custom/extensions/case_tabs/case_tabs.php");
+	$menu_case_tabs = case_tabs_extension();
 }
-$case_row['case_tabs'] = pikaTempLib::plugin('case_tabs',$screen,$case_row,$menu_case_tabs,array('js_mode'));
 
+else
+{
+	$result = pikaCaseTab::getCaseTabsDB();
+	$menu_case_tabs = array();
+	while($row = mysql_fetch_assoc($result)) 
+	{
+		$menu_case_tabs[$row['file']] = $row;
+	}
+}
+
+$case_row['case_tabs'] = pikaTempLib::plugin('case_tabs',$screen,$case_row,$menu_case_tabs,array('js_mode'));
 
 // end TABS
 
