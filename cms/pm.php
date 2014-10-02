@@ -70,7 +70,7 @@ else
 	//if (array_search($filepath, pl_settings_get('extensions')) === false)
 	if (strpos(pl_settings_get('extensions'), $filepath) === false)
 	{
-		trigger_error('Extension not enabled.');
+		trigger_error("Extension '{$filepath}':'{$filename}' is either not enabled or not installed.");
 	}
 	
 	require(getcwd() . "-custom/extensions/{$filepath}/{$filename}");

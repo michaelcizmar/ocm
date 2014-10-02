@@ -1,0 +1,58 @@
+<h2>Incomplete Intake List</h2>
+
+<div id="case-list-wrapper">
+
+%%[begin:flex_header]%%
+
+    <table id="intake-list" cellspacing="0" summary="">
+
+    <tbody>
+
+        <tr>
+
+            <th class="first"><a href="%%[intake_id_url]%%">Intake ID</a><!-- %%[intake_id_img]%% --></th>
+            <th><a href="%%[client_name_url]%%">Client Name</a><!-- %%[client_name_img]%% --></th>
+            <th><a href="%%[intake_user_id_url]%%">Staff</a><!-- %%[intake_user_id_img]%% --></th>
+            <th><a href="%%[office_url]%%">Office</a><!-- %%[office_img]%% --></th>
+            <th class="last"><a href="%%[created_url]%%">Created</a><!-- %%[created_img]%% --></th>
+
+        </tr>
+
+%%[end:flex_header]%%
+
+%%[begin:flex_row]%%
+
+        <tr class="row%%[row_class]%%">
+
+            <td>
+            <a href='%%[base_url]%%/pm.php/lsnc_intake/intakes.php/%%[intake_id]%%/'>%%[intake_id]%%</a>
+            </td>
+
+          	<td>
+            <strong>%%[client_name]%%</strong>
+            </td>
+
+            <td>
+            %%[intake_user_id]%%
+            </td>
+
+            <td>
+            %%[office]%%
+            </td>
+
+            <td>%%[created]%%
+            </td>
+   
+        </tr>
+
+%%[end:flex_row]%%
+
+%%[begin:flex_footer]%%
+
+    </tbody>
+
+    </table>
+
+%%[end:flex_footer]%%
+
+</div> <!-- /#case-list-wrapper -->

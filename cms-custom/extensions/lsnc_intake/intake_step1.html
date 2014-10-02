@@ -1,0 +1,119 @@
+<!-- primary applicant info -->
+
+<h2>Primary Applicant</h2>
+
+<div id="intake-side">
+
+    <ul id="contact-name">
+    <li><a href='%%[base_url]%%/contacts.php/%%[contact_id]%%/?intake_id=%%[intake_id]%%'><span>%%[client_name]%%</span></a></li>
+    </ul>
+
+    <dl>
+
+        <dt><label>Phone</label></dt>
+        <dd>%%[client_phone]%%</dd>
+        
+    </dl>
+    
+    <!-- intake workflow -->
+        
+    <h3 id="actions">Intake Workflow</h3>
+
+        <ul>
+        <li><a href="%%[base_url]%%/pm.php/lsnc_intake/intakes.php?intake_id=%%[intake_id]%%&step=step1">Step 1a: Citizenship</a></li>
+        <li><a href="%%[base_url]%%/pm.php/lsnc_intake/intakes.php?intake_id=%%[intake_id]%%&step=step1b">Step 1b: Eligible Immigrant</a></li>
+        <li><a href="%%[base_url]%%/pm.php/lsnc_intake/intakes.php?intake_id=%%[intake_id]%%&step=step2">Step 2: Income|Assets</a></li>
+        </ul>
+
+</div> <!-- /#intake-side -->
+	
+<div id="main-content">
+		
+    <!-- citizenship screening -->
+        
+    <h3>Step 1a: Confirm as Eligible Citizen or Immigrant</h3>
+			
+    <form action="%%[base_url]%%/pm.php/lsnc_intake/ops_update_intake.php" method="post" name="ws">
+	    	
+        <ul>
+        %%[citizen radio]%%
+        </ul>
+            
+        <dl id="intake-notes">                
+            
+            <dt><label>Intake Notes</label></dt>
+            <dd><textarea name="intake_notes" cols="" rows="6" tabindex="1" />%%[intake_notes]%%</textarea></dd>
+
+        </dl>
+            
+        <input type="hidden" name="intake_id" value="%%[intake_id]%%" />
+        <input type="hidden" name="current_step" value="1" />
+			
+        <ul id="submit-info">          
+        <li><input type="submit" value="Eligible Citizen" name="button_press_5" tabindex="1" onclick="return citbutton(ws)" title="Confirm the prospective client is a U.S. citizen and go the financial eligibility page." />
+        <input type="submit" value="Eligible Immigrant" name="button_press_4" tabindex="1" onclick="return eligbutton(ws)" title="Confirm the prospective client is an LSC-eligible immigrant and go to the next step to document Immigrant status." />
+        <input type="submit" value="Not Eligible" name="button_press_2" tabindex="1" onclick="return confirm('Are you sure you want to\nreject this intake and\ndelete all intake data?');" title="Confirm the prospective client is NOT eligible and DELETE this intake record." />
+        <input type="submit" value="Save" name="button_press_3" tabindex="1" title="Save this intake record." /></li>
+        </ul>
+                
+    </form>
+
+</div> <!-- /#main-content -->
+
+
+<!-- scripts -->
+
+<script type="text/javascript">
+<!-- 
+function citbutton(thisform) {
+// place any other field validations that you require here
+// validate myradiobuttons
+oho = "";
+myOption = -1;
+for (i=0; i<thisform.citizen.length; i++) {
+if (thisform.citizen[i].checked) {
+myOption = i;
+}
+}
+if (myOption== 0)
+return (true);
+else if (myOption == -1)
+{oho = "nothing";}
+else if (myOption == 1)
+{oho = "Eligible Immigrant";}
+else if (myOption == 2)
+{oho = "Undocumented Immigrant";}
+alert("You selected " + oho + " in step 1. Please review your choice and re-submit");
+return false;
+// place any other field validations that you require here
+//thisform.submit(); // this line submits the form after validation
+}
+
+function eligbutton(thisform) {
+// place any other field validations that you require here
+// validate myradiobuttons
+oho = "";
+
+myOption = -1;
+for (i=0; i<thisform.citizen.length; i++) {
+if (thisform.citizen[i].checked) {
+myOption = i;
+}
+}
+if (myOption == 1) 
+return (true);
+else if (myOption == 2) 
+return (true);
+if (myOption == -1)
+{oho = "nothing";}
+else if (myOption == 0)
+{oho = "Citizen";}
+alert("You selected " + oho + " in step 1. Please review your choice and re-submit");
+return false;
+// place any other field validations that you require here
+//thisform.submit();
+// this line submits the form after validation
+}
+
+// -->
+</script>

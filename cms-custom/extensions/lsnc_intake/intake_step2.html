@@ -1,0 +1,503 @@
+<h2>Primary Applicant</h2>
+
+<div id="intake-side">
+
+    <ul id="contact-name">
+    <li><a href='%%[base_url]%%/contacts.php/%%[contact_id]%%/?intake_id=%%[intake_id]%%'><span>%%[client_name]%%</span></a></li>
+    </ul>
+
+    <dl>
+
+        <dt><label>Phone</label></dt>
+        <dd>%%[client_phone]%%</dd>
+
+    </dl>
+
+    <!-- intake workflow -->
+
+    <h3 id="actions">Intake Workflow</h3>
+
+        <ul>
+        <li><a href="%%[base_url]%%/pm.php/lsnc_intake/intakes.php?intake_id=%%[intake_id]%%&step=step1">Step 1a: Citizenship</a></li>
+        <li><a href="%%[base_url]%%/pm.php/lsnc_intake/intakes.php?intake_id=%%[intake_id]%%&step=step1b">Step 1b: Eligible Immigrant</a></li>
+        <li><a href="%%[base_url]%%/pm.php/lsnc_intake/intakes.php?intake_id=%%[intake_id]%%&step=step2">Step 2: Income|Assets</a></li>
+        </ul>
+
+</div> <!-- /#intake-side -->
+
+<div id="main-content">
+
+    <h3>Step 2: Income | Assets Screening</h3>
+
+    <form action="%%[base_url]%%/pm.php/lsnc_intake/ops_update_intake.php" method="post" name="ws">
+
+        <div id="household">
+
+            <ul>
+            <li><label>Adults</label>* <input type="text" name="adults" value="%%[adults]%%" onchange="ph_change();" tabindex="1" /></li>
+            <li><label>Children</label>* <input type="text" name="children" value="%%[children]%%" onchange="ph_change();" tabindex="1" /></li>
+            <li><label>HH size</label>* <input type="text" name="persons_helped" value="%%[persons_helped]%%" tabindex="1" /></li>
+            </ul>
+
+        </div> <!-- /#household -->
+
+        <div id="wage">
+
+            <ul>
+            <li><label>Hourly wage</label> $ <input type="text" name="dontuse1" onchange="calcWage();" tabindex="1" /></li>
+            <li><label>x Hours/week</label>&nbsp;&nbsp;<input type="text" name="dontuse2" onchange="calcWage();" tabindex="1" /></li>
+            <li><label>= </label> $ <input type="text" name="dontuse3" tabindex="1" /></li>
+            </ul>
+
+        </div> <!-- /#wage -->
+
+        <div id="send-decline">
+
+            %%[eligd,yes_no,checkbox]%%<label>Income/Assets Not Required</label>
+
+            <ul>
+            <li>
+            <input type="button" value="Send to Grid" onclick="sendToGrid();" title="Send wage calculation to the income grid." tabindex="1" /></li>
+            </ul>
+
+        </div> <!-- /#send-decline -->
+
+        <div id="grid-wrapper"> <!-- begin #grid-wrapper -->
+
+        <!-- income grid -->
+
+        <table class="eligibility-grid" id="income-grid">
+
+            <colgroup id="income-type">
+            <col span="3" />
+            </colgroup>
+
+            <thead>
+            <tr>
+
+                <th class="first" scope="col">Income Type</th>
+                <th scope="col">Frequency</th>
+                <th class="last" scope="col">Amount</th>
+
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <tr> <!-- row 1  -->
+
+                <td>%%[income_type0,income_type]%%</td>
+                <td>%%[income_freq0,income_freq]%%</td>
+                <td class="amount">$ <input type="text" name="annual0" value="%%[annual0]%%" tabindex="1" /></td>
+
+            </tr>
+
+            <tr> <!-- row 2 -->
+
+                <td>%%[income_type1,income_type]%%</td>
+                <td>%%[income_freq1,income_freq]%%</td>
+                <td class="amount">$ <input type="text" name="annual1" value="%%[annual1]%%" tabindex="1" /></td>
+
+            </tr>
+
+            <tr> <!-- row 3 -->
+
+                <td>%%[income_type2,income_type]%%</td>
+                <td>%%[income_freq2,income_freq]%%</td>
+                <td class="amount">$ <input type="text" name="annual2" value="%%[annual2]%%" tabindex="1" /></td>
+
+            </tr>
+
+            <tr> <!-- row 4 -->
+
+                <td>%%[income_type3,income_type]%%</td>
+                <td>%%[income_freq3,income_freq]%%</td>
+                <td class="amount">$ <input type="text" name="annual3" value="%%[annual3]%%" tabindex="1" /></td>
+
+            </tr>
+
+            <tr> <!-- row 5 -->
+
+                <td>%%[income_type4,income_type]%%</td>
+                <td>%%[income_freq4,income_freq]%%</td>
+                <td class="amount">$ <input type="text" name="annual4" value="%%[annual4]%%" tabindex="1" /></td>
+
+             </tr>
+
+             <tr class="total-row"> <!-- row 6 = totals -->
+
+                <td>&nbsp;</td>
+                <td class="amount" colspan="2"><b>Total = $ <input type="text" name="income" tabindex="1" value="%%[income]%%" readonly="readonly" /><input type="hidden" name="income_only" /></td>
+
+            </tr>
+
+            </tbody>
+
+        </table> <!-- /#income grid -->
+
+        <!-- asset grid -->
+
+        <table class="eligibility-grid" id="asset-grid">
+
+            <colgroup span="2">
+            <col id="asset-type" span="1" />
+            <col span="1" />
+            </colgroup>
+
+            <thead>
+            <tr>
+
+                <th class="first" scope="col">Asset Type</th>
+                <th class="last" scope="col">Value</th>
+
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <tr> <!-- row 1  -->
+
+                <td>%%[asset_type0,asset_type]%%</td>
+                <td class="amount">$ <input type="text" name="asset0" onchange="asset_change();" value="%%[asset0]%%" tabindex="1" /></td>
+
+            </tr>
+
+            <tr> <!-- row 2 -->
+
+                <td>%%[asset_type1,asset_type]%%</td>
+                <td class="amount">$ <input type="text" name="asset1" tabindex="1" onchange="asset_change();" value="%%[asset1]%%" /></td>
+
+            </tr>
+
+            <tr> <!-- row 3 -->
+
+                <td>%%[asset_type2,asset_type]%%</td>
+                <td class="amount">$ <input type="text" name="asset2" tabindex="1" onchange="asset_change();" value="%%[asset2]%%" /></td>
+
+            </tr>
+
+            <tr> <!-- row 4 -->
+
+                <td>%%[asset_type3,asset_type]%%</td>
+                <td class="amount">$ <input type="text" name="asset3" tabindex="1" onchange="asset_change();" value="%%[asset3]%%" /></td>
+
+            </tr>
+
+            <tr> <!-- row 5 -->
+
+                <td>%%[asset_type4,asset_type]%%</td>
+                <td class="amount">$ <input type="text" name="asset4" tabindex="1" onchange="asset_change();" value="%%[asset4]%%" /></td>
+
+            </tr>
+
+            <tr class="total-row"> <!-- row 6 = totals -->
+
+                <td class="amount" colspan="2">Total = $ <input type="text" name="assets" tabindex="1" value="%%[assets]%%" readonly="readonly" /></td>
+
+            </tr>
+
+            </tbody>
+
+        </table> <!-- /#asset-grid -->
+
+        </div> <!-- /#end grid-wrapper -->
+
+        <!-- calculate poverty ... income justification -->
+
+        <div id="poverty">
+
+            <dl>
+
+        	    <dt><h4>% of Poverty</h4></dt>
+            	<dd><input id="calculate" type="button" value="Calculate" tabindex="1" onclick="calc_poverty();" title="Calculate percentage of poverty." />
+                <input id="percentage" class="input60" type="text" name="poverty" value="%%[poverty]%%" readonly="readonly" />
+
+            </dl>
+
+            <input type="hidden" name="poverty_income_only" /></dd>
+
+            <dl>
+
+            	<dt><h4>Income Justification</h4></dt>
+                <dd>%%[just_income,just_income]%%</dd>
+
+            </dl>
+
+
+
+        </div> <!-- /#poverty -->
+
+        <dl id="prospects">
+
+            <dt><label>Inquired about Income Prospects</label>*</dt>
+            <dd>%%[income_prospects,yes_no,checkbox]%%</dd>
+
+        </dl>
+
+        <!-- intake notes -->
+
+        <dl id="intake-notes">
+
+            <dt><label>Intake Notes</label></dt>
+            <dd><textarea name="intake_notes" cols="" rows="6" tabindex="1" />%%[intake_notes]%%</textarea></dd>
+
+        </dl>
+
+        <input type="hidden" name="intake_id" value="%%[intake_id]%%" />
+
+        <ul id="submit-info">
+        <li><input type="submit" value="Eligible &raquo; Create New Case" name="button_press_1" tabindex="1" onclick="return testfields()" title="Confirm the client is eligible and go to the new client contact page." />
+        <input type="submit" value="Not Eligible" name="button_press_2" tabindex="1" onclick="return confirm('Are you sure you want to\nreject this intake and\ndelete all intake data?');" title="Confirm the prospective client is NOT financially eligible and DELETE this intake record." />
+        <input type="submit" value="Save" name="button_press_3" tabindex="1" title="Save this intake record."/></li>
+        </ul>
+
+        </form> <!-- closing FORM -->
+
+</div> <!-- /#main-content -->
+
+
+<!-- scripts -->
+
+<script type="text/javascript">
+<!--
+document.ws.adults.focus();
+//-->
+</script>
+
+<script type="text/javascript" src="%%[base_url]%%/js/case_elig.js.php"></script>
+
+<script type="text/javascript">
+<!--
+// The second (non-adjusted) Income field needs to be calculated on each page view (it's not in the DB.)
+income_change();
+//-->
+</script>
+
+<script type="text/javascript">
+<!--
+var old_ssn_length = 0;
+
+function pika_ssn(what)
+{
+	if (what.value.length == 3 && old_ssn_length == 2)
+	{
+		what.value += '-';
+	}
+
+	if (what.value.length == 6 && old_ssn_length == 5)
+	{
+		what.value += '-';
+	}
+
+	old_ssn_length = what.value.length;
+}
+function testfields(what) {
+  if((document.ws.adults.value=="") || (document.ws.children.value=="") || (document.ws.persons_helped.value=="")){
+
+alert("The number of adults,children and persons helped must be entered.");
+return false;
+  }
+  return asset_change2();
+ }
+function asset_change2(){
+{
+	var total;
+
+	total = null;
+
+	// use round() otherwise total will be a string
+	if (document.ws.asset0.value != '')
+		total += round(document.ws.asset0.value);
+
+	if (document.ws.asset1.value != '')
+		total += round(document.ws.asset1.value);
+
+	if (document.ws.asset2.value != '')
+		total += round(document.ws.asset2.value);
+
+	if (document.ws.asset3.value != '')
+		total += round(document.ws.asset3.value);
+
+	if (document.ws.asset4.value != '')
+		total += round(document.ws.asset4.value);
+
+	document.ws.assets.value = round(total);
+
+	// hack
+	if ((document.ws.assets.value == 0) &&
+		(document.ws.asset0.value == '0' || document.ws.asset0.value == '0.00'))
+		document.ws.assets.value = '0.00';
+}
+ return isChecked();
+
+
+}
+
+
+
+
+function testfields1(what) {
+  if((document.ws.income_type0.value=="") || (document.ws.income_freq0.value=="") || (document.ws.annual0.value=="")){
+
+alert("The first row of Income Type,Frequency and Amount must be completed.");
+return false;
+  }
+  return testassets();
+ }
+
+function testassets(what) {
+  if((document.ws.asset_type0.value=="") ||
+(document.ws.asset_type0.value!="")&&(document.ws.asset0.value=="") ||
+(document.ws.asset_type1.value!="")&&(document.ws.asset1.value=="") || (document.ws.asset_type2.value!="")&&(document.ws.asset2.value=="") || (document.ws.asset_type3.value!="")&&(document.ws.asset3.value=="") || (document.ws.asset_type4.value!="")&&(document.ws.asset4.value=="")) {
+
+alert("You have an entered an asset type with no value or no assets at all.");
+return false;
+  }
+  return testexempt();
+ }
+function testexempt(what) {
+  if((document.ws.asset_type0.value >9)&&(document.ws.asset0.value >0) ||
+(document.ws.asset_type1.value >9)&&(document.ws.asset1.value >0) || (document.ws.asset_type2.value >9)&&(document.ws.asset2.value >0) || (document.ws.asset_type3.value >9)&&(document.ws.asset3.value >0) || (document.ws.asset_type4.value >9)&&(document.ws.asset4.value >0))
+
+
+{
+
+alert("Exempt assets must have a value of zero $0.00");
+
+
+return false;
+  }
+
+  return prospects();
+ }
+
+function testpoverty(what) {
+  if((document.ws.poverty.value >125)&&(document.ws.just_income.value ==""))
+{
+
+alert("Client is over 125% of poverty. Please select an Income Justification.");
+
+
+return false;
+  }
+
+  return testhouseholdzero();
+ }
+function testhouseholdzero(what) {
+  if(document.ws.persons_helped.value==0)
+{
+
+alert("Household size cannot be zero");
+
+
+return false;
+  }
+
+  return testpovertynull();
+ }
+
+
+
+
+function testpovertynull(what) {
+  if(document.ws.poverty.value =="")
+{
+
+alert("Please Calculate % of Poverty and save");
+
+
+return false;
+  }
+
+  return testasset10000();
+ }
+function testasset10000() {
+  if((document.ws.assets.value > 10000)&& (document.ws.persons_helped.value < 2))
+{
+
+alert("Over asset limit - Executive Director approval required to serve Client with LSC funding code 1000");
+
+
+return testasset15000();
+  }
+
+  return testasset15000();
+ }
+
+function testasset15000() {
+  if((document.ws.assets.value > 15000)&& (document.ws.persons_helped.value > 1))
+{
+
+alert("Over asset limit - Executive Director approval required to serve Client with LSC funds(1000)");
+
+
+return testjustnote();
+  }
+
+  return testjustnote();
+ }
+
+
+function testjustnote() {
+  if(document.ws.just_income.value !=="")
+{
+
+alert("You must enter facts in the notes to support the Income Justification you have selected");
+
+
+return true;
+  }
+
+  return true;
+ }
+
+
+
+
+
+
+
+
+function isChecked(fieldname) {
+	var myform = document.ws;
+	if (myform) {
+		loop = 0;
+		while (loop < myform.elements.length) {
+			if (myform.elements[loop].name == fieldname && myform.elements[loop].type == 'checkbox') {
+				return(myform.elements[loop].checked);
+			}
+		loop++;
+		}
+	}
+if (isChecked('eligd')) {
+	window.alert('Client has declined to provide financial data. Income and asset validation is now turned off')
+return (true);
+}
+return testfields1(this);
+
+}
+function prospects(fieldname) {
+	var myform = document.ws;
+	if (myform) {
+		loop = 0;
+		while (loop < myform.elements.length) {
+			if (myform.elements[loop].name == fieldname && myform.elements[loop].type == 'checkbox') {
+				return(myform.elements[loop].checked);
+			}
+		loop++;
+		}
+	}
+if (!isChecked('income_prospects')) {
+	window.alert('Please inquire about Income Prospects and check the box.')
+return (false);
+}
+return testpoverty();
+
+}
+function toggleStatus() {
+
+
+}
+
+//-->
+</script>
