@@ -37,10 +37,12 @@ $a = pl_clean_form_input($_POST);
 
 // AMW 2013-05-03 - $act_url is getting set to "case.php" in some cases, which causes a error due to the missing case_id.  This is 
 // an ugly workaround for that.  Future TODO: fix the code that sets $act_url in activity.php
+/*
 if ("case.php" == $act_url)
 {
 	$act_url = "index.php";
 }
+*/
 
 
 // The user is saving the activity record.
@@ -83,29 +85,43 @@ if($act_id && is_numeric($act_id)) {
 if ($next_act) 
 {
 	header("Location: {$base_url}/activity.php?act_type={$act_type}&act_date={$act_date}&case_id={$case_id}&funding={$funding}&user_id={$user_id}&pba_id={$pba_id}&act_url={$act_url}");
-} else if ($close_act){
+} 
+
+else if ($close_act)
+{
 	if ($case_id && is_numeric($case_id) && strpos($act_url,'case.php') !== false) 
 	{
-		if(strpos($act_url,'case_id') !== false)
+		if (strpos($act_url,'case_id') !== false)
 		{	
 			header("Location: {$base_url}/{$act_url}");	
 		}
+		
 		else 
 		{
 			header("Location: {$base_url}/case.php?case_id={$case_id}");
 		}
-	} 
-	elseif(preg_match('/cal_(day|week|adv).php$/',$act_url)) 
+	}
+	
+	else if(preg_match('/cal_(day|week|adv).php$/',$act_url)) 
 	{
 		header("Location: {$base_url}/{$act_url}?cal_date={$act_date}");
 	}
-	else {
+	
+	else 
+	{
 		header("Location: {$base_url}/{$act_url}");
 	}
-} else {
-	if ($case_id && is_numeric($case_id)) {
+} 
+
+else 
+{
+	if ($case_id && is_numeric($case_id)) 
+	{
 		header("Location: {$base_url}/case.php?case_id={$case_id}");
-	} else {
+	}
+	
+	else 
+	{
 		header("Location: {$base_url}/cal_day.php?cal_date={$act_date}");
 	}
 }
