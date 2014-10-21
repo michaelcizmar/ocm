@@ -113,7 +113,7 @@ class pikaContact extends plBase
 		$sql = "SELECT cases.*, conflict.conflict_id, conflict.relation_code, menu_relation_codes.label AS role
 				FROM conflict LEFT JOIN cases ON conflict.case_id=cases.case_id
 				LEFT JOIN menu_relation_codes ON conflict.relation_code=menu_relation_codes.value
-				WHERE conflict.contact_id = '{$this->values['contact_id']}' ORDER BY conflict.relation_code ASC";
+				WHERE conflict.contact_id = '{$this->values['contact_id']}' ORDER BY cases.open_date ASC";
 		$result = mysql_query($sql) or trigger_error("SQL: " . $sql . " Error: " . mysql_error());
 		return $result;
 	}
