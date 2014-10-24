@@ -3,6 +3,8 @@
 require_once('pika-danio.php');
 pika_init();
 
+require_once('pikaTempLib.php');
+
 $main_html = array();  // Values for the main HTML template.
 //$extra_url = pl_simple_url();
 $base_url = pl_settings_get('base_url');
@@ -59,7 +61,7 @@ if ($intake_id == 0)
 	
 	$main_html['page_title'] = 'Incomplete Intake List';
 	$main_html['content'] = pl_template('extensions/lsnc_intake/intake_list.html', $t_array);
-	$main_html['nav'] = "<a href=\"{$base_url}/\">Pika Home</a> | <a href=\"{$base_url}/intakes.php/\">Incomplete Intakes</a> | Current Intake List";
+	$main_html['nav'] = "<a href=\"{$base_url}/\">Pika Home</a> | <a href=\"{$base_url}/pm.php/lsnc_intake/intakes.php\">Incomplete Intakes</a> | Current Intake List";
 }
 
 else
@@ -95,6 +97,9 @@ else
 		
 	$clean_case_screen = pl_clean_html_array($clean_case_screen);
 	$clean_case_screen['client_address'] = pl_html_address($clean_case_screen);
+	
+	$q = new pikaTempLib('js/case-elig.js');
+	$clean_case_screen['js_stuff'] = $q->draw();
 	
 	$main_html['page_title'] = "Incomplete Intake #{$clean_case_screen['intake_id']}";
 	$main_html['content'] = pl_template($template_file, $clean_case_screen);

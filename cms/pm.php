@@ -62,10 +62,9 @@ else if ($uri[1] == 'reports')
 
 else 
 {
-	$filename = array_pop($uri);
 	array_shift($uri);
-	
-	$filepath = implode("/", $uri);
+	$filepath = array_shift($uri);
+	$filename = array_shift($uri);
 	
 	//if (array_search($filepath, pl_settings_get('extensions')) === false)
 	if (strpos(pl_settings_get('extensions'), $filepath) === false)
