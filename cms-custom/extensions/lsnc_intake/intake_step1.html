@@ -1,34 +1,8 @@
-<!-- primary applicant info -->
-
-<h2>Primary Applicant</h2>
-
-<div id="intake-side">
-
-    <ul id="contact-name">
-    <li><a href='%%[base_url]%%/contacts.php/%%[contact_id]%%/?intake_id=%%[intake_id]%%'><span>%%[client_name]%%</span></a></li>
-    </ul>
-
-    <dl>
-
-        <dt><label>Phone</label></dt>
-        <dd>%%[client_phone]%%</dd>
-        
-    </dl>
-    
-    <!-- intake workflow -->
-        
-    <h3 id="actions">Intake Workflow</h3>
-
-        <ul>
-        <li><a href="%%[base_url]%%/pm.php/lsnc_intake/intakes.php?intake_id=%%[intake_id]%%&step=step1">Step 1a: Citizenship</a></li>
-        <li><a href="%%[base_url]%%/pm.php/lsnc_intake/intakes.php?intake_id=%%[intake_id]%%&step=step1b">Step 1b: Eligible Immigrant</a></li>
-        <li><a href="%%[base_url]%%/pm.php/lsnc_intake/intakes.php?intake_id=%%[intake_id]%%&step=step2">Step 2: Income|Assets</a></li>
-        </ul>
-
-</div> <!-- /#intake-side -->
-	
-<div id="main-content">
-		
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span9">
+      <!--Body content-->
+		<h2>Primary Applicant</h2>
     <!-- citizenship screening -->
         
     <h3>Step 1a: Confirm as Eligible Citizen or Immigrant</h3>
@@ -42,14 +16,14 @@
         <dl id="intake-notes">                
             
             <dt><label>Intake Notes</label></dt>
-            <dd><textarea name="intake_notes" cols="" rows="6" tabindex="1" />%%[intake_notes]%%</textarea></dd>
+            <dd><textarea name="intake_notes" cols="" rows="6" tabindex="1" id="intake_notes_textarea">%%[intake_notes]%%</textarea></dd>
 
         </dl>
             
         <input type="hidden" name="intake_id" value="%%[intake_id]%%" />
         <input type="hidden" name="current_step" value="1" />
 			
-        <ul id="submit-info">          
+        <ul id="submit-info" class="unstyled">          
         <li><input type="submit" value="Eligible Citizen" name="button_press_5" tabindex="1" onclick="return citbutton(ws)" title="Confirm the prospective client is a U.S. citizen and go the financial eligibility page." />
         <input type="submit" value="Eligible Immigrant" name="button_press_4" tabindex="1" onclick="return eligbutton(ws)" title="Confirm the prospective client is an LSC-eligible immigrant and go to the next step to document Immigrant status." />
         <input type="submit" value="Not Eligible" name="button_press_2" tabindex="1" onclick="return confirm('Are you sure you want to\nreject this intake and\ndelete all intake data?');" title="Confirm the prospective client is NOT eligible and DELETE this intake record." />
@@ -58,7 +32,32 @@
                 
     </form>
 
-</div> <!-- /#main-content -->
+    </div>
+    <div class="span3 well">
+      <!--Sidebar content-->
+	    <ul id="contact-name" class="unstyled">
+	    <li><a href='%%[base_url]%%/contact.php?contact_id=%%[contact_id]%%&intake_id=%%[intake_id]%%'><span class="lead">%%[client_name]%%</span></a></li>
+	    </ul>
+	
+	    <dl>
+	
+	        <dt><label>Phone</label></dt>
+	        <dd>%%[client_phone]%%</dd>
+	
+	    </dl>
+	
+	    <!-- intake workflow -->
+	
+	    <h3 id="actions">Intake Workflow</h3>
+
+        <ul class="unstyled">
+        <li><a href="%%[base_url]%%/pm.php/lsnc_intake/intakes.php?intake_id=%%[intake_id]%%&step=step1">Step 1a: Citizenship</a></li>
+        <li><a href="%%[base_url]%%/pm.php/lsnc_intake/intakes.php?intake_id=%%[intake_id]%%&step=step1b">Step 1b: Eligible Immigrant</a></li>
+        <li><a href="%%[base_url]%%/pm.php/lsnc_intake/intakes.php?intake_id=%%[intake_id]%%&step=step2">Step 2: Income|Assets</a></li>
+        </ul>
+    </div>
+  </div>
+</div>
 
 
 <!-- scripts -->

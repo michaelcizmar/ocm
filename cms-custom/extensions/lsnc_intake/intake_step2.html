@@ -1,67 +1,47 @@
-<h2>Primary Applicant</h2>
-
-<div id="intake-side">
-
-    <ul id="contact-name">
-    <li><a href='%%[base_url]%%/contacts.php/%%[contact_id]%%/?intake_id=%%[intake_id]%%'><span>%%[client_name]%%</span></a></li>
-    </ul>
-
-    <dl>
-
-        <dt><label>Phone</label></dt>
-        <dd>%%[client_phone]%%</dd>
-
-    </dl>
-
-    <!-- intake workflow -->
-
-    <h3 id="actions">Intake Workflow</h3>
-
-        <ul>
-        <li><a href="%%[base_url]%%/pm.php/lsnc_intake/intakes.php?intake_id=%%[intake_id]%%&step=step1">Step 1a: Citizenship</a></li>
-        <li><a href="%%[base_url]%%/pm.php/lsnc_intake/intakes.php?intake_id=%%[intake_id]%%&step=step1b">Step 1b: Eligible Immigrant</a></li>
-        <li><a href="%%[base_url]%%/pm.php/lsnc_intake/intakes.php?intake_id=%%[intake_id]%%&step=step2">Step 2: Income|Assets</a></li>
-        </ul>
-
-</div> <!-- /#intake-side -->
-
-<div id="main-content">
-
-    <h3>Step 2: Income | Assets Screening</h3>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span9">
+      <!--Body content-->
+	  <h2>Primary Applicant</h2>
+   <h3>Step 2: Income | Assets Screening</h3>
 
     <form action="%%[base_url]%%/pm.php/lsnc_intake/ops_update_intake.php" method="post" name="ws">
 
-        <div id="household">
+<div class="container-fluid">
+  <div class="row-fluid">
+        <div id="household" class="span3">
 
-            <ul>
-            <li><label>Adults</label>* <input type="text" name="adults" value="%%[adults]%%" onchange="ph_change();" tabindex="1" /></li>
-            <li><label>Children</label>* <input type="text" name="children" value="%%[children]%%" onchange="ph_change();" tabindex="1" /></li>
-            <li><label>HH size</label>* <input type="text" name="persons_helped" value="%%[persons_helped]%%" tabindex="1" /></li>
+            <ul class="unstyled">
+            <li><label>Adults* <input class="input-mini" type="text" name="adults" value="%%[adults]%%" onchange="ph_change();" tabindex="1" /></label></li>
+            <li><label>Children* <input class="input-mini" type="text" name="children" value="%%[children]%%" onchange="ph_change();" tabindex="1" /></label></li>
+            <li><label>HH size* <input class="input-mini" type="text" name="persons_helped" value="%%[persons_helped]%%" tabindex="1" /></label></li>
             </ul>
 
         </div> <!-- /#household -->
 
-        <div id="wage">
+        <div id="wage" class="span4">
 
-            <ul>
-            <li><label>Hourly wage</label> $ <input type="text" name="dontuse1" onchange="calcWage();" tabindex="1" /></li>
-            <li><label>x Hours/week</label>&nbsp;&nbsp;<input type="text" name="dontuse2" onchange="calcWage();" tabindex="1" /></li>
-            <li><label>= </label> $ <input type="text" name="dontuse3" tabindex="1" /></li>
+            <ul class="unstyled">
+            <li><label>Hourly wage $ <input class="input-mini" type="text" name="dontuse1" onchange="calcWage();" tabindex="1" /></label></li>
+            <li>x Hours/week</label>&nbsp;&nbsp;<input class="input-mini" type="text" name="dontuse2" onchange="calcWage();" tabindex="1" /><label></li>
+            <li><label>=  $ <input class="input-mini" type="text" name="dontuse3" tabindex="1" /></label></li>
             </ul>
 
         </div> <!-- /#wage -->
 
-        <div id="send-decline">
+        <div id="send-decline" class="span5">
 
-            %%[eligd,yes_no,checkbox]%%<label>Income/Assets Not Required</label>
+            <label>%%[eligd,yes_no,checkbox]%% Income/Assets Not Required</label>
 
-            <ul>
+            <ul class="unstyled">
             <li>
             <input type="button" value="Send to Grid" onclick="sendToGrid();" title="Send wage calculation to the income grid." tabindex="1" /></li>
             </ul>
 
         </div> <!-- /#send-decline -->
-
+     </div>
+   </div>
+   
         <div id="grid-wrapper"> <!-- begin #grid-wrapper -->
 
         <!-- income grid -->
@@ -204,18 +184,21 @@
 
         <!-- calculate poverty ... income justification -->
 
-        <div id="poverty">
+     <div class="container-fluid">
+		<div class="row-fluid">
+  		<div id="poverty" class="span4">
 
             <dl>
 
         	    <dt><h4>% of Poverty</h4></dt>
             	<dd><input id="calculate" type="button" value="Calculate" tabindex="1" onclick="calc_poverty();" title="Calculate percentage of poverty." />
-                <input id="percentage" class="input60" type="text" name="poverty" value="%%[poverty]%%" readonly="readonly" />
+                <input id="percentage" class="input-mini" type="text" name="poverty" value="%%[poverty]%%" readonly="readonly" />
 
             </dl>
 
             <input type="hidden" name="poverty_income_only" /></dd>
-
+			</div>
+			<div class="span5">
             <dl>
 
             	<dt><h4>Income Justification</h4></dt>
@@ -227,25 +210,29 @@
 
         </div> <!-- /#poverty -->
 
+		<div class="span3">
         <dl id="prospects">
 
-            <dt><label>Inquired about Income Prospects</label>*</dt>
-            <dd>%%[income_prospects,yes_no,checkbox]%%</dd>
+            <dt><label>Inquired about Income Prospects*</dt>
+            <dd>%%[income_prospects,yes_no,checkbox]%%</label></dd>
 
         </dl>
+		</div>
+	</div>
+	</div>
 
         <!-- intake notes -->
 
         <dl id="intake-notes">
 
             <dt><label>Intake Notes</label></dt>
-            <dd><textarea name="intake_notes" cols="" rows="6" tabindex="1" />%%[intake_notes]%%</textarea></dd>
+            <dd><textarea name="intake_notes" cols="" rows="6" tabindex="1" id="intake_notes_textarea" />%%[intake_notes]%%</textarea></dd>
 
         </dl>
 
         <input type="hidden" name="intake_id" value="%%[intake_id]%%" />
 
-        <ul id="submit-info">
+        <ul id="submit-info" class="unstyled">
         <li><input type="submit" value="Eligible &raquo; Create New Case" name="button_press_1" tabindex="1" onclick="return testfields()" title="Confirm the client is eligible and go to the new client contact page." />
         <input type="submit" value="Not Eligible" name="button_press_2" tabindex="1" onclick="return confirm('Are you sure you want to\nreject this intake and\ndelete all intake data?');" title="Confirm the prospective client is NOT financially eligible and DELETE this intake record." />
         <input type="submit" value="Save" name="button_press_3" tabindex="1" title="Save this intake record."/></li>
@@ -253,7 +240,32 @@
 
         </form> <!-- closing FORM -->
 
-</div> <!-- /#main-content -->
+    </div>
+    <div class="span3 well">
+      <!--Sidebar content-->
+	    <ul id="contact-name" class="unstyled">
+	    <li><a href='%%[base_url]%%/contact.php?contact_id=%%[contact_id]%%&intake_id=%%[intake_id]%%'><span class="lead">%%[client_name]%%</span></a></li>
+	    </ul>
+	
+	    <dl>
+	
+	        <dt><label>Phone</label></dt>
+	        <dd>%%[client_phone]%%</dd>
+	
+	    </dl>
+	
+	    <!-- intake workflow -->
+	
+	    <h3 id="actions">Intake Workflow</h3>
+
+        <ul class="unstyled">
+        <li><a href="%%[base_url]%%/pm.php/lsnc_intake/intakes.php?intake_id=%%[intake_id]%%&step=step1">Step 1a: Citizenship</a></li>
+        <li><a href="%%[base_url]%%/pm.php/lsnc_intake/intakes.php?intake_id=%%[intake_id]%%&step=step1b">Step 1b: Eligible Immigrant</a></li>
+        <li><a href="%%[base_url]%%/pm.php/lsnc_intake/intakes.php?intake_id=%%[intake_id]%%&step=step2">Step 2: Income|Assets</a></li>
+        </ul>
+    </div>
+  </div>
+</div>
 
 
 <!-- scripts -->
