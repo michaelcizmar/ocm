@@ -306,7 +306,6 @@ header("Cache-Control: cache, must-revalidate");
 header("Content-type: application/force-download");
 header("Content-Type: {$doc->mime_type}");
 header("Content-Disposition: inline; filename=\"{$doc->doc_name}\"");
-header("Content-Length: {$doc_size}");
 
 echo $contents;
 

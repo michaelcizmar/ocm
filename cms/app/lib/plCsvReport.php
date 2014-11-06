@@ -72,11 +72,6 @@ class plCsvReport
 			$buffer .= $this->tables[$i]->build(); 	
 		}
 		
-		if(function_exists('mb_strlen')) {
-			$doc_size = mb_strlen($buffer);
-		} else {
-			$doc_size = strlen($buffer);
-		}
 		header("Pragma: public");
 		header("Cache-Control: cache, must-revalidate");
 		header("Content-type: application/force-download");
@@ -93,7 +88,6 @@ class plCsvReport
 			header("Content-Disposition: inline; filename=\"{$this->title}.csv\"");
 		}
 		
-		header("Content-Length: {$doc_size}");
 		echo $buffer;
 		exit();
 	}

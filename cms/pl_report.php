@@ -130,7 +130,6 @@ class pikaReport
 			
 			// AMW - 2004-01-02
 			//header("Accept-Ranges: bytes"); 
-			header('Content-Length: ' . strlen($pdf_buffer));
 
 			header('Content-Disposition: inline; filename="file.pdf"');
 			

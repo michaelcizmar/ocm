@@ -145,13 +145,11 @@ if($counter == 0) {
 }else {
 	$buffer = trim($ical_list->draw());
 }
-$file_size = strlen($buffer);
 
 if(!isset($_GET['debug']))
 {
 	header("Content-Type: text/Calendar");
 	header("Content-Disposition: attachment; filename=\"pika.ics\"");
-	header("Content-Length: {$file_size}");
 }
 exit($buffer);
 
