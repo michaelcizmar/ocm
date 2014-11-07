@@ -52,16 +52,20 @@ switch($action) {
 	case 'download':
 		$doc = new pikaDocument($doc_id);
 		$doc_data = gzuncompress(stripslashes($doc->doc_data));
-		if(function_exists('mb_strlen')) {
-			$doc_size = mb_strlen($doc_data);
-		} else {
-			$doc_size = strlen($doc_data);
-		}
 		header("Pragma: public");
 		header("Cache-Control: cache, must-revalidate");
 		header("Content-type: application/force-download");
 		header("Content-Type: {$doc->mime_type}");
 		header("Content-Disposition: inline; filename=\"{$doc->doc_name}\"");
+		
+		/*	I'm not sure how determine the Content Length if GZIP is being used,
+			and Firefox 33 doesn't like it when I send the uncompressed size
+			(see bug id 1083090.) */
+		if (pl_settings_get("enable_compression") == false)
+		{
+			header("Content-Length: " . mb_strlen($doc_data));
+		}
+		
 		echo $doc_data;
 		exit();
 	case 'edit':
