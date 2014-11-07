@@ -77,6 +77,11 @@ class plCsvReport
 		header("Content-type: application/force-download");
 		header("Content-Type: text/x-comma-separated-values");
 		
+		if (pl_settings_get("enable_compression") == false)
+		{
+			header("Content-Length: " . mb_strlen($buffer));
+		}
+
 		// AMW 2013-10-16 - Workaround for new Chrome/CSV behavior.
 		if (strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome') !== false)
 		{
