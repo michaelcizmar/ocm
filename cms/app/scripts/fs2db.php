@@ -1,5 +1,7 @@
 <?php
 
+define('PL_DISABLE_SECURITY', 1);
+
 chdir('../../');
 
 require_once('pika-danio.php');
@@ -8,13 +10,7 @@ pika_init();
 require_once('pikaDocument.php');
 
 set_time_limit(0);
-ini_set('memory_limit','64M');
-$db_host = 'localhost';
-$db_name = '';
-$db_user = '';
-$db_password = '';
-mysql_connect($db_host, $db_user, $db_password) or die('1');
-mysql_select_db($db_name) or die('2');
+ini_set('memory_limit','256M');
 
 $i = 0;
 $j = 0;
@@ -28,7 +24,7 @@ if(mysql_num_rows($result) > 0) {
 	$largest_file = $row['largest_doc'];
 	echo "The largest file in doc_storage = ";
 	echo number_format($largest_file,0,'.',',') . " bytes";
-	echo "<br/>\n";
+	echo " \n";
 } else {pika_exit('no max documents filesize!');}
 
 $sql = "SHOW VARIABLES LIKE 'max_allowed_packet'";
@@ -38,15 +34,15 @@ if(mysql_num_rows($result) > 0) {
 	$mysql_max_file_size = $row['Value'];
 	echo "The largest allowable mysql insert = ";
 	echo number_format($mysql_max_file_size,0,'.',',') . " bytes";
-	echo "<br/>\n";
+	echo " \n";
 } else {pika_exit('no max mysql allowed packet!');}
 
 if(($mysql_max_file_size - $largest_file) < 0) {
 	pika_exit("Import will not complete - Mysql variable max_allowed_packet must be set to a value >" . number_format($largest_file,0,'.',',') . " bytes");
 }
 
-echo "<br/>\n";
-echo "<br/>\n";
+echo " \n";
+echo " \n";
 
 $sql = "SELECT * FROM documents ORDER BY doc_id ASC";
 $result = mysql_query($sql) or die('3');
@@ -58,13 +54,13 @@ while ($row = mysql_fetch_assoc($result))
 	
 	if (!file_exists($path) || is_dir($path))
 	{
-		//echo "{$i} - DocID={$row['doc_id']} - {$path} - File doesn't exist - file system<br/>\n";
+		echo "{$i} - DocID={$row['doc_id']} - {$path} - File doesn't exist - file system \n";
 		
 		$l++;
 		
 		if ($row['orphaned'] == 0)
 		{
-			echo "{$i} - DocID={$row['doc_id']} - {$path} - File doesn't exist - orphaned flag <b>incorrect</b><br/>\n";
+			echo "{$i} - DocID={$row['doc_id']} - {$path} - File doesn't exist - orphaned flag <b>incorrect</b> \n";
 			$j++;
 		}
 	}
@@ -73,7 +69,7 @@ while ($row = mysql_fetch_assoc($result))
 	{
 		if ($row['orphaned'] == 1)
 		{
-			echo "{$i} - DocID={$row['doc_id']} - {$path} - File exists - orphaned flag <b>incorrect</b><br/>\n";
+			echo "{$i} - DocID={$row['doc_id']} - {$path} - File exists - orphaned flag <b>incorrect</b> \n";
 			$j++;
 			
 		}
@@ -85,9 +81,9 @@ while ($row = mysql_fetch_assoc($result))
 	
 		$doc_id = $doc->importCaseDoc($row['filename'],$doc_storage . $row['filepath'],$row['summary'],$row['case_id'],$row['user_id'],$doc_text);
 		if(!$doc_id) {
-			echo "{$i} - DocID={$row['doc_id']} - {$path} - Error uploading document<br/>\n";		
+			echo "{$i} - DocID={$row['doc_id']} - {$path} - Error uploading document \n";		
 		} else {
-			echo "{$i} - DocID={$row['doc_id']} - {$path} - File Uploaded<br/>\n";
+			echo "{$i} - DocID={$row['doc_id']} - {$path} - File Uploaded \n";
 			$doc->save();
 			$k++;
 		}
@@ -96,13 +92,14 @@ while ($row = mysql_fetch_assoc($result))
 	
 	$i++;
 	flush();
+	ob_flush();
 }
 
 // scan doc_storage folder for files that didn't have documents record(?)
 
 // delete doc_storage
 
-echo "<br/>\n";
+echo " \n";
 echo "<table border=1><tr>";
 echo "<td align=right>{$i}</td>";
 echo "<td>Total document records checked</td>";
