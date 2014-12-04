@@ -403,14 +403,8 @@ function pika_init()
 	/* Play some games with the PHP include_path so the 'gila'
 	framework libraries are not available.
 	*/
-	$include_str = './app/lib:./app/extralib:' . ini_get('include_path');
-	
-	if (strstr($_SERVER['SERVER_SOFTWARE'], 'Win32'))
-	{
-		// WINDOWS DETECTED
-		$include_str = str_replace(':', ';', $include_str);
-	}
-	
+	$include_str = './app/lib' . PATH_SEPARATOR . './app/extralib' 
+		. PATH_SEPARATOR . ini_get('include_path');
 	ini_set('include_path', $include_str);
 	
 	// Now that the include_path is set, load the danio pl.php library.
