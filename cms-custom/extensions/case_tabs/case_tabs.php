@@ -3,13 +3,23 @@
 // Custom code for LSNC; it decides which case tab table to use.
 
 function case_tabs_extension()
-{	
-	if ("Mediator" == $_SESSION['def_group'])
+{
+	if (array_key_exists('def_group', $_SESSION))
+	{
+		$group = pl_array_lookup
+	}
+	
+	else
+	{
+		$group = null;
+	}
+	
+	if ("Mediator" == $group)
 	{
 		$m = pl_menu_get('case_tabs_med');
 	}
 	
-	else if ("Med Mgr" == $_SESSION['def_group'])
+	else if ("Med Mgr" == $group)
 	{
 		$m = pl_menu_get('case_tabs_medmgr');
 	}
@@ -19,12 +29,12 @@ function case_tabs_extension()
 		$m = pl_menu_get('case_tabs_hrh');
 	}
 	
-	else if (("system" == $_SESSION['def_group']) &&  ("80" == $_SESSION['def_office']))
+	else if (("system" == $group) &&  ("80" == $_SESSION['def_office']))
 	{
 		$m = pl_menu_get('case_tabs_medmgr');
 	}
 	
-	else if (("default" == $_SESSION['def_group']) &&  ("80" == $_SESSION['def_office']))
+	else if (("default" == $group) &&  ("80" == $_SESSION['def_office']))
 	{
 		$m = pl_menu_get('case_tabs_slh');
 	}
