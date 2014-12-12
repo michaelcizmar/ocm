@@ -6,7 +6,7 @@ function case_tabs_extension()
 {
 	if (array_key_exists('def_group', $_SESSION))
 	{
-		$group = pl_array_lookup
+		$group = $_SESSION['def_group'];
 	}
 	
 	else
