@@ -35,7 +35,7 @@ $county = pl_grab_get('county');
 $gender = pl_grab_get('gender');
 $undup = pl_grab_get('undup');
 $calendar_year = pl_grab_get('calendar_year');
-$clean_calendar_year = mysql_escape_string($calendar_year);
+$clean_calendar_year = mysql_real_escape_string($calendar_year);
 $show_sql = pl_grab_get('show_sql');
 
 $menu_undup = pl_menu_get('undup');
@@ -157,7 +157,7 @@ if ($x != false)
 if ($gender) 
 {
 	$t->add_parameter('Gender Code',$gender);
-	$safe_gender = mysql_escape_string($gender);
+	$safe_gender = mysql_real_escape_string($gender);
 	$sql .= " AND gender='{$safe_gender}'";
 }
 

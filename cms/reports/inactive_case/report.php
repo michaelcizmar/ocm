@@ -115,7 +115,7 @@ if ($x != false) {
 
 if ($gender) {
 	$t->add_parameter('Gender Code',$gender);
-	$safe_gender = mysql_escape_string($gender);
+	$safe_gender = mysql_real_escape_string($gender);
 	$sql .= " AND gender='{$safe_gender}'";
 }
 

@@ -526,7 +526,7 @@ class plBase
 	 */
 	public static function getNextID($sequence)
 	{
-		$safe_sequence = mysql_escape_string($sequence);
+		$safe_sequence = mysql_real_escape_string($sequence);
 		$next_id = null;
 		
 		$sql = "LOCK TABLES counters WRITE";

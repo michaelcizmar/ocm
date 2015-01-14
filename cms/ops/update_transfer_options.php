@@ -18,13 +18,13 @@ pika_init();
 $base_url = pl_settings_get('base_url');
 $action = pl_grab_post('action');
 $id = pl_grab_post('id');
-$safe_id = mysql_escape_string($id);
+$safe_id = mysql_real_escape_string($id);
 $label = pl_grab_post('label');
-$safe_label = mysql_escape_string($label);
+$safe_label = mysql_real_escape_string($label);
 $url = pl_grab_post('url');
-$safe_url = mysql_escape_string($url);
+$safe_url = mysql_real_escape_string($url);
 $transfer_mode = pl_grab_post('transfer_mode');
-$safe_transfer_mode = mysql_escape_string($transfer_mode);
+$safe_transfer_mode = mysql_real_escape_string($transfer_mode);
 $dummy = null;
 
 if (!pika_authorize("system", $dummy))

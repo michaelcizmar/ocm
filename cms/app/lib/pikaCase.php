@@ -312,7 +312,7 @@ class pikaCase extends plBase
 		$new_case_no = autonumber($this->getValues());
 		
 		// Before proceeding, make certain that this case number does not already exist.
-		$clean_new_case_no = mysql_escape_string($new_case_no);
+		$clean_new_case_no = mysql_real_escape_string($new_case_no);
 		$sql = "SELECT count(*) AS tally FROM cases WHERE number = '{$clean_new_case_no}'";
 		$result = mysql_query($sql) or trigger_error("SQL: " . $sql . " Error: " . mysql_error());
 		$row = mysql_fetch_assoc($result);

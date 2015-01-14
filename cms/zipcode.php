@@ -18,7 +18,7 @@ $screen = pl_grab_post('screen_name');  // Which mode to display.
 $screen_msg = pl_grab_get('screen_msg');  // Message to be displayed on the screen.
 $safe_screen_msg = pl_clean_html($screen_msg);
 $zipcode = pl_grab_post('zipcode');
-$safe_zipcode = mysql_escape_string($zipcode);
+$safe_zipcode = mysql_real_escape_string($zipcode);
 
 
 // AUTHORIZATION

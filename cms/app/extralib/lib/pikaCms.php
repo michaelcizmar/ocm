@@ -1527,7 +1527,7 @@ class pikaCms
 		// Filter elements need to be escaped
 		foreach ($filter as $key => $val)
 		{
-			$filter[$key] = mysql_escape_string($val);
+			$filter[$key] = mysql_real_escape_string($val);
 		}
 		
 		
@@ -1934,7 +1934,7 @@ select events.event_id AS table_id, 'events' AS label, user_id, CURRENT_DATE AS 
 			$e = explode(',', $filter['category']);
 			foreach ($e as $key => $val)
 			{
-				$e[$key] = "'" . mysql_escape_string(trim($val)) . "'";
+				$e[$key] = "'" . mysql_real_escape_string(trim($val)) . "'";
 			}
 			$f = implode(', ', $e);
 			
