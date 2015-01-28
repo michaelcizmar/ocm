@@ -21,8 +21,15 @@ class pikaActivity extends plBase
 	{
 		
 		$this->db_table = 'activities';		
-		parent::__construct($id);		
-	
+		parent::__construct($id);
+		
+		if (is_null($id)) 
+		{
+			// MySQL 4.1+ will accept the old TIMESTAMP syntax, so use that.
+			$this->setValue('created', date('YmdHis'));
+		}
+		
+		return true;
 	}
 	
 	public static function getActivitiesCaseClient($filter, &$row_count, $order_field='act_date', 

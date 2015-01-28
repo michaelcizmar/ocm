@@ -206,6 +206,12 @@ if (file_exists(getcwd()."-custom/subtemplates/activity{$act_type}.html")){ // -
 }		
 $a['content'] = $template->draw();
 
+if ($act_row['created'])
+{
+	$c_date = pl_date_unmogrify(substr($act_row['created'], 0, 10));
+	$c_time = substr($act_row['created'], 10);
+	$a['content'] .= '<p class="muted">Record created on ' . $c_date . $c_time . '</p>';
+}
 
 $a['page_title'] = "Activity Screen";
 		
