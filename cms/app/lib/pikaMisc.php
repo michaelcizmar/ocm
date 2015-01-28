@@ -272,11 +272,10 @@ class pikaMisc
 		}
 
 		// AMW 2014-07-23 - Added for SMRLS and ILCM
-                if (isset($filter["supervisor"]) && $filter["supervisor"])
-                {
-                        $sql .= " AND cases.supervisor = '{$filter['supervisor']}'";
-                }
-
+        if (isset($filter["supervisor"]) && $filter["supervisor"])
+        {
+                $sql .= " AND cases.supervisor = '{$filter['supervisor']}'";
+        }
 
 		if (isset($filter['show_cases']))
 		{
@@ -294,15 +293,14 @@ class pikaMisc
 		if (isset($filter["user_id"]) && $filter["user_id"])
 		{
 			// Use UNION to improve performance.
-			$mini_sql = "SELECT COUNT(case_id) AS count {$sql} AND cases.user_id = '{$filter["user_id"]}'";
-			$mini_sql .= " UNION SELECT COUNT(case_id) AS count {$sql} AND cases.cocounsel1 = '{$filter["user_id"]}'";
-			$mini_sql .= " UNION SELECT COUNT(case_id) AS count {$sql} AND cases.cocounsel2 = '{$filter["user_id"]}'";
+			$mini_sql = "SELECT SUM(case_count) FROM ";
+			$mini_sql .= "(SELECT COUNT(case_id) AS case_count {$sql} AND cases.user_id = '{$filter["user_id"]}'";
+			$mini_sql .= " UNION ALL SELECT COUNT(case_id) AS case_count {$sql} AND cases.cocounsel1 = '{$filter["user_id"]}'";
+			$mini_sql .= " UNION ALL SELECT COUNT(case_id) AS case_count {$sql} AND cases.cocounsel2 = '{$filter["user_id"]}') AS case_count_tmp";
 			$result = mysql_query($mini_sql) or trigger_error("SQL: " . $sql . " Error: " . mysql_error());
 			
-			while ($row = mysql_fetch_assoc($result)) 
-			{
-				$row_count += $row['count'];	
-			}
+			$row = mysql_fetch_assoc($result);
+			$row_count = $row['case_count'];
 		}
 		
 		else
