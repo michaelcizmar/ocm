@@ -111,15 +111,19 @@ class pikaFlags extends plBase
 					//echo "i ran!";
 					switch ($current_rule['comparison']) {
 						case 1: // is blank
-							if($values[$current_rule['field_name']]) {
+							if (strlen($values[$current_rule['field_name']]) > 0) 
+							{
 								$comparison = false;
 							}
 							break;
+							
 						case 2: // is not blank
-							if(!$values[$current_rule['field_name']]) {
+							if (strlen($values[$current_rule['field_name']]) < 1) 
+							{
 								$comparison = false;
 							}
 							break;
+							
 						case 3: // !=
 							if($values[$current_rule['field_name']] == $current_rule['value']) {
 								$comparison = false;
