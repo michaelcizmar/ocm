@@ -10,7 +10,7 @@ pika_init();
 
 
 $user_id = pl_grab_get('user_id');
-$clean_user_id = mysql_escape_string($user_id);
+$clean_user_id = mysql_real_escape_string($user_id);
 
 $base_url = pl_settings_get('base_url');
 if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == TRUE) {

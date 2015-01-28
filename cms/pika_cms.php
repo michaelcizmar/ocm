@@ -1231,7 +1231,7 @@ function pika_get_attorneys($filter, &$pba_count, $first_row="", $list_length=""
 	// Filter elements need to be escaped
 	foreach ($filter as $key => $val)
 	{
-		$filter[$key] = mysql_escape_string($val);
+		$filter[$key] = mysql_real_escape_string($val);
 	}
 		
 	if (isset($filter['pba_id']) && $filter['pba_id'])
@@ -1297,7 +1297,7 @@ function pika_transfer_options_get()
 function pl_mysql_next_id($sequence)
 {
 	// VARIABLES
-	$safe_sequence = mysql_escape_string($sequence);
+	$safe_sequence = mysql_real_escape_string($sequence);
 	$next_id = null;
 	
 	pl_mysql_init() or trigger_error('');

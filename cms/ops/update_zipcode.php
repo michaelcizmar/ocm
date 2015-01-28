@@ -18,15 +18,15 @@ pika_init();
 $base_url = pl_settings_get('base_url');
 $screen = pl_grab_post('screen_name');
 $zipcode = pl_grab_post('zipcode');
-$safe_zipcode = mysql_escape_string($zipcode);
+$safe_zipcode = mysql_real_escape_string($zipcode);
 $state = pl_grab_post('state');
-$safe_state = mysql_escape_string($state);
+$safe_state = mysql_real_escape_string($state);
 $city = pl_grab_post('city');
-$safe_city = mysql_escape_string($city);
+$safe_city = mysql_real_escape_string($city);
 $county = pl_grab_post('county');
-$safe_county = mysql_escape_string($county);
+$safe_county = mysql_real_escape_string($county);
 $areacode = pl_grab_post('area_code');
-$safe_areacode = mysql_escape_string($areacode);
+$safe_areacode = mysql_real_escape_string($areacode);
 
 
 switch ($screen) {

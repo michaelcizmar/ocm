@@ -23,7 +23,7 @@ function pl_double_quotes($str)
 {
 	return str_replace("'", "''", $str);
 }
-// Might try using mysql_escape_string in lieu of this.
+// Might try using mysql_real_escape_string in lieu of this.
 
 
 function pl_input_filter($str, $mode)
@@ -616,7 +616,7 @@ function pl_table_autosql_update($table, $data)
 			
 			else
 			{
-				$w = mysql_escape_string($data["$key"]);
+				$w = mysql_real_escape_string($data["$key"]);
 				$sql .= " $key = '$w'";
 			}
 			// hopefully this works with other DBs besides MySQL & Postgres...
@@ -693,7 +693,7 @@ function pl_table_autosql_insert($table, $data)
 			
 			else
 			{
-				$sql .= " $key='" . mysql_escape_string($data["$key"]) . "'";
+				$sql .= " $key='" . mysql_real_escape_string($data["$key"]) . "'";
 			}
 			
 			$i++;
