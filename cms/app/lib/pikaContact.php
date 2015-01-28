@@ -311,6 +311,15 @@ class pikaContact extends plBase
 			
 			$as_of_date = strtotime($as_of_date);
 			$birth_date = strtotime($birth_date);
+			
+			if (-3786822000 > $birth_date)
+			{
+				/* Very early timestamps will crash getdate().  If the birth date
+					is earlier than 1850-01-01, assume a data entry error has 
+					occured and do not return an age. */
+				return;
+			}
+			
 			$as_of_date_array = getdate($as_of_date);
 			$birth_date_array = getdate($birth_date);
 			$as_of_year = $as_of_date_array['year'];
