@@ -1,3 +1,0 @@
-; Add LSNC's custom intake process.
-site_map_title = Incomplete Intakes
-site_map_url = intakes.php
