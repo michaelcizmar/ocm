@@ -79,15 +79,22 @@ switch ($action)
 {
 	case 'edit':
 	
-		$user = new pikaUser($user_id);
-		$a = $user->getValues();
-		unset($a['password']);
-		$a['user_id'] = $user_id;
+		if ($user_id)
+		{
+			$user = new pikaUser($user_id);
+			$a = $user->getValues();
+			unset($a['password']);
+		}
+		
+		else
+		{
+			$a = array();
+		}
 		
 		$a['p_len'] = '10';
 		$a['p_method'] = '1';
 		
-		$result = pikaUserSession::getSessions(array('user_id' => $user->user_id),$row_count,'last_updated','DESC',0,1);
+		$result = pikaUserSession::getSessions(array('user_id' => $user_id),$row_count,'last_updated','DESC',0,1);
 	 	$a['last_addr'] = "Never logged in";
 	 	$a['last_active'] = "Never logged in";
 	 	
