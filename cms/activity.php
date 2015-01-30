@@ -206,7 +206,8 @@ if (file_exists(getcwd()."-custom/subtemplates/activity{$act_type}.html")){ // -
 }		
 $a['content'] = $template->draw();
 
-if ($act_row['created'])
+// If this is a new record, 'created' won't be present, so check if it exists first.
+if (isset($act_row['created']) && $act_row['created'])
 {
 	$c_date = pl_date_unmogrify(substr($act_row['created'], 0, 10));
 	$c_time = substr($act_row['created'], 10);
