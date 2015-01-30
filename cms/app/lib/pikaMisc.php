@@ -297,6 +297,7 @@ class pikaMisc
 			$mini_sql .= "(SELECT COUNT(case_id) AS case_sub_count {$sql} AND cases.user_id = '{$filter["user_id"]}'";
 			$mini_sql .= " UNION ALL SELECT COUNT(case_id) AS case_sub_count {$sql} AND cases.cocounsel1 = '{$filter["user_id"]}'";
 			$mini_sql .= " UNION ALL SELECT COUNT(case_id) AS case_sub_count {$sql} AND cases.cocounsel2 = '{$filter["user_id"]}') AS case_count_tmp";
+			// Reminder/note:  case_count_tmp is the name of the table created by the UNIONs.
 			$result = mysql_query($mini_sql) or trigger_error("SQL: " . $sql . " Error: " . mysql_error());
 			$row = mysql_fetch_assoc($result);
 			$row_count = $row['case_count'];
