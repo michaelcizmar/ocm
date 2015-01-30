@@ -35,7 +35,7 @@ $open_case_menu_array = array();
 while($row = mysql_fetch_assoc($open_cases_result)) {
 	$open_case_menu_array[$row['case_id']] = $row;
 }
-$act_row['new_case_menu'] = pikaTempLib::plugin('case_menu','case_id',$act_row['case_id'],$open_case_menu_array);
+$act_row['new_case_menu'] = pikaTempLib::plugin('case_menu','case_id',$act_row['case_id'],$open_case_menu_array,array('onchange=setFunding(this.value);'));
 
 if(is_numeric($act_row['case_id'])) {
 	$case = new pikaCase($act_row['case_id']);
