@@ -965,3 +965,24 @@ September 10th, 2014
 
 September 11th, 2014
 * Released version 6.02.
+
+January 30th, 2015
+* Released version 6.03
+* Fixed jquery 404 bug.
+* Fixed pikaMisc.php bug that affected one program's custom code.
+* Added hooks for various custom code in use at programs.
+* Another attempt to improve post-save behavior when editing activities.
+* CSV workaround for Firefox 33.
+* Contacts' case lists will now be sorted by date, and not relation code, per user suggestion.
+* Update to doc_storage directory importer script fs2db.php.
+* Workaround for PHP crash when incorrect (pre-1850) birth dates are entered.
+* Updated "about" screen.
+* Fixed case list bug that occurred when the number of primary counsel and co-counsel cases were the same.
+* Fix for red flags that check for blank values.
+* Code updates for PHP 5.4 and CentOS 7 compatibility.
+* Added "created" column on activities table per LSC fraud auditing request.  It will display on the activity edit screen.
+* Imported cases records (anything not entered through the Pika CMS UI) will have their cases.created value changed from '0000-00-00 00:00:00' to NULL.
+* Fixed funding autofill on timer.
+* Add New User feature was incrementing user_id by 2; it's now fixed so it increments by 1.
+* Other miscellaneous bug fixes.
+
