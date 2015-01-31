@@ -1,8 +1,6 @@
 %%[begin:edit]%%
 <form name="fc" method="get" action="%%[base_url]%%/alias.php">
 <div id="col1" style="float:left;position:relative;">
-Description:<br>
-%%[alias_description,alias_description]%%<br>
 First:<br/>
 %%[first_name,input_text]%%<br/>
 Middle:<br/>
@@ -52,7 +50,6 @@ SSN: %%[ssn]%%<br/>
 %%[begin:flex_header]%%
 <table cellspacing="0" cellpadding="3">
 <tr>
-	<th>Description</th>
 	<th>Name</th>
 	<th>SSN</th>
 	<th>Actions</th>
@@ -60,7 +57,6 @@ SSN: %%[ssn]%%<br/>
 %%[end:flex_header]%%
 %%[begin:flex_row]%%
 <tr>
-	<td>%%[alias_description,alias_description,text]%%</td>
 	<td>%%[alias_name]%%</td>
 	<td>%%[ssn]%%</td>
 	<td>
