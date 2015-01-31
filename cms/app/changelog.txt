@@ -966,7 +966,7 @@ September 10th, 2014
 September 11th, 2014
 * Released version 6.02.
 
-January 30th, 2015
+January 31st, 2015
 * Released version 6.03
 * Fixed jquery 404 bug.
 * Fixed pikaMisc.php bug that affected one program's custom code.
