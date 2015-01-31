@@ -75,6 +75,8 @@ switch ($action) {
 		$alias->last_name = $last_name;
 		$alias->extra_name = $extra_name;
 		$alias->ssn = $ssn;
+		// For programs that do not use the alias description feature, this 
+		// simply returns false.
 		$alias->alias_description = $alias_description;
 		$alias->save();
 		
