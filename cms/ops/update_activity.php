@@ -60,6 +60,13 @@ if($act_id && is_numeric($act_id)) {
 	unset($a['act_id']);
 	$activity->setValues($a);
 	$activity->hours = pikaActivity::roundHoursByInterval($activity->hours,$act_interval);
+	
+	if ($activity->act_type == 'K' && file_exists(getcwd() . '-custom/extensions/create_tickler/create_tickler.php'))
+	{
+		require_once(getcwd() . '-custom/extensions/create_tickler/create_tickler.php');
+		create_tickler($activity->getValues()) or trigger_error('Extension failed.');
+	}
+	
 	$activity->save();
 }
 
