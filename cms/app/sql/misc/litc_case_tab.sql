@@ -113,4 +113,5 @@ INSERT INTO `menu_litc_irs_funct` (`value`, `label`, `menu_order`) VALUES
 ('23', 'Identity Protection Specialized Unit (IPSU)', 22),
 ('24', 'Innocent Spouse Unit', 23),
 ('25', 'SS-8 Unit', 24),
-('26', 'Trust Fund Recovery Penalty', 25);
+('Z', 'ITIN Unit', 25), 
+('26', 'Trust Fund Recovery Penalty', 26);
