@@ -64,7 +64,16 @@ if($act_id && is_numeric($act_id)) {
 	if ($activity->act_type == 'K' && file_exists(getcwd() . '-custom/extensions/create_tickler/create_tickler.php'))
 	{
 		require_once(getcwd() . '-custom/extensions/create_tickler/create_tickler.php');
-		create_tickler($activity->getValues()) or trigger_error('Extension failed.');
+		$z = $activity->getValues();
+		
+		if ($z['case_id'] > 0)
+		{
+			$y = new pikaCase($z['case_id']);
+			$z['case_number'] = $y['number'];
+			//$z[''] = $y[''];
+		}
+		
+		create_tickler($z) or trigger_error('Extension failed.');
 	}
 	
 	$activity->save();
