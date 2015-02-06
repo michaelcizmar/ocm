@@ -65,12 +65,34 @@ if($act_id && is_numeric($act_id)) {
 	{
 		require_once(getcwd() . '-custom/extensions/create_tickler/create_tickler.php');
 		$z = $activity->getValues();
+		$z['case_number'] = null;
+		$z['client_name'] = null;
+		$z['case_status'] = null;
+		$z['tickler_email'] = null;
 		
 		if ($z['case_id'] > 0)
 		{
-			$y = new pikaCase($z['case_id']);
-			$z['case_number'] = $y['number'];
-			//$z[''] = $y[''];
+			require_once('pikaCase.php');
+			$case0 = new pikaCase($z['case_id']);
+			$z['case_number'] = $case0->number;
+			$z['case_status'] = $case0->status;
+
+			if ($case0->client_id > 0)
+			{
+				require_once('pikaContact.php');
+				$client = new pikaContact($case0->client_id);
+				$z['client_name'] = $client->first_name . " ";
+				$z['client_name'] .= $client->middle_name . " ";
+				$z['client_name'] .= $client->last_name . " ";
+				$z['client_name'] .= $client->extra_name;
+			}
+		}
+		
+		if ($z['user_id'] > 0)
+		{
+			require_once('pikaUser.php');
+			$user = new pikaUser($z['user_id']);
+			$z['tickler_email'] = $user->email;
 		}
 		
 		create_tickler($z) or trigger_error('Extension failed.');
