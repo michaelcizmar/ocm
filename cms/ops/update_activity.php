@@ -86,6 +86,23 @@ if($act_id && is_numeric($act_id)) {
 				$z['client_name'] .= $client->last_name . " ";
 				$z['client_name'] .= $client->extra_name;
 			}
+			
+			$z['case_link'] = $_SERVER['REQUEST_SCHEME'];
+			
+			/* AMW 2015-02-10 - I am using SERVER_NAME instead of HTTP_HOST
+				here.  I believe SERVER_NAME may be less reliable if the
+				server is misconfigured, or (possibly) when using VirtualHosts.
+				But since HTTP_HOST is user-provided, close attention would need
+				to be paid to security.  The only "secret" information provided 
+				by case_link is the $base_url, so that part doesn't appear to be
+				particularly dangerous in it's current state.  SQL injection
+				or XSS are probably not a concern in it's current state, either.
+				But SERVER_NAME provides no additional attack surface so I'm 
+				going with that method for now.
+			*/
+			$z['case_link'] .= '://' . $_SERVER['SERVER_NAME'];
+			$z['case_link'] .= pl_settings_get('base_url');
+			$z['case_link'] .= '/case.php?case_id=' . $case0->case_id;
 		}
 		
 		if ($z['user_id'] > 0)
@@ -94,7 +111,7 @@ if($act_id && is_numeric($act_id)) {
 			$user = new pikaUser($z['user_id']);
 			$z['tickler_email'] = $user->email;
 		}
-		
+				
 		create_tickler($z) or trigger_error('Extension failed.');
 	}
 	
