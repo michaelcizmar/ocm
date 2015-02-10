@@ -96,7 +96,7 @@ if($act_id && is_numeric($act_id)) {
 				to be paid to security.  The only "secret" information provided 
 				by case_link is the $base_url, so that part doesn't appear to be
 				particularly dangerous in it's current state.  SQL injection
-				or XSS are probably not a concern in it's current state, either.
+				or XSS are probably not a concern at first glance, either.
 				But SERVER_NAME provides no additional attack surface so I'm 
 				going with that method for now.
 			*/
