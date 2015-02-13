@@ -60,7 +60,8 @@ $ood = pl_date_mogrify($open_on_date);
 
 $eth_sql = "SELECT contacts.ethnicity AS 'Code', label AS 'Ethnicity',
 	SUM(IF(client_age < 18, 1, 0)) AS 'Under 18',
-	SUM(IF(client_age >= 18 AND client_age < 60, 1, 0)) AS '18 to 59',
+	SUM(IF(client_age >= 18 AND client_age <= 35, 1, 0)) AS '18 to 35',
+	SUM(IF(client_age >= 36 AND client_age <= 59, 1, 0)) AS '36 to 59',
 	SUM(IF(client_age >= 60, 1, 0)) AS '60 and Older',
     SUM(IF(client_age IS NULL, 1, 0)) AS 'No Age Data',
 	SUM(1) AS 'Total'
@@ -175,7 +176,7 @@ $t->title = $report_title;
 $t->set_table_title("Summary by Age and Ethnicity");
 $t->display_row_count(false);
 //$t->set_table_title('Table 1: Ethnicity by Age Category');
-$t->set_header(array('Code','Category','A','B','C','D','Total'));
+$t->set_header(array('Code','Category','Under 18','18 to 35','36 to 59','60 and Older','No Age Data','Total'));
 
 
 
@@ -186,6 +187,7 @@ $total['category'] = "";
 	$total["B"]	= "0";
 	$total["C"]	= "0";
 	$total["D"] = "0";
+	$total["E"] = "0";
 	$total["total"] = "0";
 	
 $result = mysql_query($eth_sql) or trigger_error();
@@ -194,9 +196,10 @@ while ($row = mysql_fetch_assoc($result))
 	$t->add_row($row);
 
 	$total["A"]	+= $row["Under 18"];
-	$total["B"]	+= $row["18 to 59"];
-	$total["C"]	+= $row["60 and Older"];
-	$total["D"] += $row["No Age Data"];
+	$total["B"]	+= $row["18 to 35"];
+	$total["C"]	+= $row["36 to 59"];
+	$total["D"]	+= $row["60 and Older"];
+	$total["E"] += $row["No Age Data"];
 	$total["total"] += $row["Total"];
 }
 
@@ -288,6 +291,35 @@ $t->add_row($total);
 if($show_sql) 
 {
 	$t->set_sql($vet_sql);
+}
+
+
+
+
+// Add the language table
+$t->add_table();
+$t->set_table_title("Summary by Language");
+$t->display_row_count(false);
+
+$total = 0;
+$lang_sql = "SELECT CONCAT(IFNULL(language, 'No Code'), ' - ', IFNULL(label, '')) AS 'Client Language', COUNT(*) AS a FROM cases 
+	LEFT JOIN contacts ON cases.client_id=contacts.contact_id 
+	LEFT JOIN menu_language ON contacts.language = menu_language.value
+	WHERE 1"
+	. $sql . " GROUP BY language ORDER BY a DESC";
+$result = mysql_query($lang_sql) or trigger_error();
+
+while ($row = mysql_fetch_assoc($result))
+{
+	$t->add_row($row);
+	$total += $row['a'];
+}
+
+$t->add_row($total);
+
+if($show_sql) 
+{
+	$t->set_sql($lang_sql);
 }
 
 
