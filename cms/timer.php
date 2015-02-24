@@ -29,6 +29,7 @@ $act_interval = pl_settings_get('act_interval');
 
 // Generate cases menu
 $filter['show_cases'] = '0';
+$filter['user_id'] = $auth_row['user_id'];
 $row_count = 0;
 $open_cases_result = pikaMisc::getCases($filter,$row_count);
 $open_case_menu_array = array();
