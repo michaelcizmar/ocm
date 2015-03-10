@@ -68,7 +68,7 @@ if($act_id && is_numeric($act_id)) {
 		$z['case_number'] = null;
 		$z['client_name'] = null;
 		$z['case_status'] = null;
-		$z['tickler_email'] = null;
+		$z['tickler_email'] = array();
 		
 		if ($z['case_id'] > 0)
 		{
@@ -103,13 +103,27 @@ if($act_id && is_numeric($act_id)) {
 			$z['case_link'] .= '://' . $_SERVER['SERVER_NAME'];
 			$z['case_link'] .= pl_settings_get('base_url');
 			$z['case_link'] .= '/case.php?case_id=' . $case0->case_id;
-		}
-		
-		if ($z['user_id'] > 0)
-		{
-			require_once('pikaUser.php');
-			$user = new pikaUser($z['user_id']);
-			$z['tickler_email'] = $user->email;
+
+			if ($case0->user_id > 0)
+			{
+				require_once('pikaContact.php');
+				$user0 = new pikaUser($case0->user_id);
+				$z['tickler_email'][] = $user0->email;
+			}
+			
+			if ($case0->cocounsel1 > 0)
+			{
+				require_once('pikaContact.php');
+				$user1 = new pikaUser($case0->cocounsel1);
+				$z['tickler_email'][] = $user1->email;
+			}
+			
+			if ($case0->cocounsel2 > 0)
+			{
+				require_once('pikaContact.php');
+				$user2 = new pikaUser($case0->cocounsel2);
+				$z['tickler_email'][] = $user2->email;
+			}
 		}
 				
 		create_tickler($z) or trigger_error('Extension failed.');
