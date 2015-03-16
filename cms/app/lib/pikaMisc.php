@@ -789,7 +789,9 @@ class pikaMisc
 	public static function reportList($links = false,$descriptions = false) {
 		$base_url = pl_settings_get('base_url');
 		$dh = opendir('reports');
-		$ban_list = array('case_print', 'conflict', 'compen_bill', 'survey', 'index.php');
+		$ban_list = array('case_print', 'conflict', 'compen_bill', 'survey', 
+							'index.php', 'case_closing', 'fpp_probono',
+							'intake_snapshot');
 		$reports = array();
 		$html_str = '';
 
