@@ -354,7 +354,7 @@ else
 if (file_exists(getcwd() . "-custom/extensions/case_tabs/case_tabs.php"))
 {
 	require_once(getcwd() . "-custom/extensions/case_tabs/case_tabs.php");
-	$menu_case_tabs = case_tabs_extension();
+	$menu_case_tabs = case_tabs_extension($case1);
 }
 
 else
