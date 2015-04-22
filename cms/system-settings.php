@@ -30,7 +30,9 @@ if (!pika_authorize('system',array()))
 	pika_exit($buffer);
 }
 
-$tzs = array('-5' => '5 Hours Behind',
+$tzs = array('-7' => '7 Hours Behind',
+			'-6' => '6 Hours Behind',
+			'-5' => '5 Hours Behind',
 			'-4' => '4 Hours Behind',
 			'-3' => '3 Hours Behind',
 			'-2' => '2 Hours Behind',
@@ -49,7 +51,8 @@ $tzs_new = array('America/New_York' => 'America/New_York (EST)',
 				'America/Phoenix' => 'America/Phoenix',
 				'America/Los_Angeles' => 'America/Los_Angeles (PST)',
 				'America/Anchorage' => 'America/Anchorage (AKST)',
-				'Pacific/Honolulu' => 'Pacific/Honolulu (HST)'
+				'Pacific/Honolulu' => 'Pacific/Honolulu (HST)',
+				'Pacific/Pago_Pago' => 'Pacific/Pago_Pago'
 				);
 
 $pass_max_age = array('0' => 'Never',
