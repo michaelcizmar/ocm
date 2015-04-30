@@ -70,8 +70,8 @@ ADD COLUMN litc_rep_vol TINYINT NULL DEFAULT NULL,
 ADD COLUMN `litc_stm_handled` tinyint(1) default NULL,
 ADD COLUMN `litc_taxpayer_compliance_filing` tinyint(1) default NULL,
 ADD COLUMN `litc_taxpayer_compliance_collection` tinyint(1) default NULL,
-ADD COLUMN litc_refund_amount TINYINT NULL DEFAULT NULL,
-ADD COLUMN litc_corrected_liabilities TINYINT NULL DEFAULT NULL;
+ADD COLUMN litc_refund_amount DECIMAL(16,2) NULL DEFAULT NULL,
+ADD COLUMN litc_corrected_liabilities DECIMAL(16,2) NULL DEFAULT NULL;
 
 
 CREATE TABLE IF NOT EXISTS `menu_litc_irs_funct` (
