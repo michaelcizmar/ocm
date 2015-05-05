@@ -181,7 +181,7 @@ CREATE TABLE `cases` (
   `hours_okd` decimal(8,2) default NULL,
   `destroy_date` date default NULL,
   `dom_viol` tinyint(4) default NULL,
-  `veteran_household` date default NULL,
+  `veteran_household` tinyint(4) default NULL,
   `source_db` varchar(16) default NULL,
   `in_holding_pen` tinyint(4) default NULL,
   `doc1` int(11) default NULL,
