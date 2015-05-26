@@ -124,6 +124,13 @@ if($act_id && is_numeric($act_id)) {
 				$user2 = new pikaUser($case0->cocounsel2);
 				$z['tickler_email'][] = $user2->email;
 			}
+
+			if ($case0->cocounsel3 > 0)
+			{
+				require_once('pikaContact.php');
+				$user3 = new pikaUser($case0->cocounsel3);
+				$z['tickler_email'][] = $user3->email;
+			}
 		}
 				
 		create_tickler($z) or trigger_error('Extension failed.');
