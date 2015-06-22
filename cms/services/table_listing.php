@@ -32,7 +32,10 @@ $result = mysql_query("SHOW TABLES");
 
 while ($row= mysql_fetch_array($result))
 {
-	$tables[] = $row[0];
+	if ($row[0] != 'doc_storage')
+	{
+		$tables[] = $row[0];
+	}
 }
 
 echo json_encode($tables);
