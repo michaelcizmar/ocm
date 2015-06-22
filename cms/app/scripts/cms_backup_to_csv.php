@@ -3,9 +3,11 @@
 $username = 'absmith';
 $password = 'backups-are-very-important';
 $url = 'https://localhost/cms';
+$save_folder_path = '/tmp';
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url . '/services/table_listing.php');
+echo $url . '/services/table_listing.php';
 curl_setopt($ch, CURLOPT_TIMEOUT, 60);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
@@ -16,8 +18,13 @@ $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 $result=curl_exec($ch);
 curl_close ($ch);
 echo $status_code;
-echo $result;
 echo "\n";
+$result = json_decode($result);
+
+foreach ($result as $v)
+{
+	echo $v ."\n";
+}
 
 
 
