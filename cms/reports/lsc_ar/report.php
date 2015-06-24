@@ -298,7 +298,7 @@ if($show_sql)
 
 // Add the language table
 $t->add_table();
-$t->set_table_title("Summary by Language");
+$t->set_table_title("Summary by Client Language");
 $t->display_row_count(false);
 
 $total = 0;
