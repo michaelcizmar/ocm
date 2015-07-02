@@ -69,6 +69,15 @@ if($act_id && is_numeric($act_id)) {
 		$z['client_name'] = null;
 		$z['case_status'] = null;
 		$z['tickler_email'] = array();
+
+		if (isset($z['user_id']))
+		{
+			require_once('pikaContact.php');
+			$tickler_owner = new pikaUser($z['user_id']);
+			$z['summary'] .= " (" . substr($tickler_owner->first_name, 0, 1);
+			//$z['summary'] .= substr($tickler_owner->middle_name, 0, 1);
+			$z['summary'] .= substr($tickler_owner->last_name, 0, 1) . ")";
+		}
 		
 		if ($z['case_id'] > 0)
 		{
