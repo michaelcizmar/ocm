@@ -111,6 +111,7 @@ switch($action) {
 		$html['folder_ptr'] =  $doc->folder_ptr;
 		$html['case_id'] = $doc->case_id;
 		$html['report_name'] = $doc->report_name;
+		$html['user_id'] = $doc->user_id;
 				
 		if (!pika_authorize("edit_doc", $html))
 		{
