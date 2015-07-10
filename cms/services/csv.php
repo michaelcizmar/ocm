@@ -6,6 +6,8 @@
 /* http://pikasoftware.com */
 /***************************/
 
+set_time_limit(900);
+ini_set('memory_limit', '512M');
 ini_set("zlib.output_compression", "On");
 ini_set("zlib.output_compression_level", 9);
 
