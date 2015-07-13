@@ -114,7 +114,7 @@ $cases_table->records_per_page = $page_size;
 $cases_table->page_offset = $offset;
 
 $sresult = mysql_query("DESCRIBE cases supervisor");
-if (mysql_num_rows($squery) == 1)
+if (mysql_num_rows($sresult) == 1)
 {
 	$cases_table->column_names = array('number', 'client_name', 'status', 'user_id', 'supervisor', 'office', 'problem', 'funding', 'open_date', 'close_date');
 }
