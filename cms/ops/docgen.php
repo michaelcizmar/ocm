@@ -151,6 +151,7 @@ if (is_numeric($opposing))
 	$opposing_row = $opposing_obj->getValues();
 
 	$a['opposing_name'] = $a['opposing'] = pikaTempLib::plugin('text_name','',$opposing_row);
+	$a['opposing_full_address'] = pikaTempLib::plugin('text_address','',$opposing_row,'',array("output={$output_format}"));
 }
 
 $opp_counsel_row = array();
