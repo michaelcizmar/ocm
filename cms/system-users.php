@@ -145,7 +145,8 @@ switch ($action)
 		$a['languages'] = pl_grab_get('languages');
 		$a['practice_areas'] = pl_grab_get('practice_areas');
 		$a['notes'] = pl_grab_get('notes');
-		
+        $a['emp_start_date'] = pl_grab_get('emp_start_date');
+        $a['emp_end_date'] = pl_grab_get('emp_end_date');		
 		
 		$user = new pikaUser($user_id);
 		$user->setValues($a);
