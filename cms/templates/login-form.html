@@ -15,23 +15,14 @@
 	<link rel="apple-touch-icon" sizes="114x114" href="%%[base_url]%%/m/images/pika-icon-ios-114.png" />
 	<style>
 	html{
-    /* This image will be displayed fullscreen */
-/*    background:url('%%[base_url]%%/images/auth_bg.jpg') no-repeat center center; */
-
-    /* Ensure the html element always takes up the full height of the browser window */
-/*    min-height:100%; */
-
-    /* The Magic */
-/*    background-size:cover; */
-
-
-    background:url('%%[base_url]%%/images/auth_bg.jpg') no-repeat center center;
-    min-height:100%;
-    background-size:cover;
-
-
-
-}
+		background: #397bd4;
+		background: -moz-radial-gradient(center, ellipse cover, #397bd4 0%, #2e63a9 100%);
+		background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#397bd4), color-stop(100%,#2e63a9));
+		background: -webkit-radial-gradient(center, ellipse cover, #397bd4 0%,#2e63a9 100%);
+		background: -o-radial-gradient(center, ellipse cover, #397bd4 0%,#2e63a9 100%);
+		background: -ms-radial-gradient(center, ellipse cover, #397bd4 0%,#2e63a9 100%);
+		background: radial-gradient(ellipse at center, #397bd4 0%,#2e63a9 100%);
+	}
 
 body{
     /* Workaround for some mobile browsers */
