@@ -200,7 +200,6 @@ function authenticate()
 		$form_data = array();
 		if(isset($_SERVER['REQUEST_METHOD']) && strlen($_SERVER['REQUEST_METHOD']) != 'GET')
 		{
-			$html['form_method'] = 'POST';
 			$form_data = $_POST;
 		}
 		$html['form_data'] = '';
