@@ -197,8 +197,7 @@ function authenticate()
 		
 		$html = array();
 		require_once('app/lib/pikaTempLib.php');
-		$html['form_method'] = 'GET';
-		$form_data = $_GET;
+		$form_data = array();
 		if(isset($_SERVER['REQUEST_METHOD']) && strlen($_SERVER['REQUEST_METHOD']) != 'GET')
 		{
 			$html['form_method'] = 'POST';
