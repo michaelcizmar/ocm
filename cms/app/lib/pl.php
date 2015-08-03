@@ -2711,6 +2711,17 @@ function pl_time_unmogrify($time)
 }
 
 
+function pl_timestamp_unmogrify($x)
+{
+	if ('0000-00-00 00:00:00' == $x || strlen($x) == 0)
+	{
+		return null;
+	}
+	
+	return date("m/d/Y", pl_mysql_timestamp_to_unix($x));
+}
+
+
 function pl_tmp_path()
 {
 	if (isset($_ENV['TEMP']))

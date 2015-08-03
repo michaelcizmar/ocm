@@ -14,8 +14,8 @@ $a['lsc_close_code_menu'] = pikaTempLib::plugin('lsc_close_code','close_code',$c
 $a = array_merge($case_row, $a);
 
 $a['current_date'] = date('m/d/Y');
-$a['created'] = date("m/d/Y", pl_mysql_timestamp_to_unix($a['created']));
-$a['last_changed'] = date("m/d/Y", pl_mysql_timestamp_to_unix($a['last_changed']));
+$a['created'] = pl_timestamp_unmogrify($a['created']);
+$a['last_changed'] = pl_timestamp_unmogrify($a['last_changed']);
 
 $case_info_template = new pikaTempLib('subtemplates/case-info.html',$a);
 $C .= $case_info_template->draw();
