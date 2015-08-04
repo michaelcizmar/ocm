@@ -1,9 +1,3 @@
--- MySQL dump 9.11
---
--- Host: localhost    Database: danio
--- ------------------------------------------------------
--- Server version	4.0.24-standard
-
 --
 -- Table structure for table `activities`
 --
