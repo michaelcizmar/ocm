@@ -1006,8 +1006,6 @@ INSERT INTO `case_tabs` VALUES (6, 'Documents', 'case-docs.php', 1, 6, 0, 1, '20
 INSERT INTO `case_tabs` VALUES (7, 'Compensation', 'case-compen.php', 1, 7, 0, 1, '2009-07-21 18:00:45', '2009-12-29 22:52:27');
 INSERT INTO `case_tabs` VALUES (8, 'LITC', 'case-litc.php', 1, 8, 0, 1, '2009-07-21 18:00:45', '2009-12-29 22:52:27');
 
-DELETE FROM counters;
-
 INSERT INTO counters VALUES ('users',1);
 INSERT INTO counters VALUES ('pb_attorneys',0);
 INSERT INTO counters VALUES ('motd',0);
