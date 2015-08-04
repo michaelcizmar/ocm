@@ -110,7 +110,7 @@ CREATE TABLE `cases` (
   `intake_type` char(3) default NULL,
   `intake_user_id` int(11) default NULL,
   `last_changed` timestamp NOT NULL,
-  `created` created TIMESTAMP NULL DEFAULT NULL,
+  `created` TIMESTAMP NULL DEFAULT NULL,
   `income` decimal(9,2) default NULL,
   `assets` decimal(9,2) default NULL,
   `poverty` decimal(5,2) default NULL,
