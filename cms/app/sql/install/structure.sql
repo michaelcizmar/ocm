@@ -421,8 +421,6 @@ CREATE TABLE settings (
   PRIMARY KEY  (`label`)
 ) ENGINE=InnoDB;
 
-INSERT INTO `settings` VALUES ('act_interval','0'),('admin_email','admin@legalaidprogram'),('autonumber_on_new_case','1'),('cookie_prefix','Pika CMS at Legal Services Program'),('enable_benchmark','0'),('enable_compression','1'),('enable_system','1'),('force_https','1'),('owner_name','Legal Services Program'),('password_expire','0'),('pass_min_length','8'),('pass_min_strength','3'),('session_timeout','28800'),('time_zone','America/New_York'),('time_zone_offset','0');
-
 -- 
 -- Table structure for table `transfer_options`
 -- 
