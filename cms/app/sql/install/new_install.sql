@@ -282,7 +282,7 @@ CREATE TABLE `contacts` (
 --
 
 CREATE TABLE `counters` (
-  `id` char(16) NOT NULL default 'COUNTERNAME',
+  `id` char(32) NOT NULL default 'COUNTERNAME',
   `count` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id`)
 ) ENGINE = INNODB;
@@ -801,7 +801,7 @@ CREATE TABLE `menu_residence` (
 CREATE TABLE `menu_sp_problem` (
   `value` char(3) NOT NULL DEFAULT '0',
   `label` char(80) NOT NULL DEFAULT '',
-  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  `menu_order` smallint(6) NOT NULL DEFAULT '0',
   KEY `label` (`label`),
   KEY `menu_order` (`menu_order`),
   KEY `val` (`value`)
