@@ -41,7 +41,7 @@ CREATE TABLE `activities` (
   KEY `act_date` (`act_date`),
   KEY `act_time` (`act_time`),
   KEY `completed` (`completed`)
-) ENGINE=MyISAM;
+) ENGINE = INNODB;
 
 --
 -- Table structure for table `aliases`
@@ -69,7 +69,7 @@ CREATE TABLE `aliases` (
   KEY `sorting` (`last_name`,`first_name`,`extra_name`,`middle_name`),
   KEY `last_name` (`last_name`),
   KEY `test` (`primary_name`,`contact_id`,`mp_first`,`mp_last`,`ssn`)
-) ENGINE=MyISAM;
+) ENGINE = INNODB;
 
 -- 
 -- Table structure for table `case_tabs`
@@ -87,7 +87,7 @@ CREATE TABLE `case_tabs` (
   `last_modified` timestamp NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`tab_id`),
   KEY `order` (`tab_order`)
-) ENGINE=MyISAM;
+) ENGINE = INNODB;
 
 --
 -- Table structure for table `cases`
@@ -201,7 +201,7 @@ CREATE TABLE `cases` (
   KEY `user_id` (`user_id`),
   KEY `cocounsel1` (`cocounsel1`),
   KEY `cocounsel2` (`cocounsel2`)
-) ENGINE=MyISAM;
+) ENGINE = INNODB;
 
 
 CREATE TABLE `compens` (
@@ -234,7 +234,7 @@ CREATE TABLE `conflict` (
   KEY `contact_id` (`contact_id`),
   KEY `case_id` (`case_id`),
   KEY `relation_code` (`relation_code`)
-) ENGINE=MyISAM;
+) ENGINE = INNODB;
 
 --
 -- Table structure for table `contacts`
@@ -281,7 +281,7 @@ CREATE TABLE `contacts` (
   KEY `ssn` (`ssn`),
   KEY `phone` (`phone`),
   KEY `phone_alt` (`phone_alt`)
-) ENGINE=MyISAM;
+) ENGINE = INNODB;
 
 --
 -- Table structure for table `counters`
@@ -291,7 +291,7 @@ CREATE TABLE `counters` (
   `id` char(16) NOT NULL default 'COUNTERNAME',
   `count` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM;
+) ENGINE = INNODB;
 
 
 -- 
@@ -335,7 +335,7 @@ CREATE TABLE `flags` (
   `last_modified` timestamp NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   PRIMARY KEY  (`flag_id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM;
+) ENGINE = INNODB;
 
 --
 -- Table structure for table `groups`
@@ -352,7 +352,7 @@ CREATE TABLE `groups` (
   `motd` tinyint(4) NOT NULL default '0',
   `reports` text default NULL,
   PRIMARY KEY  (`group_id`)
-) ENGINE=MyISAM;
+) ENGINE = INNODB;
 
 --
 -- Table structure for table `motd`
@@ -366,7 +366,7 @@ CREATE TABLE `motd` (
   `last_modified` timestamp NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   `created` timestamp NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`motd_id`)
-) ENGINE=MyISAM;
+) ENGINE = INNODB;
 
 --
 -- Table structure for table `pb_attorneys`
@@ -397,7 +397,7 @@ CREATE TABLE `pb_attorneys` (
   `enabled` tinyint(4) DEFAULT '0',
   `session_data` text,
   PRIMARY KEY  (`pba_id`)
-) ENGINE=MyISAM;
+) ENGINE = INNODB;
 
 --
 -- Table structure for table `rss_feeds`
@@ -414,7 +414,7 @@ CREATE TABLE `rss_feeds` (
   `last_modified` timestamp NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   `created` timestamp NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`feed_id`)
-) ENGINE=MyISAM;
+) ENGINE = INNODB;
 
 
 -- 
@@ -441,7 +441,7 @@ CREATE TABLE `transfer_options` (
   `user` varchar(32) default NULL,
   `password` varchar(32) default NULL,
   PRIMARY KEY  (`transfer_option_id`)
-) ENGINE=MyISAM;
+) ENGINE = INNODB;
 
 --
 -- Table structure for table `users`
@@ -477,7 +477,7 @@ CREATE TABLE `users` (
   `password_expire` int(11) default '0',
   PRIMARY KEY  (`user_id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM;
+) ENGINE = INNODB;
 
 --
 -- Table structure for table `user_sessions`
@@ -496,7 +496,7 @@ CREATE TABLE `user_sessions` (
   UNIQUE KEY `session_id_value` (`session_id`),
   KEY `user_id` (`user_id`),
   KEY `enabled` (`logout`)
-) ENGINE=MyISAM;
+) ENGINE = INNODB;
 
 --
 -- Table structure for table `zip_codes`
