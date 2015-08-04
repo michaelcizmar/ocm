@@ -15,7 +15,7 @@ INSERT INTO counters VALUES ('activities',0);
 INSERT INTO counters VALUES ('doc_storage',13);
 INSERT INTO counters VALUES ('flags',12);
 INSERT INTO counters VALUES ('transfer_options',0);
-INSERT INTO counters VALUES ('case_tabs',6);
+INSERT INTO counters VALUES ('case_tabs',8);
 INSERT INTO counters VALUES ('rss_feeds',2);
 
 
