@@ -1,6 +1,6 @@
 DELETE FROM counters;
 
-INSERT INTO counters VALUES ('users',0);
+INSERT INTO counters VALUES ('users',1);
 INSERT INTO counters VALUES ('pb_attorneys',0);
 INSERT INTO counters VALUES ('motd',0);
 INSERT INTO counters VALUES ('contacts',0);
