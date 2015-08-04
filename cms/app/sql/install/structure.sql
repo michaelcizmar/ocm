@@ -348,6 +348,499 @@ CREATE TABLE `groups` (
   PRIMARY KEY  (`group_id`)
 ) ENGINE = INNODB;
 
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_act_type` (
+  `value` char(1) NOT NULL DEFAULT '',
+  `label` char(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`menu_order`),
+  KEY `label` (`label`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_annotate_activities` (
+  `value` char(32) NOT NULL DEFAULT '',
+  `label` char(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`value`),
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_annotate_cases` (
+  `value` char(32) NOT NULL DEFAULT '',
+  `label` char(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`value`),
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_annotate_contacts` (
+  `value` char(32) NOT NULL DEFAULT '',
+  `label` char(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`value`),
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_asset_type` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `val` (`value`),
+  KEY `menu_order` (`menu_order`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_attorney_status` (
+  `value` char(1) NOT NULL DEFAULT '',
+  `label` char(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`menu_order`),
+  KEY `label` (`label`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_case_status` (
+  `value` char(1) NOT NULL DEFAULT '',
+  `label` char(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_category` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_citizen` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_close_code` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_close_code_2007` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_close_code_2008` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_comparison` (
+  `value` tinyint(4) NOT NULL DEFAULT '0',
+  `label` char(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `val` (`value`),
+  KEY `menu_order` (`menu_order`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_comparison_sql` (
+  `value` varchar(25) NOT NULL DEFAULT '0',
+  `label` varchar(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `val` (`value`),
+  KEY `menu_order` (`menu_order`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_disposition` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_doc_type` (
+  `value` char(1) NOT NULL DEFAULT '',
+  `label` char(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`menu_order`),
+  KEY `label` (`label`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_dom_viol` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(80) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_ethnicity` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(80) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_funding` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(80) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_gender` (
+  `value` char(1) NOT NULL DEFAULT '',
+  `label` char(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `val` (`value`),
+  KEY `menu_order` (`menu_order`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_income_freq` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `val` (`value`),
+  KEY `menu_order` (`menu_order`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_income_type` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(80) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_intake_type` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(80) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_just_income` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `val` (`value`),
+  KEY `menu_order` (`menu_order`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_language` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(80) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_lit_status` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(80) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_lsc_income_change` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(80) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_lsc_other_services` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(80) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_main_benefit` (
+  `value` char(4) NOT NULL DEFAULT '',
+  `label` char(80) NOT NULL DEFAULT '',
+  `menu_order` smallint(6) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_marital` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(80) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_office` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(80) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_outcome` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(80) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_poverty` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_problem` (
+  `value` char(3) NOT NULL DEFAULT '0',
+  `label` char(80) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_problem_2007` (
+  `value` char(3) NOT NULL DEFAULT '0',
+  `label` char(80) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_problem_2008` (
+  `value` char(3) NOT NULL DEFAULT '0',
+  `label` char(80) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_referred_by` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(80) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_reject_code` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(80) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_relation_codes` (
+  `value` tinyint(4) NOT NULL DEFAULT '0',
+  `label` char(30) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_report_format` (
+  `value` char(4) NOT NULL DEFAULT '',
+  `label` char(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`menu_order`),
+  KEY `label` (`label`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_residence` (
+  `value` char(3) NOT NULL DEFAULT '',
+  `label` char(80) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_sp_problem` (
+  `value` char(3) NOT NULL DEFAULT '0',
+  `label` char(80) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `menu_order` (`menu_order`),
+  KEY `val` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_transfer_mode` (
+  `value` tinyint(4) NOT NULL DEFAULT '0',
+  `label` char(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `val` (`value`),
+  KEY `menu_order` (`menu_order`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_undup` (
+  `value` tinyint(4) NOT NULL DEFAULT '0',
+  `label` char(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `val` (`value`),
+  KEY `menu_order` (`menu_order`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_yes_no` (
+  `value` tinyint(4) NOT NULL DEFAULT '0',
+  `label` char(65) NOT NULL DEFAULT '',
+  `menu_order` tinyint(4) NOT NULL DEFAULT '0',
+  KEY `label` (`label`),
+  KEY `val` (`value`),
+  KEY `menu_order` (`menu_order`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 --
 -- Table structure for table `motd`
 --
