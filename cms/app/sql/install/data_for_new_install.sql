@@ -8,6 +8,27 @@ INSERT INTO `case_tabs` VALUES (5, 'Pro Bono', 'case-pb.php', 1, 5, 0, 1, '2009-
 INSERT INTO `case_tabs` VALUES (6, 'Documents', 'case-docs.php', 1, 6, 0, 1, '2009-07-21 18:00:45', '2009-12-29 22:52:27');
 INSERT INTO `case_tabs` VALUES (7, 'Compensation', 'case-compen.php', 1, 7, 0, 1, '2009-07-21 18:00:45', '2009-12-29 22:52:27');
 INSERT INTO `case_tabs` VALUES (8, 'LITC', 'case-litc.php', 1, 8, 0, 1, '2009-07-21 18:00:45', '2009-12-29 22:52:27');
+
+DELETE FROM counters;
+
+INSERT INTO counters VALUES ('users',1);
+INSERT INTO counters VALUES ('pb_attorneys',0);
+INSERT INTO counters VALUES ('motd',0);
+INSERT INTO counters VALUES ('contacts',0);
+INSERT INTO counters VALUES ('case_number',0);
+INSERT INTO counters VALUES ('conflict',0);
+INSERT INTO counters VALUES ('compens',0);
+INSERT INTO counters VALUES ('charges',0);
+INSERT INTO counters VALUES ('cases',0);
+INSERT INTO counters VALUES ('case_charges',0);
+INSERT INTO counters VALUES ('aliases',0);
+INSERT INTO counters VALUES ('activities',0);
+INSERT INTO counters VALUES ('doc_storage',13);
+INSERT INTO counters VALUES ('flags',12);
+INSERT INTO counters VALUES ('transfer_options',0);
+INSERT INTO counters VALUES ('case_tabs',8);
+INSERT INTO counters VALUES ('rss_feeds',2);
+
 -- 
 -- Dumping data for table `flags`
 -- 
