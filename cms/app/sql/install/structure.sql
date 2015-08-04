@@ -24,6 +24,8 @@ CREATE TABLE `activities` (
   `summary` varchar(75) default NULL,
   `notes` text,
   `last_changed` timestamp NOT NULL,
+  created timestamp NULL DEFAULT NULL,
+  last_changed_user_id int DEFAULT NULL,
   `om_code` char(3) default NULL,
   `ph_measured` mediumint(9) default NULL,
   `ph_estimated` mediumint(9) default NULL,
