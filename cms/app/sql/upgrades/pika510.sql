@@ -1,8 +1,8 @@
 ALTER TABLE `users` ADD `password_expire` INT( 11 ) DEFAULT '0';
 ALTER TABLE `doc_storage` CHANGE `mime_type` `mime_type` VARCHAR( 255 ) NULL DEFAULT 'application/octet-stream';
 
-ALTER TABLE `cases` ADD `dom_viol` TINYINT( 1 ) NULL ,
-ADD `veteran_household` TINYINT( 1 ) NULL;
+ALTER TABLE `cases` ADD `dom_viol` TINYINT( 1 ) NULL  AFTER destroy_date,
+ADD `veteran_household` TINYINT( 1 ) NULL AFTER dom_viol;
 
 DELETE FROM menu_lsc_other_matters WHERE value >=130;
 ALTER TABLE menu_lsc_other_matters RENAME menu_lsc_other_services;
