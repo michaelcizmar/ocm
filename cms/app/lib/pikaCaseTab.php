@@ -40,7 +40,7 @@ class pikaCaseTab extends plBase
 		$main_dir = getcwd() . "/modules";
 		$main = scandir($main_dir);
 		
-		$custom_dir = getcwd() . "-custom/modules";
+		$custom_dir = pl_custom_directory() . "/modules";
 		$custom = scandir($custom_dir);
 		
 		$tabs = array();

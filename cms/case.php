@@ -326,7 +326,7 @@ $user_id = $auth_row['user_id'];
 $clean_case_screen = $case_row;
 $client = array();
 $primary_client = array();
-$custom_dir = getcwd() . "-custom/";
+$custom_dir = pl_custom_directory() . "/";
 
 pl_menu_set_temp('user_id', pikaMisc::fetchStaffArray());
 pl_menu_set_temp('case_handlers', pikaMisc::getCaseHandlerArray($case1->getValue('user_id'), $case1->getValue('cocounsel1'), $case1->getValue('cocounsel2')));
@@ -351,9 +351,9 @@ else
 
 // CASE TABS
 
-if (file_exists(getcwd() . "-custom/extensions/case_tabs/case_tabs.php"))
+if (file_exists(pl_custom_directory() . "/extensions/case_tabs/case_tabs.php"))
 {
-	require_once(getcwd() . "-custom/extensions/case_tabs/case_tabs.php");
+	require_once(pl_custom_directory() . "/extensions/case_tabs/case_tabs.php");
 	$menu_case_tabs = case_tabs_extension($case1);
 }
 

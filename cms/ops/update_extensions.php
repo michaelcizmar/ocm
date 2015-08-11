@@ -46,7 +46,7 @@ foreach ($_POST as $key => $val)
 	}
 	
 	$i++;
-	$manifest = getcwd() . "-custom/extensions" . $key . "/manifest.txt";
+	$manifest = pl_custom_directory() . "/extensions" . $key . "/manifest.txt";
 	
 	if (file_exists($manifest) && is_readable($manifest))
 	{
@@ -76,7 +76,7 @@ foreach ($_POST as $key => $val)
 	else
 	{
 		$report_urls .= "{$key}/index.php:";
-		$report_titles .= trim(file_get_contents(getcwd() . "-custom/extensions" . $key . "/title.txt")) . ":";
+		$report_titles .= trim(file_get_contents(pl_custom_directory() . "/extensions" . $key . "/title.txt")) . ":";
 	}
 }
 

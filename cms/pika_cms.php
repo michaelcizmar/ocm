@@ -81,8 +81,8 @@ define ('PIKA_VENDOR_EMAIL', 'admin@somewhere.com');
 define('PL_TEMPLATE_PREFIX', '%%[');
 define('PL_TEMPLATE_SUFFIX', ']%%');
 //define('PL_TEMPLATE_HTML_COMMENTS', true);
-define('PL_SETTINGS_FILE', getcwd().'-custom/config/settings.php');
-define('PL_DEFAULT_PREFS_FILE', getcwd().'-custom/config/default_prefs.php');
+define('PL_SETTINGS_FILE', pl_custom_directory() . '/config/settings.php');
+define('PL_DEFAULT_PREFS_FILE', pl_custom_directory() . '/config/default_prefs.php');
 
 // relation_codes from the conflict table
 define ("CLIENT", "1");

@@ -1135,8 +1135,8 @@ class pikaCms
 	function generateCaseNumber($a)
 	{
 		// Handle custom templates.
-		if (file_exists(getcwd(). "-custom/modules/autonumber.php")) {
-			require_once(getcwd(). '-custom/modules/autonumber.php');
+		if (file_exists(pl_custom_directory() . "/modules/autonumber.php")) {
+			require_once(pl_custom_directory() . '/modules/autonumber.php');
 		} else {
 			require_once('modules/autonumber.php');	
 		}

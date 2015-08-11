@@ -433,8 +433,8 @@ function pika_init()
 	define('PL_TEMPLATE_SUFFIX', ']%%');
 	
 	/* Set location of settings file */
-	define('PL_SETTINGS_FILE', getcwd().'-custom/config/settings.php');
-	define('PL_DEFAULT_PREFS_FILE', getcwd().'-custom/config/default_prefs.php');
+	define('PL_SETTINGS_FILE', pl_custom_directory() . '/config/settings.php');
+	define('PL_DEFAULT_PREFS_FILE', pl_custom_directory() . '/config/default_prefs.php');
 	
 	// Initialize the connection to the MySQL server.
 	if(!defined('PL_DISABLE_MYSQL'))

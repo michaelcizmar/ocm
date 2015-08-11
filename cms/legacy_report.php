@@ -51,7 +51,7 @@ if (!$report)
 
 else
 {
-	$case_print_path = getcwd() . "-custom/extensions/case_print/case_print-form.php";
+	$case_print_path = pl_custom_directory() . "/extensions/case_print/case_print-form.php";
 	if (file_exists($case_print_path))
 	{
 		include($case_print_path);

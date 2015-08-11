@@ -1639,7 +1639,7 @@ function pl_settings_init($x = null)
 
 	if (!is_array($plSettings))
 	{
-		$settings_path = getcwd() . "-custom/config/settings.php";
+		$settings_path = pl_custom_directory() . "/config/settings.php";
 		include($settings_path);
 		
 		if (!is_array($plSettings))
@@ -1980,15 +1980,15 @@ function pl_template($template_file, $template_data = array(), $subtpl_label = n
 	
 	// Handle custom templates.
 	// First, use the custom template path search algorithm if one is installed.
-	if (file_exists(getcwd() . "-custom/extensions/template_path/template_path.php"))
+	if (file_exists(pl_custom_directory() . "/extensions/template_path/template_path.php"))
 	{
-		require_once(getcwd() . "-custom/extensions/template_path/template_path.php");
+		require_once(pl_custom_directory() . "/extensions/template_path/template_path.php");
 		$template_file = template_path($template_file);
 	}
 
-	else if (file_exists(getcwd(). "-custom/{$template_file}"))
+	else if (file_exists(pl_custom_directory() . "/{$template_file}"))
 	{
-		$template_file = getcwd(). "-custom/{$template_file}";
+		$template_file = pl_custom_directory() . "/{$template_file}";
 	}
 	
 	// Throw an error if the specified file cannot be found.

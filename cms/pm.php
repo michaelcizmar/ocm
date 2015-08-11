@@ -47,14 +47,14 @@ else if ($uri[1] == 'reports')
 {
 	if (sizeof($uri) == 4)
 	{
-		$x = getcwd() . "-custom/extensions/" . $uri[2] . '/' . $uri[3];
+		$x = pl_custom_directory() . "/extensions/" . $uri[2] . '/' . $uri[3];
 		chdir('app/lib');
 		require($x);
 	}
 	
 	else if (sizeof($uri) == 5)
 	{
-		$x = getcwd() . "-custom/extensions/" . $uri[2] . '/' . $uri[3] . '/' . $uri[4];
+		$x = pl_custom_directory() . "/extensions/" . $uri[2] . '/' . $uri[3] . '/' . $uri[4];
 		chdir('app/lib');
 		require($x);
 	}
@@ -72,7 +72,7 @@ else
 		trigger_error("Extension '{$filepath}':'{$filename}' is either not enabled or not installed.");
 	}
 	
-	require(getcwd() . "-custom/extensions/{$filepath}/{$filename}");
+	require(pl_custom_directory() . "/extensions/{$filepath}/{$filename}");
 }
 
 pika_exit();

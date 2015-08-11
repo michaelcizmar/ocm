@@ -32,8 +32,8 @@ function javascript($file_name = null, $field_value = null, $menu_array = null, 
 	// Allow js file overload
 	// Check to see if custom js file has been created
 	$js_file_string = '';
-	if(file_exists(getcwd() . "-custom/js/{$file_name}")) {
-		$js_file_string = file_get_contents(getcwd() . "-custom/js/{$file_name}");
+	if(file_exists(pl_custom_directory() . "/js/{$file_name}")) {
+		$js_file_string = file_get_contents(pl_custom_directory() . "/js/{$file_name}");
 	} elseif (file_exists(getcwd() . "/js/{$file_name}")) {
 		$js_file_string = file_get_contents(getcwd() . "/js/{$file_name}");
 	}

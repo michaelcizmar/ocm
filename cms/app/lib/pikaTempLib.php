@@ -64,15 +64,15 @@ class pikaTempLib {
 
 		// Insure filename is an existing file in either custom or main templates
 		// First, use the custom template path search algorithm if one is installed.
-		if (file_exists(getcwd() . "-custom/extensions/template_path/template_path.php"))
+		if (file_exists(pl_custom_directory() . "/extensions/template_path/template_path.php"))
 		{
-			require_once(getcwd() . "-custom/extensions/template_path/template_path.php");
+			require_once(pl_custom_directory() . "/extensions/template_path/template_path.php");
 			$template_file = template_path($template_file);
 		}
 
-		else if (file_exists(getcwd(). "-custom/{$template_file}"))
+		else if (file_exists(pl_custom_directory() . "/{$template_file}"))
 		{
-			$template_file = getcwd(). "-custom/{$template_file}";
+			$template_file = pl_custom_directory() . "/{$template_file}";
 		}
 
 		if(!file_exists($template_file)) 
@@ -361,9 +361,9 @@ class pikaTempLib {
 		{ 
 			return false;
 		} 
-		elseif(file_exists(getcwd() . "-custom/template_plugins/{$op_name}.php")) 
+		elseif(file_exists(pl_custom_directory() . "/template_plugins/{$op_name}.php")) 
 		{
-			require_once(getcwd() . "-custom/template_plugins/{$op_name}.php");
+			require_once(pl_custom_directory() . "/template_plugins/{$op_name}.php");
 		} 
 		elseif (file_exists(getcwd() . "/template_plugins/{$op_name}.php")) 
 		{

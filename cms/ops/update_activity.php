@@ -61,9 +61,9 @@ if($act_id && is_numeric($act_id)) {
 	$activity->setValues($a);
 	$activity->hours = pikaActivity::roundHoursByInterval($activity->hours,$act_interval);
 	
-	if ($activity->act_type == 'K' && file_exists(getcwd() . '-custom/extensions/create_tickler/create_tickler.php'))
+	if ($activity->act_type == 'K' && file_exists(pl_custom_directory() . '/extensions/create_tickler/create_tickler.php'))
 	{
-		require_once(getcwd() . '-custom/extensions/create_tickler/create_tickler.php');
+		require_once(pl_custom_directory() . '/extensions/create_tickler/create_tickler.php');
 		$z = $activity->getValues();
 		$z['case_number'] = null;
 		$z['client_name'] = null;

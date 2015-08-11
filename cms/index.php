@@ -5,7 +5,8 @@
 /* http://pikasoftware.com        */
 /**********************************/
 
-$settings_path = getcwd() . '-custom/config/settings.php';
+require_once('app/lib/pl.php');
+$settings_path = pl_custom_directory() . '/config/settings.php';
 require_once($settings_path);
 
 require_once('pika-danio.php');

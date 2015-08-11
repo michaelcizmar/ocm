@@ -197,7 +197,7 @@ if(isset($act_row['case_id']) && is_numeric($act_row['case_id'])) {
 }
 $a['nav'] .= "Edit {$type_desc}";
 // Act lookup - check for legacy templates
-if (file_exists(getcwd()."-custom/subtemplates/activity{$act_type}.html")){ // -custom/subtemplates/activityX.html
+if (file_exists(pl_custom_directory() . "/subtemplates/activity{$act_type}.html")){ // -custom/subtemplates/activityX.html
 	$template = new pikaTempLib("{$custom_dir}/subtemplates/activity{$act_type}.html",$act_row);
 }elseif (file_exists("subtemplates/activity{$act_type}.html")){	 // subtemplates/activityX.html
 	$template = new pikaTempLib("subtemplates/activity{$act_type}.html",$act_row);

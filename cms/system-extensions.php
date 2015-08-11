@@ -74,7 +74,7 @@ function old_scan_extension_folder($subdir, $base_path)
 
 $extension_whitelist = explode(':', pl_settings_get('extensions'));
 
-$x = scan_extension_folder ("", getcwd() . "-custom/extensions/");
+$x = scan_extension_folder ("", pl_custom_directory() . "/extensions/");
 sort($x);
 
 $h ="";
