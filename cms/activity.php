@@ -22,12 +22,17 @@ $base_directory = pl_settings_get('base_directory');
 
 $action = pl_grab_get('action');
 $case_id = pl_grab_get('case_id');
-$funding = pl_grab_get('funding');
 $act_id = pl_grab_get('act_id');
 $act_type = pl_grab_get('act_type','C');
 $act_date = pl_grab_get('act_date');
 $act_url = pl_grab_get('act_url');
 
+$funding = null;
+
+if (pl_settings_get('autofill_time_funding') == 1)
+{
+	$funding = pl_grab_get('funding');
+}
 
 
 $menu_act_type = pl_menu_get('act_type');
@@ -160,7 +165,16 @@ $open_case_menu_array = array();
 while($row = mysql_fetch_assoc($open_cases_result)) {
 	$open_case_menu_array[$row['case_id']] = $row;
 }
-$act_row['new_case_menu'] = pikaTempLib::plugin('case_menu','case_id',$act_row['case_id'],$open_case_menu_array,array('onchange=setFunding(this.value);'));
+
+$case_menu_args = array();
+
+if (pl_settings_get('autofill_time_funding') == 1)
+{
+	$case_menu_args = array('onchange=setFunding(this.value);');
+}
+
+$act_row['new_case_menu'] = pikaTempLib::plugin('case_menu', 'case_id', 
+	$act_row['case_id'], $open_case_menu_array, $case_menu_args);
 $act_row['lsc_problem_menu'] = pikaTempLib::plugin('lsc_problem','problem',$act_row);
 //$act_row['act_date'] = pl_date_unmogrify($act_row['act_date']);
 if(isset($act_row['act_end_date'])) {
@@ -187,10 +201,14 @@ $act_row['textFormat'] = $textformat->draw();
 $a['nav'] = "<a href=\"{$base_url}\">Pika Home</a> &gt; ";
 if(isset($act_row['case_id']) && is_numeric($act_row['case_id'])) {
 	$case = new pikaCase($act_row['case_id']);
+	
 	// If funding is blank populate from case
-	if(!isset($act_row['funding']) && !$act_row['funding'] && !is_numeric($act_id)) {
+	if(!isset($act_row['funding']) && !$act_row['funding'] 
+		&& !is_numeric($act_id) && pl_settings_get('autofill_time_funding') == 1) 
+	{
 		$act_row['funding'] = $case->funding;
 	}
+	
 	$act_row['number'] = $case->number;
 	if(!isset($act_row['number']) || !$act_row['number']) {$act_row['number'] = '(No Case #)';}
 	$a['nav'] .= "<a href=\"{$base_url}/case.php?case_id={$act_row['case_id']}\">{$act_row['number']}</a> &gt; ";
