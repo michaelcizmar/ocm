@@ -604,6 +604,25 @@ function pl_clean_html_array($a)
 }
 
 
+/**
+* @return string
+* @param 
+* @desc Returns location of this site's custom code directory.
+*/
+function pl_custom_directory($a)
+{
+	if (isset($_SERVER['custom_directory']))
+	{
+		return $_SERVER['custom_directory'];
+	}
+	
+	else
+	{
+		return getcwd() . "-custom";
+	}
+}
+
+
 // $date is in ISO format (yyyy-mm-dd), as is the return value
 /**
 * @return date
