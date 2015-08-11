@@ -609,7 +609,7 @@ function pl_clean_html_array($a)
 * @param 
 * @desc Returns location of this site's custom code directory.
 */
-function pl_custom_directory($a)
+function pl_custom_directory()
 {
 	if (isset($_SERVER['custom_directory']))
 	{
