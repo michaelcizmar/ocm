@@ -164,8 +164,8 @@ $result = mysql_query($h_sql) or trigger_error('This report has an error.');
 $row = mysql_fetch_assoc($result);
 
 $t->add_row(array('1) Total number of Persons in all Households Served', '&nbsp;'));
-$t->add_row(array('Total Number of Adults', $row['t_children']));
-$t->add_row(array('Total Number of Children', $row['t_adults']));
+$t->add_row(array('Total Number of Adults', $row['t_adults']));
+$t->add_row(array('Total Number of Children', $row['t_children']));
 $t->add_row(array('Total Number of all Persons Served', $row['t_persons_helped']));
 
 // Blank row
