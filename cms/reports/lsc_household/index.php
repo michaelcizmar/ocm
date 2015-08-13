@@ -28,7 +28,7 @@ $a = array();
 $a['report_name'] = $report_name;
 $a['close_date_begin'] = '1/1/' . (date('Y') - 1);
 $a['close_date_end'] = $a['open_on_date']= '12/31/' . (date('Y') -1);
-$a['undup'] = '';
+$a['undup'] = '1';
 
 $main_html = array();
 $main_html['base_url'] = $base_url;
