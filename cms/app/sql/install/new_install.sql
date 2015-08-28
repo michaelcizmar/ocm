@@ -856,6 +856,32 @@ CREATE TABLE `motd` (
 ) ENGINE = INNODB;
 
 --
+-- Table structure for table outcome_definitions
+--
+
+CREATE TABLE outcome_definitions (
+  outcome_definition_id INT NOT NULL default '0',
+  outcome_name CHAR(128),
+  outcome_problem CHAR(2),
+  outcome_order INT,
+  PRIMARY KEY  (outcome_definition_id),
+  KEY outcome_problem (outcome_problem)
+) ENGINE = INNODB;
+
+--
+-- Table structure for table outcome_definitions
+--
+
+CREATE TABLE outcomes (
+  outcome_id INT NOT NULL default '0',
+  case_id INT,
+  outcome_definitions_id INT,
+  outcome_value TINYINT,
+  PRIMARY KEY  (outcome_id),
+  KEY case_id (case_id)
+) ENGINE = INNODB;
+
+--
 -- Table structure for table `pb_attorneys`
 --
 
