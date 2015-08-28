@@ -21,6 +21,7 @@ else
 	
 	$result = mysql_query($sql);
 	$C .= "<table class=\"table table-striped\">\n";
+	$i = 0;
 	
 	while ($row = mysql_fetch_assoc($result))
 	{
@@ -28,16 +29,17 @@ else
 		$C .= "<td>{$row['outcome_name']}</td>\n";
 		$C .= "<td>
 		<label class=\"radio inline\">
-		<input type=\"radio\" name=\"optionsRadios\" id=\"optionsRadios1\" value=\"option1\" checked>
+		<input type=\"radio\" name=\"optionsRadios{$i}\" id=\"optionsRadios{$i}\" value=\"option1\">
 		Yes</label>
 		<label class=\"radio inline\">
-		<input type=\"radio\" name=\"optionsRadios\" id=\"optionsRadios1\" value=\"option1\">
+		<input type=\"radio\" name=\"optionsRadios{$i}\" id=\"optionsRadios{$i}\" value=\"option1\">
 		No</label>
 		<label class=\"radio inline\">
-		<input type=\"radio\" name=\"optionsRadios\" id=\"optionsRadios1\" value=\"option1\">
+		<input type=\"radio\" name=\"optionsRadios{$i}\" id=\"optionsRadios{$i}\" value=\"option1\" checked>
 		N/A</label>
 		</td>\n";
 		$C .= "</tr>\n";
+		$i++;
 	}
 	
 	$C .= "</table>\n";
