@@ -47,20 +47,28 @@ else
 	$t = new plHtmlReport();
 }
 
-
-
-// run the report
-
-$sql = "SELECT	first_name, middle_name, last_name, extra_name, firm, address,
-		address2, city, state, zip, county, last_case 
-		FROM pb_attorneys
-		ORDER BY last_case DESC";
-
-
 $t->title = $report_title;
 $t->set_header(array('First Name', 'Middle Name', 'Last Name', 'Extra Name', 
 					'Firm', 'Address', 'Address 2',
 					'City', 'State', 'ZIP Code', 'County', 'Last Case'));
+$sql = "SELECT	first_name, middle_name, last_name, extra_name, firm, address, 
+		address2, city, state, zip, county, last_case 
+		FROM pb_attorneys
+		ORDER BY last_case DESC";
+
+// Custom code for WI Judicare
+if ($base_url == '/judicare')
+{
+	$t->set_header(array('First Name', 'Middle Name', 'Last Name', 'Extra Name', 
+					'PAI Number', 'Firm', 'Address', 'Address 2',
+					'City', 'State', 'ZIP Code', 'County', 'Last Case'));
+	$sql = "SELECT	first_name, middle_name, last_name, extra_name, pai_number, 
+			firm, address, address2, city, state, zip, county, last_case 
+			FROM pb_attorneys
+			ORDER BY last_case DESC";
+}
+
+// run the report
 
 $result = mysql_query($sql) or trigger_error();
 while ($row = mysql_fetch_assoc($result))
