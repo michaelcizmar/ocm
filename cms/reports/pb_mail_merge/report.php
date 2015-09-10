@@ -64,7 +64,7 @@ if ($base_url == '/judicare')
 					'City', 'State', 'ZIP Code', 'County', 'Last Case'));
 	$sql = "SELECT	first_name, middle_name, last_name, extra_name, pai_number, 
 			firm, address, address2, city, state, zip, county, last_case 
-			FROM pb_attorneys WHERE panel_status = 'On'
+			FROM pb_attorneys WHERE panel_status != 'Off'
 			ORDER BY last_case DESC";
 }
 
