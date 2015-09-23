@@ -12,7 +12,7 @@ else
 {
 	$problem_code = $case_row['problem'];	
 	$problem_category = substr($case_row['problem'], 0, 1);
-	$sql = "SELECT outcome_name, outcome_value FROM
+	$sql = "SELECT outcome_name, outcome_value, outcome_definition_id FROM
 		outcome_definitions LEFT JOIN outcomes USING(outcome_definition_id)
 		WHERE (case_id={$case_row['case_id']} OR case_id IS NULL) 
 		AND outcome_problem IN ('{$problem_category}X', '{$problem_code}')
@@ -30,17 +30,16 @@ else
 		$C .= "<td>{$row['outcome_name']}</td>\n";
 		$C .= "<td>
 		<label class=\"radio inline\">
-		<input type=\"radio\" name=\"optionsRadios{$i}\" id=\"optionsRadios{$i}\" value=\"option1\">
+		<input type=\"radio\" name=\"outcome_goals[{$row['outcome_definition_id']}]\" id=\"optionsRadios{$i}\" value=\"1\">
 		Yes</label>
 		<label class=\"radio inline\">
-		<input type=\"radio\" name=\"optionsRadios{$i}\" id=\"optionsRadios{$i}\" value=\"option1\">
+		<input type=\"radio\" name=\"outcome_goals[{$row['outcome_definition_id']}]\" id=\"optionsRadios{$i}\" value=\"0\">
 		No</label>
 		<label class=\"radio inline\">
-		<input type=\"radio\" name=\"optionsRadios{$i}\" id=\"optionsRadios{$i}\" value=\"option1\" checked>
+		<input type=\"radio\" name=\"outcome_goals[{$row['outcome_definition_id']}]\" id=\"optionsRadios{$i}\" value=\"2\" checked>
 		N/A</label>
 		</td>\n";
 		$C .= "</tr>\n";
-		$i++;
 	}
 	
 		$C .= "<tr>\n";
