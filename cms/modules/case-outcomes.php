@@ -20,6 +20,7 @@ else
 	//echo $sql;
 	
 	$result = mysql_query($sql);
+	$C .= "<form action=\"{$base_url}/ops/update_case.php\" method=\"POST\">";
 	$C .= "<table class=\"table table-striped\">\n";
 	$i = 0;
 	
@@ -44,7 +45,7 @@ else
 	
 		$C .= "<tr>\n";
 		$C .= "<td>What other significant outcome?</td>\n";
-		$C .= "<td><textarea rows=\"5\" class=\"span2\" name=\"outcome_notes\">{$case_row['outcome_notes']}</textarea></td>\n";
+		$C .= "<td><textarea rows=\"5\" class=\"span2\" name=\"outcome_notes\" tabindex=\"1\">{$case_row['outcome_notes']}</textarea></td>\n";
 		$C .= "</tr>\n";
 
 	$C .= "</table>\n";
@@ -52,6 +53,19 @@ else
 	$C .= "<table class=\"table table-striped\">\n";
 	$C .= "<tr><td colspan=\"2\">If income was an issue, answer these two questions</td></tr>\n";
 
+	function draw_outcome_row($label, $column)
+	{
+		$C = '';
+		$C .= "<tr>\n";
+		$C .= "<td>{$label}</td>
+		<td><div class=\"input-prepend input-append\">
+		<span class=\"add-on\">$</span>
+		<input class=\"span2\" id=\"{$column}\" name=\"{$column}\" value=\"{$case_row[$column]}\" type=\"text\" tabindex=\"1\">
+		</div></td>\n";
+		$C .= "</tr>\n";
+		return $C;		
+	}
+	
 	$C .= "<tr>\n";
 	$C .= "<td>Actual monthly income at the time the case was closed.</td>
 	<td><div class=\"input-prepend input-append\">
@@ -113,6 +127,9 @@ else
 	$C .= "</tr>\n";
 
 	$C .= "</table>\n";
+	$C .= "<input type=\"hidden\" name=\"case_id\" value=\"{$case_row['case_id']}\">\n";
+	$C .= "<input type=\"hidden\" name=\"screen\" value=\"outcomes\">\n";
+	$C .= "<input type=\"submit\" value=\"Save\" tabindex=\"1\" class=\"save\" accesskey=\"s\"></form>\n";
 }
 
 ?>
