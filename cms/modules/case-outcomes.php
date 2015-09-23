@@ -55,6 +55,7 @@ else
 
 	function draw_outcome_row($label, $column)
 	{
+		global $case_row;
 		$C = '';
 		$C .= "<tr>\n";
 		$C .= "<td>{$label}</td>
@@ -66,21 +67,8 @@ else
 		return $C;		
 	}
 	
-	$C .= "<tr>\n";
-	$C .= "<td>Actual monthly income at the time the case was closed.</td>
-	<td><div class=\"input-prepend input-append\">
-	<span class=\"add-on\">$</span>
-	<input class=\"span2\" id=\"appendedPrependedInput\" type=\"text\">
-	</div></td>\n";
-	$C .= "</tr>\n";
-
-	$C .= "<tr>\n";
-	$C .= "<td>If Legal Aid had not been involved, what would current monthly income be at the time case was closed?</td>
-	<td><div class=\"input-prepend input-append\">
-	<span class=\"add-on\">$</span>
-	<input class=\"span2\" id=\"appendedPrependedInput\" type=\"text\">
-	</div></td>\n";
-	$C .= "</tr>\n";
+	$C .= draw_outcome_row('Actual monthly income at the time the case was closed.', 'outcome_income_before');
+	$C .= draw_outcome_row('If Legal Aid had not been involved, what would current monthly income be at the time case was closed?', 'outcome_income_after');
 
 	$C .= "</table>\n";
 	
@@ -88,21 +76,8 @@ else
 	$C .= "<table class=\"table table-striped\">\n";
 	$C .= "<tr><td colspan=\"2\">If assets were an issue, answer these two questions</td></tr>\n";
 
-	$C .= "<tr>\n";
-	$C .= "<td>Actual value of assets at the time the case was closed.</td>
-	<td><div class=\"input-prepend input-append\">
-	<span class=\"add-on\">$</span>
-	<input class=\"span2\" id=\"appendedPrependedInput\" type=\"text\">
-	</div></td>\n";
-	$C .= "</tr>\n";
-
-	$C .= "<tr>\n";
-	$C .= "<td>If Legal Aid had not been involved, what would the value of assets be at the time case was closed?</td>
-	<td><div class=\"input-prepend input-append\">
-	<span class=\"add-on\">$</span>
-	<input class=\"span2\" id=\"appendedPrependedInput\" type=\"text\">
-	</div></td>\n";
-	$C .= "</tr>\n";
+	$C .= draw_outcome_row('Actual value of assets at the time the case was closed.', 'outcome_assets_before');
+	$C .= draw_outcome_row('If Legal Aid had not been involved, what would the value of assets be at the time case was closed?', 'outcome_assets_after');
 
 	$C .= "</table>\n";
 
@@ -110,21 +85,8 @@ else
 	$C .= "<table class=\"table table-striped\">\n";
 	$C .= "<tr><td colspan=\"2\">If debt was an issue, answer these two questions</td></tr>\n";
 
-	$C .= "<tr>\n";
-	$C .= "<td>Actual value of debt at the time the case was closed.</td>
-	<td><div class=\"input-prepend input-append\">
-	<span class=\"add-on\">$</span>
-	<input class=\"span2\" id=\"appendedPrependedInput\" type=\"text\">
-	</div></td>\n";
-	$C .= "</tr>\n";
-
-	$C .= "<tr>\n";
-	$C .= "<td>If Legal Aid had not been involved, what would the amount of debt be at the time case was closed?</td>
-	<td><div class=\"input-prepend input-append\">
-	<span class=\"add-on\">$</span>
-	<input class=\"span2\" id=\"appendedPrependedInput\" type=\"text\">
-	</div></td>\n";
-	$C .= "</tr>\n";
+	$C .= draw_outcome_row('If debt was an issue, answer these two questions', 'outcome_debt_before');
+	$C .= draw_outcome_row('If Legal Aid had not been involved, what would the amount of debt be at the time case was closed?', 'outcome_debt_after');
 
 	$C .= "</table>\n";
 	$C .= "<input type=\"hidden\" name=\"case_id\" value=\"{$case_row['case_id']}\">\n";
