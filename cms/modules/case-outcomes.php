@@ -42,6 +42,11 @@ else
 		$i++;
 	}
 	
+		$C .= "<tr>\n";
+		$C .= "<td>What other significant outcome?</td>\n";
+		$C .= "<td><textarea rows=\"5\" class=\"span2\" name=\"outcome_notes\">{$case_row['outcome_notes']}</textarea></td>\n";
+		$C .= "</tr>\n";
+
 	$C .= "</table>\n";
 	
 	$C .= "<table class=\"table table-striped\">\n";
