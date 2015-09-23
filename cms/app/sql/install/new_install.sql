@@ -141,6 +141,7 @@ CREATE TABLE `cases` (
   `citizen_check` tinyint(4) default NULL,
   `client_age` smallint(3) default NULL,
   `outcome` char(3) default NULL,
+  outcome_notes TEXT default NULL,
   `lsc_income_change` tinyint(4) default NULL,
   `just_income` char(3) default NULL,
   `main_benefit` varchar(4) default NULL,
