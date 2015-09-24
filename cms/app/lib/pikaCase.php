@@ -82,6 +82,15 @@ class pikaCase extends plBase
 			
 		}
 		
+		else if ('outcome_goals' == $value_name)
+		{
+			// AMW - Do nothing.  I decided it will be more consistant to handle
+			// outcomes by adding new methods to pikaCase.  I could have processed
+			// them here by extracting the data from the array, but no other
+			// data are passed as an array so methods will better match
+			// existing conventions.
+		}
+		
 		else 
 		{
 			parent::setValue($value_name, $value);
@@ -567,6 +576,21 @@ class pikaCase extends plBase
 		return $result;
 	}
 	
+	public function deleteOutcomes()
+	{
+		$sql = "DELETE FROM outcomes WHERE case_id = {$this->case_id}";		
+		return mysql_query($sql) or trigger_error("SQL: " . $sql . " Error: " . mysql_error());
+	}
+	
+	public function addOutcome($name, $value)
+	{
+		$o = new pikaOutcome();
+		$o->case_id = $this->case_id;
+		$o->goal = $goal;
+		$o->result = $result;
+		$o->save();
+		return true;	
+	}
 }
 
 
