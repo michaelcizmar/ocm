@@ -868,11 +868,11 @@ CREATE TABLE `motd` (
 
 CREATE TABLE outcome_definitions (
   outcome_definition_id INT NOT NULL default '0',
-  outcome_name CHAR(128),
-  outcome_problem CHAR(2),
+  goal CHAR(128),
+  problem CHAR(2),
   outcome_order INT,
   PRIMARY KEY  (outcome_definition_id),
-  KEY outcome_problem (outcome_problem)
+  KEY problem (problem)
 ) ENGINE = INNODB;
 
 --
