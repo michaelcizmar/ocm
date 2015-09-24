@@ -882,8 +882,8 @@ CREATE TABLE outcome_definitions (
 CREATE TABLE outcomes (
   outcome_id INT NOT NULL default '0',
   case_id INT,
-  outcome_definitions_id INT,
-  outcome_value TINYINT,
+  goal INT,
+  result TINYINT,
   PRIMARY KEY  (outcome_id),
   KEY case_id (case_id)
 ) ENGINE = INNODB;
