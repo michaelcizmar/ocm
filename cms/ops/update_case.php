@@ -56,7 +56,7 @@ if ($allow_edits)
 		// optimized at this point.
 		$case_data->deleteOutcomes();
 		
-		foreach ($_POST['outcome_goals'] as $key => $val)
+		foreach ($_POST['outcomes'] as $key => $val)
 		{
 			$case_data->addOutcome($key, $val);
 		}

@@ -582,13 +582,13 @@ class pikaCase extends plBase
 		return mysql_query($sql) or trigger_error("SQL: " . $sql . " Error: " . mysql_error());
 	}
 	
-	public function addOutcome($name, $value)
+	public function addOutcome($outcome_goal_id, $result)
 	{
 		require_once('pikaOutcome.php');
 		
 		$o = new pikaOutcome();
 		$o->case_id = $this->case_id;
-		$o->goal = $goal;
+		$o->outcome_goal_id = $outcome_goal_id;
 		$o->result = $result;
 		$o->save();
 		return true;	
