@@ -70,8 +70,8 @@ switch ($action)
 	
 		$outcome = mysql_real_escape_string($outcome);
 		$main_html['content'] = "<textarea rows=\"18\" class=\"input-xxlarge\">";
-		$sql = "SELECT * FROM outcome_definitions WHERE outcome_problem ";
-		$sql .= " = '{$outcome}' ORDER BY outcome_order ASC";
+		$sql = "SELECT * FROM outcome_goals WHERE outcome_problem ";
+		$sql .= " = '{$outcome}' ORDER BY outcome_goal_order ASC";
 		$result = mysql_query($sql);
 		
 		while ($row = mysql_fetch_assoc($result)) 

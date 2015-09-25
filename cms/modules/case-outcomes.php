@@ -13,15 +13,15 @@ else
 	$problem_code = $case_row['problem'];	
 	$problem_category = substr($case_row['problem'], 0, 1);
 	$sql = "SELECT goal, result, outcome_definition_id FROM
-		outcome_definitions LEFT JOIN outcomes USING(outcome_definition_id)
+		outcome_goals LEFT JOIN outcomes USING(outcome_definition_id)
 		WHERE (case_id={$case_row['case_id']} OR case_id IS NULL) 
 		AND outcome_problem IN ('{$problem_category}X', '{$problem_code}')
-		ORDER BY outcome_problem DESC, outcome_order ASC";
+		ORDER BY outcome_problem DESC, outcome_goal_order ASC";
 	//echo $sql;
 	$sql = "select a.goal, b.result 
-			from outcome_definitions AS a
+			from outcome_goals AS a
 			LEFT JOIN outcomes AS b USING (goal)
-			where problem in ('0', '6') order by outcome_order ASC";
+			where problem in ('0', '6') order by outcome_goal_order ASC";
 	
 	$result = mysql_query($sql);
 	$C .= "<form action=\"{$base_url}/ops/update_case.php\" method=\"POST\">";

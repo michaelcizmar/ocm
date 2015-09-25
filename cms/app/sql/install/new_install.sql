@@ -863,26 +863,26 @@ CREATE TABLE `motd` (
 ) ENGINE = INNODB;
 
 --
--- Table structure for table outcome_definitions
+-- Table structure for table outcome_goals
 --
 
-CREATE TABLE outcome_definitions (
-  outcome_definition_id INT NOT NULL default '0',
+CREATE TABLE outcome_goals (
+  outcome_goal_id INT NOT NULL default '0',
   goal CHAR(128),
   problem CHAR(2),
-  outcome_order INT,
+  outcome_goal_order INT,
   PRIMARY KEY  (outcome_definition_id),
   KEY problem (problem)
 ) ENGINE = INNODB;
 
 --
--- Table structure for table outcome_definitions
+-- Table structure for table outcome_goals
 --
 
 CREATE TABLE outcomes (
   outcome_id INT NOT NULL default '0',
   case_id INT,
-  goal INT,
+  outcome_goal_id INT,
   result TINYINT,
   PRIMARY KEY  (outcome_id),
   KEY case_id (case_id)
