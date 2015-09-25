@@ -18,7 +18,7 @@ else
 		AND outcome_problem IN ('{$problem_category}X', '{$problem_code}')
 		ORDER BY outcome_problem DESC, outcome_goal_order ASC";
 	//echo $sql;
-	$sql = "select a.goal, b.result 
+	$sql = "select a.outcome_goal_id, a.goal, b.result 
 			from outcome_goals AS a
 			LEFT JOIN outcomes AS b USING (goal)
 			where problem in ('0', '6') order by outcome_goal_order ASC";
@@ -30,18 +30,39 @@ else
 	
 	while ($row = mysql_fetch_assoc($result))
 	{
+		switch ($row['result'])
+		{
+			case 1:
+			$yes_checked = " checked";
+			$no_checked = "";
+			$na_checked = "";
+			break;
+			
+			case 1:
+			$yes_checked = "";
+			$no_checked = " checked";
+			$na_checked = "";
+			break;
+
+			default:
+			$yes_checked = "";
+			$no_checked = "";
+			$na_checked = " checked";
+			break;			
+		}
+		
+		
 		$C .= "<tr>\n";
 		$C .= "<td>{$row['goal']}</td>\n";
 		$C .= "<td>
-		<input type=\"hidden\" name=\"outcome_goals[]\" value=\"{$row['goal']}\">
 		<label class=\"radio inline\">
-		<input type=\"radio\" name=\"outcome_results[{$i}]\" id=\"optionsRadios{$i}\" value=\"1\">
+		<input type=\"radio\" name=\"outcomes[{$row['outcome_goal_id']}]\" id=\"optionsRadios{$i}\" value=\"1\"{$yes_checked}>
 		Yes</label>
 		<label class=\"radio inline\">
-		<input type=\"radio\" name=\"outcome_results[{$i}]\" id=\"optionsRadios{$i}\" value=\"0\">
+		<input type=\"radio\" name=\"outcomes[{$row['outcome_goal_id']}]\" id=\"optionsRadios{$i}\" value=\"0\"($no_checked}>
 		No</label>
 		<label class=\"radio inline\">
-		<input type=\"radio\" name=\"outcome_results[{$i}]\" id=\"optionsRadios{$i}\" value=\"2\" checked>
+		<input type=\"radio\" name=\"outcomes[{$row['outcome_goal_id']}]\" id=\"optionsRadios{$i}\" value=\"2\"{$na_checked}>
 		N/A</label>
 		</td>\n";
 		$C .= "</tr>\n";
