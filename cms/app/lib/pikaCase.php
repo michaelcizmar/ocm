@@ -584,6 +584,8 @@ class pikaCase extends plBase
 	
 	public function addOutcome($name, $value)
 	{
+		require_once('pikaOutcome.php');
+		
 		$o = new pikaOutcome();
 		$o->case_id = $this->case_id;
 		$o->goal = $goal;
