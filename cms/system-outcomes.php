@@ -43,29 +43,6 @@ $menu_enable_disable = array('0' => 'Enable', '' => 'Enable', '1' => 'Disable');
 
 switch ($action)
 {
-	case 'edit_menu':
-		$a = array();
-		$menu_listing = new plFlexList();
-		$menu_listing->template_file = 'subtemplates/system-menus.html';
-		$result = pikaMenu::getMenuDB($menu_name);
-		$a['menu_name'] = $menu_name;
-		
-		while ($row = mysql_fetch_assoc($result)) 
-		{
-			$row['menu_name'] = $menu_name;
-			$menu_listing->addRow($row);
-		}
-		
-		$a['menu_list'] = $menu_listing->draw();
-		
-		$main_html['nav'] = "<a href=\"{$base_url}\">Pika Home</a> &gt;
-							 <a href=\"{$base_url}/site_map.php\">Site Map</a> &gt;
-							 <a href=\"{$base_url}/system-menus.php\">Menus</a> &gt;
-							 Editing {$menu_name}";
-		$template = new pikaTempLib('subtemplates/system-menus.html',$a,'edit');
-		$main_html['content'] = $template->draw();
-
-		break;
 	case 'edit':
 	
 		$outcome = mysql_real_escape_string($outcome);
@@ -87,28 +64,6 @@ switch ($action)
 							 Editing {$menu_name}";
 		break;
 		
-	case 'edit_item':
-		$a = array();
-		$menu_item = new pikaMenu($menu_name,$value);
-		$db_table_array = $menu_item->getTableColumns();
-		
-		$a = $menu_item->getValues();
-		$a['value_db_type'] = strtoupper($db_table_array['value']['Type']);
-		$a['value_db_size'] = $db_table_array['value']['Length'];
-		
-		$a['value_input'] = pikaTempLib::plugin('input_text','value',$a['value'],array(),array("size={$db_table_array['value']['Length']}","maxlength={$db_table_array['value']['Length']}"));
-		$a['old_value'] = $a['value'];
-		$a['menu_name'] = $menu_name;
-		$a['label'] = pikaTempLib::plugin('input_text','label',$a['label'],'',array("size={$db_table_array['label']['Length']}","maxlength={$db_table_array['label']['Length']}"));	
-		$main_html['nav'] = "<a href=\"{$base_url}\">Pika Home</a> &gt;
-							 <a href=\"{$base_url}/site_map.php\">Site Map</a> &gt;
-							 <a href=\"{$base_url}/system-menus.php\">Menus</a> &gt;
-							 Editing {$menu_name}";
-		$template = new pikaTempLib('subtemplates/system-menus.html',$a,'edit_item');
-		$main_html['content'] = $template->draw();
-
-		break;
-	
 	case 'update':
 		//require_once('pikaOutcomeGoal.php');
 		
@@ -156,41 +111,7 @@ switch ($action)
 		
 		//header("Location: {$base_url}/system-menus.php?action=edit_menu&menu_name={$menu_name}");
 		break;
-	case 'confirm_delete':
-		$a = array();
-		$menu_item = new pikaMenu($menu_name,$value);
 		
-		$a['value'] = $value;
-		$a['label'] = $menu_item->label;
-		$a['menu_name'] = $menu_name;
-		
-		$main_html['nav'] = "<a href=\"{$base_url}\">Pika Home</a> &gt;
-							 <a href=\"{$base_url}/site_map.php\">Site Map</a> &gt;
-							 <a href=\"{$base_url}/system-menus.php\">Menus</a> &gt;
-							 Confirm Delete";
-		$template = new pikaTempLib('subtemplates/system-menus.html',$a,'confirm_delete');
-		$main_html['content'] = $template->draw();
-		break;
-	case 'delete':
-		$cancel = pl_grab_get('cancel');
-		if(!$cancel)
-		{
-			$menu_item = new pikaMenu($menu_name,$value);
-			$menu_item->delete();
-			pikaMenu::resetMenuOrder($menu_name);
-		}
-		header("Location: {$base_url}/system-menus.php?action=edit_menu&menu_name={$menu_name}");
-		break;
-	case 'move_up':
-		$menu = new pikaMenu($menu_name,$value);
-		$menu->moveUp();
-		header("Location: {$base_url}/system-menus.php?action=edit_menu&menu_name={$menu_name}");
-		break;
-	case 'move_down':
-		$menu = new pikaMenu($menu_name,$value);
-		$menu->moveDown();
-		header("Location: {$base_url}/system-menus.php?action=edit_menu&menu_name={$menu_name}");
-		break;
 	default:
 	
 		$main_html['content'] .= "<h2>Please select a Problem Code category to edit</h2><div class=\"span4\">";
