@@ -48,7 +48,7 @@ switch ($action)
 		$outcome = mysql_real_escape_string($outcome);
 		$main_html['content'] = "<form action=\"{$base_url}/system-outcomes.php?action=update&outcome={$outcome}\" method=\"POST\">";
 		$main_html['content'] .= "<textarea name=\"values\" rows=\"18\" class=\"input-xxlarge\">";
-		$sql = "SELECT * FROM outcome_goals WHERE problem ";
+		$sql = "SELECT * FROM outcome_goals WHERE active = 1 AND problem ";
 		$sql .= " = '{$outcome}' ORDER BY outcome_goal_order ASC";
 		$result = mysql_query($sql);
 		
@@ -65,7 +65,7 @@ switch ($action)
 		break;
 		
 	case 'update':
-		//require_once('pikaOutcomeGoal.php');
+		require_once('pikaOutcomeGoal.php');
 		
 		$outcome = mysql_real_escape_string(pl_grab_get('outcome'));
 		$values = pl_grab_post('values');
@@ -86,30 +86,34 @@ switch ($action)
 		print_r($old_goals);
 		
 		// This code should be moved to an object eventually.
-//		$sql = "UPDATE outcome_goals SET active = 0 WHERE problem='{$outcome}'";
-//		$result = mysql_query($sql);
+		$sql = "UPDATE outcome_goals SET active = 0, outcome_goal_order = NULL WHERE problem='{$outcome}'";
+		$result = mysql_query($sql);
 		$i = 0;
 		
 		foreach($new_goals as $goal)
 		{
 			$goal = trim($goal);
 			$z = array_search($goal, $old_goals);
-			//$z = in_array($goal, $old_goals);
 			
 			if ($z !== false)
 			{
-				echo "\nupdate existing named {$goal} {$z}\n";				
+				$g = new pikaOutcomeGoal($z);
 			}
 			
 			else
 			{
-				echo "\ncreate new named {$goal}\n";
+				$g = new pikaOutcomeGoal();
+				$g->goal = $goal;
+				$g->problem = $outcome;
 			}
+			
+			$g->active = 1;
+			$g->outcome_goal_order = $i++;
+			$g->save();
 		}
 
-		exit();
-		
-		//header("Location: {$base_url}/system-menus.php?action=edit_menu&menu_name={$menu_name}");
+		header("Location: {$base_url}/system-outcomes.php?action=edit&outcome={$outcome}");
+		exit();		
 		break;
 		
 	default:
