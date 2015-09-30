@@ -69,17 +69,18 @@ switch ($action)
 	case 'edit':
 	
 		$outcome = mysql_real_escape_string($outcome);
-		$main_html['content'] = "<textarea rows=\"18\" class=\"input-xxlarge\">";
-		$sql = "SELECT * FROM outcome_goals WHERE outcome_problem ";
+		$main_html['content'] = "<form action=\"{$base_url}/system-outcomes.php?action=update&outcome={$outcome}\" method=\"POST\">";
+		$main_html['content'] .= "<textarea name=\"values\" rows=\"18\" class=\"input-xxlarge\">";
+		$sql = "SELECT * FROM outcome_goals WHERE problem ";
 		$sql .= " = '{$outcome}' ORDER BY outcome_goal_order ASC";
 		$result = mysql_query($sql);
 		
 		while ($row = mysql_fetch_assoc($result)) 
 		{
-			$main_html['content'] .= "{$row['outcome_name']}\n";
+			$main_html['content'] .= "{$row['goal']}\n";
 		}
 		
-		$main_html['content'] .= "</textarea>\n";
+		$main_html['content'] .= "</textarea><br><input type=\"submit\">\n";
 		$main_html['nav'] = "<a href=\"{$base_url}\">Pika Home</a> &gt;
 							 <a href=\"{$base_url}/site_map.php\">Site Map</a> &gt;
 							 <a href=\"{$base_url}/system-menus.php\">Menus</a> &gt;
@@ -109,33 +110,51 @@ switch ($action)
 		break;
 	
 	case 'update':
-		$label = pl_grab_get('label');
-		$menu = new pikaMenu($menu_name,$old_value);
-		$menu->value = $value;
-		$menu->label = $label;
-		$menu->save();
-		header("Location: {$base_url}/system-menus.php?action=edit_menu&menu_name={$menu_name}");
-		break;
-	case 'update_classic':
+		//require_once('pikaOutcomeGoal.php');
+		
+		$outcome = mysql_real_escape_string(pl_grab_get('outcome'));
 		$values = pl_grab_post('values');
-		$values_array = explode("\n",$values);
-		$temp_menu = array();
-		foreach ($values_array as $menu_item) {
-			$menu_parts = explode("|",$menu_item);
-			if(count($menu_parts) < 2 && strpos($menu_item,'\t') !== false) 
-			{
-				$menu_parts = explode('\t',$menu_item);
-			}
-			$value = trim($menu_parts[0]);
-			$label = $value;
-			if(isset($menu_parts[1]) && $menu_parts[1]) 
-			{
-				$label = trim($menu_parts[1]);
-			}
-			$temp_menu[$value] = $label;
+		$new_goals = explode("\n",$values);
+		$old_goals = array();
+				
+		echo "<pre>";
+		print_r($new_goals);
+
+		$sql = "SELECT * FROM outcome_goals WHERE problem='{$outcome}'";
+		$result = mysql_query($sql);
+		
+		while ($row = mysql_fetch_assoc($result))
+		{
+			$old_goals[$row['outcome_goal_id']] = $row['goal'];
 		}
-		pikaMenu::setMenu($menu_name,$temp_menu);
-		header("Location: {$base_url}/system-menus.php?action=edit_menu&menu_name={$menu_name}");
+		
+		print_r($old_goals);
+		
+		// This code should be moved to an object eventually.
+//		$sql = "UPDATE outcome_goals SET active = 0 WHERE problem='{$outcome}'";
+//		$result = mysql_query($sql);
+		$i = 0;
+		
+		foreach($new_goals as $goal)
+		{
+			$goal = trim($goal);
+			$z = array_search($goal, $old_goals);
+			//$z = in_array($goal, $old_goals);
+			
+			if ($z !== false)
+			{
+				echo "\nupdate existing named {$goal} {$z}\n";				
+			}
+			
+			else
+			{
+				echo "\ncreate new named {$goal}\n";
+			}
+		}
+
+		exit();
+		
+		//header("Location: {$base_url}/system-menus.php?action=edit_menu&menu_name={$menu_name}");
 		break;
 	case 'confirm_delete':
 		$a = array();
