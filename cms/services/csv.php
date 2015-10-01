@@ -61,9 +61,8 @@ function chunk_table($table, $key)
 
 $action = pl_grab_get('action');
 
-//header('Content-Type: text/txt; charset=utf-8');
-//header('Content-Type: text/csv; charset=utf-8');
-//header("Content-Disposition: attachment; filename={$action}.csv");
+header('Content-Type: text/csv; charset=utf-8');
+header("Content-Disposition: attachment; filename={$action}.csv");
 
 $columns = array();
 $result = mysql_query("DESCRIBE " . $action);
