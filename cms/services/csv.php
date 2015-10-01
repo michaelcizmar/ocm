@@ -30,34 +30,6 @@ if ('system' != $auth_row['group_id'])
 }
 
 
-function sql_to_csv_output($sql)
-{
-	$output = fopen('php://output', 'w');
-	$rows = mysql_query($sql);
-	
-	while ($row = mysql_fetch_assoc($rows))
-	{
-		fputcsv($output, $row);
-	}
-	
-	fclose($output);
-}
-
-function chunk_table($table, $key)
-{
-	$chunk_size = 1000;
-	$safe_key = mysql_real_escape_string($key);
-	$safe_table = mysql_escape_string($table);
-	$result = mysql_query("SELECT MAX({$safe_key}) FROM {$safe_table}");
-	$row = mysql_fetch_array($result);
-	$max = $row[0];
-	
-	for ($i = 0; $i < $max; $i = $i + $chunk_size)
-	{
-		sql_to_csv_output("SELECT * FROM {$safe_table} ORDER BY {$safe_key} DESC LIMIT {$i}, {$chunk_size}");
-	}
-}
-
 
 $action = pl_grab_get('action');
 
@@ -77,23 +49,21 @@ $output = fopen('php://output', 'w');
 
 //var_dump($columns);
 fputcsv($output, $columns);
-flush();
+
+$rows = mysql_query('SELECT * FROM ' . $action);
+while ($row = mysql_fetch_assoc($rows))
+{
+	fputcsv($output, $row);
+}
 
 switch ($action)
 {
 	case 'cases':
-		chunk_table('cases', 'case_id');
+	
 		break;
 	
 	default:
-		
-		$rows = mysql_query('SELECT * FROM ' . $action);
-		while ($row = mysql_fetch_assoc($rows))
-		{
-			fputcsv($output, $row);
-			flush();
-		}
-		
+		$buffer = 'Error: Unrecognized Action';
 		break;
 }
 
