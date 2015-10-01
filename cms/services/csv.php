@@ -47,7 +47,7 @@ function chunk_table($table, $key)
 {
 	$chunk_size = 1000;
 	$safe_key = mysql_real_escape_string($key);
-	$safe_table = mysql_escape_string($table);
+	$safe_table = mysql_real_escape_string($table);
 	$result = mysql_query("SELECT MAX({$safe_key}) FROM {$safe_table}");
 	$row = mysql_fetch_array($result);
 	$max = $row[0];
