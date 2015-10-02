@@ -38,6 +38,8 @@ function sql_to_csv_output($sql)
 	while ($row = mysql_fetch_assoc($rows))
 	{
 		fputcsv($output, $row);
+		flush();
+		ob_flush();
 	}
 	
 	fclose($output);
@@ -45,7 +47,7 @@ function sql_to_csv_output($sql)
 
 function chunk_table($table, $key)
 {
-	$chunk_size = 1000;
+	$chunk_size = 10000;  // When this was set to 100, it ran quite slow.
 	$safe_key = mysql_real_escape_string($key);
 	$safe_table = mysql_real_escape_string($table);
 	$result = mysql_query("SELECT MAX({$safe_key}) FROM {$safe_table}");
@@ -73,10 +75,9 @@ while ($row= mysql_fetch_assoc($result))
 }
 
 $output = fopen('php://output', 'w');
-
-//var_dump($columns);
 fputcsv($output, $columns);
 flush();
+fclose($output);
 
 switch ($action)
 {
@@ -85,14 +86,7 @@ switch ($action)
 		break;
 	
 	default:
-		
-		$rows = mysql_query('SELECT * FROM ' . $action);
-		while ($row = mysql_fetch_assoc($rows))
-		{
-			fputcsv($output, $row);
-			flush();
-		}
-		
+		sql_to_csv('SELECT * FROM ' . $action);		
 		break;
 }
 
