@@ -1,0 +1,1 @@
+INSERT INTO `settings` VALUES ('autofill_time_funding','1');

@@ -17,9 +17,15 @@ $notes_form['act_time'] = pl_time_current_string(); //date('h:i A');
 $notes_form['user_id'] = $auth_row['user_id'];
 $notes_form['case_id'] = $case_row['case_id'];
 $notes_form['number'] = $case_row['number'];
-$notes_form['funding'] = $case_row['funding'];
 $notes_form['action_name'] = 'add_activity';
 $notes_form['act_url'] = "case.php?case_id={$case_row['case_id']}&screen=act";
+
+$notes_form['funding'] = null;
+
+if (pl_settings_get('autofill_time_funding') == 1)
+{
+	$notes_form['funding'] = $case_row['funding'];
+}
 
 // Hack, for LASGC...
 if (isset($case_row['project'])) 
