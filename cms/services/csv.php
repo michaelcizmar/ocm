@@ -89,13 +89,3 @@ switch ($action)
 }
 
 exit();
-
-
-function if_unset(&$data,$key)
-{
-	if(isset($data[$key]))
-	{
-		unset($data[$key]);
-	}
-}
-
