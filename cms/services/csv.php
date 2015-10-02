@@ -29,13 +29,18 @@ if ('system' != $auth_row['group_id'])
 	exit();
 }
 
-function sql_to_csv_output($sql)
+function sql_to_csv_output($sql, $redact_column = null)
 {
 	$output = fopen('php://output', 'w');
 	$rows = mysql_query($sql);
 	
 	while ($row = mysql_fetch_assoc($rows))
 	{
+		if ($redact_column !== null)
+		{
+			$row[$redact_column] = "[redacted]";
+		}
+		
 		fputcsv($output, $row);
 		flush();
 		ob_flush();
@@ -83,6 +88,14 @@ switch ($action)
 		chunk_table('cases', 'case_id');
 		break;
 	
+	case 'users':
+		sql_to_csv('SELECT * FROM ' . $action, 'password');
+		break;
+
+	case 'doc_storage':
+		sql_to_csv('SELECT * FROM ' . $action, 'doc_data');
+		break;
+
 	default:
 		sql_to_csv('SELECT * FROM ' . $action);		
 		break;
