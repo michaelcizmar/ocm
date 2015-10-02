@@ -1,7 +1,7 @@
 <?php
 
 /***************************/
-/* Pika CMS (C) 2011       */
+/* Pika CMS (C) 2015       */
 /* Pika Software, LLC.     */
 /* http://pikasoftware.com */
 /***************************/
