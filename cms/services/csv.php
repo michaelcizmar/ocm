@@ -49,6 +49,11 @@ function sql_to_csv($sql, $redact_column = null)
 	fclose($output);
 }
 
+/*	AMW - I added this function to allow browsers to successfully download
+	very large (300MB+) files.  However browser downloads still failed with it
+	in place.  wget works fine with either method.  I believe the browser is the
+	failure point.  I'm going to leave the code in, in case it's useful later.
+	*/
 function chunk_table($table, $key)
 {
 	$chunk_size = 10000;  // When this was set to 100, it ran quite slow.
@@ -84,10 +89,6 @@ fclose($output);
 
 switch ($action)
 {
-	case 'cases':
-		chunk_table('cases', 'case_id');
-		break;
-	
 	case 'users':
 		sql_to_csv('SELECT * FROM ' . $action, 'password');
 		break;
