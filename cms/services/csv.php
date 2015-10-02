@@ -1,7 +1,7 @@
 <?php
 
 /***************************/
-/* Pika CMS (C) 2011       */
+/* Pika CMS (C) 2015       */
 /* Pika Software, LLC.     */
 /* http://pikasoftware.com */
 /***************************/
@@ -29,13 +29,50 @@ if ('system' != $auth_row['group_id'])
 	exit();
 }
 
+function sql_to_csv($sql, $redact_column = null)
+{
+	$output = fopen('php://output', 'w');
+	$rows = mysql_query($sql);
+	
+	while ($row = mysql_fetch_assoc($rows))
+	{
+		if ($redact_column !== null)
+		{
+			$row[$redact_column] = "[redacted]";
+		}
+		
+		fputcsv($output, $row);
+		flush();
+		ob_flush();
+	}
+	
+	fclose($output);
+}
 
+/*	AMW - I added this function to allow browsers to successfully download
+	very large (300MB+) files.  However browser downloads still failed with it
+	in place.  wget works fine with either method.  I believe the browser is the
+	failure point.  I'm going to leave the code in, in case it's useful later.
+	*/
+function chunk_table($table, $key)
+{
+	$chunk_size = 10000;  // When this was set to 100, it ran quite slow.
+	$safe_key = mysql_real_escape_string($key);
+	$safe_table = mysql_real_escape_string($table);
+	$result = mysql_query("SELECT MAX({$safe_key}) FROM {$safe_table}");
+	$row = mysql_fetch_array($result);
+	$max = $row[0];
+	
+	for ($i = 0; $i < $max; $i = $i + $chunk_size)
+	{
+		sql_to_csv("SELECT * FROM {$safe_table} ORDER BY {$safe_key} DESC LIMIT {$i}, {$chunk_size}");
+	}
+}
 
 $action = pl_grab_get('action');
 
-//header('Content-Type: text/txt; charset=utf-8');
-//header('Content-Type: text/csv; charset=utf-8');
-//header("Content-Disposition: attachment; filename={$action}.csv");
+header('Content-Type: text/csv; charset=utf-8');
+header("Content-Disposition: attachment; filename={$action}.csv");
 
 $columns = array();
 $result = mysql_query("DESCRIBE " . $action);
@@ -46,35 +83,23 @@ while ($row= mysql_fetch_assoc($result))
 }
 
 $output = fopen('php://output', 'w');
-
-//var_dump($columns);
 fputcsv($output, $columns);
-
-$rows = mysql_query('SELECT * FROM ' . $action);
-while ($row = mysql_fetch_assoc($rows))
-{
-	fputcsv($output, $row);
-}
+flush();
+fclose($output);
 
 switch ($action)
 {
-	case 'cases':
-	
+	case 'users':
+		sql_to_csv('SELECT * FROM ' . $action, 'password');
 		break;
-	
+
+	case 'doc_storage':
+		sql_to_csv('SELECT * FROM ' . $action, 'doc_data');
+		break;
+
 	default:
-		$buffer = 'Error: Unrecognized Action';
+		sql_to_csv('SELECT * FROM ' . $action);		
 		break;
 }
 
 exit();
-
-
-function if_unset(&$data,$key)
-{
-	if(isset($data[$key]))
-	{
-		unset($data[$key]);
-	}
-}
-
