@@ -49,21 +49,6 @@ function sql_to_csv($sql, $redact_column = null)
 	fclose($output);
 }
 
-function chunk_table($table, $key)
-{
-	$chunk_size = 1000
-	$safe_key = mysql_real_escape_string($key);
-	$safe_table = mysql_escape_string($table);
-	$result = mysql_query("SELECT MAX({$safe_key}) FROM {$safe_table}");
-	$row = mysql_fetch_array($result);
-	$max = $row[0];
-	
-	for ($i = 0; $i < $max; $i = $i + $chunk_size)
-	{
-		sql_to_csv_output("SELECT * FROM {$safe_table} ORDER BY {$safe_key} DESC LIMIT {$i}, {$chunk_size}");
-	}
-}
-
 /*	AMW - I added this function to allow browsers to successfully download
 	very large (300MB+) files.  However browser downloads still failed with it
 	in place.  wget works fine with either method.  I believe the browser is the
