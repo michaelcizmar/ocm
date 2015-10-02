@@ -29,7 +29,6 @@ if ('system' != $auth_row['group_id'])
 	exit();
 }
 
-
 function sql_to_csv_output($sql)
 {
 	$output = fopen('php://output', 'w');
@@ -59,7 +58,6 @@ function chunk_table($table, $key)
 		sql_to_csv_output("SELECT * FROM {$safe_table} ORDER BY {$safe_key} DESC LIMIT {$i}, {$chunk_size}");
 	}
 }
-
 
 $action = pl_grab_get('action');
 
