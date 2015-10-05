@@ -1,9 +1,9 @@
 <?php
 
-$username = 'absmith';
+$username = '%%[username]%%';
 $password = 'backups-are-very-important';
-$url = 'https://localhost/cms';
-$save_folder_path = '/tmp';
+$url = '%%[url]%%';
+$save_folder_path = '$$[save_folder_path]%%';
 
 $c = curl_init();
 curl_setopt($c, CURLOPT_URL, $url . '/services/table_listing.php');
