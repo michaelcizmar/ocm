@@ -1,0 +1,51 @@
+<form action="%%[base_url]%%/system-mac_download.php" method="POST">
+<div class="span6">
+<h2>Mac OS X Download Script</h2>
+<p>This screen will generate a script to download your Pika CMS data, in CSV format,
+to a local computer running Mac OS X.  It can also generate a LaunchAgent that
+will run the script automatically at 2:30 AM if the user account is left logged
+in.</p>
+<p>The script will only work for servers that running on a secure, HTTPS-enabled server.
+	If, for some reason, your Pika CMS server only accepts unencrypted connections,
+	the script won't run correctly.
+</p>
+<h4>Instructions for Setting Up Nightly Downloads</h3>
+<p>Please take the proper precautions to secure both the .php script that you
+	download from this page and also the .csv data files that the script downloads.
+	Both contain sensitive data.
+<ul>
+	<li>First, you'll need to fill out the form below.  The UNIX path is required, the password field is 
+	optional.  IMPORTANT:  If you enter a password, it'll be saved, in plain 
+	text, to the .php script file you download.  If you leave the password
+	field blank, you'll need to manually add it using a text editor after 
+	downloading it.  In either case, your Pika CMS
+	password will be stored in plain text on your computer.   
+	<li>Press the two buttons to download
+	the two files to your computer.  
+	<li>Then open a Finder window.  
+	<li>On the "Go"
+	menu, select "Home".  
+	<li>Create a folder named "cms" (all lower-case).  Move 
+	the .php script file you downloaded to the new "cms" folder.  
+	<li>Next, select "Home"
+	from the "Go" menu again.  
+	<li>On the "Go" menu, select "Go to Folder" and type
+	"Library" (case-sensitive).  
+	<li>Go to the "LaunchAgents" folder.  Move the .plist
+	 LaunchAgent file you downloaded to this folder.  
+	 <li>Log out, then log back in.
+	 The database will now be downloaded to the "cms" folder nightly at 2:30 AM 
+	 local time, as long as computer is left logged in.
+</ul>
+<h4>Build the Download Files</h4>
+<label>
+Full UNIX path of your Home Directory.  You can get this value by opening the
+Terminal app and typing the command "pwd" then pressing Enter to run it.  The 
+text that appears is the path.<br>
+<input type="text" name="home_path" value=""></label>
+<label>Your Pika CMS password (optional)<br>
+<input type="password" name="password" value=""></label>
+<input type="submit" name="plist" value="Download plist File">
+<input type="submit" name="script" value="Download Script">
+	 </div>
+</form>
