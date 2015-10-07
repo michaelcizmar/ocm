@@ -344,7 +344,7 @@ CREATE TABLE `groups` (
   `users` tinyint(4) NOT NULL default '0',
   `pba` tinyint(4) NOT NULL default '0',
   `motd` tinyint(4) NOT NULL default '0',
-  `reports` text default NULL,
+  `reports` text,
   PRIMARY KEY  (`group_id`)
 ) ENGINE = INNODB;
 
@@ -910,7 +910,7 @@ CREATE TABLE `rss_feeds` (
 
 CREATE TABLE settings (
   `label` char(255) NOT NULL default '',
-  `value` mediumtext NOT NULL default '',
+  `value` mediumtext NOT NULL,
   PRIMARY KEY  (`label`)
 ) ENGINE=InnoDB;
 
