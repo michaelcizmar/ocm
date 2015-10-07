@@ -118,7 +118,7 @@ class pikaUser extends plBase
 			$row = mysql_fetch_assoc($result);
 			$row_count = $row['nbr'];
 		}
-		$sql = 	"SELECT users.*, MAX(user_sessions.last_updated) as last_active 
+		$sql = 	"SELECT users.*, FROM_UNIXTIME(MAX(user_sessions.last_updated)) as last_active 
 				FROM users 
 				LEFT JOIN user_sessions ON user_sessions.user_id = users.user_id 
 				WHERE 1" . $sql_filter . " GROUP BY users.user_id";

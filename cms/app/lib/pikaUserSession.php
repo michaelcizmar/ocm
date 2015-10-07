@@ -18,8 +18,8 @@ class pikaUserSession extends plBase
 			
 			$this->ip_address = $_SERVER['REMOTE_ADDR'];
 			$this->user_agent = $_SERVER['HTTP_USER_AGENT'];
-			$this->last_updated = date('YmdHis');
-			$this->created = date('YmdHis');
+			$this->last_updated = time();
+			$this->created = time();
 		}
 		else 
 		{
@@ -49,7 +49,7 @@ class pikaUserSession extends plBase
 		}
 		// AMW - 2011-08-02 - Added users.password_expire.
 		$sql = "SELECT user_sessions.*, users.username, users.enabled, users.session_data, users.group_id AS group_name, groups.*, users.password_expire,
-				((((TO_DAYS(CURRENT_TIMESTAMP()) - TO_DAYS(last_updated)) * 86400) + TIME_TO_SEC(CURRENT_TIMESTAMP()) - TIME_TO_SEC(last_updated))) as seconds_elapsed
+				(UNIX_TIMESTAMP() - last_updated) as seconds_elapsed
 				FROM user_sessions 
 				JOIN users ON user_sessions.user_id = users.user_id 
 				LEFT JOIN groups on groups.group_id = users.group_id 
@@ -75,7 +75,7 @@ class pikaUserSession extends plBase
 	
 	public function save()
 	{
-		$this->last_updated = date('YmdHis');
+		$this->last_updated = time();
 		parent::save();
 	}
 	
