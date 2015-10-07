@@ -8,6 +8,10 @@
 require_once('pika-danio.php');
 pika_init();
 
+/* AMW 2015-10-07 - This supresses the "Are you sure you want to resubmit this 
+	form?" prompts when you log, click on a link, then hit the back button.
+	Eventually I'll add a system-wide solution for this issue, in which case
+	this code can then be removed. */
 if(isset($_REQUEST['auth_id']) && is_numeric($_REQUEST['auth_id']))
 {
 	// 2013-08-22 AMW - Replaced reference to $plSettings, it was not working
