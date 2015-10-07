@@ -5,10 +5,6 @@
 /* http://pikasoftware.com        */
 /**********************************/
 
-require_once('app/lib/pl.php');
-$settings_path = pl_custom_directory() . '/config/settings.php';
-require_once($settings_path);
-
 require_once('pika-danio.php');
 pika_init();
 
