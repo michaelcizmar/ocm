@@ -102,8 +102,9 @@ switch ($action)
 		{
 	 		$row = mysql_fetch_assoc($result);
 			$a['last_addr'] = $row['ip_address'];
-			$a['last_active'] = date('n/d/Y g:i A',strtotime($row['last_updated']));
+			$a['last_active'] = date('n/d/Y g:i A', $row['last_updated']);
 		}
+		
 		$template = new pikaTempLib('subtemplates/system-users.html', $a, 'edit_user');
 		$template->addMenu('groups',$groups);
 		$template->addMenu('p_len',$menu_pass_length);
