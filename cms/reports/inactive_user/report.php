@@ -57,14 +57,14 @@ $safe_inactive_date_begin = mysql_real_escape_string(pl_date_mogrify($inactive_d
 $sql_derived_table_select = "SELECT * FROM( ";
 
  $sql_1 = "(SELECT users.user_id as staff,
-				MAX(user_sessions.last_updated) as action_date, 
+				FROM_UNIXTIME(MAX(user_sessions.last_updated)) as action_date, 
 				'Login' as description,
 				' ' as link,
 				' ' as link_name
 				FROM  users
 				LEFT JOIN user_sessions ON users.user_id = user_sessions.user_id
 				WHERE 1
-				AND (user_sessions.last_updated < '{$safe_inactive_date_begin}'
+				AND (FROM_UNIXTIME(user_sessions.last_updated) < '{$safe_inactive_date_begin}'
 				OR user_sessions.last_updated IS NULL)
 				GROUP BY users.user_id
 				HAVING (MAX(user_sessions.last_updated) 
