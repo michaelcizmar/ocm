@@ -108,7 +108,9 @@ function file_list($field_name = null, $field_value = null, $menu_array = null, 
                 case 'application/vnd.openxmlformats-officedocument.pres':
                 case 'application/vnd.ms-powerpoint':
 
-	            if (preg_match('/MSIE/i', $_SERVER['HTTP_USER_AGENT']))
+	            if (preg_match('/MSIE/i', $_SERVER['HTTP_USER_AGENT'])
+	            	|| preg_match('/Trident/i', $_SERVER['HTTP_USER_AGENT'])
+	            	|| preg_match('/Edge/i', $_SERVER['HTTP_USER_AGENT']))
 	            {
 	            	$safe_name = $file['doc_name'];
 	            	// AMW 2013-07-19 - Workaround for Cleveland docs with slashes in filename.
