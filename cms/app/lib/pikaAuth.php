@@ -169,6 +169,11 @@ class pikaAuth
 			$this->setMessage('0104',$msgstr,__FILE__,__LINE__);
 		}
 		
+		if ($this->is_authorized)
+		{
+			apache_note('cms_user', $this->auth_row['username']);
+		}
+		
 		return $this->is_authorized;
 	}
 	
