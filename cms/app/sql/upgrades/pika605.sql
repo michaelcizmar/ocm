@@ -18,7 +18,7 @@ CREATE TABLE outcome_goals (
   problem CHAR(2),
   active TINYINT,
   outcome_goal_order INT,
-  PRIMARY KEY  (outcome_definition_id),
+  PRIMARY KEY  (outcome_goal_id),
   KEY problem (problem)
 ) ENGINE = INNODB;
 
