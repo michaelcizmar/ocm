@@ -16,11 +16,6 @@ else
 	$problem_category = substr($problem_code, 0, 1) . 'X';
 	$problem_code = mysql_real_escape_string($problem_code);
 	$problem_category = mysql_real_escape_string($problem_category);
-	$sql = "SELECT goal, result, outcome_definition_id FROM
-		outcome_goals LEFT JOIN outcomes USING(outcome_definition_id)
-		WHERE (case_id={$case_row['case_id']} OR case_id IS NULL) 
-		AND outcome_problem IN ('{$problem_category}X', '{$problem_code}')
-		ORDER BY outcome_problem DESC, outcome_goal_order ASC";
 	$sql = "select a.outcome_goal_id, a.goal, b.result 
 			from outcome_goals AS a
 			LEFT JOIN outcomes AS b USING (outcome_goal_id)
