@@ -84,6 +84,15 @@ else
 		$i++;
 	}
 	
+	if ($i == 0)
+	{
+		$C .= "<tr>\n";
+		$C .= "<td colspan=\"2\">No goals exist for problem code {$problem_code}. 
+				<a href=\"{$base_url}/system-outcomes.php\">Add some here.</a></td>\n";
+		$C .= "</tr>\n";
+		
+	}
+	
 		$C .= "<tr>\n";
 		$C .= "<td><textarea rows=\"5\" class=\"span3\" name=\"outcome_notes\" tabindex=\"1\">{$case_row['outcome_notes']}</textarea></td>\n";
 		$C .= "<td>What other significant outcome?</td>\n";
