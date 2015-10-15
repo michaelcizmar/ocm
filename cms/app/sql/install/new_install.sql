@@ -141,6 +141,13 @@ CREATE TABLE `cases` (
   `citizen_check` tinyint(4) default NULL,
   `client_age` smallint(3) default NULL,
   `outcome` char(3) default NULL,
+  outcome_notes TEXT default NULL,
+  outcome_income_before MEDIUMINT default NULL,
+  outcome_income_after MEDIUMINT default NULL,
+  outcome_assets_before MEDIUMINT default NULL,
+  outcome_assets_after MEDIUMINT default NULL,
+  outcome_debt_before MEDIUMINT default NULL,
+  outcome_debt_after MEDIUMINT default NULL,
   `lsc_income_change` tinyint(4) default NULL,
   `just_income` char(3) default NULL,
   `main_benefit` varchar(4) default NULL,
@@ -853,6 +860,33 @@ CREATE TABLE `motd` (
   `last_modified` timestamp NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   `created` timestamp NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`motd_id`)
+) ENGINE = INNODB;
+
+--
+-- Table structure for table outcome_goals
+--
+
+CREATE TABLE outcome_goals (
+  outcome_goal_id INT NOT NULL default '0',
+  goal CHAR(128),
+  problem CHAR(2),
+  active TINYINT,
+  outcome_goal_order INT,
+  PRIMARY KEY  (outcome_definition_id),
+  KEY problem (problem)
+) ENGINE = INNODB;
+
+--
+-- Table structure for table outcome_goals
+--
+
+CREATE TABLE outcomes (
+  outcome_id INT NOT NULL default '0',
+  case_id INT,
+  outcome_goal_id INT,
+  result TINYINT,
+  PRIMARY KEY  (outcome_id),
+  KEY case_id (case_id)
 ) ENGINE = INNODB;
 
 --

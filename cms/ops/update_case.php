@@ -47,6 +47,20 @@ if ($allow_edits)
 {
 	$case_data->setValues(pl_clean_form_input($submitted_data));
 	$case_data->save();
+	
+	if (array_key_exists('outcomes', $_POST))
+	{
+		// AMW - It would be more efficient to pass all outcomes to a 
+		// "pikaCase::recordOutcomes($array)" method that could run one
+		// INSERT with multiple rows, but I don't think it needs to be
+		// optimized at this point.
+		$case_data->deleteOutcomes();
+				
+		foreach ($_POST['outcomes'] as $key => $val)
+		{
+			$case_data->addOutcome($key, $val);
+		}
+	}
 }
 
 $client_id = $case_data->getValue('client_id');
