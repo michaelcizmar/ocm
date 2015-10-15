@@ -14,6 +14,8 @@ else
 	// This is a workaround for them.
 	$problem_code = str_pad($case_row['problem'], 2, "0", STR_PAD_LEFT);
 	$problem_category = substr($problem_code, 0, 1) . 'X';
+	$problem_code = mysql_real_escape_string($problem_code);
+	$problem_category = mysql_real_escape_string($problem_category);
 	$sql = "SELECT goal, result, outcome_definition_id FROM
 		outcome_goals LEFT JOIN outcomes USING(outcome_definition_id)
 		WHERE (case_id={$case_row['case_id']} OR case_id IS NULL) 
