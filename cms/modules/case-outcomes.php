@@ -130,7 +130,7 @@ else
 	$C .= "<table class=\"table table-striped\">\n";
 	$C .= "<tr><td colspan=\"2\">If debt was an issue, answer these two questions</td></tr>\n";
 
-	$C .= draw_outcome_row('If debt was an issue, answer these two questions', 'outcome_debt_before');
+	$C .= draw_outcome_row('Actual amount of debt at the time the case was closed.', 'outcome_debt_before');
 	$C .= draw_outcome_row('If Legal Aid had not been involved, what would the amount of debt be at the time case was closed?', 'outcome_debt_after');
 
 	$C .= "</table>\n";
