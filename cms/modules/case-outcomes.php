@@ -31,7 +31,8 @@ else
 	{
 		$sql = "select a.outcome_goal_id, a.goal, 2 AS result 
 				from outcome_goals AS a
-				where problem in ('{$problem_category}', '{$problem_code}') order by outcome_goal_order ASC"; echo $sql; //exit();
+				where problem in ('{$problem_category}', '{$problem_code}') 
+				order by outcome_goal_order ASC"; echo $sql; //exit();
 		$result = mysql_query($sql) or trigger_error(mysql_error($result));		
 	}
 	
