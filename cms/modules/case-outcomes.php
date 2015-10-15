@@ -21,7 +21,8 @@ else
 	$sql = "select a.outcome_goal_id, a.goal, b.result 
 			from outcome_goals AS a
 			LEFT JOIN outcomes AS b USING (outcome_goal_id)
-			where problem in ('0', '6') AND case_id = {$case_row['case_id']} order by outcome_goal_order ASC"; //echo $sql; exit();
+			where problem in ('0', '6') AND case_id = {$case_row['case_id']} 
+			order by problem DESC, outcome_goal_order ASC"; // echo $sql; exit();
 	$result = mysql_query($sql) or trigger_error(mysql_error($result));
 
 	if (mysql_num_rows($result) == 0)
