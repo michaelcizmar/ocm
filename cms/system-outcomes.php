@@ -46,7 +46,8 @@ switch ($action)
 	case 'edit':
 	
 		$outcome = mysql_real_escape_string($outcome);
-		$main_html['content'] = "<form action=\"{$base_url}/system-outcomes.php?action=update&outcome={$outcome}\" method=\"POST\">";
+		$main_html['content'] = "<a href=\"{$base_url}/system-outcomes.php\">Return to Outcome Goals Listing</a>";
+		$main_html['content'] .= "<form action=\"{$base_url}/system-outcomes.php?action=update&outcome={$outcome}\" method=\"POST\">";
 		$main_html['content'] .= "<textarea name=\"values\" rows=\"18\" class=\"input-xxlarge\">";
 		$sql = "SELECT * FROM outcome_goals WHERE active = 1 AND problem ";
 		$sql .= " = '{$outcome}' ORDER BY outcome_goal_order ASC";
@@ -129,6 +130,7 @@ switch ($action)
 		
 		foreach ($problem_codes as $key => $value)
 		{
+			$key = str_pad($key, 2, "0", STR_PAD_LEFT);
 			$main_html['content'] .= "<a class=\"btn btn-block\" href=\"{$base_url}/system-outcomes.php?action=edit&outcome={$key}\">{$value}</a><br>\n";
 		}
 
