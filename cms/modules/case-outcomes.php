@@ -2,7 +2,7 @@
 
 $C .= "<h1>Outcomes Tracking</h1>\n";
 
-if (strlen($case_row['problem']) != 2)
+if (strlen($case_row['problem']) < 1)
 {
 	$C .= "<div>Please assign a Problem Code to this case before recording outcomes.</div>\n";
 	//$C .= pikaTempLib::plugin('lsc_problem','problem',$case_row,null,array('onchange=problem_code_lookup(this.value)'));
@@ -10,8 +10,10 @@ if (strlen($case_row['problem']) != 2)
 
 else
 {
-	$problem_code = $case_row['problem'];	
-	$problem_category = substr($case_row['problem'], 0, 1);
+	// AMW - I think there are some single digit problem codes floating around.
+	// This is a workaround for them.
+	$problem_code = str_pad($case_row['problem'], 2, "0", STR_PAD_LEFT);
+	$problem_category = substr($problem_code, 0, 1);
 	$sql = "SELECT goal, result, outcome_definition_id FROM
 		outcome_goals LEFT JOIN outcomes USING(outcome_definition_id)
 		WHERE (case_id={$case_row['case_id']} OR case_id IS NULL) 
