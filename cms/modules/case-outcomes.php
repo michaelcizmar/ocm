@@ -21,12 +21,11 @@ else
 		WHERE (case_id={$case_row['case_id']} OR case_id IS NULL) 
 		AND outcome_problem IN ('{$problem_category}X', '{$problem_code}')
 		ORDER BY outcome_problem DESC, outcome_goal_order ASC";
-	//echo $sql;
 	$sql = "select a.outcome_goal_id, a.goal, b.result 
 			from outcome_goals AS a
 			LEFT JOIN outcomes AS b USING (outcome_goal_id)
 			where problem in ('{$problem_category}', '{$problem_code}') AND case_id = {$case_row['case_id']} 
-			order by problem DESC, outcome_goal_order ASC";  echo $sql; //exit();
+			order by problem DESC, outcome_goal_order ASC";
 	$result = mysql_query($sql) or trigger_error(mysql_error($result));
 
 	if (mysql_num_rows($result) == 0)
@@ -34,7 +33,7 @@ else
 		$sql = "select a.outcome_goal_id, a.goal, 2 AS result 
 				from outcome_goals AS a
 				where problem in ('{$problem_category}', '{$problem_code}') 
-				order by outcome_goal_order ASC"; echo $sql; //exit();
+				order by outcome_goal_order ASC";
 		$result = mysql_query($sql) or trigger_error(mysql_error($result));		
 	}
 	
