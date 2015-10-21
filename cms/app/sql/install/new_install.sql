@@ -901,7 +901,7 @@ CREATE TABLE `pb_attorneys` (
   `last_name` varchar(50) default NULL,
   `extra_name` varchar(20) default NULL,
   `email` varchar(35) default NULL,
-  `firm` varchar(25) default NULL,
+  `firm` varchar(255) default NULL,
   `phone_notes` varchar(50) default NULL,
   `address` varchar(50) default NULL,
   `address2` varchar(25) default NULL,

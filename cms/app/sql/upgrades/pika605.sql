@@ -43,3 +43,5 @@ ADD COLUMN outcome_assets_before MEDIUMINT default NULL AFTER outcome_income_aft
 ADD COLUMN outcome_assets_after MEDIUMINT default NULL AFTER outcome_assets_before,
 ADD COLUMN outcome_debt_before MEDIUMINT default NULL AFTER outcome_assets_after,
 ADD COLUMN outcome_debt_after MEDIUMINT default NULL AFTER outcome_debt_before;
+
+ALTER TABLE pb_attorneys MODIFY firm VARCHAR(255);
