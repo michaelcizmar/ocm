@@ -20,20 +20,11 @@ class plCsvReportTable extends plHtmlReportTable
 	}
 	
 	public function set_header($a){
-		$this->header_contents = '';
-		
-		foreach ($a as $val){
-			$this->header_contents .= $this->format_csv_cell($val);
-		}
-		$this->header_contents .= "\n";
+		$this->header_contents = $this->format_csv_row($a);
 	}
 
 	public function add_row($a){
-		foreach ($a as $val){
-			$this->grid_contents .= $this->format_csv_cell($val);
-		}
-		
-		$this->grid_contents .= "\n";
+		$this->grid_contents .= $this->format_csv_row($a);
 	}
 
 	
@@ -47,6 +38,14 @@ class plCsvReportTable extends plHtmlReportTable
 	
 	public function format_csv_cell($str){
 		return '"' . addslashes($str) . '",';
+	}
+	
+	private function format_csv_row($row = array()) 
+	{
+		$handle = fopen('php://memory', 'w');
+		fputcsv($handle, $row);
+		fseek($handle, 0);
+		return stream_get_contents($handle);
 	}
 }
 
