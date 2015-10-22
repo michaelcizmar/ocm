@@ -998,3 +998,16 @@ August 5th, 2015
 * Small cosmetic improvements.
 * Fixed bug where text formatting would disappear.
 * Miscellaneous small bug fixes.
+
+October 22nd, 2015
+* Release version 6.05.
+* Added Outcomes module.
+* Added Pro Bono Mail Merge report.
+* Added CSV data downloads.
+* Added Windows PowerShell script that can automate downloads of all tables to CSV files.
+* Added PHP script and Mac OS LaunchAgent to automate downloads of all tables to CSV files.
+* Funding code autofill on time slips can now be turned off.
+* Changed the "Unduplicated" option on the LSC Household report to default to "Yes", matching other reports.
+* Added "cms_user" Apache variable, so usernames can be recorded in web server logs.
+* The field "firm" for pro bono attorneys changed from 25 characters to 255 characters.
+* Miscellaneous bug fixes.
