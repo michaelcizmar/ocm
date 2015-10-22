@@ -43,7 +43,6 @@ function sql_to_csv($sql, $redact_column = null)
 		
 		fputcsv($output, $row);
 		flush();
-		ob_flush();
 	}
 	
 	fclose($output);
