@@ -28,6 +28,7 @@ else
 		$sql = "select a.outcome_goal_id, a.goal, 2 AS result 
 				from outcome_goals AS a
 				where problem in ('{$problem_category}', '{$problem_code}') 
+				AND a.active = 1 AND a.goal IS NOT NULL
 				order by problem DESC, outcome_goal_order ASC";
 		$result = mysql_query($sql) or trigger_error(mysql_error($result));		
 	}
