@@ -87,8 +87,8 @@ while ($row = mysql_fetch_assoc($result))
 	while ($rb = mysql_fetch_assoc($notesdb))
 	{
 		$notes .= pl_date_unmogrify($rb['act_date']);
-		$notes .= ": " . pl_html_text($rb['summary']);
-		$notes .= "  " . pl_html_text($rb['notes']) . "\n";
+		$notes .= ": " . $rb['summary'];
+		$notes .= "  " . $rb['notes'] . "\n";
 	}
 	
 	// limit notes size
@@ -96,6 +96,9 @@ while ($row = mysql_fetch_assoc($result))
 	{
 		$notes = substr($notes, 0, 499) . " ...";
 	}
+	
+	$notes = pl_html_text($notes);
+	
 	// Return Friendly names for User/Co-counsels
 	if(isset($row['user_id']) && $row['user_id']) {
 		if(isset($staff[$row['user_id']]) && $staff[$row['user_id']]) {
