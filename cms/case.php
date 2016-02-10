@@ -35,7 +35,7 @@ $case_id = pl_grab_get('case_id', null, 'number');
 // first off, make sure there's a case_id
 if (!is_numeric($case_id))
 {
-	trigger_error('No case_id was specified');
+	header("Location: {$base_url}/cal_week.php");
 }
 
 /* Get case record data (it'll be needed on every page is some form), store in $case_row. */
