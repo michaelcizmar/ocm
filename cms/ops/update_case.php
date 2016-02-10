@@ -45,6 +45,13 @@ $allow_edits = pika_authorize('edit_case', $case_row);
 	
 if ($allow_edits) 
 {
+	if (pl_settings_get('open_outcomes') && $case_row['close_date'] === null 
+		&& isset($submitted_data['close_date'])
+		&& strlen($submitted_data['close_date']) > 0)
+	{
+		$screen = 'outcomes';
+	}
+	
 	$case_data->setValues(pl_clean_form_input($submitted_data));
 	$case_data->save();
 	
