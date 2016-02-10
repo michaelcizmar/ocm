@@ -98,7 +98,8 @@ $list_of_settings = array('cookie_prefix', 'enable_system', 'enable_compression'
 	'enable_benchmark', 'autonumber_on_new_case',
 	'owner_name', 'admin_email', 'act_interval', 
 	'time_zone', 'time_zone_offset', 'session_timeout', 'pass_min_strength',
-	'pass_min_length', 'password_expire', 'force_https', 'autofill_time_funding');
+	'pass_min_length', 'password_expire', 'force_https', 'autofill_time_funding',
+	'open_outcomes');
 
 switch ($action)
 {
