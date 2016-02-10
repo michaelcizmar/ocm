@@ -1030,7 +1030,7 @@ CREATE TABLE `zip_codes` (
 ) ENGINE=MyISAM;
 
 INSERT INTO `settings` VALUES ('act_interval','0'),('admin_email','admin@legalaidprogram'),('autofill_time_funding','1'),
-('autonumber_on_new_case','1'),('cookie_prefix','Pika CMS at Legal Services Program'),('enable_benchmark','0'),('enable_compression','1'),('enable_system','1'),('force_https','1'),('owner_name','Legal Services Program'),('password_expire','0'),('pass_min_length','8'),('pass_min_strength','3'),('session_timeout','28800'),('time_zone','America/New_York'),('time_zone_offset','0'),('multi_outcomes', '1');
+('autonumber_on_new_case','1'),('cookie_prefix','Pika CMS at Legal Services Program'),('enable_benchmark','0'),('enable_compression','1'),('enable_system','1'),('force_https','1'),('owner_name','Legal Services Program'),('password_expire','0'),('pass_min_length','8'),('pass_min_strength','3'),('session_timeout','28800'),('time_zone','America/New_York'),('time_zone_offset','0'),('open_outcomes', '0'),('multi_outcomes', '1');
 
 INSERT INTO `case_tabs` VALUES (1, 'Notes', 'case-act.php', 1, 1, 0, 1, '2009-07-21 17:34:51', '2009-12-29 23:08:37');
 INSERT INTO `case_tabs` VALUES (2, 'Conflicts', 'case-conflict.php', 1, 2, 0, 1, '2009-07-21 17:39:16', '2009-11-23 15:11:04');
