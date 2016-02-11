@@ -40,44 +40,72 @@ else
 	
 	while ($row = mysql_fetch_assoc($result))
 	{
-		switch ($row['result'])
+		if (pl_settings_get('multi_outcomes'))
 		{
-			case 1:
-			$yes_checked = " checked";
-			$no_checked = "";
-			$na_checked = "";
-			break;
+			switch ($row['result'])
+			{
+				case 1:
+				$yes_checked = " checked";
+				$no_checked = "";
+				$na_checked = "";
+				break;
+				
+				case 0:
+				$yes_checked = "";
+				$no_checked = " checked";
+				$na_checked = "";
+				break;
+				
+				case 2:
+				default:
+				$yes_checked = "";
+				$no_checked = "";
+				$na_checked = " checked";
+				break;			
+			}
 			
-			case 0:
-			$yes_checked = "";
-			$no_checked = " checked";
-			$na_checked = "";
-			break;
 			
-			case 2:
-			default:
-			$yes_checked = "";
-			$no_checked = "";
-			$na_checked = " checked";
-			break;			
+			$C .= "<tr>\n";
+			$C .= "<td>
+			<label class=\"radio inline\">
+			<input type=\"radio\" name=\"outcomes[{$row['outcome_goal_id']}]\" id=\"optionsRadios{$i}\" value=\"1\"{$yes_checked}>
+			Yes</label>
+			<label class=\"radio inline\">
+			<input type=\"radio\" name=\"outcomes[{$row['outcome_goal_id']}]\" id=\"optionsRadios{$i}\" value=\"0\"{$no_checked}>
+			No</label>
+			<label class=\"radio inline\">
+			<input type=\"radio\" name=\"outcomes[{$row['outcome_goal_id']}]\" id=\"optionsRadios{$i}\" value=\"2\"{$na_checked}>
+			N/A</label>
+			</td>\n";
+			$C .= "<td>{$row['goal']}</td>\n";
+			$C .= "</tr>\n";
 		}
 		
+		else
+		{
+			$C .= "<tr>\n";
+			$C .= "<td>
+			<label class=\"radio inline\">
+			<input type=\"radio\" name=\"outcomes[{$row['outcome_goal_id']}]\" id=\"optionsRadios{$i}\" value=\"1\"{$yes_checked}>
+			{$row['goal']}</label>
+			</td>\n";
+			$C .= "<td></td>\n";
+			$C .= "</tr>\n";			
+		}
 		
+		$i++;
+	}
+
+	if (pl_settings_get('multi_outcomes') != true)
+	{
 		$C .= "<tr>\n";
 		$C .= "<td>
 		<label class=\"radio inline\">
 		<input type=\"radio\" name=\"outcomes[{$row['outcome_goal_id']}]\" id=\"optionsRadios{$i}\" value=\"1\"{$yes_checked}>
-		Yes</label>
-		<label class=\"radio inline\">
-		<input type=\"radio\" name=\"outcomes[{$row['outcome_goal_id']}]\" id=\"optionsRadios{$i}\" value=\"0\"{$no_checked}>
-		No</label>
-		<label class=\"radio inline\">
-		<input type=\"radio\" name=\"outcomes[{$row['outcome_goal_id']}]\" id=\"optionsRadios{$i}\" value=\"2\"{$na_checked}>
-		N/A</label>
+		None</label>
 		</td>\n";
-		$C .= "<td>{$row['goal']}</td>\n";
+		$C .= "<td></td>\n";
 		$C .= "</tr>\n";
-		$i++;
 	}
 	
 	if ($i == 0)
