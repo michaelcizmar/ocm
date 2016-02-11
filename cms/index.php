@@ -54,6 +54,7 @@ else
 	while ($row = mysql_fetch_assoc($result))
 	{
 		$row['staff_name'] = pl_text_name($row);
+		$row['content'] = htmlspecialchars($row['content'], ENT_COMPAT, 'ISO-8859-1');
 		$row['summary_content'] = $row['content'];
 		if(strlen($row['content']) > 140) 
 		{
