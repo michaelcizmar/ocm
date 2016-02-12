@@ -68,6 +68,13 @@ if ($allow_edits)
 			$case_data->addOutcome($key, $val);
 		}
 	}
+	
+	else if (array_key_exists('single_outcome', $_POST))
+	{
+		$case_data->deleteOutcomes();
+		$case_data->addOutcome($single_outcome, 1);
+	}
+
 }
 
 $client_id = $case_data->getValue('client_id');
