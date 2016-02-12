@@ -72,7 +72,7 @@ if ($allow_edits)
 	else if (array_key_exists('single_outcome', $_POST))
 	{
 		$case_data->deleteOutcomes();
-		$case_data->addOutcome($single_outcome, 1);
+		$case_data->addOutcome(pl_grab_post('single_outcome', null, 'number'), 1);
 	}
 
 }
