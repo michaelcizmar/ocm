@@ -95,18 +95,6 @@ else
 		
 		$i++;
 	}
-
-	if (pl_settings_get('multi_outcomes') != true)
-	{
-		$C .= "<tr>\n";
-		$C .= "<td>
-		<label class=\"radio inline\">
-		<input type=\"radio\" name=\"single_outcome\" id=\"optionsRadios{$i}\" value=\"0\">
-		None</label>
-		</td>\n";
-		$C .= "<td></td>\n";
-		$C .= "</tr>\n";
-	}
 	
 	if ($i == 0)
 	{
