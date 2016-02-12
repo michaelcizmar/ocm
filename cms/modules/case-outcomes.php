@@ -83,10 +83,20 @@ else
 		
 		else
 		{
+			if ($row['result'] == 1)
+			{
+				$checked = " checked";
+			}
+			
+			else
+			{
+				$checked = "";
+			}
+			
 			$C .= "<tr>\n";
 			$C .= "<td>
 			<label class=\"radio inline\">
-			<input type=\"radio\" name=\"outcomes[{$row['outcome_goal_id']}]\" id=\"optionsRadios{$i}\" value=\"1\"{$yes_checked}>
+			<input type=\"radio\" name=\"single_outcome\" id=\"optionsRadios{$i}\" value=\"{$row['outcome_goal_id']}\"{$checked}>
 			{$row['goal']}</label>
 			</td>\n";
 			$C .= "<td></td>\n";
@@ -101,7 +111,7 @@ else
 		$C .= "<tr>\n";
 		$C .= "<td>
 		<label class=\"radio inline\">
-		<input type=\"radio\" name=\"outcomes[{$row['outcome_goal_id']}]\" id=\"optionsRadios{$i}\" value=\"1\"{$yes_checked}>
+		<input type=\"radio\" name=\"single_outcome\" id=\"optionsRadios{$i}\" value=\"0\">
 		None</label>
 		</td>\n";
 		$C .= "<td></td>\n";
