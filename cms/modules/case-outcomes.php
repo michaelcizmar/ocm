@@ -21,7 +21,7 @@ else
 			LEFT JOIN outcomes AS b USING (outcome_goal_id)
 			where problem in ('{$problem_category}', '{$problem_code}') AND 
 			(case_id = {$case_row['case_id']} OR ISNULL(case_id)) 
-			order by problem DESC, outcome_goal_order ASC";
+			order by problem ASC, outcome_goal_order ASC";
 	$result = mysql_query($sql) or trigger_error(mysql_error($result));	
 	
 	$C .= "<form action=\"{$base_url}/ops/update_case.php\" method=\"POST\">";
