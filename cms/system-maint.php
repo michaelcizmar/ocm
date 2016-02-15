@@ -193,6 +193,7 @@ switch ($action) {
 		$template = new pikaTempLib('subtemplates/system-maint.html',array());
 		$main_html['content'] .= $template->draw();
 		
+		/*
 		$disabled = '';
 		$not_available = '';
 		
@@ -209,6 +210,7 @@ switch ($action) {
 		$main_html['content'] .= $disabled . '>
 		<input type="hidden" name="action" value="ssn_truncate">
 		</form>';
+		*/
 
 		$disabled = '';
 		$not_available = '';
