@@ -151,9 +151,82 @@ switch ($action) {
 					 <a href=\"{$base_url}/system-maint.php\">System Maintenance</a> &gt;
 					 Populate Metaphone";
 		break;
+		
+	case 'ssn_truncate':
+		set_time_limit(0);
+		$result = mysql_query("UPDATE contacts SET ssn = RIGHT(ssn, 4)") or trigger_error(mysql_error());
+		$result = mysql_query("ALTER TABLE contacts MODIFY ssn CHAR(4)") or trigger_error(mysql_error());
+		$result = mysql_query("UPDATE aliases SET ssn = RIGHT(ssn, 4)") or trigger_error(mysql_error());
+		$result = mysql_query("ALTER TABLE aliases MODIFY ssn CHAR(4)") or trigger_error(mysql_error());
+		$main_html['content'] .= 'SSNs have been truncated to the last 4 digits.';
+		$main_html['nav'] = "<a href=\"{$base_url}\">Pika Home</a> &gt;
+					 <a href=\"{$base_url}/site_map.php\">Site Map</a> &gt;
+					 <a href=\"{$base_url}/system-maint.php\">System Maintenance</a> &gt;
+					 Populate Metaphone";
+		break;
+		
+	case 'ssn_remove':
+		set_time_limit(0);
+		$result = mysql_query("UPDATE contacts SET ssn = NULL") or trigger_error(mysql_error());
+		$result = mysql_query("ALTER TABLE contacts MODIFY ssn enum('deactivated')") or trigger_error(mysql_error());
+		$result = mysql_query("UPDATE aliases SET ssn = NULL") or trigger_error(mysql_error());
+		$result = mysql_query("ALTER TABLE aliases MODIFY ssn enum('deactivated')") or trigger_error(mysql_error());
+		$main_html['content'] .= 'SSNs have been removed from the data.';
+		$main_html['nav'] = "<a href=\"{$base_url}\">Pika Home</a> &gt;
+					 <a href=\"{$base_url}/site_map.php\">Site Map</a> &gt;
+					 <a href=\"{$base_url}/system-maint.php\">System Maintenance</a> &gt;
+					 Populate Metaphone";
+		break;
+		
 	default:
+		$size_of_ssn = '';
+		$result = mysql_query("DESCRIBE contacts") or trigger_error(mysql_error());
+		
+		while ($row = mysql_fetch_assoc($result))
+		{
+			if ($row['Field'] == 'ssn')
+			{
+				$size_of_ssn = $row['Type'];
+			}
+		}
+		
 		$template = new pikaTempLib('subtemplates/system-maint.html',array());
 		$main_html['content'] .= $template->draw();
+		
+		$disabled = '';
+		$not_available = '';
+		
+		if ($size_of_ssn != 'varchar(11)')
+		{
+			$disabled = ' disabled';
+			$not_available = '<p>The SSN Truncate function is not available because this database does not have a full length, 11-character SSN field.</p>';
+		}
+		
+		$main_html['content'] .= '<form action="' . $base_url . '/system-maint.php" method="POST">
+		<h2>Truncate SSNs</h2>';
+		$main_html['content'] .= $not_available . 
+		'<input type="submit" name="submit" value="Truncate SSNs" onclick="if ( confirm(\'Are you sure you want to shorten all SSNs to the last four digits?  This operation can not be undone.\')) { return confirm(\'Click OK to truncate all SSNs.\'); } else {return false;}"';
+		$main_html['content'] .= $disabled . '>
+		<input type="hidden" name="action" value="ssn_truncate">
+		</form>';
+
+		$disabled = '';
+		$not_available = '';
+		
+		if ($size_of_ssn == 'enum(\'deactivated\')')
+		{
+			$disabled = ' disabled';
+			$not_available = '<p>The SSN Delete function is not available because the SSNs in this database have already been deleted.</p>';
+		}
+
+		$main_html['content'] .= '<form action="' . $base_url . '/system-maint.php" method="POST">
+		<h2>Remove SSNs</h2>';
+		$main_html['content'] .= $not_available . 
+		'<input type="submit" name="submit" value="Remove SSNs" onclick="if ( confirm(\'Are you sure you want to remove all SSNs?  This operation can not be undone.\')) { return confirm(\'Click OK to delete all SSNs.\'); } else {return false;}"';
+		$main_html['content'] .= $disabled . '>
+		<input type="hidden" name="action" value="ssn_remove">
+		</form>';
+		
 		$main_html['nav'] = "<a href=\"{$base_url}\">Pika Home</a> &gt;
 					 <a href=\"{$base_url}/site_map.php\">Site Map</a> &gt;
 					 System Maintenance";
