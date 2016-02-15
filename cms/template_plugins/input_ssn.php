@@ -18,16 +18,17 @@ function input_ssn($field_name = null, $field_value = null, $menu_array = null, 
 		return '';
 	}
 	
-	$C .= "SSN:<br/>\n";
-	
-	if ($ssn_type == 'varchar(4)' || $ssn_type == 'char(4)')
+	else if ($ssn_type == 'varchar(4)' || $ssn_type == 'char(4)')
 	{
-		$C .= '<input type="text" name="ssn" value="' . htmlentities($field_value) . '" maxlength="4" size="22" tabindex="1">';
-		
+		$C .= "Last Four Digits of SSN:<br/>\n";	
+		$C .= '<div class="input-prepend"><div class="add-on">???-??-</div>';
+		$C .= '<input type="text" name="ssn" class="span2" value="' . htmlentities($field_value) . '" maxlength="4" tabindex="1">';
+		$C .= "</div>";		
 	}
 	
 	else
 	{
+		$C .= "SSN:<br/>\n";
 		$C .= '<input type="text" name="ssn" onkeyup="pika_ssn(this);" value="' . htmlentities($field_value) . '" maxlength="11" size="22" tabindex="1">';
 	}
 
