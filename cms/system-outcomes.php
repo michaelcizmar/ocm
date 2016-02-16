@@ -94,23 +94,27 @@ switch ($action)
 		foreach($new_goals as $goal)
 		{
 			$goal = trim($goal);
-			$z = array_search($goal, $old_goals);
 			
-			if ($z !== false)
+			if (strlen($goal) > 0)
 			{
-				$g = new pikaOutcomeGoal($z);
+				$z = array_search($goal, $old_goals);
+				
+				if ($z !== false)
+				{
+					$g = new pikaOutcomeGoal($z);
+				}
+				
+				else
+				{
+					$g = new pikaOutcomeGoal();
+					$g->goal = $goal;
+					$g->problem = $outcome;
+				}
+				
+				$g->active = 1;
+				$g->outcome_goal_order = $i++;
+				$g->save();
 			}
-			
-			else
-			{
-				$g = new pikaOutcomeGoal();
-				$g->goal = $goal;
-				$g->problem = $outcome;
-			}
-			
-			$g->active = 1;
-			$g->outcome_goal_order = $i++;
-			$g->save();
 		}
 
 		header("Location: {$base_url}/system-outcomes.php?action=edit&outcome={$outcome}");
