@@ -532,6 +532,8 @@ function pl_clean_form_input($form_str, $mode = 'nomode')
 		case 'primary_key':
 		case 'nomode':
 		default:
+		$str = str_replace('<', '&lt;', $str);
+		$str = str_replace('>', '&gt;', $str);
 		
 		break;
 	}
