@@ -20,7 +20,7 @@ else
 			from outcome_goals AS a
 			LEFT JOIN outcomes AS b USING (outcome_goal_id)
 			where problem in ('{$problem_category}', '{$problem_code}') AND 
-			(case_id = {$case_row['case_id']} OR ISNULL(case_id)) 
+			(case_id = {$case_row['case_id']} OR (ISNULL(case_id) AND active = 1)) 
 			order by problem ASC, outcome_goal_order ASC";
 	$result = mysql_query($sql) or trigger_error(mysql_error($result));	
 	
