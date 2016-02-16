@@ -56,7 +56,6 @@ else
 		$motd_id = pl_clean_html($row['motd_id']);
 		
 		$row['staff_name'] =  pl_clean_html(pl_text_name($row));
-		$row['content'] = pl_clean_html($row['content']);
 		$row['summary_content'] = pl_clean_html($row['content']);
 		
 		if(strlen($row['content']) > 140) 
