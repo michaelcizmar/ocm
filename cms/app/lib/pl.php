@@ -532,6 +532,8 @@ function pl_clean_form_input($form_str, $mode = 'nomode')
 		case 'primary_key':
 		case 'nomode':
 		default:
+		$str = str_replace('<', '&lt;', $str);
+		$str = str_replace('>', '&gt;', $str);
 		
 		break;
 	}
@@ -549,6 +551,14 @@ function pl_clean_html($str)
 {
 	// 2013-06-27 AMW - Added version check.
 	$version = phpversion();
+	
+	/*	Greater Than and Less Than characters are no longer allowed to be stored
+		in the database.  The are filtered out when submitted via GET or POST.
+		Restore them here, so htmlspecialchar (below) doesn't double encode
+		them.
+		*/
+	$str = str_replace('&lt;', '<', $str);
+	$str = str_replace('&gt;', '>', $str);
 	
 	if ($version[0] > 4 && $version[1] > 3)
 	{
