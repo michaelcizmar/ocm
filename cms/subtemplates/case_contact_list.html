@@ -24,16 +24,15 @@
 		</td>
 	</tr>
 	<tr>
-		<td class="clf">
-			SSN: <br/>
-			<input type="text" name="ssn" onkeyup="pika_ssn(this);" value="%%[ssn]%%" maxlength="11" tabindex="1"/><br/>
-		</td>
 		<td class="clf" colspan="2">
 			Telephone Number: <br/>
 			<span class="maskt">
 			(<input type=text name="area_code" value="%%[area_code]%%" onkeyup="pika_area_code(this, 3, 'phone');" style="width: 2em;" maxlength="3" tabindex=1 class=maskf>) 
 			<input type=text name="phone" value="%%[phone]%%" onkeyup="pika_phone(this);" style="width: 11.2em;" maxlength="8" tabindex="1" class="maskf">
 			</span>
+		</td>
+		<td class="clf">
+			%%[ssn_compat_mode]%%
 		</td>
 		<td class="clf" colspan="2">
 			<input type="hidden" name="case_id" value="%%[case_id]%%"/>

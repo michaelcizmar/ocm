@@ -2513,6 +2513,12 @@ function pl_template_sub($str, $template_data)
 		// we have the name, now replace the first and any additional fields
 		$newstr = str_replace($tpl_prefix . $next_name . $tpl_suffix, $app_settings[$next_name], substr($str, $pos));
 	}
+	
+	else if ('ssn_compat_mode' == $next_name)
+	{
+		require_once('template_plugins/input_ssn.php');
+		$newstr = str_replace($tpl_prefix . $next_name . $tpl_suffix, input_ssn('ssn', $template_data['ssn']), substr($str, $pos));
+	}
 
 	// Leave blank if no match is found in either the template data or the app. settings.
 	else
