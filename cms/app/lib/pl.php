@@ -527,11 +527,6 @@ function pl_clean_form_input($form_str, $mode = 'nomode')
 		break;
 		
 		
-		case 'xss':
-		$str = htmlspecialchars($str, ENT_COMPAT, 'ISO-8859-1');
-		break;
-		
-		
 		case 'text':
 		case 'unformatted':
 		case 'primary_key':
