@@ -53,13 +53,16 @@ else
 {
 	while ($row = mysql_fetch_assoc($result))
 	{
-		$row['staff_name'] = pl_text_name($row);
-		$row['content'] = htmlspecialchars($row['content'], ENT_COMPAT, 'ISO-8859-1');
-		$row['summary_content'] = $row['content'];
+		$motd_id = pl_clean_html($row['motd_id']);
+		
+		$row['staff_name'] =  pl_clean_html(pl_text_name($row));
+		$row['content'] = pl_clean_html($row['content']);
+		$row['summary_content'] = pl_clean_html($row['content']);
+		
 		if(strlen($row['content']) > 140) 
 		{
 			$row['summary_content'] = pl_html_text(substr($row['content'],0,140));
-			$row['summary_content'] .= " ... (<i><a href=\"#\" onclick=\"toggleMotd({$row['motd_id']});" .
+			$row['summary_content'] .= " ... (<i><a href=\"#\" onclick=\"toggleMotd({$motd_id});" .
 										 " return false;\">View Full Text</a></i>)";
 		}
 		
