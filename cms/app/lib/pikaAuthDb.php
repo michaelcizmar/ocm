@@ -106,6 +106,12 @@ class pikaAuthDb
 				}
 			}
 			
+			else
+			{
+				$msgstr = 'The Login Credentials you supplied are invalid.  Please re-check your Username and Password and try again.';
+				$this->setMessage('0100',$msgstr,__FILE__,__LINE__);
+			}
+			
 		}
 		elseif(!is_null($identity))
 		{ 
