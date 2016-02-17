@@ -83,14 +83,14 @@ class pikaAuthDb
 			
 			if (mysql_num_rows($result) == 1)
 			{
-				if (PHP_VERSION_ID >= 50307)
+				if (PHP_VERSION_ID >= 50303)
 				{
 					require_once('password_hash_compat.php');
 				}
 				
 				$row = mysql_fetch_assoc($result);
 				// one user record matched the username and password
-				if (PHP_VERSION_ID >= 50307 && password_verify($credential, $row['password']))
+				if (PHP_VERSION_ID >= 50303 && password_verify($credential, $row['password']))
 				{  // Identity & Credential match existing records - allow login
 					$this->is_authorized = true;
 					$this->auth_row = $row;
@@ -101,7 +101,7 @@ class pikaAuthDb
 					$this->is_authorized = true;
 					$this->auth_row = $row;
 					
-					if (PHP_VERSION_ID >= 50307)
+					if (PHP_VERSION_ID >= 50303)
 					{
 						/*	While we have the password in memory, replace the 
 							stored md5 value with a password_hash value.
