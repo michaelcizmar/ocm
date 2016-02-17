@@ -83,6 +83,8 @@ class pikaAuthDb
 			
 			if (mysql_num_rows($result) == 1)
 			{
+				require_once('password_hash_compat.php');
+				
 				$row = mysql_fetch_assoc($result);
 				// one user record matched the username and password
 				if (password_verify($credential, $row['password']))
