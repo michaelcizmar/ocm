@@ -90,13 +90,13 @@ class pikaAuthDb
 				if (password_verify($credential, $row['password']))
 				{  // Identity & Credential match existing records - allow login
 					$this->is_authorized = true;
-					$this->auth_row = mysql_fetch_assoc($result);
+					$this->auth_row = $row;
 				}
 				
 				else if (md5($credential) == $row['password'])
 				{
 					$this->is_authorized = true;
-					$this->auth_row = mysql_fetch_assoc($result);
+					$this->auth_row = $row;
 					
 					/*	While we have the password in memory, replace the 
 						stored md5 value with a password_hash value.
