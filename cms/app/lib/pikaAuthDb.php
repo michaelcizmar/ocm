@@ -95,6 +95,12 @@ class pikaAuthDb
 				
 				else if (md5($credential) == $row['password'])
 				{
+					$this->is_authorized = true;
+					$this->auth_row = mysql_fetch_assoc($result);
+					
+					/*	While we have the password in memory, replace the 
+						stored md5 value with a password_hash value.
+						*/
 					require_once('pikaUser.php');
 					$u = new pikaUser($user_id);
 					$u->setValue('password', password_hash($credential, PASSWORD_DEFAULT));
