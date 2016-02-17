@@ -840,6 +840,16 @@ function pl_date_unmogrify($date)
 }
 
 
+function pl_db_column_type($table, $column)
+{
+	$clean_table = mysql_real_escape_string($table);
+	$clean_column = mysql_real_escape_string($column);
+	$result = mysql_query("SHOW COLUMNS FROM {$clean_table} WHERE Field = '{$clean_column}'") or trigger_error(mysql_error());
+	$row = mysql_fetch_assoc($result) or trigger_error(mysql_error());
+	return $row['Type'];
+}
+
+
 function pl_error_fatal($errno = null, $errstr = null, $errfile = null, $errline = null)
 {
 	$str = "
