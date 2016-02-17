@@ -7,6 +7,7 @@
  * @copyright 2012 The Authors
  */
 
+namespace {
 
     if (!defined('PASSWORD_BCRYPT')) {
         /**
@@ -91,8 +92,8 @@
                         trigger_error('password_hash(): Non-string salt parameter supplied', E_USER_WARNING);
                         return null;
                 }
-                if (_strlen($salt) < $required_salt_len) {
-                    trigger_error(sprintf("password_hash(): Provided salt is too short: %d expecting %d", _strlen($salt), $required_salt_len), E_USER_WARNING);
+                if (PasswordCompat\binary\_strlen($salt) < $required_salt_len) {
+                    trigger_error(sprintf("password_hash(): Provided salt is too short: %d expecting %d", PasswordCompat\binary\_strlen($salt), $required_salt_len), E_USER_WARNING);
                     return null;
                 } elseif (0 == preg_match('#^[a-zA-Z0-9./]+$#D', $salt)) {
                     $salt_req_encoding = true;
@@ -119,7 +120,7 @@
                     $local_buffer = '';
                     while ($read < $raw_salt_len) {
                         $local_buffer .= fread($file, $raw_salt_len - $read);
-                        $read = _strlen($local_buffer);
+                        $read = PasswordCompat\binary\_strlen($local_buffer);
                     }
                     fclose($file);
                     if ($read >= $raw_salt_len) {
@@ -127,8 +128,8 @@
                     }
                     $buffer = str_pad($buffer, $raw_salt_len, "\0") ^ str_pad($local_buffer, $raw_salt_len, "\0");
                 }
-                if (!$buffer_valid || _strlen($buffer) < $raw_salt_len) {
-                    $buffer_length = _strlen($buffer);
+                if (!$buffer_valid || PasswordCompat\binary\_strlen($buffer) < $raw_salt_len) {
+                    $buffer_length = PasswordCompat\binary\_strlen($buffer);
                     for ($i = 0; $i < $raw_salt_len; $i++) {
                         if ($i < $buffer_length) {
                             $buffer[$i] = $buffer[$i] ^ chr(mt_rand(0, 255));
@@ -150,13 +151,13 @@
                 $base64_string = base64_encode($salt);
                 $salt = strtr(rtrim($base64_string, '='), $base64_digits, $bcrypt64_digits);
             }
-            $salt = _substr($salt, 0, $required_salt_len);
+            $salt = PasswordCompat\binary\_substr($salt, 0, $required_salt_len);
 
             $hash = $hash_format . $salt;
 
             $ret = crypt($password, $hash);
 
-            if (!is_string($ret) || _strlen($ret) != $resultLength) {
+            if (!is_string($ret) || PasswordCompat\binary\_strlen($ret) != $resultLength) {
                 return false;
             }
 
@@ -185,7 +186,7 @@
                 'algoName' => 'unknown',
                 'options' => array(),
             );
-            if (_substr($hash, 0, 4) == '$2y$' && _strlen($hash) == 60) {
+            if (PasswordCompat\binary\_substr($hash, 0, 4) == '$2y$' && PasswordCompat\binary\_strlen($hash) == 60) {
                 $return['algo'] = PASSWORD_BCRYPT;
                 $return['algoName'] = 'bcrypt';
                 list($cost) = sscanf($hash, "$2y$%d$");
@@ -235,12 +236,12 @@
                 return false;
             }
             $ret = crypt($password, $hash);
-            if (!is_string($ret) || _strlen($ret) != _strlen($hash) || _strlen($ret) <= 13) {
+            if (!is_string($ret) || PasswordCompat\binary\_strlen($ret) != PasswordCompat\binary\_strlen($hash) || PasswordCompat\binary\_strlen($ret) <= 13) {
                 return false;
             }
 
             $status = 0;
-            for ($i = 0; $i < _strlen($ret); $i++) {
+            for ($i = 0; $i < PasswordCompat\binary\_strlen($ret); $i++) {
                 $status |= (ord($ret[$i]) ^ ord($hash[$i]));
             }
 
@@ -248,6 +249,9 @@
         }
     }
 
+}
+
+namespace PasswordCompat\binary {
 
     if (!function_exists('PasswordCompat\\binary\\_strlen')) {
 
@@ -310,3 +314,4 @@
         }
 
     }
+}
