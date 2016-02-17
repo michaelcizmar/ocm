@@ -20,7 +20,6 @@ class pikaAuthDb
 	private $table_name = 'users';
 	private $identity_column = 'username';
 	private $credential_column = 'password';
-	private $credential_funct = 'md5';
 	
 	protected $is_authorized = false;
 	protected $auth_row = array();
@@ -37,9 +36,9 @@ class pikaAuthDb
 	 * @param string $table_name = name of the database table to check
 	 * @param string $identity_column = name of the column in $table_name containing user identity (e.g. username)
 	 * @param string $credential_column = name of the column in $table_name containing user credential (e.g. password)
-	 * @param string $credential_funct = name of DB supported function for hashing credential (i.e. MD5, PASSWORD)
+	 * @param string $deprecated = DEPRECATED; was name of DB supported function for hashing credential (i.e. MD5, PASSWORD)
 	 */
-	public function __construct($table_name = null,$identity_column = null,$credential_column = null,$credential_funct = null)
+	public function __construct($table_name = null,$identity_column = null,$credential_column = null,$deprecated = null)
 	{
 		$this->setTableName($table_name);
 		if(!is_null($identity_column) && strlen($identity_column) > 0)
@@ -50,7 +49,6 @@ class pikaAuthDb
 		{
 			$this->credential_column = $credential_column;		
 		}
-		$this->setCredentialFunct($credential_funct);
 	}
 	
 	/**
@@ -64,20 +62,6 @@ class pikaAuthDb
 		{
 			$this->table_name = $table_name;
 		}
-	}
-	
-	/**
-	 * public function setCredentialFunct(
-	 *
-	 * @param string $credential_funct - sets the name of the function to use to hash password (ex. md5,sha1)
-	 */
-	public function setCredentialFunct($credential_funct = null)
-	{
-		if(is_null($credential_funct) || function_exists($credential_funct))
-		{
-			$this->credential_funct = $credential_funct;
-		}
-		
 	}
 	
 	public function authenticate($identity = null,$credential = null)
