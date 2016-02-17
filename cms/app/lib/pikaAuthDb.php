@@ -83,6 +83,7 @@ class pikaAuthDb
 			
 			if (mysql_num_rows($result) == 1)
 			{
+				$row = mysql_fetch_assoc($result);
 				// one user record matched the username and password
 				if (password_verify($credential, $row['password']))
 				{  // Identity & Credential match existing records - allow login
