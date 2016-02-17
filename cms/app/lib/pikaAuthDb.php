@@ -20,7 +20,6 @@ class pikaAuthDb
 	private $table_name = 'users';
 	private $identity_column = 'username';
 	private $credential_column = 'password';
-	private $credential_funct = 'md5';
 	
 	protected $is_authorized = false;
 	protected $auth_row = array();
@@ -37,9 +36,9 @@ class pikaAuthDb
 	 * @param string $table_name = name of the database table to check
 	 * @param string $identity_column = name of the column in $table_name containing user identity (e.g. username)
 	 * @param string $credential_column = name of the column in $table_name containing user credential (e.g. password)
-	 * @param string $credential_funct = name of DB supported function for hashing credential (i.e. MD5, PASSWORD)
+	 * @param string $deprecated = DEPRECATED; was name of DB supported function for hashing credential (i.e. MD5, PASSWORD)
 	 */
-	public function __construct($table_name = null,$identity_column = null,$credential_column = null,$credential_funct = null)
+	public function __construct($table_name = null,$identity_column = null,$credential_column = null,$deprecated = null)
 	{
 		$this->setTableName($table_name);
 		if(!is_null($identity_column) && strlen($identity_column) > 0)
@@ -50,7 +49,6 @@ class pikaAuthDb
 		{
 			$this->credential_column = $credential_column;		
 		}
-		$this->setCredentialFunct($credential_funct);
 	}
 	
 	/**
@@ -66,20 +64,6 @@ class pikaAuthDb
 		}
 	}
 	
-	/**
-	 * public function setCredentialFunct(
-	 *
-	 * @param string $credential_funct - sets the name of the function to use to hash password (ex. md5,sha1)
-	 */
-	public function setCredentialFunct($credential_funct = null)
-	{
-		if(is_null($credential_funct) || function_exists($credential_funct))
-		{
-			$this->credential_funct = $credential_funct;
-		}
-		
-	}
-	
 	public function authenticate($identity = null,$credential = null)
 	{
 		$this->is_authorized = false;
@@ -87,32 +71,61 @@ class pikaAuthDb
 		if(!is_null($identity) && strlen($identity) > 0 && strlen($this->table_name) > 0)
 		{
 			$safe_identity = mysql_real_escape_string($identity);
-			if(!is_null($this->credential_funct) && function_exists($this->credential_funct))
-			{
-				$cf = $this->credential_funct;
-				$credential = $cf($credential);
-			}
-			$safe_credential = mysql_real_escape_string($credential);
-			$sql  = "SELECT user_id, username, enabled, password_expire, users.group_id AS group_name, groups.*
+			
+			$sql  = "SELECT user_id, username, enabled, password_expire, 
+					users.group_id AS group_name, groups.*, password
 					FROM {$this->table_name}
 					LEFT JOIN groups ON users.group_id=groups.group_id
-					WHERE 1
-					AND enabled = '1'
-					AND username='{$safe_identity}'";
-			$sql_safe = $sql . " AND password='XXXXXXXX' LIMIT 1;";
-			$sql .= " AND password='{$safe_credential}' LIMIT 1;";
-			$result = mysql_query($sql) or trigger_error("SQL: " . $sql_safe . " Error: " . mysql_error());
-			// one user record matched the username and password
+					WHERE enabled = '1'
+					AND username='{$safe_identity}'
+					AND LENGTH(password) > 0";
+			$result = mysql_query($sql) or trigger_error("SQL: " . $sql . " Error: " . mysql_error());
+			
 			if (mysql_num_rows($result) == 1)
-			{  // Identity & Credential match existing records - allow login
-				$this->is_authorized = true;
-				$this->auth_row = mysql_fetch_assoc($result);
+			{
+				if (PHP_VERSION_ID >= 50303)
+				{
+					require_once('password_hash_compat.php');
+				}
+				
+				$row = mysql_fetch_assoc($result);
+				// one user record matched the username and password
+				if (PHP_VERSION_ID >= 50303 && password_verify($credential, $row['password']))
+				{  // Identity & Credential match existing records - allow login
+					$this->is_authorized = true;
+					$this->auth_row = $row;
+				}
+				
+				else if (md5($credential) == $row['password'])
+				{
+					$this->is_authorized = true;
+					$this->auth_row = $row;
+					
+					if (PHP_VERSION_ID >= 50303)
+					{
+						/*	While we have the password in memory, replace the 
+							stored md5 value with a password_hash value.
+							*/
+						require_once('pikaUser.php');
+						$u = new pikaUser($row['user_id']);
+						$u->setValue('password', password_hash($credential, PASSWORD_DEFAULT));
+						$u->save();
+					}
+				}
+				
+				else 
+				{  // No matching user credentials found - pass login error			
+					$msgstr = 'The Login Credentials you supplied are invalid.  Please re-check your Username and Password and try again.';
+					$this->setMessage('0100',$msgstr,__FILE__,__LINE__);
+				}
 			}
-			else 
-			{  // No matching user credentials found - pass login error			
+			
+			else
+			{
 				$msgstr = 'The Login Credentials you supplied are invalid.  Please re-check your Username and Password and try again.';
 				$this->setMessage('0100',$msgstr,__FILE__,__LINE__);
 			}
+			
 		}
 		elseif(!is_null($identity))
 		{ 
