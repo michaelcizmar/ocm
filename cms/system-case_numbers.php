@@ -35,7 +35,7 @@ $case_number = pl_grab_post('case_number');
 
 
 if($action == 'update') {
-	if($case_number && is_numeric($case_number)) {
+	if($case_number >= 0 && is_numeric($case_number)) {
 		
 		$safe_case_number = mysql_real_escape_string($case_number);
 		mysql_query("LOCK TABLES counters WRITE") or trigger_error('counters table lock failed');
