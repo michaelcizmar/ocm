@@ -1,13 +1,13 @@
 %%[flags]%%
 <div class="span3">
 			<h2>Case Summary</h2>
-			<p style="border: 1px yellow solid; background-color: #ffffaa; padding: .3em;">
+			<p class="well btn-info">
 				<strong>%%[status text source=case_status]%%</strong><br/>
 				%%[lsc_problem_text]%%<br/>
 			</p>
 			
 			%%[begin:client]%%
-			<p style="border: 1px #bbbbbb solid; background-color: #eeeeee; padding: .3em;">
+			<p class="well">
 			<!--<img src="images/vcard.png">&nbsp;--><strong><a href="%%[base_url]%%/contact.php?contact_id=%%[contact_id]%%&case_id=%%[case_id]%%&number=%%[number]%%">%%[client_name]%%</a></strong><br/>
 			<em>Primary Client</em><br/>
 			<span class="small">
@@ -28,7 +28,7 @@
 			%%[end:client]%%
 			
 			%%[begin:contacts]%%
-			<p style="border: 1px #bbbbbb solid; background-color: #eeeeee; padding: .3em;">
+			<p class="well">
 				<!--<img src="images/vcard.png">&nbsp;--><strong><a href='%%[base_url]%%/contact.php?contact_id=%%[contact_id]%%&case_id=%%[case_id]%%&number=%%[number]%%'>%%[full_name]%%</a></strong><br/>
 				<em>%%[role]%%</em><br/>
 				%%[full_phone]%% %%[phone_notes]%%<br/>
