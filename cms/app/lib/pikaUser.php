@@ -30,7 +30,6 @@ class pikaUser extends plBase
 			$this->group_id = "NOGROUP";
 			$this->enabled = '0';
 			$this->username = "NONAME";
-			$this->password = md5("NONAME");
 			$this->session_data = serialize(array());
 		}
 		
