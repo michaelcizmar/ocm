@@ -94,6 +94,14 @@ class pikaAuthDb
 				{  // Identity & Credential match existing records - allow login
 					$this->is_authorized = true;
 					$this->auth_row = $row;
+					
+					if (password_needs_rehash($row['password'], PASSWORD_DEFAULT)) 
+					{
+						require_once('pikaUser.php');
+						$u = new pikaUser($row['user_id']);
+						$u->setValue('password', password_hash($credential, PASSWORD_DEFAULT));
+						$u->save();
+    				}
 				}
 				
 				else if (md5($credential) == $row['password'])
