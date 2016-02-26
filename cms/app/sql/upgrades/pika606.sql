@@ -1,0 +1,1 @@
+INSERT INTO `settings` VALUES ('open_outcomes', '0'),('multi_outcomes', '1');
