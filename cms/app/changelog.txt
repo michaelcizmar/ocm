@@ -1011,3 +1011,19 @@ October 22nd, 2015
 * Added "cms_user" Apache variable, so usernames can be recorded in web server logs.
 * The field "firm" for pro bono attorneys changed from 25 characters to 255 characters.
 * Miscellaneous bug fixes.
+
+February 26st, 2016
+* Released version 6.06.
+* Improved the password encryption method so it now uses bcrypt if PHP 5.3.3 or 
+higher is used.  Passwords encrypted using the old method will be updated 
+automatically, no intervention by the administrator is needed.
+* Two XSS vulnerabilities identified and fixed.
+* Added more stringent XSS filtering of form submission data.  '<' and '>' 
+characters are now converted to their HTML representation before being stored 
+in text fields in the database.
+* Added the ability to turn off the Social Security number field, which 
+permanently deletes all SSNs in the database.
+* Added a setting that changes the Outcomes tab so it only allows one 
+outcome goal selection.
+* Slighly darker background color.
+* Miscellaneous small bug fixes.
