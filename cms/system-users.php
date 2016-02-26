@@ -29,8 +29,8 @@ $menu_pass_method = array(	'1' => "Lowercase Letters &amp Numbers",
 
 // Variables
 
-$action = pl_grab_get('action');
-$user_id = pl_grab_get('user_id');
+$action = pl_grab_var('action');
+$user_id = pl_grab_var('user_id');
 $order = pl_grab_get('order');
 $order_field = pl_grab_get('order_field');
 $offset = pl_grab_get('offset');
@@ -120,35 +120,35 @@ switch ($action)
 		
 	case 'update':
 		
-		$a['username'] = pl_grab_get('username');
-		$password = pl_grab_get('password');
+		$a['username'] = pl_grab_post('username');
+		$password = pl_grab_post('password');
 		if(strlen($password) > 0) {
 			$a['password'] = md5($password);
 		}
-		$a['first_name'] = pl_grab_get('first_name');
-		$a['middle_name'] = pl_grab_get('middle_name');
-		$a['last_name'] = pl_grab_get('last_name');
-		$a['extra_name'] = pl_grab_get('extra_name');
-		$a['enabled'] = pl_grab_get('enabled');
-		$a['group_id'] = pl_grab_get('group_id');
-		$a['description'] = pl_grab_get('description');
-		$a['email'] = pl_grab_get('email');
-		$a['attorney'] = pl_grab_get('attorney');
-		$a['atty_id'] = pl_grab_get('atty_id');
-		$a['firm'] = pl_grab_get('firm');
-		$a['address'] = pl_grab_get('address');
-		$a['address2'] = pl_grab_get('address2');
-		$a['city'] = pl_grab_get('city');
-		$a['state'] = pl_grab_get('state');
-		$a['zip'] = pl_grab_get('zip');
-		$a['county'] = pl_grab_get('county');
-		$a['phone_notes'] = pl_grab_get('phone_notes');
-		$a['languages'] = pl_grab_get('languages');
-		$a['practice_areas'] = pl_grab_get('practice_areas');
-		$a['notes'] = pl_grab_get('notes');
+		$a['first_name'] = pl_grab_post('first_name');
+		$a['middle_name'] = pl_grab_post('middle_name');
+		$a['last_name'] = pl_grab_post('last_name');
+		$a['extra_name'] = pl_grab_post('extra_name');
+		$a['enabled'] = pl_grab_post('enabled');
+		$a['group_id'] = pl_grab_post('group_id');
+		$a['description'] = pl_grab_post('description');
+		$a['email'] = pl_grab_post('email');
+		$a['attorney'] = pl_grab_post('attorney');
+		$a['atty_id'] = pl_grab_post('atty_id');
+		$a['firm'] = pl_grab_post('firm');
+		$a['address'] = pl_grab_post('address');
+		$a['address2'] = pl_grab_post('address2');
+		$a['city'] = pl_grab_post('city');
+		$a['state'] = pl_grab_post('state');
+		$a['zip'] = pl_grab_post('zip');
+		$a['county'] = pl_grab_post('county');
+		$a['phone_notes'] = pl_grab_post('phone_notes');
+		$a['languages'] = pl_grab_post('languages');
+		$a['practice_areas'] = pl_grab_post('practice_areas');
+		$a['notes'] = pl_grab_post('notes');
 		// These next two fields were added for the third-party HUD module.
-        $a['emp_start_date'] = pl_grab_get('emp_start_date');
-        $a['emp_end_date'] = pl_grab_get('emp_end_date');		
+        $a['emp_start_date'] = pl_grab_post('emp_start_date');
+        $a['emp_end_date'] = pl_grab_post('emp_end_date');		
 		
 		$user = new pikaUser($user_id);
 		$user->setValues($a);
