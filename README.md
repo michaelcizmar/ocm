@@ -23,7 +23,7 @@ are on the way!
 * Edit the file /var/www/html/cms-custom/config/settings.php and enter a valid
 MySQL username and password.
 
-* Point your browser to https://<your server IP address>/cms/
+* Point your browser to https://"your server IP address"/cms/
 
 * Verify that the log in page appears.
 
