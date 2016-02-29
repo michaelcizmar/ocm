@@ -40,3 +40,6 @@ MySQL username and password.
 It's a good idea to replace my.username and my.password with more secure values.
 The insecure md5 password will be replaced by a bcrypt value the first time you 
 log in, as long as the server is running PHP 5.3.3 or higher.
+
+* The system is now ready to use.  You can log in and set up additional user 
+accounts for everyone who needs access to the system.
