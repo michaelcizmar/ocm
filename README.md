@@ -1,9 +1,17 @@
 ## Welcome to the Open Case Management (OCM) Project! ##
 
+### What is OCM? ###
+
+Open Case Management is a case management system featuring a browser-based user
+interface.  It is user friendly and tailored to meet the specific needs of the 
+not-for-profit legal services program.  It is freely available under the GPL v2
+open source license.  For programs that don't wish to run their own server, 
+commercial hosting is available from www.pikasoftware.com.
+
 ### Installing OCM ###
 
-These instructions are for CentOS 5.  Instructions for other operating systems
-are on the way!
+These instructions are for CentOS 5, 6, and 7.  Instructions for other operating 
+systems are on the way!
 
 * Install Apache web server, PHP, mod_ssl, and MySQL or MariaDB.
 
