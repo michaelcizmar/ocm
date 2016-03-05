@@ -990,18 +990,18 @@ class pikaMisc
 		$relation_code = null;
 		
 		$filter = array();
-		$filter['first_name'] = pl_grab_get('first_name', null, 'xss');
-		$filter['middle_name'] = pl_grab_get('middle_name', null, 'xss');
-		$filter['last_name'] = pl_grab_get('last_name', null, 'xss');
-		$filter['extra_name'] = pl_grab_get('extra_name', null, 'xss');
+		$filter['first_name'] = pl_grab_get('first_name');
+		$filter['middle_name'] = pl_grab_get('middle_name');
+		$filter['last_name'] = pl_grab_get('last_name');
+		$filter['extra_name'] = pl_grab_get('extra_name');
 		$filter['birth_date'] = pl_grab_get('birth_date', null, 'date');
-		$filter['ssn'] = pl_grab_get('ssn', null, 'xss');
-		$filter['area_code'] = pl_grab_get('area_code', null, 'xss');
-		$filter['phone'] = pl_grab_get('phone', null, 'xss');
+		$filter['ssn'] = pl_grab_get('ssn');
+		$filter['area_code'] = pl_grab_get('area_code');
+		$filter['phone'] = pl_grab_get('phone');
 		// These are not used for SQL filtering, but are needed on the pager's get_url.
-		$filter['case_id'] = pl_grab_get('case_id', null, 'xss');
-		$filter['number'] = pl_grab_get('number', null, 'xss');
-		$filter['relation_code'] = pl_grab_get('relation_code', null, 'xss');
+		$filter['case_id'] = pl_grab_get('case_id');
+		$filter['number'] = pl_grab_get('number');
+		$filter['relation_code'] = pl_grab_get('relation_code');
 		
 
 		$content_t = $filter;
