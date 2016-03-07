@@ -134,6 +134,21 @@ $t->set_header($columns);
 $result = mysql_query($sql) or trigger_error();
 while ($row = mysql_fetch_assoc($result))
 {
+	if ('1' == $row['result'])
+	{
+		$row['result'] = 'Yes';
+	}
+	
+	else if ('0' == $row['result'])
+	{
+		$row['result'] = 'No';
+	}
+	
+	else if ('2' == $row['result'])
+	{
+		$row['result'] = 'NA';
+	}
+	
 	$row['close_date'] = pl_date_unmogrify($row['close_date']);
 	$t->add_row($row);
 }
