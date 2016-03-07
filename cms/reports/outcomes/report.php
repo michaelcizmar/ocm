@@ -52,13 +52,15 @@ else
 
 
 // run the report
-$columns = array('Problem Code', 'Goal', 'Result', 'Case Number', 'Close Date', 'Funding', 'Office', 'Case Status', 'Undup.', 'County', 'ZIP');
+$columns = array('Problem Code', 'Goal', 'Result', 'Yes', 'No', 'NA', 'Case Number', 'Close Date', 'Funding', 'Office', 'Case Status', 'Undup.', 'County', 'ZIP');
 
 
 $clb = pl_date_mogrify($close_date_begin);
 $cle = pl_date_mogrify($close_date_end);
 
-$sql = "SELECT label AS problem_code, goal, result, number, close_date, cases.funding, office, status, undup, case_county, case_zip
+$sql = "SELECT label AS problem_code, goal, result, IF(result = 1, 1, 0) AS yes_outcome,
+		IF(result = 0, 1, 0) AS no_outcome, IF(result = 2, 1, 0) AS na_outcome,
+		number, close_date, cases.funding, office, status, undup, case_county, case_zip
 	FROM outcomes
 	LEFT JOIN outcome_goals USING(outcome_goal_id)
 	LEFT JOIN cases ON outcomes.case_id = cases.case_id
