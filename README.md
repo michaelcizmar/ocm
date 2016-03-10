@@ -41,5 +41,13 @@ It's a good idea to replace my.username and my.password with more secure values.
 The insecure md5 password will be replaced by a bcrypt value the first time you 
 log in, as long as the server is running PHP 5.3.3 or higher.
 
+* Optionally, copy the file httpd-config/ocm.conf to /etc/httpd/conf.d.  This
+file contains httpd settings that will make the CMS site more secure.  The last
+section in ocm.conf should be copied and pasted into the VirtualHost section
+in your conf.d/ssl.conf file, then uncommented, for it to take effect.
+
+* If you have made httpd configuration changes in the previous step, restart
+httpd and apply the new settings with the command "service httpd graceful".
+
 * The system is now ready to use.  You can log in and set up additional user 
 accounts for everyone who needs access to the system.
