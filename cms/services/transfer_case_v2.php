@@ -20,5 +20,5 @@ $transfer->user_id = $auth_row['user_id'];
 $transfer->json_data = file_get_contents('php://input');
 $transfer->accepted = 2;  // Pending review.
 $transfer->save();
-echo '1';
+echo $transfer->getValue('transfer_id');
 exit();
