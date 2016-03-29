@@ -52,18 +52,35 @@ else if (strlen(pl_grab_post('reject')) > 0)
 else if (!$transfer_id)
 {
 	$z .= "<table class=\"table\">";
+		$z .= "<thead><tr><th></th><th>Record ID</th><th>Last Name</th><th>First Name</th><th>County</th><th>City</th><th>Problem Code</th><th>Date Received</th></tr></thead><tbody>";
 	$result = mysql_query("SELECT * FROM transfers WHERE accepted = '2'");
 	
 	while ($row = mysql_fetch_assoc($result))
 	{
+		$j = json_decode($row['json_data'], true);
+		
 		$safe_transfer_id = mysql_real_escape_string($row['transfer_id']);
 		$safe_date = mysql_real_escape_string($row['created']);
-		$z .= "<tr><td><a href=\"{$base_url}/transfers.php?transfer_id={$safe_transfer_id}\">";
-		$z .= "{$safe_transfer_id}</a>";
-		$z .= "</td><td>{$safe_date}</td></tr>";
+		/*
+		foreach ($j as $key => $val)
+		{
+			$j[$key] = pl_clean_html($val);
+		}
+		*/
+		
+		$safe_transfer_id = pl_clean_html($row['transfer_id']);
+		$safe_date = pl_clean_html($row['created']);
+		$z .= "<tr><td><a href=\"{$base_url}/transfers.php?transfer_id={$safe_transfer_id}\" class=\"btn\">";
+		$z .= "Review</a></td><td>{$safe_transfer_id}</td>";
+		$z .= "<td>{$j['client']['last_name']}</td>";
+		$z .= "<td>{$j['client']['first_name']}</td>";
+		$z .= "<td>{$j['client']['county']}</td>";
+		$z .= "<td>{$j['client']['city']}</td>";
+		$z .= "<td>{$j['client']['problem_code']}</td>";
+		$z .= "<td>{$safe_date}</td></tr>";
 	}
 	
-	$z .= "</table>";
+	$z .= "</tbody></table>";
 }
 
 else
@@ -186,7 +203,7 @@ else
 	$z .= "<input type=\"submit\" name=\"reject\" value=\"Reject\" class=\"btn\"></form>";
 }
 
-$plTemplate["content"] = $z;
+$plTemplate["content"] = '<div id="page_content" class="container">' . $z . '</div>';
 $plTemplate["page_title"] = "Incoming Case Transfers";
 $plTemplate['nav'] = "<a href=\"{$base_url}\">Pika Home</a>
 						&gt; <a href=\"{$base_url}/site_map.php\">Site Map</a>
