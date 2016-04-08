@@ -97,7 +97,6 @@ else
 		$z .= "<tr><td>$key</td><td>$value</td></tr>";
 	}
 	
-	$z .= "</table><table class=\"table\">";
 	foreach ($x['case'] as $key => $value)
 	{
 		$z .= "<tr><td>$key</td><td>$value</td></tr>";
