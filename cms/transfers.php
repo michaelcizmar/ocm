@@ -30,6 +30,42 @@ if (strlen(pl_grab_post('accept')) > 0)
 	$case0->setValues($x['case']);
 	$case0->addContact($client->getValue('contact_id'), 1);
 	$case0->save();
+
+	// Opposing Party
+	if (isset($x['op']))
+	{
+		$op = new pikaContact();
+		$op->setValues($x['op']);
+		$op->save();
+		$case0->addContact($op->getValue('contact_id'), 2);
+	}
+
+	// Opposing Party Attorney
+	if (isset($x['opa']))
+	{
+		$opa = new pikaContact();
+		$opa->setValues($x['opa']);
+		$opa->save();
+		$case0->addContact($opa->getValue('contact_id'), 3);
+	}
+
+	// Case notes
+	if (isset($x['notes']))
+	{
+		require_once('pikaActivity.php');
+		
+		for ($i = 0; $i < 10; $i++)
+		{
+			if (isset($x['notes']['notes' . $i]))
+			{
+				$note = new pikaActivity();
+				$note->setValue('summary', 'Online Intake Notes');
+				$note->setValue('notes', $x['notes']['notes' . $i]);
+				$note->setValue('case_id', $case0->getValue('case_id'));
+				$note->save();
+			}
+		}
+	}
 	
 	$tx->setValue('accepted', true);
 	$tx->save();
@@ -101,6 +137,22 @@ else
 	{
 		$z .= "<tr><td>$key</td><td>$value</td></tr>";
 	}
+
+	foreach ($x['op'] as $key => $value)
+	{
+		$z .= "<tr><td>opposing_party.$key</td><td>$value</td></tr>";
+	}
+
+	foreach ($x['opa'] as $key => $value)
+	{
+		$z .= "<tr><td>opposing_party_attorney.$key</td><td>$value</td></tr>";
+	}
+
+	foreach ($x['notes'] as $key => $value)
+	{
+		$z .= "<tr><td>notes.$key</td><td>$value</td></tr>";
+	}
+
 	$z .= "</table>";
 	
 	$z .= "<h2>Potential Conflicts of Interest</h2>";	
