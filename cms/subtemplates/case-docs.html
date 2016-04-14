@@ -62,7 +62,7 @@
 			<h2 class="hdt">Add a Document</h2>
 			<form action="%%[base_url]%%/ops/upload_document.php" name="add_document" enctype="multipart/form-data" method="post">
 			Select a File to Add:<br/>
-			<input type="file" name="doc_upload" tabindex="1"/><br/>
+			<input type="file" name="doc_upload[]" tabindex="1" multiple><br/>
 			Description of file:<br/>
 			%%[description,input_textarea,cols=27,rows=6]%%
 			%%[parent_folder,input_hidden]%%

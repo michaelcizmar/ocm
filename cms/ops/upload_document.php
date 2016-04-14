@@ -12,7 +12,6 @@ pika_init();
 
 require_once('pikaDocument.php');
 
-$doc = new pikaDocument();
 $file_array = array();
 if (isset($_FILES['doc_upload'])) {
 	$file_array = $_FILES['doc_upload'];
@@ -28,6 +27,8 @@ $base_url = pl_settings_get('base_url');
 
 
 if ($folder) {
+	$doc = new pikaDocument();
+	
 	if($doc_type == 'F') {
 		$doc->createFolder($folder_name,$parent_folder,$doc_type);
 		header("Location: {$base_url}/system-forms.php");
@@ -41,8 +42,25 @@ if ($folder) {
 		header("Location: {$base_url}");
 	}
 }
-else  {
-	$doc->uploadDoc($file_array, $description, $parent_folder, $doc_type, $case_id);
+
+else {
+	if (is_array($file_array['name'])) {
+		foreach ($file_array['name'] as $key => $value)
+		{
+			$doc = new pikaDocument();
+			$x = array('name' => $value,
+					   'type' => $file_array['type'][$key],
+					   'tmp_name' => $file_array['tmp_name'][$key],
+					   'error' => $file_array['error'][$key]);
+			$doc->uploadDoc($x, $description, $parent_folder, $doc_type, $case_id);
+		}
+	}
+	
+	else {
+		$doc = new pikaDocument();
+		$doc->uploadDoc($file_array, $description, $parent_folder, $doc_type, $case_id);
+	}
+	
 	if($doc_type == 'C' && is_numeric($case_id)) {
 		header("Location: {$base_url}/case.php?case_id={$case_id}&screen=docs");
 	} elseif($doc_type == 'F') {
