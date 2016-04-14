@@ -61,8 +61,13 @@
 			</form>
 			<h2 class="hdt">Add a Document</h2>
 			<form id="upload_form" action="%%[base_url]%%/ops/upload_document.php" name="add_document" enctype="multipart/form-data" method="post">
-			Select a File to Add:<br/>
-			<input type="file" name="doc_upload[]" class="upload_control" tabindex="1" multiple><br/>
+			<div class="upload_div btn btn-large btn-block btn-primary">
+				<span>Upload</span>
+				<input type="file" name="doc_upload[]" class="upload_control" tabindex="1" data-multiple-caption="{count} files selected" multiple>
+			</div>
+			<div id="upload_gif" >
+				<img src="images/progress.gif" width="32" height="32">
+			</div>
 			Description of file:<br/>
 			%%[description,input_textarea,cols=27,rows=6]%%
 			%%[parent_folder,input_hidden]%%
@@ -84,7 +89,8 @@ function isEmpty(field) {
 }
 	
 $('.upload_control').change(function() {
-  $('#upload_form').submit();
+	$('#upload_gif').show("slow");
+	$('#upload_form').submit();
 });
 	
 //-->
