@@ -140,6 +140,16 @@ if($act_id && is_numeric($act_id)) {
 				$user3 = new pikaUser($case0->cocounsel3);
 				$z['tickler_email'][] = $user3->email;
 			}
+			
+			if (strlen($case0->office) > 0)
+			{
+				if (mysql_num_rows(mysql_query("SHOW TABLES LIKE 'office_email'")) == 1)
+				{
+					$x = mysql_real_escape_string($case0->office);
+					$y = mysql_fetch_assoc(mysql_query("SELECT label FROM office_email WHERE value = '{$x}'"));
+					$z['tickler_email'][] = $y['label'];
+				}
+			}
 		}
 				
 		create_tickler($z) or trigger_error('Extension failed.');
