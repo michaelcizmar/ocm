@@ -92,7 +92,22 @@ $('.upload_control').change(function() {
 	$('#upload_gif').show("slow");
 	$('#upload_form').submit();
 });
-	
+
+/*
+$(function () {
+    $("#doc_upload").bind("click", function () {
+        if (typeof ($("#doc_upload")[0].files) != "undefined") {
+            $.each($("#doc_upload")[0].files, function(key, value) {
+							var size = parseFloat($("#doc_upload")[0].files[0].size / 1024).toFixed(2);
+            	alert(size + " KB.");
+						});
+        } else {
+            // This browser does not support HTML5.
+        }
+    });
+});
+*/
+
 //-->
 </script>
 
