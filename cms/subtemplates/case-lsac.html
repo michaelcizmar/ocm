@@ -1,0 +1,201 @@
+<!-- 11-20-2013 - caw - added lsac case tab -->
+
+
+<form action="%%[base_url]%%/ops/update_case.php" method="POST" name="ws">
+ <h2 class="hdt">LSAC Outcome Measures (Closing Codes E through L)</h2> 
+<table>
+	<tr valign="top">
+		<td valign="top" width="5%"><div align="left"><b>1. </b></div></td>
+		<td valign="top"><div align="left">Please check the most appropriate box for each statement below.  
+		A blank line will be tallied as a "No" response.  There can be more than one "Yes" response per case.  </div></td>
+	</tr> 
+	<tr valign="top">
+		<td>&nbsp;</td>
+		<td valign="top"><div align="left">
+		<b>AS A RESULT OF MY LEGAL SERVICES IN THIS CASE, MY CLIENT …</b></div></td>
+	</tr>
+	<tr valign="top">
+		<td>&nbsp;</td>
+		<td valign="top">
+<!-- table inside a table -->		
+			<table>
+				<tr valign="top">
+					<td valign="top"><div align="left">Has increased ability to pay for daily necessities:</div></td>
+					<td valign="top"><div align="left">%%[lsac_result_necessities,yes_no_na,radio]%%</div></td>
+				</tr>
+				<tr valign="top">
+					<td valign="top"><div align="left">Is less likely to be harassed by creditors:</div></td>
+					<td valign="top"><div align="left">%%[lsac_result_creditors,yes_no_na,radio]%%</div></td>
+				</tr>
+				<tr valign="top">
+					<td valign="top"><div align="left">Is in a better position to keep or find a job:</div></td>
+					<td valign="top"><div align="left">%%[lsac_result_job,yes_no_na,radio]%%</div></td>
+				</tr>
+				<tr valign="top">
+					<td valign="top"><div align="left">Is in a better position to keep or find housing:</div></td>
+					<td valign="top"><div align="left">%%[lsac_result_housing,yes_no_na,radio]%%</div></td>
+				</tr>
+				<tr valign="top">
+					<td valign="top"><div align="left">Has improved housing conditions:</div></td>
+					<td valign="top"><div align="left">%%[lsac_result_conditions,yes_no_na,radio]%%</div></td>
+				</tr>
+				<tr valign="top">
+					<td valign="top"><div align="left">Has increased safety:</div></td>
+					<td valign="top"><div align="left">%%[lsac_result_safety,yes_no_na,radio]%%</div></td>
+				</tr>
+				<tr valign="top">
+					<td valign="top"><div align="left">Has improved quality of life:</div></td>
+					<td valign="top"><div align="left">%%[lsac_result_quality,yes_no_na,radio]%%</div></td>
+				</tr>	
+			</table>
+<!-- end of table in a table -->			
+		</td>	
+	</tr>
+	<tr valign="top">
+		<td valign="top" width="5%"><div align="left"><b>2. </b></div></td>
+		<td valign="top"><div align="left">Did your legal services protect money / benefits for the client?
+		%%[lsac_protect_benefits,yes_no,radio]%%  </div></td>
+	</tr> 
+	<tr valign="top">
+		<td>&nbsp;</td>
+		<td valign="top"><div align="left">(IF YES, PLEASE PROVIDE AMOUNT AND TYPE BELOW)</div></td>
+	</tr>
+	<tr valign="top">
+		<td>&nbsp;</td>
+		<td valign="top"><div align="left"><b><u>Amount</u></b></div></td>
+	</tr>
+	<tr valign="top">
+		<td>&nbsp;</td>	
+		<td valign="top"><div align="left">Lump sum/back payment: 	
+			<strong>$</strong>%%[lsac_protect_payment,input_text]%%</div></td>
+	</tr>	
+<!-- annual benefits is calculated based upon monthly amount -->	
+	<tr valign="top">
+		<td>&nbsp;</td>
+		<td valign="top"><div align="left">		
+			Ongoing monthly benefits: <strong>$</strong> 			
+			<input name="lsac_protect_mth_benefits" 
+			value="%%[lsac_protect_mth_benefits]%%" tabindex="1" size="5" 
+			onchange="annual_benefit_protected_change();" 
+			class="maskf" type="text">	 x 12= <strong>$</strong>	
+				
+			<input name="lsac_protect_annual_benefits" 
+			value="%%[lsac_protect_annual_benefits]%%" size="10" 
+			readonly="readonly" type="text">	
+			Annual benefits</div></td>
+	</tr>
+	<tr valign="top">
+		<td>&nbsp;</td>
+		<td valign="top"><div align="left"><b><u>Type</u></b> (Select One)</div></td>
+	</tr>
+	<tr valign="top">
+		<td>&nbsp;</td>
+		<td valign="top">
+<!-- table in a table -->
+			<table>
+				<tr valign="top">
+					<td valign="top"><div align="left">Federal Money / Benefit:</div></td>
+					<td valign="top"><div align="left">%%[lsac_protect_fed_benefit,yes_no,checkbox]%%</div></td>
+				</tr>
+				<tr valign="top">
+					<td valign="top"><div align="left">State Money / Benefit:</div></td>
+					<td valign="top"><div align="left">%%[lsac_protect_state_benefit,yes_no,checkbox]%%</div></td>
+				</tr>
+				<tr valign="top">
+					<td valign="top"><div align="left">Child Support:</div></td>
+					<td valign="top"><div align="left">%%[lsac_protect_child_support,yes_no,checkbox]%%</div></td>
+				</tr>
+				<tr valign="top">
+					<td valign="top"><div align="left">Other Money / Benefit:</div></td>
+					<td valign="top"><div align="left">%%[lsac_protect_other,yes_no,checkbox]%%</div></td>
+				</tr>				
+			</table>
+<!-- end of table in a table -->					
+		</td>
+	</tr>
+	<tr valign="top">
+		<td valign="top" width="5%"><div align="left"><b>3. </b></div></td>
+		<td valign="top"><div align="left">Did your legal services obtain/recover money/benefits for the client?
+		%%[lsac_obtain_benefits,yes_no,radio]%%  </div></td>
+	</tr> 
+	<tr valign="top">
+		<td>&nbsp;</td>
+		<td valign="top"><div align="left">(IF YES, PLEASE PROVIDE AMOUNT AND TYPE BELOW)</div></td>
+	</tr>
+	<tr valign="top">
+		<td>&nbsp;</td>
+		<td valign="top"><div align="left"><b><u>Amount</u></b></div></td>
+	</tr>
+	<tr valign="top">
+		<td>&nbsp;</td>
+		<td valign="top"><div align="left">Lump sum/back payment <strong>$</strong>
+		%%[lsac_obtain_payment,input_text]%%</div></td>
+	</tr>
+	<tr valign="top">
+		<td>&nbsp;</td>
+<!--  annual benefit is calculated based on monthly value -->		
+		<td valign="top"><div align="left">
+			Ongoing monthly benefits: <strong>$</strong> 			
+			<input name="lsac_obtain_mth_benefits" 
+			value="%%[lsac_obtain_mth_benefits]%%" tabindex="1" size="5" 
+			onchange="annual_benefit_obtained_change();" 
+			class="maskf" type="text">	 x 12= <strong>$</strong>	
+				
+			<input name="lsac_obtain_annual_benefits" 
+			value="%%[lsac_obtain_annual_benefits]%%" size="10" 
+			readonly="readonly" type="text">	
+			Annual benefits</div></td>
+	</tr>
+	<tr valign="top">
+		<td>&nbsp;</td>
+		<td valign="top"><div align="left"><b><u>Type</u></b> (Select One)</div></td>
+	</tr>
+	<tr valign="top">
+		<td>&nbsp;</td>
+		<td valign="top">
+<!-- table in a table -->
+			<table>
+				<tr valign="top">
+					<td valign="top"><div align="left">Federal Money / Benefit:</div></td>
+					<td valign="top"><div align="left">%%[lsac_obtain_fed_benefit,yes_no,checkbox]%%</div></td>
+				</tr>
+				<tr valign="top">
+					<td valign="top"><div align="left">State Money / Benefit:</div></td>
+					<td valign="top"><div align="left">%%[lsac_obtain_state_benefit,yes_no,checkbox]%%</div></td>
+				</tr>
+				<tr valign="top">
+					<td valign="top"><div align="left">Child Support:</div></td>
+					<td valign="top"><div align="left">%%[lsac_obtain_child_support,yes_no,checkbox]%%</div></td>
+				</tr>
+				<tr valign="top">
+					<td valign="top"><div align="left">Other Money / Benefit:</div></td>
+					<td valign="top"><div align="left">%%[lsac_obtain_other,yes_no,checkbox]%%</div></td>
+				</tr>				
+			</table>
+<!-- end of table in a table -->					
+		</td>
+	</tr>
+</table>
+<br/>
+<fieldset><legend><b>Definitions</b></legend>
+	<p>1)  Examples of legal services increasing safety include (but are not limited to) securing an OFP or safety plan; 
+	custody changes that eliminated or reduced risk to children; immigration cases that avoided deportation or 
+	secured U or T visas; improved access for people with disabilities. </p>
+	<p>2) “Protect” is defined as keeping resources/income/benefit the client was already receiving. Examples 
+	include bankruptcy protection of assets, keeping a housing subsidy that was threatened, getting a child 
+	support modification appropriate to client income, keeping child support at appropriate level when faced 
+	with reduction, etc.</p>
+	<p>3)  "Obtained/Recovered” is defined as getting new resources/income/benefit for the client. Examples 
+	include having the court establish or increase child support, unpaid wage claims, lifting inappropriate 
+	garnishment, rent abatement, debt forgiveness, return of damage deposit, etc.  </p>
+</fieldset>
+
+<br/>
+<input type="hidden" name="screen" value="lsac">
+<input type="hidden" name="case_id" value="%%[case_id]%%"/>
+<input type="submit" value="Save" tabindex="1" accesskey="s" class="btn btn-warning">
+</form>
+
+%%[ajax_init.js,javascript]%%
+%%[date_selector.js,javascript,parse]%%
+%%[case-lsac.js,javascript,parse]%%
