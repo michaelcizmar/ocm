@@ -1,0 +1,32 @@
+<!-- 11-20-2013 - caw - added new report to support newly added lsac case tab -->
+<form action="%%[base_url]%%/reports/%%[report_name]%%/report.php" method="POST" name=form1 target="_blank">
+<table>
+	<tr>
+		<td valign="top">
+		Closed On or After:<br/>
+		%%[close_date_begin,input_date_selector]%%<br/>
+		Closed On or Before:<br/>
+		%%[close_date_end,input_date_selector]%%<br/>
+<!--
+		Cases Open on this Day:<br/>
+		%%[open_on_date,input_date_selector]%%<br/>
+-->		
+		</td>
+		<td class="de" valign="top">
+			Status:<br/>
+			<input type="text" name="status" value="" tabindex="1" /><br/>
+			Case Closing Code:<br/>
+			<input type="text" name="close_code" value="" tabindex="1"/><br/>
+		</td>
+		<td class="de" valign="top">
+			%%[report_format,checkbox,default_value=csv,label=Send to a spreadsheet]%%<br/>
+			%%[show_sql,checkbox,label=Show SQL]%%<br/>
+		</td>
+	</tr>
+</table>
+<br/>
+<input type="submit" name="gen" value="Generate Report" class="save" tabindex="1" />
+</form>
+
+%%[ajax_init.js,javascript]%%
+%%[date_selector.js,javascript,parse]%%
