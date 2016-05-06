@@ -52,28 +52,47 @@ else
 
 
 // run the report
-$columns = array('Problem Code', 'Income Before', 'Income After', 'Change in Income',
-	'Assets Before', 'Assets After', 'Change in Assets',
-	'Debt Before', 'Debt After', 'Debt Reduced',
-	'Other Significant Outcome',
-	'Case Number', 'Close Date', 'Funding', 'Office', 'Case Status', 'Undup.', 'County', 'ZIP');
-
-
 $clb = pl_date_mogrify($close_date_begin);
 $cle = pl_date_mogrify($close_date_end);
 
-$sql = "SELECT label AS problem_code, 
-		outcome_income_before, outcome_income_after, 
-		(outcome_income_after - outcome_income_before) AS income_delta, 
-		outcome_assets_before, outcome_assets_after,
-		(outcome_assets_after - outcome_assets_before) AS assets_delta,
-		outcome_debt_before, outcome_debt_after,
-		(outcome_debt_before - outcome_debt_after) AS debt_improvement,
-		outcome_notes,
-		number, close_date, cases.funding, office, status, undup, case_county, case_zip
-	FROM cases
-	LEFT JOIN menu_problem ON cases.problem = menu_problem.value
-	WHERE 1";
+if (true == pl_settings_get('ca_iolta_outcomes'))
+{
+	$columns = array('Problem Code', 'Back Awards and Lump-Sum Settlement', 
+		'Monthly Benefits Obtained', 'Reduction or Elimination of Claimed Amounts',
+		'Monthly Cost Savings and Payment Reductions', 'Other Significant Outcome',
+		'Case Number', 'Close Date', 'Funding', 'Office', 'Case Status', 'Undup.', 
+		'County', 'ZIP');
+	$sql = "SELECT label AS problem_code, 
+			ca_outcome_amount_obtained, ca_outcome_monthly_obtained, 
+			ca_outcome_amount_reduced, ca_outcome_monthly_reduced,
+			outcome_notes,
+			number, close_date, cases.funding, office, status, undup, case_county, 
+			case_zip
+		FROM cases
+		LEFT JOIN menu_problem ON cases.problem = menu_problem.value
+		WHERE 1";
+}
+
+else 
+{
+	$columns = array('Problem Code', 'Income Before', 'Income After', 'Change in Income',
+		'Assets Before', 'Assets After', 'Change in Assets',
+		'Debt Before', 'Debt After', 'Debt Reduced',
+		'Other Significant Outcome',
+		'Case Number', 'Close Date', 'Funding', 'Office', 'Case Status', 'Undup.', 'County', 'ZIP');
+	$sql = "SELECT label AS problem_code, 
+			outcome_income_before, outcome_income_after, 
+			(outcome_income_after - outcome_income_before) AS income_delta, 
+			outcome_assets_before, outcome_assets_after,
+			(outcome_assets_after - outcome_assets_before) AS assets_delta,
+			outcome_debt_before, outcome_debt_after,
+			(outcome_debt_before - outcome_debt_after) AS debt_improvement,
+			outcome_notes,
+			number, close_date, cases.funding, office, status, undup, case_county, case_zip
+		FROM cases
+		LEFT JOIN menu_problem ON cases.problem = menu_problem.value
+		WHERE 1";	
+}
 
 $range1 = $range2 = "";
 $safe_clb = mysql_real_escape_string($clb);
