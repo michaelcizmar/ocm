@@ -6,8 +6,8 @@ require_once ('pika-danio.php');
 pika_init();
 require_once('pikaTempLib.php');
 
-$report_title = "Outcomes - Financial Report";
-$report_name = "outcomes_financial";
+$report_title = "Outcomes - Economic Report";
+$report_name = "outcomes_economic";
 
 $base_url = pl_settings_get('base_url');
 if(!pika_report_authorize($report_name)) {
