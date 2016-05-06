@@ -90,31 +90,30 @@ else
 			{$row['goal']}</label>
 			</td>\n";
 			$C .= "<td></td>\n";
-			$C .= "</tr>\n";			
+			$C .= "</tr>\n";
 		}
-		
+
 		$i++;
 	}
-	
+
 	if ($i == 0)
 	{
 		$C .= "<tr>\n";
-		$C .= "<td colspan=\"2\">No goals exist for problem code {$problem_code}. 
+		$C .= "<td colspan=\"2\">No goals exist for problem code {$problem_code}.
 				<a href=\"{$base_url}/system-outcomes.php\">Add some here.</a></td>\n";
 		$C .= "</tr>\n";
-		
+
 	}
-	
+
 	$C .= "<tr>\n";
-	$C .= "<td><textarea rows=\"5\" class=\"span3\" name=\"outcome_notes\" 
+	$C .= "<td><textarea rows=\"5\" class=\"span3\" name=\"outcome_notes\"
 			tabindex=\"1\">{$case_row['outcome_notes']}</textarea></td>\n";
 	$C .= "<td>What other significant outcome?</td>\n";
 	$C .= "</tr>\n";
 
 	$C .= "</table>\n";
-	
+
 	$C .= "<table class=\"table table-striped\">\n";
-	$C .= "<tr><td colspan=\"2\">If income was an issue, answer these two questions</td></tr>\n";
 
 	function draw_outcome_row($label, $column)
 	{
@@ -127,29 +126,41 @@ else
 		<input class=\"span2\" id=\"{$column}\" name=\"{$column}\" value=\"{$case_row[$column]}\" type=\"text\" tabindex=\"1\">
 		</div></td>\n";
 		$C .= "</tr>\n";
-		return $C;		
+		return $C;
 	}
-	
-	$C .= draw_outcome_row('Actual monthly income at the time the case was closed.', 'outcome_income_before');
-	$C .= draw_outcome_row('If Legal Aid had not been involved, what would current monthly income be at the time case was closed?', 'outcome_income_after');
 
-	$C .= "</table>\n";
-	
+	if (true == pl_settings_get('ca_iolta_outcomes'))
+	{
+		$C .= draw_outcome_row('Back Awards and Lump-Sum Settlement.', 'ca_outcome_amount_obtained');
+		$C .= draw_outcome_row('Monthly Benefits Obtained - Do not Annualize.', 'ca_outcome_monthly_obtained');
+		$C .= draw_outcome_row('Reduction or Elimination of Claimed Amounts.', 'ca_outcome_amount_reduced');
+		$C .= draw_outcome_row('Monthly Cost Savings and Payment Reductions.', 'ca_outcome_monthly_reduced');
+	}
 
-	$C .= "<table class=\"table table-striped\">\n";
-	$C .= "<tr><td colspan=\"2\">If assets were an issue, answer these two questions</td></tr>\n";
+	else
+	{
+		$C .= "<tr><td colspan=\"2\">If income was an issue, answer these two questions</td></tr>\n";
+		$C .= draw_outcome_row('Actual monthly income at the time the case was closed.', 'outcome_income_before');
+		$C .= draw_outcome_row('If Legal Aid had not been involved, what would current monthly income be at the time case was closed?', 'outcome_income_after');
 
-	$C .= draw_outcome_row('Actual value of assets at the time the case was closed.', 'outcome_assets_before');
-	$C .= draw_outcome_row('If Legal Aid had not been involved, what would the value of assets be at the time case was closed?', 'outcome_assets_after');
-
-	$C .= "</table>\n";
+		$C .= "</table>\n";
 
 
-	$C .= "<table class=\"table table-striped\">\n";
-	$C .= "<tr><td colspan=\"2\">If debt was an issue, answer these two questions</td></tr>\n";
+		$C .= "<table class=\"table table-striped\">\n";
+		$C .= "<tr><td colspan=\"2\">If assets were an issue, answer these two questions</td></tr>\n";
 
-	$C .= draw_outcome_row('Actual amount of debt at the time the case was closed.', 'outcome_debt_before');
-	$C .= draw_outcome_row('If Legal Aid had not been involved, what would the amount of debt be at the time case was closed?', 'outcome_debt_after');
+		$C .= draw_outcome_row('Actual value of assets at the time the case was closed.', 'outcome_assets_before');
+		$C .= draw_outcome_row('If Legal Aid had not been involved, what would the value of assets be at the time case was closed?', 'outcome_assets_after');
+
+		$C .= "</table>\n";
+
+
+		$C .= "<table class=\"table table-striped\">\n";
+		$C .= "<tr><td colspan=\"2\">If debt was an issue, answer these two questions</td></tr>\n";
+
+		$C .= draw_outcome_row('Actual amount of debt at the time the case was closed.', 'outcome_debt_before');
+		$C .= draw_outcome_row('If Legal Aid had not been involved, what would the amount of debt be at the time case was closed?', 'outcome_debt_after');
+	}
 
 	$C .= "</table>\n";
 	$C .= "<input type=\"hidden\" name=\"case_id\" value=\"{$case_row['case_id']}\">\n";

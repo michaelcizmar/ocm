@@ -96,10 +96,10 @@ $expire = array('0' => "Unlimited",
 // back to the (read only) settings.php file so multiple sites can run off one DB.
 $list_of_settings = array('cookie_prefix', 'enable_system', 'enable_compression',
 	'enable_benchmark', 'autonumber_on_new_case',
-	'owner_name', 'admin_email', 'act_interval', 
+	'owner_name', 'admin_email', 'act_interval',
 	'time_zone', 'time_zone_offset', 'session_timeout', 'pass_min_strength',
 	'pass_min_length', 'password_expire', 'force_https', 'autofill_time_funding',
-	'open_outcomes', 'multi_outcomes');
+	'open_outcomes', 'multi_outcomes', 'ca_iolta_outcomes');
 
 switch ($action)
 {
