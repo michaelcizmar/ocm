@@ -82,11 +82,11 @@ else
 		'Case Number', 'Close Date', 'Funding', 'Office', 'Case Status', 'Undup.', 'County', 'ZIP');
 	$sql = "SELECT label AS problem_code, 
 			outcome_income_after_service, outcome_income_no_service, 
-			(outcome_income_no_service - outcome_income_after_service) AS income_delta, 
+			(outcome_income_after_service - outcome_income_no_service) AS income_delta, 
 			outcome_assets_after_service, outcome_assets_no_service,
-			(outcome_assets_no_service - outcome_assets_after_service) AS assets_delta,
+			(outcome_assets_after_service - outcome_assets_no_service) AS assets_delta,
 			outcome_debt_after_service, outcome_debt_no_service,
-			(outcome_debt_after_service - outcome_debt_no_service) AS debt_improvement,
+			(outcome_debt_no_service - outcome_debt_after_service) AS debt_improvement,
 			outcome_notes,
 			number, close_date, cases.funding, office, status, undup, case_county, case_zip
 		FROM cases
