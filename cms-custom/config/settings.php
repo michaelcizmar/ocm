@@ -2,7 +2,7 @@
 $plSettings = array(
 'db_type' => "mysql",
 'db_host' => "localhost",
-'db_name' => "pika",
+'db_name' => "cms",
 'db_user' => "root",
 'db_password' => "",
 'base_url' => "/cms",
