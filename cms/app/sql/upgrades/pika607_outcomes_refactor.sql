@@ -1,0 +1,7 @@
+ALTER TABLE cases 
+CHANGE outcome_income_before outcome_income_after_service MEDIUMINT default NULL,
+CHANGE outcome_income_after outcome_income_no_service MEDIUMINT default NULL,
+CHANGE outcome_assets_before outcome_assets_after_service MEDIUMINT default NULL,
+CHANGE outcome_assets_after outcome_assets_no_service MEDIUMINT default NULL,
+CHANGE outcome_debt_before outcome_debt_after_service MEDIUMINT default NULL,
+CHANGE outcome_debt_after outcome_debt_no_service MEDIUMINT default NULL;
