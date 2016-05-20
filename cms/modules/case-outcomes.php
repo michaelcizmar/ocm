@@ -16,19 +16,35 @@ else
 	$problem_category = substr($problem_code, 0, 1) . 'X';
 	$problem_code = mysql_real_escape_string($problem_code);
 	$problem_category = mysql_real_escape_string($problem_category);
-	$sql = "select a.outcome_goal_id, a.goal, b.result 
-			from outcome_goals AS a
-			LEFT JOIN outcomes AS b USING (outcome_goal_id)
+	$sql = "select outcome_goal_id, goal, NULL as result 
+			from outcome_goals 
 			where problem in ('{$problem_category}', '{$problem_code}') AND 
-			(case_id = {$case_row['case_id']} OR (ISNULL(case_id) AND active = 1)) 
+			active = 1
 			order by problem ASC, outcome_goal_order ASC";
 	$result = mysql_query($sql) or trigger_error(mysql_error($result));	
+	$x = array();
+	
+	while ($row = mysql_fetch_assoc($result))
+	{
+		$x[$row['outcome_goal_id']] = $row;
+	}
+	
+	$sql = "select b.outcome_goal_id, a.goal, b.result 
+			from outcomes as b 
+			left join outcome_goals as a using (outcome_goal_id) 
+			where case_id = {$case_row['case_id']}";
+	$result = mysql_query($sql) or trigger_error(mysql_error($result));	
+	
+	while ($row = mysql_fetch_assoc($result))
+	{
+		$x[$row['outcome_goal_id']] = $row;
+	}
 	
 	$C .= "<form action=\"{$base_url}/ops/update_case.php\" method=\"POST\">";
 	$C .= "<table class=\"table table-striped\">\n";
 	$i = 0;
 	
-	while ($row = mysql_fetch_assoc($result))
+	foreach ($x as $row)
 	{
 		if (pl_settings_get('multi_outcomes'))
 		{
