@@ -46,28 +46,25 @@ else
 	
 	foreach ($x as $row)
 	{
+		$yes_checked = "";
+		$no_checked = "";
+		$na_checked = "";
+
 		if (pl_settings_get('multi_outcomes'))
 		{
-			switch ($row['result'])
+			if ("1" == $row['result'])
 			{
-				case 1:
 				$yes_checked = " checked";
-				$no_checked = "";
-				$na_checked = "";
-				break;
-				
-				case 0:
-				$yes_checked = "";
+			}
+			
+			else if ("0" == $row['result'])
+			{
 				$no_checked = " checked";
-				$na_checked = "";
-				break;
-				
-				case 2:
-				default:
-				$yes_checked = "";
-				$no_checked = "";
+			}
+
+			else if ("2" == $row['result'])
+			{
 				$na_checked = " checked";
-				break;			
 			}
 			
 			
