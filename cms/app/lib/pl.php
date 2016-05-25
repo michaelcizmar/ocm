@@ -899,8 +899,8 @@ function pl_error_handler($errno = null, $errstr = null, $errfile = null, $errli
 	    default:
 	    	pl_error_fatal($errno, $errstr, $errfile, $errline);
 	    	break;
-	    //case E_USER_DEPRECATED: // 16384 PHP 5.3+
-		//	break;
+	    case E_USER_DEPRECATED: // 16384 PHP 5.3+
+			break;
 	    //case E_ALL: // PHP6 = 32767 : PHP 5.3 = 30719 : PHP 5.2 = 6143 : PHP3/4/5 = 2047
 	    //	break;
 	}
