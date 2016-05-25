@@ -872,7 +872,7 @@ CREATE TABLE `motd` (
 
 CREATE TABLE outcome_goals (
   outcome_goal_id INT NOT NULL default '0',
-  goal CHAR(128),
+  goal CHAR(255),
   problem CHAR(2),
   active TINYINT,
   outcome_goal_order INT,

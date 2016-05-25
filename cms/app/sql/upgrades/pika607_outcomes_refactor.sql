@@ -21,3 +21,4 @@ INSERT INTO `settings` VALUES ('ca_iolta_outcomes', '0');
 #CHANGE outcome_debt_before outcome_debt_after_service MEDIUMINT default NULL, \
 #CHANGE outcome_debt_after outcome_debt_no_service MEDIUMINT default NULL" D=wtls,t=cases
  
+ALTER TABLE outcome_goals MODIFY goal CHAR(255);
