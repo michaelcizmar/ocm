@@ -966,6 +966,20 @@ CREATE TABLE `transfer_options` (
   PRIMARY KEY  (`transfer_option_id`)
 ) ENGINE = INNODB;
 
+
+CREATE TABLE transfers (
+  transfer_id INT NOT NULL default '0',
+  user_id INT,
+  json_data TEXT,
+  created TIMESTAMP NULL DEFAULT NULL,
+  accepted TINYINT,
+  accepted_date TIMESTAMP,
+  accepted_user_id INT,
+  PRIMARY KEY  (transfer_id),
+  KEY accepted (accepted)
+) ENGINE = INNODB;
+
+
 --
 -- Table structure for table `users`
 --
