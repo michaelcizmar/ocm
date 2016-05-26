@@ -45,6 +45,19 @@ $fcomp5 = pl_grab_post('fcomp5');
 
 $fcomp = array($fcomp0,$fcomp1,$fcomp2,$fcomp3,$fcomp4,$fcomp5);
 
+foreach ($fcomp as $key => $val)
+{
+	if ('&lt;' == $val)
+	{
+		$fcomp[$key] = '<';
+	}
+	
+	else if ('&gt;' == $val)
+	{
+		$fcomp[$key] = '>';
+	}
+}
+
 $fvalue0 = pl_grab_post('fvalue0');
 $fvalue1 = pl_grab_post('fvalue1');
 $fvalue2 = pl_grab_post('fvalue2');
