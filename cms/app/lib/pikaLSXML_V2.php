@@ -106,7 +106,7 @@ class pikaLSXML
 			$is_primary = 'false';
 			if($case->client_id == $contact['contact_id']) { $is_primary = 'true'; }
 			$this->setXMLValue($contact_xml_prefix, array('@Primary' => $is_primary));
-			$this->setXMLValue($contact_xml_prefix, array('Role' => $this->lookupXMLValue('relation_code',$contact['relation_code'])));
+			$this->setXMLValue($contact_xml_prefix, array('Role' => $this->lookupXMLValue('relation_codes',$contact['relation_code'])));
 			$this->setXMLValue($contact_xml_prefix, array('First_Name' => $contact['first_name']));
 			$this->setXMLValue($contact_xml_prefix, array('Middle_Name' => $contact['middle_name']));
 			$this->setXMLValue($contact_xml_prefix, array('Last_Name' => $contact['last_name']));
@@ -137,7 +137,7 @@ class pikaLSXML
 			$this->setXMLValue($contact_xml_prefix, array('Marital' => $this->lookupXMLValue('marital',$contact['marital'])));
 			if($case->client_id == $contact['contact_id']) 
 			{
-				$this->setXMLValue($contact_xml_prefix, array('Citizenship' => $this->lookupXMLValue('citizenship',$case->citizen)));
+				$this->setXMLValue($contact_xml_prefix, array('Citizenship' => $this->lookupXMLValue('citizen',$case->citizen)));
 			}
 			$this->setXMLValue($contact_xml_prefix, array('Email' => $contact['email']));
 			
@@ -327,6 +327,7 @@ class pikaLSXML
 		// Eligibility
 		$case_row['adults'] = $this->getXMLValue('/ClientIntake/Eligibility/Adults');
 		$case_row['children'] = $this->getXMLValue('/ClientIntake/Eligibility/Children');
+		$case_row['persons_helped'] = $case_row['adults'] + $case_row['children'];
 		$case_row['elig_notes'] = $this->getXMLValue('/ClientIntake/Eligibility/EligibilityNotes');
 
 		
@@ -348,7 +349,7 @@ class pikaLSXML
 				$fieldvalue = $this->getXMLValue($field);
 				$case_row[$asset_type_field] = $this->lookupXMLValue('asset_type',$asset_type);
 				$case_row[$asset_field] = $fieldvalue;
-				if($count >= $asset_field_count - 1)
+				if($count >= $asset_field_count)
 				{
 					// Need to summarize remaining asset data and list in eligibility notes
 					// for the purposes of this placeholder we'll try to default to Other
@@ -431,7 +432,7 @@ class pikaLSXML
 				$expense_freq = $this->getXMLValue($field . "/@ExpenseFrequencyType");
 				$income_field = "annual{$count}";
 				$fieldvalue = $this->getXMLValue($field);
-				$case_row[$income_type_field] = $this->lookupXMLValue('expense_type',$expense_type);
+				$case_row[$income_type_field] = $this->lookupXMLValue('income_type',$expense_type);
 				$case_row[$income_freq_field] = $this->lookupXMLValue('income_freq',$expense_freq);
 				if(
 					is_numeric($case_row[$income_freq_field]) && 
@@ -523,7 +524,7 @@ class pikaLSXML
 			$contact_row['contact_id_old'] = $contact_id;
 			$contact_row['contact_primary'] = $contact_primary;
 			
-			$contact_row['role'] = $this->lookupXMLValue('relation_code',$contact_role);
+			$contact_row['role'] = $this->lookupXMLValue('relation_codes',$contact_role);
 			$contact_row['first_name'] = $contact_fname;
 			$contact_row['middle_name'] = $contact_mname;
 			$contact_row['last_name'] = $contact_lname;
@@ -533,7 +534,7 @@ class pikaLSXML
 			$contact_row['ethnicity'] = $this->lookupXMLValue('ethnicity',$contact_ethnicity);
 			$contact_row['language'] = $this->lookupXMLValue('language',$contact_language);
 			$contact_row['marital'] = $this->lookupXMLValue('marital',$contact_marital);
-			$contact_row['citizenship'] = $this->lookupXMLValue('citizenship',$contact_citizenship);
+			$case_row['citizen'] = $this->lookupXMLValue('citizen',$contact_citizenship);
 			$contact_row['email'] = $contact_email;
 			
 			// Address
@@ -554,6 +555,7 @@ class pikaLSXML
 					$contact_row['city'] = $city;
 					$contact_row['state'] = $state;
 					$contact_row['zip'] = $zipcode;
+					$contact_row['county'] = $county;
 				} else {
 					$contact_row['notes'] .= "Address[{$address_count}: {$address1} {$address2} {$city},{$state} {$zipcode}\n";
 				}
@@ -744,11 +746,11 @@ class pikaLSXML
 							'6'=>'OtherUnfavorable',
 							'7'=>'NoEffect',
 							'8'=>'Dismissed');
-		$a['citizenship'] = array('A'=>'Citizen','B'=>'LegalAlien','C'=>'UndocumentedAlien');
+		$a['citizen'] = array('A'=>'Citizen','B'=>'LegalAlien','C'=>'UndocumentedAlien');
 		$a['marital'] = array('S'=>'Single','M'=>'Married','W'=>'Widowed','D'=>'Divorced','P'=>'Separated','U'=>'Unknown');
 		$a['ethnicity'] = array('10'=>'White','20'=>'Black','30'=>'Hispanic','40'=>'NativeAmerican','50'=>'Asian','99'=>'Other');
 		$a['gender'] = array('F'=>'Female','M'=>'Male','U'=>'Unknown');
-		$a['relation_code'] = array('1'=>'Client','2'=>'OpposingParty','3'=>'OpposingCounsel','5'=>'Judge','50'=>'ReferralAgency','99'=>'Other');
+		$a['relation_codes'] = array('1'=>'Client','2'=>'OpposingParty','3'=>'OpposingCounsel','5'=>'Judge','50'=>'ReferralAgency','99'=>'Other');
 		$a['language'] = array ('A' => 'sq', 'B' => 'km', 'D' => 'so',
 											'E' => 'en', 'F' => 'fr', 'G' => 'de',
 											'I' => 'it', 'J' => 'ja', 'K' => 'ko',
@@ -766,6 +768,11 @@ class pikaLSXML
 					$a[$key] = $b[$key];
 				}
 			}
+		}
+		
+		if ($field_name != 'income_freq')
+		{
+			$a[$field_name] = pl_menu_get($field_name);
 		}
 		
 		$match = '';
