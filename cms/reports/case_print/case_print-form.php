@@ -113,6 +113,7 @@ $plMenus['main_benefit'] = pl_table_array('main_benefit');
 $plMenus['gender'] = pl_table_array('gender');
 $plMenus['yes_no'] = pl_table_array('yes_no');
 
+$pba_array = $pk->fetchPbAttorneyArray();
 
 $tmpstaff = $pk->fetchStaffArray();
 
@@ -262,6 +263,15 @@ $a['marital'] = pl_array_lookup($a['marital'],$plMenus['marital']);
 $a['outcome'] = pl_array_lookup($a['outcome'],$plMenus['outcome']);
 $a['main_benefit'] = pl_array_lookup($a['main_benefit'],$plMenus['main_benefit']);
 
+$a['probono'] = pl_array_lookup($a['pba_id1'],$pba_array);
+if($a['pba_id2'])
+{
+	$a['probono'] .= "<br>".pl_array_lookup($a['pba_id2'],$pba_array);
+}
+if($a['pba_id3'])
+{
+	$a['probono'] .= "<br>".pl_array_lookup($a['pba_id3'],$pba_array);
+}
 
 /*
 if ($a['conflicts'] == 1)
