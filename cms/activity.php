@@ -198,6 +198,13 @@ if (!pika_authorize('read_act', $act_row)) {
 $textformat = new pikaTempLib('subtemplates/textFormat.html',array());
 $act_row['textFormat'] = $textformat->draw();
 
+require_once('pikaInterview.php');
+$result = pikaInterview::getInterviewsDB(1);
+$menu_interviews = array();
+while($row = mysql_fetch_assoc($result)) {
+        $menu_interviews[$row['interview_id']] = $row['name'];
+}
+
 $a['nav'] = "<a href=\"{$base_url}\">Pika Home</a> &gt; ";
 if(isset($act_row['case_id']) && is_numeric($act_row['case_id'])) {
 	$case = new pikaCase($act_row['case_id']);
@@ -221,7 +228,10 @@ if (file_exists(pl_custom_directory() . "/subtemplates/activity{$act_type}.html"
 	$template = new pikaTempLib("subtemplates/activity{$act_type}.html",$act_row);
 }else { // Standard location (Pika 4.0+)
 	$template = new pikaTempLib("subtemplates/activity.html",$act_row,$act_type);	
-}		
+}
+
+$template->addMenu('interviews',$menu_interviews);  
+
 $a['content'] = $template->draw();
 
 // If this is a new record, 'created' won't be present, so check if it exists first.
