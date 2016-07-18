@@ -168,9 +168,9 @@ switch ($action) {
 	case 'ssn_remove':
 		set_time_limit(0);
 		$result = mysql_query("UPDATE contacts SET ssn = NULL") or trigger_error(mysql_error());
-		$result = mysql_query("ALTER TABLE contacts MODIFY ssn enum('deactivated')") or trigger_error(mysql_error());
+		$result = mysql_query("ALTER TABLE contacts MODIFY ssn char(0)") or trigger_error(mysql_error());
 		$result = mysql_query("UPDATE aliases SET ssn = NULL") or trigger_error(mysql_error());
-		$result = mysql_query("ALTER TABLE aliases MODIFY ssn enum('deactivated')") or trigger_error(mysql_error());
+		$result = mysql_query("ALTER TABLE aliases MODIFY ssn char(0)") or trigger_error(mysql_error());
 		$main_html['content'] .= 'SSNs have been removed from the data.';
 		$main_html['nav'] = "<a href=\"{$base_url}\">Pika Home</a> &gt;
 					 <a href=\"{$base_url}/site_map.php\">Site Map</a> &gt;
@@ -215,7 +215,7 @@ switch ($action) {
 		$disabled = '';
 		$not_available = '';
 		
-		if ($size_of_ssn == 'enum(\'deactivated\')')
+		if ($size_of_ssn == 'char(0)')
 		{
 			$disabled = ' disabled';
 			$not_available = '<p>The SSN Delete function is not available because the SSNs in this database have already been deleted.</p>';
