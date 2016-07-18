@@ -1360,7 +1360,7 @@ function pl_menu_get($menu_name, $key = null)
 			if($menu_table_name == $row[0]) {$menu_exists = true;}
 		}
 		if($menu_exists) {
-			$sql = "SELECT SQL_CACHE $key, $val FROM $menu_table_name ORDER BY $ord";
+			$sql = "SELECT $key, $val FROM $menu_table_name ORDER BY $ord";
 			$result = mysql_query($sql) or trigger_error(mysql_error());
 		
 			$plMenus[$menu_name] = array();
@@ -1453,7 +1453,6 @@ function pl_mysql_init()
 		if ($status !== false)
 		{
 			$connection_is_live = mysql_select_db($db_name) or trigger_error(mysql_error());
-			mysql_query("SET SESSION query_cache_type = DEMAND") or trigger_error(mysql_error());
 		}
 	}
 	

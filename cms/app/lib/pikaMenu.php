@@ -105,7 +105,7 @@ class pikaMenu extends plBase
 		}
 		$safe_menu_name = mysql_real_escape_string($menu_name);
 		
-		$sql = "SELECT SQL_CACHE * 
+		$sql = "SELECT * 
 				FROM {$safe_menu_name} WHERE 1 
 				ORDER BY menu_order;";
 		$result = mysql_query($sql) or trigger_error("SQL: " . $sql . " Error: " . mysql_error());
