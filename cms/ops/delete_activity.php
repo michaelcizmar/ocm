@@ -29,10 +29,13 @@ if(is_numeric($act_id) && !$cancel) {
 	if(is_numeric($activity->case_id)) {
 		$case_id = $activity->case_id;
 	}
-	if (pika_authorize('delete_act', array()))
+	
+	if ((pl_settings_get('db_name') == 'legalaidnebraska' && pika_authorize('edit_act', $act_row))
+			|| pika_authorize('delete_act', array()))
 	{
 		$activity->delete();
 	}
+	
 	else {
 		header("Location: {$base_url}/activity.php?act_id={$act_id}");
 		exit();

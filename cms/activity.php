@@ -117,7 +117,8 @@ if($action == 'confirm_delete') {
 	}
 	$a['nav'] .= "Delete {$type_desc}";
 	$sub_directive = 'access_denied';
-	if(pika_authorize('delete_act',$act_row))
+	if((pl_settings_get('db_name') == 'legalaidnebraska' && pika_authorize('edit_act',$act_row))
+	 	|| pika_authorize('delete_act',$act_row))
 	{
 		$sub_directive = 'confirm_delete';
 	}
