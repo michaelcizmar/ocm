@@ -195,8 +195,33 @@ class pikaMisc
 		{
 			// Filter using a UNION to improve performance.  See below...
 		}
+		
+		// MDF 2/11/10
+		
+		if (isset($filter["supervisor"]) && $filter["supervisor"])
+		{
+						$sql .= " AND cases.supervisor = '{$filter['supervisor']}'";
+		}
+		
+		if (isset($filter["closer"]) && $filter["closer"])
+		{
+						$sql .= " AND cases.closer = '{$filter['closer']}'";
+		}
 
+		// End
+		
+		// 06-29-2012 - caw - added additional search criteria
+		if (isset($filter["unit"]) && $filter["unit"])
+		{
+						$sql .= " AND cases.unit = '{$filter['unit']}'";
+		}
 
+		if (isset($filter["subunit"]) && $filter["subunit"])
+		{
+						$sql .= " AND cases.subunit = '{$filter['subunit']}'";
+		}               
+		// end of add
+		
 		if (isset($filter["pba_id"]) && $filter["pba_id"])
 		{
 			$sql .= " AND (cases.pba_id1='{$filter["pba_id"]}' OR cases.pba_id2='{$filter["pba_id"]}' OR cases.pba_id3='{$filter["pba_id"]}')";

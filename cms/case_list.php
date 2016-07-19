@@ -28,6 +28,16 @@ $filter['client_name'] = pl_grab_get('client_name');
 $filter['show_cases'] = pl_grab_get('show_cases', 0);
 $filter['sp_problem'] = pl_grab_get('sp_problem');
 
+// MDF 2/11/10
+// $filter['supervisor'] = pl_grab_get('supervisor'); // AMW 2016-07-19
+$filter['closer'] = pl_grab_get('closer');
+// End MDF
+
+// 06-29-2012 - caw - added
+$filter['unit'] = pl_grab_get('unit');
+$filter['subunit'] = pl_grab_get('subunit');
+// end of add
+
 // AMW 2014-07-23 - Added for SMRLS and ILCM
 $filter['supervisor'] = pl_grab_get('supervisor');
 
