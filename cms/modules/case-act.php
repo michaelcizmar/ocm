@@ -130,12 +130,23 @@ $notes_form['notes_footer'] = $notes_footer->draw();
 $text_format = new pikaTempLib('subtemplates/textFormat.html',array());
 $notes_form['textFormat'] = $text_format->draw();
 
-
 $notes_form['owner_menu'] = "Staff:<br>\n";
 $notes_form['owner_menu'] .= pikaTempLib::plugin('menu','user_id',$notes_form['user_id'],$plMenus['user_id']);
 $notes_form['owner_menu'] .= "<br/>";
 
 $default_template = new pikaTempLib('subtemplates/activity.html', $notes_form, 'N');
+
+require_once('pikaInterview.php');
+$result = pikaInterview::getInterviewsDB(1);
+$menu_interviews = array();
+
+while($row = mysql_fetch_assoc($result))
+{
+	$menu_interviews[$row['interview_id']] = $row['name'];
+}
+
+$default_template->addMenu('interviews',$menu_interviews);
+
 $C .= $default_template->draw();
 
 ?>
