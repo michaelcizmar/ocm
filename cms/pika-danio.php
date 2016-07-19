@@ -154,7 +154,7 @@ function pika_authorize($op, $row)
 		
 		case 'edit_act':
 		
-		if ($auth_row['edit_all'])
+		if ($auth_row['edit_all'] && pl_settings_get('db_name') != 'legalaidnebraska')
 		{
 			$allow_this = true;
 		}
