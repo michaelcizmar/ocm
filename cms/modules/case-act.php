@@ -149,4 +149,30 @@ $default_template->addMenu('interviews',$menu_interviews);
 
 $C .= $default_template->draw();
 
+/*
+
+NE program had the following code on their site.  I don't think 
+$auth_row['pba_id'] will ever be present, so I did not merge this into the
+main code base.
+
+---
+> $menu_staff = pikaMisc::fetchStaffArray();
+> $menu_pba = pikaMisc::fetchPbAttorneyArray();
+> // Generate user_id menus
+> if(isset($auth_row['pba_id']) && is_numeric($auth_row['pba_id'])) {
+> 	$owner = $auth_row['pba_id'];
+> 	$notes_form['owner_menu'] = "Pro Bono Attorney:<br>\n";
+> 	$notes_form['owner_menu'] .= pikaTempLib::plugin('menu','pba_id',$owner,$menu_pba);
+> } else {
+> 	$owner = $auth_row['user_id'];
+> 	$notes_form['owner_menu'] = "Staff:<br>\n";
+> 	$notes_form['owner_menu'] .= pikaTempLib::plugin('menu','user_id',$owner,$menu_staff);
+> }
+128,130c145,157
+< $notes_form['owner_menu'] = "Staff:<br>\n";
+< $notes_form['owner_menu'] .= pikaTempLib::plugin('menu','user_id',$notes_form['user_id'],$plMenus['user_id']);
+< $notes_form['owner_menu'] .= "<br/>";
+---
+*/
+
 ?>
