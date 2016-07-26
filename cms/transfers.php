@@ -165,83 +165,83 @@ else
 	$tmp_row = array();
 	$conflict_array = array();
 	
-			// Match by metaphone name/birth date
-			if (strlen($row['mp_first']) > 0)
-			{
-				$mp_first = " AND aliases.mp_first='{$row['mp_first']}'";
-			}
-			
-			else
-			{
-				$mp_first = '';
-			}
-			
-			if ($row['birth_date'])
-			{
-				$mp_first .= " AND (birth_date='{$row['birth_date']}' OR birth_date IS NULL)";
-			}
-			
-			$sql = "SELECT conflict.*, contacts.*, number, cases.case_id, problem, status, label AS role
-					FROM contacts
-					LEFT JOIN conflict ON contacts.contact_id=conflict.contact_id
-					LEFT JOIN cases ON conflict.case_id=cases.case_id
-					LEFT JOIN menu_relation_codes ON conflict.relation_code=menu_relation_codes.value
-					WHERE relation_code != {$row['relation_code']} AND mp_last='{$row['mp_last']}'{$mp_first}
-					AND conflict.contact_id != {$row['contact_id']}
-					LIMIT $lim";
-			$sql = "SELECT conflict.*, contacts.*, number, cases.case_id, problem, status, label AS role
-					FROM aliases
-					LEFT JOIN contacts ON aliases.contact_id=contacts.contact_id
-					LEFT JOIN conflict ON aliases.contact_id=conflict.contact_id
-					LEFT JOIN cases ON conflict.case_id=cases.case_id
-					LEFT JOIN menu_relation_codes ON conflict.relation_code=menu_relation_codes.value
-					WHERE relation_code != {$row['relation_code']} AND aliases.mp_last='{$row['mp_last']}'{$mp_first}
-					AND conflict.contact_id != {$row['contact_id']}
-					LIMIT $lim";
-			$sub_result = mysql_query($sql) or trigger_error("SQL: " . $sql . " Error: " . mysql_error());
+	// Match by metaphone name/birth date
+	if (strlen($row['mp_first']) > 0)
+	{
+		$mp_first = " AND aliases.mp_first='{$row['mp_first']}'";
+	}
+	
+	else
+	{
+		$mp_first = '';
+	}
+	
+	if ($row['birth_date'])
+	{
+		$mp_first .= " AND (birth_date='{$row['birth_date']}' OR birth_date IS NULL)";
+	}
+	
+	$sql = "SELECT conflict.*, contacts.*, number, cases.case_id, problem, status, label AS role
+			FROM contacts
+			LEFT JOIN conflict ON contacts.contact_id=conflict.contact_id
+			LEFT JOIN cases ON conflict.case_id=cases.case_id
+			LEFT JOIN menu_relation_codes ON conflict.relation_code=menu_relation_codes.value
+			WHERE relation_code != {$row['relation_code']} AND mp_last='{$row['mp_last']}'{$mp_first}
+			AND conflict.contact_id != {$row['contact_id']}
+			LIMIT $lim";
+	$sql = "SELECT conflict.*, contacts.*, number, cases.case_id, problem, status, label AS role
+			FROM aliases
+			LEFT JOIN contacts ON aliases.contact_id=contacts.contact_id
+			LEFT JOIN conflict ON aliases.contact_id=conflict.contact_id
+			LEFT JOIN cases ON conflict.case_id=cases.case_id
+			LEFT JOIN menu_relation_codes ON conflict.relation_code=menu_relation_codes.value
+			WHERE relation_code != {$row['relation_code']} AND aliases.mp_last='{$row['mp_last']}'{$mp_first}
+			AND conflict.contact_id != {$row['contact_id']}
+			LIMIT $lim";
+	$sub_result = mysql_query($sql) or trigger_error("SQL: " . $sql . " Error: " . mysql_error());
 
-			while($tmp_row = mysql_fetch_assoc($sub_result))
-			{
-				$tmp_row['match'] = 'NAME';
-				$conflict_array[] = $tmp_row;
-				
-				$z .= "<p>{$tmp_row['first_name']} {$tmp_row['last_name']} was a(n) {$tmp_row['role']} on ";
-				$z .= "<a href=\"{$base_url}/case.php?case_id={{$tmp_row['case_id']}}\">";
-				$z .= "{$tmp_row['number']}</a></p>";
-			}
-			
-			// Match by SSN
-			if (strlen($row['ssn'] > 0))
-			{
-				$sql = "SELECT conflict.*, contacts.*, number, cases.case_id, problem, status, label AS role
-					FROM contacts
-					LEFT JOIN conflict ON contacts.contact_id=conflict.contact_id
-					LEFT JOIN cases ON conflict.case_id=cases.case_id
-					LEFT JOIN menu_relation_codes ON conflict.relation_code=menu_relation_codes.value
-					WHERE relation_code != {$row['relation_code']} AND ssn='{$row['ssn']}'
-					AND conflict.contact_id != {$row['contact_id']} AND mp_last!='{$row['mp_last']}'
-					LIMIT $lim";
-				$sql = "SELECT conflict.*, contacts.*, number, cases.case_id, problem, status, label AS role
-					FROM aliases
-					LEFT JOIN contacts ON aliases.contact_id=contacts.contact_id
-					LEFT JOIN conflict ON aliases.contact_id=conflict.contact_id
-					LEFT JOIN cases ON conflict.case_id=cases.case_id
-					LEFT JOIN menu_relation_codes ON conflict.relation_code=menu_relation_codes.value
-					WHERE relation_code != {$row['relation_code']} AND aliases.ssn='{$row['ssn']}'
-					AND conflict.contact_id != {$row['contact_id']} AND aliases.mp_last!='{$row['mp_last']}'
-					LIMIT $lim";
-				$sub_result = mysql_query($sql) or trigger_error("SQL: " . $sql . " Error: " . mysql_error());
-				
-				while($tmp_row = mysql_fetch_assoc($sub_result))
-				{
-					$tmp_row['match'] = 'SSN';
-					$conflict_array[] = $tmp_row;
+	while($tmp_row = mysql_fetch_assoc($sub_result))
+	{
+		$tmp_row['match'] = 'NAME';
+		$conflict_array[] = $tmp_row;
+		
+		$z .= "<p>{$tmp_row['first_name']} {$tmp_row['last_name']} was a(n) {$tmp_row['role']} on ";
+		$z .= "<a href=\"{$base_url}/case.php?case_id={{$tmp_row['case_id']}}\">";
+		$z .= "{$tmp_row['number']}</a></p>";
+	}
+	
+	// Match by SSN
+	if (strlen($row['ssn'] > 0))
+	{
+		$sql = "SELECT conflict.*, contacts.*, number, cases.case_id, problem, status, label AS role
+			FROM contacts
+			LEFT JOIN conflict ON contacts.contact_id=conflict.contact_id
+			LEFT JOIN cases ON conflict.case_id=cases.case_id
+			LEFT JOIN menu_relation_codes ON conflict.relation_code=menu_relation_codes.value
+			WHERE relation_code != {$row['relation_code']} AND ssn='{$row['ssn']}'
+			AND conflict.contact_id != {$row['contact_id']} AND mp_last!='{$row['mp_last']}'
+			LIMIT $lim";
+		$sql = "SELECT conflict.*, contacts.*, number, cases.case_id, problem, status, label AS role
+			FROM aliases
+			LEFT JOIN contacts ON aliases.contact_id=contacts.contact_id
+			LEFT JOIN conflict ON aliases.contact_id=conflict.contact_id
+			LEFT JOIN cases ON conflict.case_id=cases.case_id
+			LEFT JOIN menu_relation_codes ON conflict.relation_code=menu_relation_codes.value
+			WHERE relation_code != {$row['relation_code']} AND aliases.ssn='{$row['ssn']}'
+			AND conflict.contact_id != {$row['contact_id']} AND aliases.mp_last!='{$row['mp_last']}'
+			LIMIT $lim";
+		$sub_result = mysql_query($sql) or trigger_error("SQL: " . $sql . " Error: " . mysql_error());
+		
+		while($tmp_row = mysql_fetch_assoc($sub_result))
+		{
+			$tmp_row['match'] = 'SSN';
+			$conflict_array[] = $tmp_row;
 
-				$z .= "<p>{$tmp_row['first_name']} {$tmp_row['last_name']} was a(n) {$tmp_row['role']} on ";
-				$z .= "<a href=\"{$base_url}/case.php?case_id={{$tmp_row['case_id']}}\">";
-				$z .= "{$tmp_row['number']}</a></p>";
-				}
-			}
+		$z .= "<p>{$tmp_row['first_name']} {$tmp_row['last_name']} was a(n) {$tmp_row['role']} on ";
+		$z .= "<a href=\"{$base_url}/case.php?case_id={{$tmp_row['case_id']}}\">";
+		$z .= "{$tmp_row['number']}</a></p>";
+		}
+	}
 	
 	if (sizeof($conflict_array) < 1)
 	{
