@@ -268,11 +268,12 @@ else
 	$z .= "</div>\n";
 	$z .= "</div>\n";
 
-	
+	$z .= "<div class=\"well\">\n";
 	$z .= "<form method=\"POST\" action=\"{$base_url}/transfers.php\">";
 	$z .= "<input type=\"hidden\" name=\"transfer_id\" value=\"{$safe_transfer_id}\">";
 	$z .= "<input type=\"submit\" name=\"accept\" value=\"Accept\" class=\"btn btn-success\">&nbsp;";
 	$z .= "<input type=\"submit\" name=\"reject\" value=\"Reject\" class=\"btn\"></form>";
+	$z .= "</div>\n";
 }
 
 $plTemplate["content"] = '<div id="page_content" class="container">' . $z . '</div>';
