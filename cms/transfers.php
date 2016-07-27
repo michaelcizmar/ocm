@@ -229,8 +229,8 @@ else
 		$z .= "<tr><td>$key</td><td>$value</td></tr>";
 	}
 
-	$z .= potential_conflicts($x['client'], 1, 'Client');
 	$z .= "</table>";
+	$z .= potential_conflicts($x['client'], 1, 'Client');
 	$z .= "</div>\n";
   $z .= "<div class=\"span4\">\n";
 	$z .= "<h2>Opposing Party</h2>";
@@ -240,9 +240,9 @@ else
 	{
 		$z .= "<tr><td>opposing_party.$key</td><td>$value</td></tr>";
 	}
-
-	$z .= potential_conflicts($x['op'], 2, 'Opposing Party');
+	
 	$z .= "</table>";
+	$z .= potential_conflicts($x['op'], 2, 'Opposing Party');
 	$z .= "</div>\n";
   $z .= "<div class=\"span4\">\n";
 	$z .= "<h2>Opposing Party's Attorney</h2>";
@@ -253,8 +253,8 @@ else
 		$z .= "<tr><td>opposing_party_attorney.$key</td><td>$value</td></tr>";
 	}
 
-	$z .= potential_conflicts($x['opa'], 3, 'Opposing Party\'s Attorney');
 	$z .= "</table>";
+	$z .= potential_conflicts($x['opa'], 3, 'Opposing Party\'s Attorney');
 	$z .= "</div>\n";
 	$z .= "</div>\n";
 	
