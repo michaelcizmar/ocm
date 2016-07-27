@@ -212,6 +212,7 @@ else
 	$z .= "<h1>Incoming Transfer &#35;{$safe_transfer_id}</h1>";
 	$z .= "<div class=\"row\">\n";
 	$z .= "<div class=\"span4\">\n";
+	$z .= "<h2>Client, Notes, and Case Info</h2>";
 	$z .= "<table class=\"table\">";
 	foreach ($x['client'] as $key => $value)
 	{
@@ -232,6 +233,7 @@ else
 	$z .= "</table>";
 	$z .= "</div>\n";
   $z .= "<div class=\"span4\">\n";
+	$z .= "<h2>Opposing Party</h2>";
 	$z .= "<table class=\"table\">";
 	
 	foreach ($x['op'] as $key => $value)
@@ -243,6 +245,7 @@ else
 	$z .= "</table>";
 	$z .= "</div>\n";
   $z .= "<div class=\"span4\">\n";
+	$z .= "<h2>Opposing Party's Attorney</h2>";
 	$z .= "<table class=\"table\">";
 	
 	foreach ($x['opa'] as $key => $value)
