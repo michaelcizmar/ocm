@@ -209,10 +209,17 @@ else
 	
 	$x = json_decode($single_row['json_data'], 1);
 	
+	$z .= "<div class=\"row\">\n";
+	$z .= "<div class=\"span4\">\n";
 	$z .= "<table class=\"table\">";
 	foreach ($x['client'] as $key => $value)
 	{
 		$z .= "<tr><td>$key</td><td>$value</td></tr>";
+	}
+	
+	foreach ($x['notes'] as $key => $value)
+	{
+		$z .= "<tr><td>notes.$key</td><td>$value</td></tr>";
 	}
 	
 	foreach ($x['case'] as $key => $value)
@@ -220,27 +227,32 @@ else
 		$z .= "<tr><td>$key</td><td>$value</td></tr>";
 	}
 
+	$z .= potential_conflicts($x['client'], 1, 'Client');
+	$z .= "</table>";
+	$z .= "</div>\n";
+  $z .= "<div class=\"span4\">\n";
+	$z .= "<table class=\"table\">";
+	
 	foreach ($x['op'] as $key => $value)
 	{
 		$z .= "<tr><td>opposing_party.$key</td><td>$value</td></tr>";
 	}
 
+	$z .= potential_conflicts($x['op'], 2, 'Opposing Party');
+	$z .= "</table>";
+	$z .= "</div>\n";
+  $z .= "<div class=\"span4\">\n";
+	$z .= "<table class=\"table\">";
+	
 	foreach ($x['opa'] as $key => $value)
 	{
 		$z .= "<tr><td>opposing_party_attorney.$key</td><td>$value</td></tr>";
 	}
 
-	foreach ($x['notes'] as $key => $value)
-	{
-		$z .= "<tr><td>notes.$key</td><td>$value</td></tr>";
-	}
-
-	$z .= "</table>";
-	
-	$z .= "<h2>Potential Conflicts of Interest</h2>";
-	$z .= potential_conflicts($x['client'], 1, 'Client');
-	$z .= potential_conflicts($x['op'], 2, 'Opposing Party');
 	$z .= potential_conflicts($x['opa'], 3, 'Opposing Party\'s Attorney');
+	$z .= "</table>";
+	$z .= "</div>\n";
+	$z .= "</div>\n";
 	
 	$z .= "<form method=\"POST\" action=\"{$base_url}/transfers.php\">";
 	$z .= "<input type=\"hidden\" name=\"transfer_id\" value=\"{$safe_transfer_id}\">";
