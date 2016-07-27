@@ -10,7 +10,7 @@ pika_init();
 
 function potential_conflicts($row, $relation_code, $description)
 {
-	$z = "<h3>Conflict Check for {$description}</h3>";
+	$z = "<h2>Conflict Check for {$description}</h2>";
 	$row['relation_code'] = $relation_code;
 	$row['contact_id'] = '0';  // Placeholder value.
 	$row['mp_first'] = substr(metaphone($row['first_name']), 0, 8);
@@ -206,9 +206,10 @@ else
 	$safe_transfer_id = mysql_real_escape_string($transfer_id);
 	$result = mysql_query("SELECT * FROM transfers WHERE transfer_id = '{$safe_transfer_id}'");
 	$single_row = mysql_fetch_assoc($result);
+	$safe_transfer_id = html_entity_decode($safe_transfer_id);
 	
 	$x = json_decode($single_row['json_data'], 1);
-	
+	$z .= "<h1>Incoming Transfer &#35;{$safe_transfer_id}</h1>";
 	$z .= "<div class=\"row\">\n";
 	$z .= "<div class=\"span4\">\n";
 	$z .= "<table class=\"table\">";
