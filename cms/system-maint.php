@@ -88,61 +88,23 @@ switch ($action) {
 					 Calculate Age";
 		break;
 	case 'metaphone':
+		require_once('pikaAlias.php');
+		
 		set_time_limit(0);
 		$start_time = time();
-		$sql = "SELECT alias_id, last_name, first_name
-				FROM aliases 
-				WHERE 1
-				AND mp_first IS NULL 
-				AND mp_last IS NULL 
-				ORDER BY alias_id;";
+		$sql = "SELECT alias_id FROM aliases";
 		$result = mysql_query($sql) or trigger_error("SQL: " . $sql . " ERROR: " . mysql_error());
 		$a['num_found'] = mysql_num_rows($result);
 		$a['num_updated'] = 0;
-		while ($row = mysql_fetch_assoc($result)) {
-			$alias_id = $row['alias_id'];
-			$mp_first = '';
-			if(strlen($row['first_name']) > 0) {
-				$first_arr = explode(" ", $row['first_name']);
-				$mp_first = metaphone($first_arr[0]);
-			}
-			$mp_last = metaphone($row['last_name']);
-			$sql = "UPDATE LOW_PRIORITY aliases
-					SET mp_first='$mp_first', mp_last='$mp_last' 
-					WHERE 1
-					AND alias_id='$alias_id' 
-					AND mp_first IS NULL 
-					AND mp_last IS NULL 
-					LIMIT 1;";
-			mysql_query($sql) or trigger_error("SQL: " . $sql . " ERROR: " . mysql_error());
-			$a['num_updated']++;
+		
+		while ($row = mysql_fetch_assoc($result)) 
+		{
+						$x = new pikaAlias($row['alias_id']);
+						$x->keywordsBuild();
+						$x->save();
+						$a['num_updated']++;
 		}
-		$sql = "SELECT contact_id, last_name, first_name
-				FROM contacts 
-				WHERE 1
-				AND mp_first IS NULL 
-				AND mp_last IS NULL 
-				ORDER BY contact_id;";
-		$result = mysql_query($sql) or trigger_error("SQL: " . $sql . " ERROR: " . mysql_error());
-		$a['num_found'] += mysql_num_rows($result);
-		while ($row = mysql_fetch_assoc($result)){
-			$contact_id = $row['contact_id'];
-			$mp_first = '';
-			if(strlen($row['first_name']) > 0) {
-				$first_arr = explode(" ", $row['first_name']);
-				$mp_first = metaphone($first_arr[0]);
-			}
-			$mp_last=metaphone($row['last_name']);
-			$sql = "UPDATE LOW_PRIORITY contacts
-					SET mp_first='$mp_first', mp_last='$mp_last' 
-					WHERE 1
-					AND contact_id='$contact_id' 
-					AND mp_first IS NULL 
-					AND mp_last IS NULL 
-					LIMIT 1;";
-			mysql_query($sql) or trigger_error("SQL: " . $sql . " ERROR: " . mysql_error());
-			$a['num_updated']++;
-		}
+		
 		$a['duration'] = time() - $start_time;
 		$template = new pikaTempLib('subtemplates/system-maint.html',$a,'metaphone');
 		$main_html['content'] .= $template->draw();
