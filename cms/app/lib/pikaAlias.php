@@ -81,6 +81,7 @@ class pikaAlias extends plBase
 	
 	public function keywordsBuild()
 	{
+		$this->genMetaphone();
 					$this->keywords = '';
 					
 					$this->keywords .= $this->metaphoneHelper($this->first_name);
