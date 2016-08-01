@@ -78,6 +78,58 @@ class pikaAlias extends plBase
 		$this->mp_first = metaphone($first);
 		$this->mp_last = metaphone($last);
 	}
+	
+	public function keywordsBuild()
+	{
+					$this->keywords = '';
+					
+					$this->keywords .= $this->metaphoneHelper($this->first_name);
+					$this->keywords .= $this->metaphoneHelper($this->middle_name);
+					$this->keywords .= $this->metaphoneHelper($this->last_name);
+					$this->keywords .= $this->metaphoneHelper($this->extra_name);
+
+					$x = str_replace($this->first_name, '-', ' ');
+					$y = explode($x, ' ');
+
+					foreach ($y as $value) 
+					{
+									if (strlen($value) > 1)  // Ignore punctuation and initials.
+									{
+													$sql = "SELECT root_name FROM name_variants WHERE first_name = '{$value}'";
+													$result = mysql_query($sql) or trigger_error('hi');
+													
+													while ($row = mysql_fetch_assoc($result))
+													{
+																	$this->keywords .= ' ' . $row['root_name'];
+																	$this->keywords .= ' ' . metaphone($row['root_name']);
+													}
+									}
+					}
+																									
+					if (isset($this->birth_date) && strlen($this->birth_date) == 10)
+					{
+									$this->keywords .= ' y' . date('Y F jS', strtotime($this->birth_date));
+					}
+					
+					$this->keywords = trim($this->keywords);
+	}
+	
+	private function metaphoneHelper($s)
+	{
+					$x = str_replace('-', ' ', $s);
+					$y = explode(' ', $x);
+					$z = '';
+					
+					foreach ($y as $value) 
+					{
+									if (strlen($value) > 1)
+									{
+													$z .= ' ' . metaphone($value);
+									}
+					}
+					
+					return $z;
+	}
 }
 
 ?>
