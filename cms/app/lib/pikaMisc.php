@@ -503,11 +503,13 @@ class pikaMisc
 		$x .= " " . substr($ssn, -4, 4);
 		$x = pl_keywords_build($first_name, $middle_name, $last_name, $extra_name,
 				$birth_date, $ssn);
+				echo $x;
 		
 		$sql = "SELECT contacts.*, 
 					match(a.first_name, a.middle_name, a.last_name, a.extra_name, a.keywords, a.ssn) against('{$x}') as score,
 					a.first_name as a_first_name, a.middle_name as a_middle_name, 
-					a.last_name as a_last_name, a.extra_name as a_extra_name
+					a.last_name as a_last_name, a.extra_name as a_extra_name,
+					keywords
 					FROM aliases as a LEFT JOIN contacts ON a.contact_id=contacts.contact_id
 					where match(a.first_name, a.middle_name, a.last_name, a.extra_name, a.keywords, a.ssn) against('{$x}') 
 					order by score desc";
@@ -1104,7 +1106,7 @@ class pikaMisc
 				$matches_found++;
 				
 				$row['arrow_img'] = 0;
-				$row['client_name'] = pl_text_name($row) . $row['score'];
+				$row['client_name'] = pl_text_name($row) . round($row['score']) .' '. $row['keywords'];
 				$row['client_phone'] = pl_text_phone($row);
 				$row['birth_date'] = pl_date_unmogrify($row['birth_date']);
 				$row['case_id'] = $case_id;
