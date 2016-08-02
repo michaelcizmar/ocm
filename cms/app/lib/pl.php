@@ -2710,16 +2710,42 @@ function pl_text_phone($data)
 
 function pl_text_searchify($s)
 {
+	/*	Metaphone removes hyphens and other characters, and hyphenated names
+			end up glued together.  Each name part should be separated so the record
+			is easier to find if only part of the hypenated name appears in the 
+			search string.  So replace hyphens (and slashes) with spaces, and then
+			metaphone() each separate word in the resulting string.
+			*/
 	$x = str_replace('-', ' ', $s);
+	$x = str_replace('/', ' ', $x);  // Sometimes slashes are used to hyphenate.
+	
 	$y = explode(' ', $x);
 	$z = '';
 	
 	foreach ($y as $value) 
 	{
-		if (strlen($value) > 1)
+		if (strlen($value) < 3 && strlen($value) > 0)
+		{
+			/*  MySQL FULLTEXT ignores strings under 3 characters in length. */
+			/*	I'm using a and e to pad the short names because they are not used
+					by metaphone so there's no chance of name collisions.  I'm using a
+					for names and e for metanames so FULLTEXT will treat them separately.
+					*/
+			$z .= ' ' . str_pad($value, 3, 'a');
+			$z .= ' ' . str_pad(metaphone($value), 3, 'e');
+		}
+		
+		else 
 		{
 			$z .= ' ' . metaphone($value);
 		}
+	}
+	
+	$squished_name = str_replace(' ', '', $x);
+	
+	if (strlen($squished_name) != strlen($x) && strlen($squished_name) > 2)
+	{	
+		$z .= ' ' . $squished_name . ' ' . metaphone($squished_name);
 	}
 	
 	return $z;
