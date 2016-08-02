@@ -2726,13 +2726,14 @@ function pl_text_searchify($s)
 	{
 		if (strlen($value) < 3 && strlen($value) > 0)
 		{
-			/*  MySQL FULLTEXT ignores strings under 3 characters in length. */
-			/*	I'm using a and e to pad the short names because they are not used
-					by metaphone so there's no chance of name collisions.  I'm using a
-					for names and e for metanames so FULLTEXT will treat them separately.
+			/*  MySQL FULLTEXT ignores strings under 3 characters in length.
+					Pad short names and metaphone strings so FULLTEXT will index them.
+					I selected an underscore for names and an 'A' for metanames to lower
+					the chance of name collisions.  Metaphone should never use an 'A', and
+					very few names will end in an underscore.
 					*/
-			$z .= ' ' . str_pad($value, 3, 'a');
-			$z .= ' ' . str_pad(metaphone($value), 3, 'e');
+			$z .= ' ' . str_pad($value, 3, '_');
+			$z .= ' ' . str_pad(metaphone($value), 3, 'A');
 		}
 		
 		else 
