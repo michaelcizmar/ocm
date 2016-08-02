@@ -1,4 +1,3 @@
-ALTER TABLE contacts DROP COLUMN mp_first, DROP COLUMN mp_last;
 ALTER TABLE aliases ADD COLUMN keywords TEXT;
 ALTER TABLE aliases ADD FULLTEXT(first_name, middle_name, last_name, extra_name, keywords, ssn);
 CREATE TABLE name_variants (

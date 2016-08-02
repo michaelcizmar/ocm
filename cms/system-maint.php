@@ -89,6 +89,7 @@ switch ($action) {
 		break;
 	case 'metaphone':
 		require_once('pikaAlias.php');
+		require_once('pikaContact.php');
 		
 		set_time_limit(0);
 		$start_time = time();
@@ -101,6 +102,19 @@ switch ($action) {
 		{
 						$x = new pikaAlias($row['alias_id']);
 						$x->keywordsBuild();
+						$x->save();
+						$a['num_updated']++;
+		}
+		
+		$sql = "SELECT contact_id FROM contacts";
+		$result = mysql_query($sql) or trigger_error("SQL: " . $sql . " ERROR: " . mysql_error());
+		$a['num_found'] = mysql_num_rows($result);
+		$a['num_updated'] = 0;
+		
+		while ($row = mysql_fetch_assoc($result)) 
+		{
+						$x = new pikaContact($row['contact_id']);
+						$x->genMetaphone();
 						$x->save();
 						$a['num_updated']++;
 		}
