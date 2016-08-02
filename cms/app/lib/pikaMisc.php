@@ -492,6 +492,16 @@ class pikaMisc
 		$x = "$last_name $first_name $middle_name $extra_name";
 		$x .= pl_text_searchify($x);
 		
+		/*  Use only the last four characters of the SSN, both if the SSN data
+				is truncated and if it is not.  Having only one SSN search mode will
+				be simpler to test and maintain.  There were a lot of squirrelly details
+				with having a mode for including 4-digit and different mode for 
+				including 9-digit SSNs in the search weighting.  And programs that store
+				the full SSN will still have the SSN Match table that appears separately
+				and compares the full SSN string.
+				*/
+		$x .= " " . substr($ssn, -4, 4);
+		
 		$sql = "SELECT contacts.*, 
 					match(a.first_name, a.middle_name, a.last_name, a.extra_name, a.keywords, a.ssn) against('{$x}') as score
 					FROM aliases as a LEFT JOIN contacts ON a.contact_id=contacts.contact_id
