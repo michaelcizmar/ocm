@@ -1055,8 +1055,23 @@ class pikaMisc
 
 			$i = 1;
 			$matches_found = 0;
+			$high_score = null;
+			
 			while ($row = mysql_fetch_assoc($result))
 			{
+				if (null === $high_score)
+				{
+					$high_score = $row['score'];
+				}
+				
+				else 
+				{
+					if ($high_score > (2 * $row['score']))
+					{
+						break;
+					}
+				}
+				
 				$row['row_class'] = $i;
 				if ($i > 1)
 				{
