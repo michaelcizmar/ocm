@@ -2672,6 +2672,22 @@ function pl_text_phone($data)
 	return "$ac $pn";
 }
 
+function pl_text_searchify($s)
+{
+	$x = str_replace('-', ' ', $s);
+	$y = explode(' ', $x);
+	$z = '';
+	
+	foreach ($y as $value) 
+	{
+		if (strlen($value) > 1)
+		{
+			$z .= ' ' . metaphone($value);
+		}
+	}
+	
+	return $z;
+}
 
 // TIME Functions
 

@@ -84,10 +84,10 @@ class pikaAlias extends plBase
 		$this->genMetaphone();
 		$this->keywords = '';
 		
-		$this->keywords .= $this->metaphoneHelper($this->first_name);
-		$this->keywords .= $this->metaphoneHelper($this->middle_name);
-		$this->keywords .= $this->metaphoneHelper($this->last_name);
-		$this->keywords .= $this->metaphoneHelper($this->extra_name);
+		$this->keywords .= pl_text_searchify($this->first_name);
+		$this->keywords .= pl_text_searchify($this->middle_name);
+		$this->keywords .= pl_text_searchify($this->last_name);
+		$this->keywords .= pl_text_searchify($this->extra_name);
 
 		$x = str_replace($this->first_name, '-', ' ');
 		$y = explode($x, ' ');
@@ -113,23 +113,6 @@ class pikaAlias extends plBase
 		}
 		
 		$this->keywords = trim($this->keywords);
-	}
-	
-	private function metaphoneHelper($s)
-	{
-		$x = str_replace('-', ' ', $s);
-		$y = explode(' ', $x);
-		$z = '';
-		
-		foreach ($y as $value) 
-		{
-			if (strlen($value) > 1)
-			{
-				$z .= ' ' . metaphone($value);
-			}
-		}
-		
-		return $z;
 	}
 }
 
