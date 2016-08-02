@@ -1308,6 +1308,42 @@ function pl_html_text_array($a)
 // 2013-07-17 AMW - Rearranged this code so <PRE> tags are not displayed if there's no output from tidy.
 // 2013-08-08 AMW - Removed all code due to lack of HTML5 support in tidy.
 
+function pl_keywords_build($first_name, $middle_name, $last_name, $extra_name,
+		$birth_date, $ssn)
+{
+	$keywords = '';
+
+	$keywords .= pl_text_searchify($first_name);
+	$keywords .= pl_text_searchify($middle_name);
+	$keywords .= pl_text_searchify($last_name);
+	$keywords .= pl_text_searchify($extra_name);
+
+	$x = str_replace($first_name, '-', ' ');
+	$y = explode($x, ' ');
+
+	foreach ($y as $value)
+	{
+		if (strlen($value) > 1)  // Ignore punctuation and initials.
+		{
+			$sql = "SELECT root_name FROM name_variants WHERE first_name = '{$value}'";
+			$result = mysql_query($sql) or trigger_error('hi');
+			
+			while ($row = mysql_fetch_assoc($result))
+			{
+				$keywords .= ' ' . $row['root_name'];
+				$keywords .= ' ' . metaphone($row['root_name']);
+			}
+		}
+	}
+}
+
+if (isset($birth_date) && strlen($birth_date) == 10)
+{
+	$keywords .= ' y' . date('Y F jS', strtotime($birth_date));
+}
+
+$keywords = trim($keywords);
+}
 
 // MENUS
 

@@ -501,6 +501,8 @@ class pikaMisc
 				and compares the full SSN string.
 				*/
 		$x .= " " . substr($ssn, -4, 4);
+		$x = pl_keywords_build($first_name, $middle_name, $last_name, $extra_name,
+				$birth_date, $ssn);
 		
 		$sql = "SELECT contacts.*, 
 					match(a.first_name, a.middle_name, a.last_name, a.extra_name, a.keywords, a.ssn) against('{$x}') as score,

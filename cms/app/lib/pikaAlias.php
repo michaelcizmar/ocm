@@ -82,37 +82,8 @@ class pikaAlias extends plBase
 	public function keywordsBuild()
 	{
 		$this->genMetaphone();
-		$this->keywords = '';
-		
-		$this->keywords .= pl_text_searchify($this->first_name);
-		$this->keywords .= pl_text_searchify($this->middle_name);
-		$this->keywords .= pl_text_searchify($this->last_name);
-		$this->keywords .= pl_text_searchify($this->extra_name);
-
-		$x = str_replace($this->first_name, '-', ' ');
-		$y = explode($x, ' ');
-
-		foreach ($y as $value) 
-		{
-			if (strlen($value) > 1)  // Ignore punctuation and initials.
-			{
-				$sql = "SELECT root_name FROM name_variants WHERE first_name = '{$value}'";
-				$result = mysql_query($sql) or trigger_error('hi');
-				
-				while ($row = mysql_fetch_assoc($result))
-				{
-					$this->keywords .= ' ' . $row['root_name'];
-					$this->keywords .= ' ' . metaphone($row['root_name']);
-				}
-			}
-		}
-																						
-		if (isset($this->birth_date) && strlen($this->birth_date) == 10)
-		{
-			$this->keywords .= ' y' . date('Y F jS', strtotime($this->birth_date));
-		}
-		
-		$this->keywords = trim($this->keywords);
+		$this->keywords = pl_keywords_build($this->first_name, $this->middle_name,
+				$this->last_name, $this->extra_name, $this->birth_date, $this->ssn);
 	}
 }
 
