@@ -1335,14 +1335,14 @@ function pl_keywords_build($first_name, $middle_name, $last_name, $extra_name,
 			}
 		}
 	}
-}
-
-if (isset($birth_date) && strlen($birth_date) == 10)
-{
-	$keywords .= ' y' . date('Y F jS', strtotime($birth_date));
-}
-
-$keywords = trim($keywords);
+	
+	if (isset($birth_date) && strlen($birth_date) == 10)
+	{
+		$keywords .= ' y' . date('Y F jS', strtotime($birth_date));
+	}
+	
+	$keywords = trim($keywords);
+	return $keywords;
 }
 
 // MENUS
