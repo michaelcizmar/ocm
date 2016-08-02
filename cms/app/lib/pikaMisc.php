@@ -490,7 +490,7 @@ class pikaMisc
 		$mp_last = metaphone($last_name);
 		
 		$x = "$last_name $first_name $middle_name $extra_name";
-		$x .= pl_text_searchify($x);
+		//$x .= pl_text_searchify($x);
 		
 		/*  Use only the last four characters of the SSN, both if the SSN data
 				is truncated and if it is not.  Having only one SSN search mode will
@@ -500,8 +500,8 @@ class pikaMisc
 				the full SSN will still have the SSN Match table that appears separately
 				and compares the full SSN string.
 				*/
-		$x .= " " . substr($ssn, -4, 4);
-		$x = pl_keywords_build($first_name, $middle_name, $last_name, $extra_name,
+		//$x .= " " . substr($ssn, -4, 4);
+		$x .= pl_keywords_build($first_name, $middle_name, $last_name, $extra_name,
 				$birth_date, $ssn);
 				echo $x;
 		
