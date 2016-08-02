@@ -478,77 +478,25 @@ class pikaMisc
 	/*	Search contacts and aliases for phonetic matches (using metaphone).
 	Ignore exact matches, these are handled by getContacts().
 	*/
-	public static function getContactsPhonetically($last_name, $first_name = '')
+	public static function getContactsPhonetically($last_name, $first_name = null, 
+			$middle_name = null, $extra_name = null, $birth_date = null, $ssn = null)
 	{
-		/*
-		$sql = "CREATE TEMPORARY TABLE IF NOT EXISTS contact_cases
-				(INDEX contact_id (contact_id))
-				SELECT	MAX(conflict_id), 
-						conflict.contact_id, 
-						relation_code, 
-						conflict.case_id, 
-						number, 
-						open_date 
-				FROM conflict 
-				LEFT JOIN cases ON conflict.case_id = cases.case_id 
-				WHERE 0
-				GROUP BY conflict.contact_id";
-		mysql_query($sql) or trigger_error('');
-		*/
-
-		$mp_last = metaphone($last_name);
-		$mp_first = metaphone(pikaMisc::firstNameOnly($first_name));
-
-		if (strlen($mp_last) > 1)
-		{
-			// metaphone fields are only 8 chars in size
-			$mp_first = substr($mp_first, 0, 8);
-			$mp_last = substr($mp_last, 0, 8);
-
-			$match_first = 'mp_first';
-			$match_last = 'mp_last';
-		}
-
-		else
-		{
-			// just use the entire name if $mp_last is extremely small
-			$mp_last = $last_name;
-			$mp_first = $first_name;
-
-			$match_first = 'first_name';
-			$match_last = 'last_name';
-		}
-
-		$clean_mp_first = mysql_real_escape_string($mp_first);
-		$clean_mp_last = mysql_real_escape_string($mp_last);
-
-		/*	Organizations will only have a $last_name, which makes them a
-		special case.
-		*/
-
-		// If $mp_last has a trailing wild card, it will generate too many false hits
-		if (!$mp_first && $mp_last)
-		{
-			$sql = "SELECT contacts.*
-				    FROM aliases LEFT JOIN contacts ON aliases.contact_id=contacts.contact_id
-				    WHERE aliases.{$match_last} LIKE '{$clean_mp_last}' 
-				    ORDER BY aliases.last_name, aliases.first_name, aliases.extra_name, aliases.middle_name";
-		}
-
-		else if ($mp_last)
-		{
-			$sql = "SELECT contacts.*
-				    FROM aliases LEFT JOIN contacts ON aliases.contact_id=contacts.contact_id
-				    WHERE (aliases.{$match_last} LIKE '{$clean_mp_last}' 
-				    AND aliases.{$match_first} LIKE '{$clean_mp_first}')
-				    ORDER BY aliases.last_name, aliases.first_name, aliases.extra_name, aliases.middle_name";
-		}
-
-		else
+		if (strlen($last_name) == 0)
 		{
 			trigger_error('Missing last name - cannot search');
 		}
 		
+		$clean_mp_last = mysql_real_escape_string($mp_last);
+		$mp_last = metaphone($last_name);
+		
+		$x = "$last_name $first_name $middle_name $extra_name";
+		$x .= pl_text_searchify($x);
+		
+		$sql = "SELECT contacts.*, 
+					match(a.first_name, a.middle_name, a.last_name, a.extra_name, a.keywords, a.ssn) against('{$x}') as score
+					FROM aliases as a LEFT JOIN contacts ON a.contact_id=contacts.contact_id
+					where match(a.first_name, a.middle_name, a.last_name, a.extra_name, a.keywords, a.ssn) against('{$x}') 
+					order by score desc";
 		$result = mysql_query($sql) or trigger_error("SQL: " . $sql . " Error: " . mysql_error());
 		return $result;
 	}
@@ -1091,7 +1039,9 @@ class pikaMisc
 			$phonetic_table = new plFlexList();
 			$phonetic_table->template_file = $template_file;
 
-			$result = pikaMisc::getContactsPhonetically($filter['last_name'], $filter['first_name']);
+			$result = pikaMisc::getContactsPhonetically($filter['last_name'], 
+					$filter['first_name'], $filter['middle_name'], $filter['extra_name'],
+					$filter['birth_date'], $filter['ssn']);
 
 			$i = 1;
 			$matches_found = 0;
@@ -1110,7 +1060,7 @@ class pikaMisc
 				$matches_found++;
 				
 				$row['arrow_img'] = 0;
-				$row['client_name'] = pl_text_name($row);
+				$row['client_name'] = pl_text_name($row) . $row['score'];
 				$row['client_phone'] = pl_text_phone($row);
 				$row['birth_date'] = pl_date_unmogrify($row['birth_date']);
 				$row['case_id'] = $case_id;
