@@ -1072,6 +1072,21 @@ class pikaMisc
 					}
 				}
 				
+				if (($row['score'] / $high_score) > 0.9)
+				{
+					$row['search_rank'] = 'search_rank_likely';
+				}
+				
+				else if (($row['score'] / $high_score) > 0.8)
+				{
+					$row['search_rank'] = 'search_rank_extra';
+				}
+				
+				else
+				{
+					$row['search_rank'] = '';
+				}
+				
 				$row['row_class'] = $i;
 				if ($i > 1)
 				{
