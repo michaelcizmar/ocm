@@ -503,7 +503,9 @@ class pikaMisc
 		$x .= " " . substr($ssn, -4, 4);
 		
 		$sql = "SELECT contacts.*, 
-					match(a.first_name, a.middle_name, a.last_name, a.extra_name, a.keywords, a.ssn) against('{$x}') as score
+					match(a.first_name, a.middle_name, a.last_name, a.extra_name, a.keywords, a.ssn) against('{$x}') as score,
+					a.first_name as a_first_name, a.middle_name as a_middle_name, 
+					a.last_name as a_last_name, a.extra_name as a_extra_name
 					FROM aliases as a LEFT JOIN contacts ON a.contact_id=contacts.contact_id
 					where match(a.first_name, a.middle_name, a.last_name, a.extra_name, a.keywords, a.ssn) against('{$x}') 
 					order by score desc";
@@ -1106,6 +1108,15 @@ class pikaMisc
 				$row['case_id'] = $case_id;
 				$row['relation_code'] = $relation_code;
 				$row['screen'] = $screen;
+				
+				if ($row['first_name'] != $row['a_first_name'] ||
+						$row['middle_name'] != $row['a_middle_name'] ||
+						$row['last_name'] != $row['a_last_name'] ||
+						$row['extra_name'] != $row['a_extra_name'])
+				{
+					$row['client_name'] .= "(or {$row['a_first_name']} {$row['a_middle_name']} {$row['a_last_name']} {$row['a_extra_name']})";
+				}
+				
 				$phonetic_table->addRow($row);
 
 
