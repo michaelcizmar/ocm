@@ -2743,12 +2743,11 @@ function pl_text_searchify($s)
 					results less accurate, so omit them.
 					*/
 			$z .= ' ' . str_pad($value, 3, '_');
-			$z .= ' ' . str_pad(metaphone($value), 3, 'A');
 		}
 		
-		else if (strlen($value) > 2)
+		if (strlen($value) > 1)
 		{
-			$z .= ' ' . metaphone($value);
+			$z .= ' ' . str_pad(metaphone($value), 3, 'A');
 		}
 	}
 	
