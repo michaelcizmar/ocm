@@ -2732,6 +2732,10 @@ function pl_text_searchify($s)
 	
 	foreach ($y as $value) 
 	{
+		if (is_numeric($value))
+		{
+			$z .= ' ' . str_pad($value, 3, 'A');
+		}
 		/*  MySQL FULLTEXT ignores strings under 3 characters in length.
 				Pad metaphone strings so FULLTEXT will index them.  An underscore is
 				used to pad the metaphone values because metaphone will never output
@@ -2741,7 +2745,7 @@ function pl_text_searchify($s)
 				results less accurate, so omit them.
 				*/
 		// Omit any strings, such as "123", that result in a zero-length mp string.
-		if (strlen($value) > 1 && strlen(metaphone($value)) > 1)
+		else if (strlen($value) > 1 && strlen(metaphone($value)) > 1)
 		{
 			$z .= ' ' . str_pad(metaphone($value), 3, 'A');
 		}
