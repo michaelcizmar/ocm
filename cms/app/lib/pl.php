@@ -2734,7 +2734,7 @@ function pl_text_searchify($s)
 	{
 		if (is_numeric($value))
 		{
-			$z .= ' ' . str_pad($value, 3, 'A');
+			$z .= ' ' . str_pad($value, 3, '_');
 		}
 		/*  MySQL FULLTEXT ignores strings under 3 characters in length.
 				Pad metaphone strings so FULLTEXT will index them.  An underscore is
@@ -2747,20 +2747,18 @@ function pl_text_searchify($s)
 		// Omit any strings, such as "123", that result in a zero-length mp string.
 		else if (strlen($value) > 1 && strlen(metaphone($value)) > 1)
 		{
-			$z .= ' ' . str_pad(metaphone($value), 3, 'A');
+			$z .= ' ' . str_pad(metaphone($value), 3, '_');
 		}
 	}
 	
 	$squished_name = str_replace(' ', '', $x);
-	$squished_metaphone = str_pad(metaphone($squished_name), 3, 'A');
+	$squished_metaphone = str_pad(metaphone($squished_name), 3, '_');
 	
 	if (' ' . $squished_metaphone != $z && strlen($squished_name) > 2)
 	{
 		$z .= ' ' . $squished_metaphone;
 	}
 	
-	//$z = trim($z);
-	//$z = str_replace('  ', ' ', $z);  // Remove double spaces.
 	return $z;
 }
 
