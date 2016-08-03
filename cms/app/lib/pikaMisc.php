@@ -525,9 +525,21 @@ class pikaMisc
 				mysql_real_escape_string($last_name) . "', 1.05, 1.0) * ";
 		}
 		
+		if (strlen($birth_date) == 10)
+		{
+			$birth_date_weight = "IF(birth_date = '" .
+				mysql_real_escape_string($birth_date) . "', 1.10, 1.0) * ";
+		}
+		
+		if (strlen($ssn) > 3)
+		{
+			$birth_date_weight = "IF(a.ssn LIKE '" .
+				mysql_real_escape_string($ssn) . "', 1.02, 1.0) * ";
+		}
+		
 		$clean_last_name = mysql_real_escape_string($last_name);
 		$sql = "SELECT contacts.*,
-					{$first_name_weight}{$last_name_weight}
+					{$first_name_weight}{$last_name_weight}{$birth_date_weight}{$ssn_weight}
 					match(a.first_name, a.middle_name, a.last_name, a.extra_name, a.keywords, a.ssn) against('{$clean_x}') as score,
 					a.first_name as a_first_name, a.middle_name as a_middle_name, 
 					a.last_name as a_last_name, a.extra_name as a_extra_name,
@@ -1084,19 +1096,29 @@ class pikaMisc
 			$i = 1;
 			$matches_found = 0;
 			$high_score = null;
+			$cutoff_score = null;
 			
 			while ($row = mysql_fetch_assoc($result))
 			{
 				if (null === $high_score)
 				{
 					$high_score = $row['score'];
+					$cutoff_score = $high_score / 2;
 				}
 				
 				else 
 				{
-					if ($high_score > (2 * $row['score']) && $row['score'] < 25)
+					if ($row['score'] < $cutoff_score)
 					{
-						break;
+						if ($matches_found < 10)
+						{
+							$cutoff_score = $row['score'] - 1;
+						}
+						
+						else
+						{
+							break;
+						}
 					}
 				}
 				
