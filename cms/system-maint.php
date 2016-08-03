@@ -102,7 +102,7 @@ switch ($action) {
 		{
 						$x = new pikaAlias($row['alias_id']);
 						$old_keywords = $x->keywords;
-						$x->keywordsBuild();
+						$x->genMetaphone();
 						
 						if ($old_keywords != $x->keywords)
 						{
