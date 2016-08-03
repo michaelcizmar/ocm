@@ -101,8 +101,14 @@ switch ($action) {
 		while ($row = mysql_fetch_assoc($result)) 
 		{
 						$x = new pikaAlias($row['alias_id']);
+						$old_keywords = $x->keywords;
 						$x->keywordsBuild();
-						mysql_query("UPDATE aliases SET keywords = '" . mysql_real_escape_string($x->keywords) . "' WHERE alias_id = '{$row['alias_id']}'");
+						
+						if ($old_keywords != $x->keywords)
+						{
+							mysql_query("UPDATE aliases SET keywords = '" . mysql_real_escape_string($x->keywords) . "' WHERE alias_id = '{$row['alias_id']}'");
+						}
+						
 						//$x->save();
 						$a['num_updated']++;
 		}
