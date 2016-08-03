@@ -1072,7 +1072,7 @@ class pikaMisc
 				
 				else 
 				{
-					if ($high_score > (2 * $row['score']))
+					if ($high_score > (2 * $row['score']) && $row['score'] < 32)
 					{
 						break;
 					}
