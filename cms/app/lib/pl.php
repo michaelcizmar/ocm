@@ -2732,19 +2732,14 @@ function pl_text_searchify($s)
 	
 	foreach ($y as $value) 
 	{
-		if (strlen($value) == 2)
-		{
-			/*  MySQL FULLTEXT ignores strings under 3 characters in length.
-					Pad short names and metaphone strings so FULLTEXT will index them.
-					I selected an underscore for names and an 'A' for metanames to lower
-					the chance of name collisions.  Metaphone should never use an 'A', and
-					very few names will end in an underscore.
-					Testing seems to show that including one-letter initials makes the
-					results less accurate, so omit them.
-					*/
-			$z .= ' ' . str_pad($value, 3, '_');
-		}
-		
+		/*  MySQL FULLTEXT ignores strings under 3 characters in length.
+				Pad metaphone strings so FULLTEXT will index them.  An underscore is
+				used to pad the metaphone values because metaphone will never output
+				that character, so a name collision with a non-padded metaphone value
+				will never occur.
+				Testing seems to show that including one-letter initials makes the
+				results less accurate, so omit them.
+				*/
 		// Omit any strings, such as "123", that result in a zero-length mp string.
 		if (strlen($value) > 1 && strlen(metaphone($value)) > 1)
 		{
