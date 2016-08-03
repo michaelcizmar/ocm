@@ -2716,13 +2716,14 @@ function pl_text_phone($data)
 
 function pl_text_searchify($s)
 {
+	$x = $s;
 	/*	Metaphone removes hyphens and other characters, and hyphenated names
 			end up glued together.  Each name part should be separated so the record
 			is easier to find if only part of the hypenated name appears in the 
 			search string.  So replace hyphens (and slashes) with spaces, and then
 			metaphone() each separate word in the resulting string.
 			*/
-	$x = str_replace('-', ' ', $s);
+	$x = str_replace('-', ' ', $x);
 	$x = str_replace('/', ' ', $x);  // Sometimes slashes are used to hyphenate.
 	
 	$y = explode(' ', $x);
