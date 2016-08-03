@@ -2752,10 +2752,11 @@ function pl_text_searchify($s)
 	}
 	
 	$squished_name = str_replace(' ', '', $x);
+	$squished_metaphone = str_pad(metaphone($squished_name), 3, 'A');
 	
-	if (strlen($squished_name) != strlen($x) && strlen($squished_name) > 2)
+	if ($squished_metaphone != $z && strlen($squished_name) > 2)
 	{	
-		$z .= ' ' . $squished_name . ' ' . metaphone($squished_name);
+		$z .= ' ' . $squished_metaphone;
 	}
 	
 	//$z = trim($z);
