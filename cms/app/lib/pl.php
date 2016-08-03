@@ -2732,19 +2732,21 @@ function pl_text_searchify($s)
 	
 	foreach ($y as $value) 
 	{
-		if (strlen($value) < 3 && strlen($value) > 0)
+		if (strlen($value) == 2)
 		{
 			/*  MySQL FULLTEXT ignores strings under 3 characters in length.
 					Pad short names and metaphone strings so FULLTEXT will index them.
 					I selected an underscore for names and an 'A' for metanames to lower
 					the chance of name collisions.  Metaphone should never use an 'A', and
 					very few names will end in an underscore.
+					Testing seems to show that including one-letter initials makes the
+					results less accurate, so omit them.
 					*/
 			$z .= ' ' . str_pad($value, 3, '_');
 			$z .= ' ' . str_pad(metaphone($value), 3, 'A');
 		}
 		
-		else 
+		else if (strlen($value) > 2)
 		{
 			$z .= ' ' . metaphone($value);
 		}
