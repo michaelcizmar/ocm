@@ -510,7 +510,9 @@ class pikaMisc
 				$birth_date, $ssn);
 				echo $x;
 		$clean_x = mysql_real_escape_string($x);
+		$clean_last_name = mysql_real_escape_string($last_name);
 		$sql = "SELECT contacts.*, 
+					IF(a.last_name LIKE '{$clean_last_name}', 1.05, 1.0) *
 					match(a.first_name, a.middle_name, a.last_name, a.extra_name, a.keywords, a.ssn) against('{$clean_x}') as score,
 					a.first_name as a_first_name, a.middle_name as a_middle_name, 
 					a.last_name as a_last_name, a.extra_name as a_extra_name,
