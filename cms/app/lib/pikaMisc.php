@@ -546,7 +546,7 @@ class pikaMisc
 					keywords
 					FROM aliases as a LEFT JOIN contacts ON a.contact_id=contacts.contact_id
 					where match(a.first_name, a.middle_name, a.last_name, a.extra_name, a.keywords, a.ssn) against('{$clean_x}') 
-					order by score desc";
+					order by score desc";echo $sql;
 		$result = mysql_query($sql) or trigger_error("SQL: " . $sql . " Error: " . mysql_error());
 		return $result;
 	}
@@ -1150,7 +1150,7 @@ class pikaMisc
 				$matches_found++;
 				
 				$row['arrow_img'] = 0;
-				$row['client_name'] = pl_text_name($row) . round($row['score']) .' '. $row['keywords'];
+				$row['client_name'] = pl_text_name($row) . round($row['score'], 1) .' '. $row['keywords'];
 				$row['client_phone'] = pl_text_phone($row);
 				$row['birth_date'] = pl_date_unmogrify($row['birth_date']);
 				$row['case_id'] = $case_id;
