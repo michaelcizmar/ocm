@@ -2717,6 +2717,7 @@ function pl_text_phone($data)
 function pl_text_searchify($s)
 {
 	$x = $s;
+	$x = str_replace('.', '', $x);
 	/*	Metaphone removes hyphens and other characters, and hyphenated names
 			end up glued together.  Each name part should be separated so the record
 			is easier to find if only part of the hypenated name appears in the 
