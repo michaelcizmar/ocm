@@ -2745,7 +2745,8 @@ function pl_text_searchify($s)
 			$z .= ' ' . str_pad($value, 3, '_');
 		}
 		
-		if (strlen($value) > 1)
+		// Omit any strings, such as "123", that result in a zero-length mp string.
+		if (strlen($value) > 1 && strlen(metaphone($value)) > 1)
 		{
 			$z .= ' ' . str_pad(metaphone($value), 3, 'A');
 		}
