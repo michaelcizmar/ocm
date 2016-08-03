@@ -490,10 +490,12 @@ class pikaMisc
 		$mp_last = metaphone($last_name);
 		$x = '';
 		/*	Only the metaphone strings are using in the FULLTEXT search string.  The
-				plain text names are not included.  Phonetically identical matches were
-				being bumped below the cutoff in some test cases because the leter-for-
-				letter matches were weighted higher.  All phonetically identical matches
-				should be weighted equally, so omit the plain text names.
+				plain text names are not included.  When plain text names were included,
+				phonetically identical matches were being bumped below the cutoff in 
+				some test cases because the letter-for-letter matches were weighted
+				higher.  All phonetically identical matches	should be weighted equally 
+				so if there are different spellings they all make if on the list every
+				time.
 				*/
 		//$x .= pl_text_searchify($x);
 		
