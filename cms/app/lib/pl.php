@@ -1338,7 +1338,13 @@ function pl_keywords_build($first_name, $middle_name, $last_name, $extra_name,
 	
 	if (isset($birth_date) && strlen($birth_date) == 10)
 	{
-		$keywords .= ' y' . date('Y F jS', strtotime($birth_date));
+		$keywords .= ' y' . date('Y', strtotime($birth_date));
+		$keywords .= ' m' . date('m', strtotime($birth_date));
+		$keywords .= ' d' . date('d', strtotime($birth_date));
+		/*	Using 'Y F jS' gives you strings like 'June' and '12th' which makes the
+				keywords more readable,	but testing found name collisions.  First names
+				for months and business	names for days.
+				*/
 	}
 	
 	$keywords = trim($keywords);
