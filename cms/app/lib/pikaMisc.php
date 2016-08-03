@@ -512,9 +512,22 @@ class pikaMisc
 				$birth_date, $ssn);
 				echo $x;
 		$clean_x = mysql_real_escape_string($x);
+		
+		if (strlen($first_name) > 0)
+		{
+			$first_name_weight = "IF(a.first_name LIKE '" .
+				mysql_real_escape_string($first_name) . "', 1.05, 1.0) * ";
+		}
+		
+		if (strlen($last_name) > 0)
+		{
+			$last_name_weight = "IF(a.last_name LIKE '" .
+				mysql_real_escape_string($last_name) . "', 1.05, 1.0) * ";
+		}
+		
 		$clean_last_name = mysql_real_escape_string($last_name);
-		$sql = "SELECT contacts.*, 
-					IF(a.last_name LIKE '{$clean_last_name}', 1.05, 1.0) *
+		$sql = "SELECT contacts.*,
+					{$first_name_weight}{$last_name_weight}
 					match(a.first_name, a.middle_name, a.last_name, a.extra_name, a.keywords, a.ssn) against('{$clean_x}') as score,
 					a.first_name as a_first_name, a.middle_name as a_middle_name, 
 					a.last_name as a_last_name, a.extra_name as a_extra_name,
