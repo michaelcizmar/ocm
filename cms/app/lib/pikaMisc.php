@@ -488,8 +488,13 @@ class pikaMisc
 		
 		$clean_mp_last = mysql_real_escape_string($mp_last);
 		$mp_last = metaphone($last_name);
-		
-		$x = "$last_name $first_name $middle_name $extra_name";
+		$x = '';
+		/*	Only the metaphone strings are using in the FULLTEXT search string.  The
+				plain text names are not included.  Phonetically identical matches were
+				being bumped below the cutoff in some test cases because the leter-for-
+				letter matches were weighted higher.  All phonetically identical matches
+				should be weighted equally, so omit the plain text names.
+				*/
 		//$x .= pl_text_searchify($x);
 		
 		/*  Use only the last four characters of the SSN, both if the SSN data
