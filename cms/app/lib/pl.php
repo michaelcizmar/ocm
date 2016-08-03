@@ -2749,8 +2749,8 @@ function pl_text_searchify($s)
 		$z .= ' ' . $squished_name . ' ' . metaphone($squished_name);
 	}
 	
-	$z = trim($z);
-	$z = str_replace('  ', ' ', $z);  // Remove double spaces.
+	//$z = trim($z);
+	//$z = str_replace('  ', ' ', $z);  // Remove double spaces.
 	return $z;
 }
 
