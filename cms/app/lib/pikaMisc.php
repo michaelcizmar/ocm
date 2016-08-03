@@ -504,14 +504,14 @@ class pikaMisc
 		$x .= pl_keywords_build($first_name, $middle_name, $last_name, $extra_name,
 				$birth_date, $ssn);
 				echo $x;
-		
+		$clean_x = mysql_real_escape_string($x);
 		$sql = "SELECT contacts.*, 
-					match(a.first_name, a.middle_name, a.last_name, a.extra_name, a.keywords, a.ssn) against('{$x}') as score,
+					match(a.first_name, a.middle_name, a.last_name, a.extra_name, a.keywords, a.ssn) against('{$clean_x}') as score,
 					a.first_name as a_first_name, a.middle_name as a_middle_name, 
 					a.last_name as a_last_name, a.extra_name as a_extra_name,
 					keywords
 					FROM aliases as a LEFT JOIN contacts ON a.contact_id=contacts.contact_id
-					where match(a.first_name, a.middle_name, a.last_name, a.extra_name, a.keywords, a.ssn) against('{$x}') 
+					where match(a.first_name, a.middle_name, a.last_name, a.extra_name, a.keywords, a.ssn) against('{$clean_x}') 
 					order by score desc";
 		$result = mysql_query($sql) or trigger_error("SQL: " . $sql . " Error: " . mysql_error());
 		return $result;
