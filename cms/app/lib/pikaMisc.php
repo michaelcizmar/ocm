@@ -528,7 +528,7 @@ class pikaMisc
 		if (strlen($birth_date) == 10)
 		{
 			$birth_date_weight = "IF(birth_date = '" .
-				mysql_real_escape_string($birth_date) . "', 1.10, 1.0) * ";
+				mysql_real_escape_string($birth_date) . "', 1.20, 1.0) * ";
 		}
 		
 		if (strlen($ssn) > 3)
