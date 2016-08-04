@@ -539,12 +539,12 @@ class pikaMisc
 		$clean_last_name = mysql_real_escape_string($last_name);
 		$sql = "SELECT contacts.*,
 					{$first_name_weight}{$last_name_weight}{$birth_date_weight}{$ssn_weight}
-					match(a.first_name, a.middle_name, a.last_name, a.extra_name, a.keywords, a.ssn) against('{$clean_x}') as score,
+					match(keywords) against('{$clean_x}') as score,
 					a.first_name as a_first_name, a.middle_name as a_middle_name, 
 					a.last_name as a_last_name, a.extra_name as a_extra_name,
 					keywords
 					FROM aliases as a LEFT JOIN contacts ON a.contact_id=contacts.contact_id
-					where match(a.first_name, a.middle_name, a.last_name, a.extra_name, a.keywords, a.ssn) against('{$clean_x}') 
+					where match(keywords) against('{$clean_x}') 
 					order by score desc";echo $sql;
 		$result = mysql_query($sql) or trigger_error("SQL: " . $sql . " Error: " . mysql_error());
 		return $result;
