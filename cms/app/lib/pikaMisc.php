@@ -486,9 +486,6 @@ class pikaMisc
 			trigger_error('Missing last name - cannot search');
 		}
 		
-		$clean_mp_last = mysql_real_escape_string($mp_last);
-		$mp_last = metaphone($last_name);
-		$x = '';
 		/*	Only the metaphone strings are using in the FULLTEXT search string.  The
 				plain text names are not included.  When plain text names were included,
 				phonetically identical matches were being bumped below the cutoff in 
@@ -497,19 +494,13 @@ class pikaMisc
 				so if there are different spellings they all make if on the list every
 				time.
 				*/
-		//$x .= pl_text_searchify($x);
 		
-		/*  Use only the last four characters of the SSN, both if the SSN data
-				is truncated and if it is not.  Having only one SSN search mode will
-				be simpler to test and maintain.  There were a lot of squirrelly details
-				with having a mode for including 4-digit and different mode for 
-				including 9-digit SSNs in the search weighting.  And programs that store
-				the full SSN will still have the SSN Match table that appears separately
-				and compares the full SSN string.
+		/*  There were a lot of squirrelly details when 9-digit SSNs were included
+				in the FULLTEXT search weighting.  Weighting for SSN matches is instead
+				done in SQL but outside of FULLTEXT.
 				*/
-		//$x .= " " . substr($ssn, -4, 4);
-		$x .= pl_keywords_build($first_name, $middle_name, $last_name, $extra_name);
-				echo $x;
+		
+		$x = pl_keywords_build($first_name, $middle_name, $last_name, $extra_name);
 		$clean_x = mysql_real_escape_string($x);
 		
 		if (strlen($first_name) > 0)
@@ -545,7 +536,7 @@ class pikaMisc
 					keywords
 					FROM aliases as a LEFT JOIN contacts ON a.contact_id=contacts.contact_id
 					where match(keywords) against('{$clean_x}') 
-					order by score desc";echo $sql;
+					order by score desc";
 		$result = mysql_query($sql) or trigger_error("SQL: " . $sql . " Error: " . mysql_error());
 		return $result;
 	}
