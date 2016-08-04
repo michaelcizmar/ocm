@@ -523,7 +523,7 @@ class pikaMisc
 		
 		if (strlen($ssn) > 3)
 		{
-			$birth_date_weight = "IF(a.ssn LIKE '" .
+			$ssn_weight = "IF(a.ssn LIKE '" .
 				mysql_real_escape_string($ssn) . "', 1.02, 1.0) * ";
 		}
 		
