@@ -2717,16 +2717,35 @@ function pl_text_phone($data)
 
 function pl_text_to_search_array($s)
 {
-	$x = $s;
-	$x = str_replace('.', '', $x);
+	/*	Save this code because it took a while to put together.  This version
+			includes characters that end up as vowels.  Metaphone will remove these
+			so their entries are not currently needed.
+
+	$x = strtr($s, array('à' => 'a', 'è' => 'e', 'ì' => 'i', 'ò' => 'o',
+		'ù' => 'u', 'À' => 'a', 'È' => 'e', 'Ì' => 'i', 'Ò' => 'o', 'Ù' => 'u',
+		'á' => 'a', 'é' => 'e', 'í' => 'i', 'ó' => 'o', 'ú' => 'u', 'ý' => 'y',
+		'Á' => 'a', 'É' => 'e', 'Í' => 'i', 'Ó' => 'o', 'Ú' => 'u', 'Ý' => 'y',
+		'â' => 'a', 'ê' => 'e', 'î' => 'i', 'ô' => 'o', 'û' => 'u',
+		'Â' => 'a', 'Ê' => 'e', 'Î' => 'i', 'Ô' => 'o', 'Û' => 'u',
+		'ã' => 'a', 'ñ' => 'n', 'õ' => 'o',
+		'Ã' => 'a', 'Ñ' => 'n', 'Õ' => 'o',
+		'ä' => 'a', 'ë' => 'e', 'ï' => 'i', 'ö' => 'o', 'ü' => 'u', 'ÿ' => 'y',
+		'Ä' => 'a', 'Ë' => 'e', 'Ï' => 'i', 'Ö' => 'o', 'Ü' => 'u', 'Ÿ' => 'y',
+		'ç' => 'c', 'Ç' => 'c', 'ø' => 'o', 'Ø' => 'o',
+		'æ' => 'a', 'Æ' => 'a', 'œ' => 'o', 'Œ' => 'o',
+		'.' => '', '-' => ' ', '/' => ' '));
+	*/
+	
+	$x = strtr($s, array('ý' => 'y', 'Ý' => 'y', 'ñ' => 'n', 'Ñ' => 'n',
+		'ÿ' => 'y', 'Ÿ' => 'y', 'ç' => 'c', 'Ç' => 'c',
+		'.' => '', '-' => ' ', '/' => ' '));
 	/*	Metaphone removes hyphens and other characters, and hyphenated names
 			end up glued together.  Each name part should be separated so the record
 			is easier to find if only part of the hypenated name appears in the 
 			search string.  So replace hyphens (and slashes) with spaces, and then
 			metaphone() each separate word in the resulting string.
 			*/
-	$x = str_replace('-', ' ', $x);
-	$x = str_replace('/', ' ', $x);  // Sometimes slashes are used to hyphenate.
+	// Sometimes slashes are used to hyphenate.
 	
 	$y = explode(' ', $x);
 	$z = array();
