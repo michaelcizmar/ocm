@@ -1311,13 +1311,14 @@ function pl_html_text_array($a)
 function pl_keywords_build($first_name, $middle_name, $last_name, $extra_name,
 		$birth_date, $ssn)
 {
-	$keywords = '';
-
-	$keywords .= pl_text_searchify($first_name);
-	$keywords .= pl_text_searchify($middle_name);
-	$keywords .= pl_text_searchify($last_name);
-	$keywords .= pl_text_searchify($extra_name);
-
+	$a = array_merge(pl_text_to_search_array($first_name),
+		pl_text_to_search_array($middle_name),
+		pl_text_to_search_array($last_name),
+		pl_text_to_search_array($extra_name));
+	$a = array_unique($a);  // Duplicate metaphone values really throw the
+	// results weighting off.
+	$keywords = implode(' ', $a);
+	
 	$x = str_replace($first_name, '-', ' ');
 	$y = explode($x, ' ');
 
@@ -2714,7 +2715,7 @@ function pl_text_phone($data)
 	return "$ac $pn";
 }
 
-function pl_text_searchify($s)
+function pl_text_to_search_array($s)
 {
 	$x = $s;
 	$x = str_replace('.', '', $x);
@@ -2728,14 +2729,14 @@ function pl_text_searchify($s)
 	$x = str_replace('/', ' ', $x);  // Sometimes slashes are used to hyphenate.
 	
 	$y = explode(' ', $x);
-	$z = '';
+	$z = array();
 	$squished_metaphone = '';
 	
 	foreach ($y as $value) 
 	{
 		if (is_numeric($value))
 		{
-			$z .= ' ' . str_pad($value, 3, '_');
+			$z[] = str_pad($value, 3, '_');
 			$squished_metaphone .= $value;
 		}
 		/*  MySQL FULLTEXT ignores strings under 3 characters in length.
@@ -2749,7 +2750,7 @@ function pl_text_searchify($s)
 		// Omit any strings, such as "123", that result in a zero-length mp string.
 		else if (strlen($value) > 1 && strlen(metaphone($value)) > 0)
 		{
-			$z .= ' ' . str_pad(metaphone($value), 3, '_');
+			$z[] = str_pad(metaphone($value), 3, '_');
 			$squished_metaphone .= $value;
 		}
 	}
@@ -2760,7 +2761,7 @@ function pl_text_searchify($s)
 	
 	if (' ' . $squished_metaphone != $z && strlen($squished_name) > 2)
 	{
-		$z .= ' ' . $squished_metaphone;
+		$z[] = $squished_metaphone;
 	}
 	
 	return $z;
