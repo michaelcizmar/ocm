@@ -508,8 +508,7 @@ class pikaMisc
 				and compares the full SSN string.
 				*/
 		//$x .= " " . substr($ssn, -4, 4);
-		$x .= pl_keywords_build($first_name, $middle_name, $last_name, $extra_name,
-				$birth_date, $ssn);
+		$x .= pl_keywords_build($first_name, $middle_name, $last_name, $extra_name);
 				echo $x;
 		$clean_x = mysql_real_escape_string($x);
 		

@@ -1308,8 +1308,7 @@ function pl_html_text_array($a)
 // 2013-07-17 AMW - Rearranged this code so <PRE> tags are not displayed if there's no output from tidy.
 // 2013-08-08 AMW - Removed all code due to lack of HTML5 support in tidy.
 
-function pl_keywords_build($first_name, $middle_name, $last_name, $extra_name,
-		$birth_date, $ssn)
+function pl_keywords_build($first_name, $middle_name, $last_name, $extra_name)
 {
 	$a = array_merge(pl_text_to_search_array($first_name),
 		pl_text_to_search_array($middle_name),
@@ -1335,17 +1334,6 @@ function pl_keywords_build($first_name, $middle_name, $last_name, $extra_name,
 				$keywords .= ' ' . metaphone($row['root_name']);
 			}
 		}
-	}
-	
-	if (isset($birth_date) && strlen($birth_date) == 10)
-	{
-		$keywords .= ' y' . date('Y', strtotime($birth_date));
-		$keywords .= ' m' . date('m', strtotime($birth_date));
-		$keywords .= ' d' . date('d', strtotime($birth_date));
-		/*	Using 'Y F jS' gives you strings like 'June' and '12th' which makes the
-				keywords more readable,	but testing found name collisions.  First names
-				for months and business	names for days.
-				*/
 	}
 	
 	$keywords = trim($keywords);
