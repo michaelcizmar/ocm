@@ -2745,7 +2745,7 @@ function pl_text_searchify($s)
 				results less accurate, so omit them.
 				*/
 		// Omit any strings, such as "123", that result in a zero-length mp string.
-		else if (strlen($value) > 1 && strlen(metaphone($value)) > 1)
+		else if (strlen($value) > 1 && strlen(metaphone($value)) > 0)
 		{
 			$z .= ' ' . str_pad(metaphone($value), 3, '_');
 		}
