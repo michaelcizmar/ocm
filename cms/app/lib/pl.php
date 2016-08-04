@@ -2729,12 +2729,14 @@ function pl_text_searchify($s)
 	
 	$y = explode(' ', $x);
 	$z = '';
+	$squished_metaphone = '';
 	
 	foreach ($y as $value) 
 	{
 		if (is_numeric($value))
 		{
 			$z .= ' ' . str_pad($value, 3, '_');
+			$squished_metaphone .= $value;
 		}
 		/*  MySQL FULLTEXT ignores strings under 3 characters in length.
 				Pad metaphone strings so FULLTEXT will index them.  An underscore is
@@ -2748,11 +2750,13 @@ function pl_text_searchify($s)
 		else if (strlen($value) > 1 && strlen(metaphone($value)) > 0)
 		{
 			$z .= ' ' . str_pad(metaphone($value), 3, '_');
+			$squished_metaphone .= $value;
 		}
 	}
 	
 	$squished_name = str_replace(' ', '', $x);
-	$squished_metaphone = str_pad(metaphone($squished_name), 3, '_');
+	// We will lose number characters here.
+	$squished_metaphone = str_pad(metaphone($squished_metaphone), 3, '_');
 	
 	if (' ' . $squished_metaphone != $z && strlen($squished_name) > 2)
 	{
