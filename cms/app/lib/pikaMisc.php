@@ -1127,7 +1127,7 @@ class pikaMisc
 					$row['search_rank'] = 'search_rank_likely';
 				}
 				
-				else if (($row['score'] / $high_score) > 0.8)
+				else if (($row['score'] / $high_score) > 0.8 || $row['score'] > 30)
 				{
 					$row['search_rank'] = 'search_rank_extra';
 				}
