@@ -538,6 +538,27 @@ class pikaMisc
 					where match(keywords) against('{$clean_x}') 
 					order by score desc";
 		$result = mysql_query($sql) or trigger_error("SQL: " . $sql . " Error: " . mysql_error());
+		
+		if (mysql_num_rows($result) == 0)
+		{
+			$sql = "SELECT count(*) as a FROM aliases";
+			$result = mysql_query($sql) or trigger_error("SQL: " . $sql . " Error: " . mysql_error());
+			$row = mysql_fetch_assoc($result);
+			
+			if ($row['a'] > 0)
+			{
+				$sql = "SELECT count(*) as a FROM aliases WHERE keywords IS NOT NULL";
+				$result = mysql_query($sql) or trigger_error("SQL: " . $sql . " Error: " . mysql_error());
+				$row = mysql_fetch_assoc($result);
+				
+				if ($row['a'] == 0)
+				{
+					trigger_error("The database is not ready to be searched.  Please go to Site Map, then System Maintenance, then run the metaphone button and try again.");
+				}
+			}
+			
+		}
+		
 		return $result;
 	}
 
