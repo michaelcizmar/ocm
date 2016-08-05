@@ -532,8 +532,7 @@ class pikaMisc
 					{$first_name_weight}{$last_name_weight}{$birth_date_weight}{$ssn_weight}
 					match(keywords) against('{$clean_x}') as score,
 					a.first_name as a_first_name, a.middle_name as a_middle_name, 
-					a.last_name as a_last_name, a.extra_name as a_extra_name,
-					keywords
+					a.last_name as a_last_name, a.extra_name as a_extra_name
 					FROM aliases as a LEFT JOIN contacts ON a.contact_id=contacts.contact_id
 					where match(keywords) against('{$clean_x}') 
 					order by score desc";
@@ -1161,7 +1160,7 @@ class pikaMisc
 				$matches_found++;
 				
 				$row['arrow_img'] = 0;
-				$row['client_name'] = pl_text_name($row) . round($row['score'], 1) .' '. $row['keywords'];
+				$row['client_name'] = pl_text_name($row);
 				$row['client_phone'] = pl_text_phone($row);
 				$row['birth_date'] = pl_date_unmogrify($row['birth_date']);
 				$row['case_id'] = $case_id;
