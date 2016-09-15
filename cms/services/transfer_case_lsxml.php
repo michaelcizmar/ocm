@@ -20,7 +20,7 @@ require_once('pikaActivity.php');
 require_once('pikaLSXML_V2.php');
 
 $auth_row = pikaAuthHttp::getInstance()->getAuthRow();
-$lsxml = pl_grab_post('lsxml');
+$lsxml = $_POST['lsxml'];
 $tx = new pikaLSXML($lsxml);
 $case_id = $tx->importXML();
 $case = new pikaCase($case_id);
