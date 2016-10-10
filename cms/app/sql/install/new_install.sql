@@ -65,7 +65,7 @@ CREATE TABLE `aliases` (
   KEY `last_name` (`last_name`),
   KEY `test` (`primary_name`,`contact_id`,`mp_first`,`mp_last`,`ssn`),
   FULLTEXT KEY `keywords` (`keywords`)
-) ENGINE = INNODB;
+) ENGINE = MyISAM;
 
 -- 
 -- Table structure for table `case_tabs`
